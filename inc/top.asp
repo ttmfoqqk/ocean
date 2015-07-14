@@ -39,6 +39,7 @@
 			<a href="../about/" class="menu <%=IIF(INSTR(LCase(g_url),"/about/")>0,"color_green on","")%>">About</a>
 			<a href="../license/" class="menu <%=IIF(INSTR(LCase(g_url),"/license/")>0,"color_green on","")%>">License</a>
 			<a href="../download/" class="menu <%=IIF(INSTR(LCase(g_url),"/download/")>0,"color_green on","")%>">Download</a>
+			<a href="../community/" class="menu <%=IIF(INSTR(LCase(g_url),"/community/")>0,"color_green on","")%>">Community</a>			
 			<a href="../showcase/" class="menu <%=IIF(INSTR(LCase(g_url),"/showcase/")>0,"color_green on","")%>">Showcase</a>
 			<a href="../contact/" class="menu <%=IIF(INSTR(LCase(g_url),"/contact/")>0,"color_green on","")%>">Contact</a>
 		</div>

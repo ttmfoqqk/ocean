@@ -10,4 +10,20 @@
 			<%End If%>
 		</ul>
 	</div>
+	<% elseif INSTR(LCase(g_url),"/about/")>0 Then %>
+	<div id="left_menu">
+		<h2>About</h2>
+		<ul>
+			<li><a href="../about/" class="<%=IIF( INSTR(LCase(g_url),"index") > 0 ,"over" , "" )%>"><span>Ocean이란?</span></a></li>
+			<li><a href="../about/notice.asp" class="<%=IIF( INSTR(LCase(g_url),"notice") > 0 ,"over" , "" )%>"><span>공지사항</span></a></li>
+		</ul>
+	</div>
+	<% elseif INSTR(LCase(g_url),"/download/")>0 Then %>
+	<div id="left_menu">
+		<h2>Download</h2>
+		<ul>
+			<li><a href="../download/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><span>OpenMobius</span></a></li>
+			<li><a href="../download/?tab1=2" class="<%=IIF( tab1 = 2 ,"over" , "" )%>"><span>&Cube</span></a></li>
+		</ul>
+	</div>
 	<% End If %>

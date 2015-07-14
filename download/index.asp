@@ -106,67 +106,72 @@ End Sub
 <div id="middle">
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
-		<h2 class="page_title">Download OCEAN</h2>
-		
-		<div class="dowunload_tap">
-			<div class="tap <%=IIF(tab1="1","on","")%>">
-				<a href="../download/?tab1=1" class="m1"><span><b class="color_green">OpenMobius 다운로드</b><br><br>소스코드를 포함한 서버사이드 SW를<br>다운로드할 수 있습니다.</span></a>
-			</div><div class="tap <%=IIF(tab1="2","on","")%>">
-				<a href="../download/?tab1=2" class="m2"><span><b class="color_green">&Cube 다운로드</b><br><br>소스코드를 포함한 다양한 디바이스용 SW를<br>다운로드 할 수 있습니다.</span></a>
-			</div>
-		</div>
-
-		<div class="dowunload_tap2">
-		<%for iLoop = 0 to cntListMenu
-			%><button class="tap <%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"on","")%>" onclick="location.href='../download/?tab1=<%=tab1%>&tab2=<%=arrListMenu(MENU_idx,iLoop)%>';" style="<%=IIF( ((iLoop+1) Mod 3)=0,"margin-right:0px;","" )%>"><%=arrListMenu(MENU_name,iLoop)%></button><%
-		Next%>
-		</div>
-		
-		<div class="dowunload_list">
-			<%for iLoop = 0 to cntList1
-				onclick = ""
-				If session("userIdx") = "" Then
-					onclick = "if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){location.href='../login/?goUrl="& g_host & g_url &"';};return false;"
-				Else
-					If CHECK_CNT = 0 Then
-						onclick = "alert('관리자 승인 후 다운로드가 가능합니다.');return false;"
-					Else
-						onclick = ""
-					End If
-				End If 
-
-				
-			%>
-			<div class="block">
-				<a href="#" class="link"><%=arrList1(FI1_Title,iLoop)%> <span class="data"><%=arrList1(FI1_Indate,iLoop)%></span></a>
-				<div class="sub">
-					
-					<table cellpadding="0" cellspacing="0" style="width:100%;">
-						<tr>
-							<td style="vertical-align:top;width:690px;"><%=arrList1(FI1_Contants,iLoop)%></td>
-							<td style="vertical-align:top;">
-								<%If arrList1(FI1_File_name,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name2,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name2,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name2,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name3,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name3,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name3,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name4,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name4,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name4,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name5,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name5,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name5,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name6,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name6,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name6,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name7,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name7,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name7,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name8,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name8,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name8,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name9,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name9,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name9,iLoop),20 )%></a></div><%End If%>
-								<%If arrList1(FI1_File_name10,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name10,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name10,iLoop),20 )%></a></div><%End If%>
-							</td>
-						</tr>
-					</table>
-
+		<!-- #include file = "../inc/left.asp" -->
+		<div id="contant">
+			<h3 class="title">메뉴 타이틀 -> 페이지 작업 요망</h3>
+			
+			<!--div class="dowunload_tap">
+				<div class="tap <%=IIF(tab1="1","on","")%>">
+					<a href="../download/?tab1=1" class="m1"><span><b class="color_green">OpenMobius 다운로드</b><br><br>소스코드를 포함한 서버사이드 SW를<br>다운로드할 수 있습니다.</span></a>
+				</div><div class="tap <%=IIF(tab1="2","on","")%>">
+					<a href="../download/?tab1=2" class="m2"><span><b class="color_green">&Cube 다운로드</b><br><br>소스코드를 포함한 다양한 디바이스용 SW를<br>다운로드 할 수 있습니다.</span></a>
 				</div>
+			</div-->
+
+			<div class="dowunload_tap2">
+			<%for iLoop = 0 to cntListMenu
+				%><button class="tap <%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"on","")%>" onclick="location.href='../download/?tab1=<%=tab1%>&tab2=<%=arrListMenu(MENU_idx,iLoop)%>';" style="<%=IIF( ((iLoop+1) Mod 3)=0,"margin-right:0px;","" )%>"><%=arrListMenu(MENU_name,iLoop)%></button><%
+			Next%>
 			</div>
-			<%Next%>
-			<%If cntList1 < 0 Then %>
-			<div class="block">
-				<span style="margin-left:10px;">등록된 내용이 없습니다.</a>
+			
+			<div class="dowunload_list">
+				<%for iLoop = 0 to cntList1
+					onclick = ""
+					If session("userIdx") = "" Then
+						onclick = "if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){location.href='../login/?goUrl="& g_host & g_url &"';};return false;"
+					Else
+						If CHECK_CNT = 0 Then
+							onclick = "alert('관리자 승인 후 다운로드가 가능합니다.');return false;"
+						Else
+							onclick = ""
+						End If
+					End If 
+
+					
+				%>
+				<div class="block">
+					<a href="#" class="link"><%=arrList1(FI1_Title,iLoop)%> <span class="data"><%=arrList1(FI1_Indate,iLoop)%></span></a>
+					<div class="sub">
+						
+						<table cellpadding="0" cellspacing="0" style="width:100%;">
+							<tr>
+								<td style="vertical-align:top;padding-bottom:10px;/*width:400px;*/"><%=arrList1(FI1_Contants,iLoop)%></td>
+							</tr>
+							<tr>
+								<td style="vertical-align:top;border-top:1px solid #cdcccc;padding-top:10px;">
+									<%If arrList1(FI1_File_name,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name2,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name2,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name2,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name3,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name3,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name3,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name4,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name4,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name4,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name5,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name5,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name5,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name6,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name6,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name6,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name7,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name7,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name7,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name8,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name8,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name8,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name9,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name9,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name9,iLoop),20 )%></a></div><%End If%>
+									<%If arrList1(FI1_File_name10,iLoop) <>  "" Then%><div class="file">File ㅣ <a href="download.asp?file=<%=escape(arrList1(FI1_File_name10,iLoop))%>&idx=<%=arrList1(FI1_idx,iLoop)%>" onclick="<%=onclick%>"><%=HtmlTagRemover(arrList1(FI1_File_name10,iLoop),20 )%></a></div><%End If%>
+								</td>
+							</tr>
+						</table>
+
+					</div>
+				</div>
+				<%Next%>
+				<%If cntList1 < 0 Then %>
+				<div class="block">
+					<span style="margin-left:10px;">등록된 내용이 없습니다.</a>
+				</div>
+				<%End If%>
 			</div>
-			<%End If%>
 		</div>
 
 

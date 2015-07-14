@@ -37,7 +37,7 @@ End Sub
 <div id="middle">
 	<div class="visual" id="main_backgroundImages">
 		<div class="visual_wrap">
-			<div class="item" style="background:url(../img/visual/main/01.jpg) no-repeat center;">
+			<div class="item" style="background:url(../img/visual/main/01.jpg) no-repeat center;background-size:auto 349px;">
 				<div class="visual_text">
 					<h4>표준 기반 사물인터넷 오픈소스 연합체</h4>
 					<p>IoT 글로벌 표준을 기반으로 개발된 오픈소스를 공유합니다.<br>다양한 사물 인터넷 서비스의 조기 개발 및 상용화를 촉진하기 위한 연합체 입니다.</p>
@@ -46,7 +46,7 @@ End Sub
 				<div class="mask_right"></div>
 				<div class="mask"></div>
 			</div>
-			<div class="item" style="background:url(../img/visual/main/02.jpg) no-repeat center;">
+			<div class="item" style="background:url(../img/visual/main/02.jpg) no-repeat center;background-size:auto 349px;">
 				<div class="visual_text">
 					<h4>openMobius®  &CUBE®  공개</h4>
 					<p>openMobius® 는 IoT 글로벌 표준을 기반으로 개발된 사물인터넷 서버 플랫폼입니다.<br>&CUBE® 사물인터넷 디바이스 플랫폼입니다.<br>지금 다운로드 받아 사용하실 수 있습니다.</p>
@@ -55,7 +55,7 @@ End Sub
 				<div class="mask_right"></div>
 				<div class="mask"></div>
 			</div>
-			<div class="item" style="background:url(../img/visual/main/03.jpg) no-repeat center;">
+			<div class="item" style="background:url(../img/visual/main/03.jpg) no-repeat center;background-size:auto 349px;">
 				<div class="visual_text">
 					<h4>3-clause BSD-style 라이센스</h4>
 					<p>개발된 코드는 여러분의 것입니다. <br>라이센스 규정을 확인하세요.</p>
@@ -74,9 +74,23 @@ End Sub
 
 	<div class="wrap">
 		
+		<!-- 게시판 -->
+		<div class="main_notice" style="margin-right:15px;">
+			<div class="title">공지사항 <a href="../about/notice.asp" class="more">+ 더보기</a></div>
+			<div class="contants">
+				<table cellpadding="0" cellspacing="0" class="table">
+					<%for iLoop = 0 to cntList%>
+					<tr>
+						<td><a href="../about/notice.asp?idx=<%=arrList(FI_idx,iLoop)%>"><%=arrList(FI_Title,iLoop)%></a></td>
+						<td class="data"><%=arrList(FI_Indate,iLoop)%></td>
+					</tr>
+					<%Next%>
+				</table>
+			</div>
+		</div>
 
 		<div class="main_notice">
-			<div class="title">공지사항 <a href="../customer/" class="more">+ 더보기</a></div>
+			<div class="title">자료실 <a href="../community/" class="more">+ 더보기</a></div>
 			<div class="contants">
 				<table cellpadding="0" cellspacing="0" class="table">
 					<%for iLoop = 0 to cntList%>
@@ -88,6 +102,7 @@ End Sub
 				</table>
 			</div>
 		</div>
+		<!-- 게시판 -->
 
 		<div class="main_description">
 			<div class="rap">
