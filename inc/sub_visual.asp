@@ -70,10 +70,10 @@
 		<div class="mask"></div>
 		<div class="item" style="background:url(../img/visual/sub/08.jpg) no-repeat center;"></div>
 	</div>
-<%ElseIf INSTR(LCase(g_url),"/customer/")>0 Then%>
+<%ElseIf INSTR(LCase(g_url),"/community/")>0 Then%>
 	<div class="sub_visual">
 		<div class="text">
-			<h4>고객센터</h4>
+			<h4>Community</h4>
 			Open allianCE for iot stANDard
 		</div>
 		<div class="mask"></div>

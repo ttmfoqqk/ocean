@@ -73,6 +73,7 @@ End Sub
 										<option value="">선택</option>
 										<option value="1" <%=IIF(FI_tap = "1","selected","")%>>Mobius</option>
 										<option value="2" <%=IIF(FI_tap = "2","selected","")%>>&CUBE</option>
+										<option value="3" <%=IIF(FI_tap = "3","selected","")%>>Open Contribution</option>
 									</select>
 								</td>
 							</tr>

@@ -179,13 +179,26 @@ End Sub
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">제목</td>
 								<td class="line_box"><input type="text" class="input" name="Title" value="<%=Title%>"></td>
-								<td class="line_box" align=center bgcolor="f0f0f0" width="140"><%=IIF( BoardKey="1" , "분류" , " " )%></td>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140"><%=IIF( BoardKey="1" or BoardKey="3" , "분류" , " " )%></td>
 								<td class="line_box" width="250">
 									<%If BoardKey="1" Then%>
 									<select id="tab" name="tab">
 										<option value="">선택</option>
 										<option value="1" <%=IIF(tab = "1","selected","")%>>Mobius</option>
 										<option value="2" <%=IIF(tab = "2","selected","")%>>&CUBE</option>
+										<option value="3" <%=IIF(tab = "3","selected","")%>>Open Contribution</option>
+									</select>
+
+									<select id="tab2" name="tab2">
+										<option value="">중분류 선택</option>
+									</select>
+									<%elseIf BoardKey="3" Then%>
+									<select id="tab" name="tab">
+										<option value="">선택</option>
+										<option value="1" <%=IIF(tab = "1","selected","")%>>자료실</option>
+										<option value="2" <%=IIF(tab = "2","selected","")%>>community 1</option>
+										<option value="3" <%=IIF(tab = "3","selected","")%>>community 2</option>
+										<option value="4" <%=IIF(tab = "4","selected","")%>>community 3</option>
 									</select>
 
 									<select id="tab2" name="tab2">
@@ -210,7 +223,7 @@ End Sub
 				<tr><td height="10"></td></tr>
 				<tr>
 					<td colspan=2>
-						<form name="AdminForm" method="post" action="Customer_01<%=IIF(BoardKey="1","_D","")%>_P.asp" enctype="multipart/form-data">
+						<form name="AdminForm" method="post" action="Customer_01<%=IIF(BoardKey="1" ,"_D","")%>_P.asp" enctype="multipart/form-data">
 						<input type="hidden" name="actType" value="">
 						<input type="hidden" name="BoardKey" value="<%=BoardKey%>">
 						<input type="hidden" name="PageParams" value="<%=Server.urlencode(PageParams)%>">
@@ -220,7 +233,7 @@ End Sub
 								<td class="line_box" style="padding:0px;" width="30"><input type="checkbox" name="check_all"></td>
 								<td class="line_box" width="40">번호</td>
 								<td class="line_box">제목</td>
-								<%If BoardKey = "1" Then %>
+								<%If BoardKey = "1" or BoardKey = "3" Then %>
 								<td class="line_box" width="20%">분류</td>
 								<%End If%>
 								<td class="line_box" width="10%">작성자</td>
@@ -240,6 +253,16 @@ End Sub
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
 									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","Mobius","")%>
 									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","&CUBE","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","Open Contribution","")%>
+
+									<%=IIF(arrNoti(NOTICE_tab2,iLoop)<>""," > " & arrNoti(NOTICE_tab2,iLoop),"")%>
+								</td>
+								<%elseIf BoardKey = "3" Then %>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","자료실","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","community 1","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","community 2","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="4","community 3","")%>
 
 									<%=IIF(arrNoti(NOTICE_tab2,iLoop)<>""," > " & arrNoti(NOTICE_tab2,iLoop),"")%>
 								</td>
@@ -269,6 +292,16 @@ End Sub
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
 									<%=IIF(arrList(FI_tab,iLoop)="1","Mobius","")%>
 									<%=IIF(arrList(FI_tab,iLoop)="2","&CUBE","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="3","Open Contribution","")%>
+
+									<%=IIF(arrList(FI_tab2Name,iLoop)<>""," > " & arrList(FI_tab2Name,iLoop),"")%>
+								</td>
+								<%elseIf BoardKey = "3" Then %>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
+									<%=IIF(arrList(FI_tab,iLoop)="1","자료실","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="2","community 1","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="3","community 2","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="4","community 3","")%>
 
 									<%=IIF(arrList(FI_tab2Name,iLoop)<>""," > " & arrList(FI_tab2Name,iLoop),"")%>
 								</td>
@@ -341,7 +374,7 @@ call_depth( $tab2 , temp1 , temp2 );
 
 function call_depth(obj,parent,value){
 	if(!parent){return false;}
-	var param  = 'parent='+parent;
+	var param  = 'parent='+parent+'&boardKey=<%=BoardKey%>';
 
 	obj.html( '<option value="">로딩 중입니다.</option>' );
 	$.ajax({

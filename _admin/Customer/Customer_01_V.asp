@@ -158,6 +158,19 @@ function del_fm_checkbox(){
 								<td class="line_box">
 									<%=IIF(FI_tab="1","Mobius","")%>
 									<%=IIF(FI_tab="2","&CUBE","")%>
+									<%=IIF(FI_tab="3","Open Contribution","")%>
+
+									<%=IIF(FI_tab2Name<>""," > " & FI_tab2Name,"")%>
+								</td>
+							</tr>
+							<%elseIf BoardKey = "3" Then %>
+							<tr>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
+								<td class="line_box">
+									<%=IIF(FI_tab="1","자료실","")%>
+									<%=IIF(FI_tab="2","community 1","")%>
+									<%=IIF(FI_tab="3","community 2","")%>
+									<%=IIF(FI_tab="4","community 3","")%>
 
 									<%=IIF(FI_tab2Name<>""," > " & FI_tab2Name,"")%>
 								</td>

@@ -2,6 +2,7 @@
 <%
 Dim arrList
 Dim cntList  : cntList  = -1
+Dim boardKey : boardKey = IIF(request("boardKey")="",-1,request("boardKey"))
 Dim parent   : parent = IIF(request("parent")="",-1,request("parent"))
 
 Call Expires()
@@ -17,7 +18,7 @@ Sub GetList()
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_BOARD_TAP_S"
-		.Parameters("@Key").value = 1
+		.Parameters("@Key").value = boardKey
 		.Parameters("@tab").value = parent
 		Set objRs = .Execute
 	End with

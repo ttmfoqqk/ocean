@@ -102,6 +102,7 @@ function del_fm_checkbox(){
 										<option value="">선택</option>
 										<option value="1" <%=IIF(tab = "1","selected","")%>>Mobius</option>
 										<option value="2" <%=IIF(tab = "2","selected","")%>>&CUBE</option>
+										<option value="3" <%=IIF(tab = "3","selected","")%>>Open Contribution</option>
 									</select>
 								</td>
 							</tr>
@@ -143,6 +144,7 @@ function del_fm_checkbox(){
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand">
 									<%=IIF(arrList(FI_tap,iLoop)="1","Mobius","")%>
 									<%=IIF(arrList(FI_tap,iLoop)="2","&CUBE","")%>
+									<%=IIF(arrList(FI_tap,iLoop)="3","Open Contribution","")%>
 								</td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left><%=arrList(FI_name,iLoop)%></td>								
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_order,iLoop)%></td>

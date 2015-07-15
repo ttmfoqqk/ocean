@@ -36,27 +36,29 @@ End Sub
 <div id="middle">
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
-		<h2 class="page_title">공지사항</h2>
-
+		<!-- #include file = "../inc/left.asp" -->
+		<div id="contant">
+			<h3 class="title">메뉴 타이틀 -> 페이지 작업 요망</h3>
 		
-		<div class="dowunload_list">
-			<%for iLoop = 0 to cntList%>
-			<div class="block">
-				<a href="#" class="link" data-idx="<%=arrList(FI_Idx,iLoop)%>"><%=arrList(FI_Title,iLoop)%> <span class="data"><%=arrList(FI_Indate,iLoop)%></span></a>
-				<div class="sub">
-					<%If arrList(FI_File_name,iLoop) <>  "" Then%>
-					<div class="file">File ㅣ <a href="../common/download.asp?pach=/ocean/upload/Board/&file=<%=arrList(FI_File_name,iLoop)%>"><%=arrList(FI_File_name,iLoop)%></a></div>
-					<%End If%>
-					<%=arrList(FI_Contants,iLoop)%>
+			<div class="dowunload_list">
+				<%for iLoop = 0 to cntList%>
+				<div class="block">
+					<a href="#" class="link" data-idx="<%=arrList(FI_Idx,iLoop)%>"><%=arrList(FI_Title,iLoop)%> <span class="data"><%=arrList(FI_Indate,iLoop)%></span></a>
+					<div class="sub">
+						<%If arrList(FI_File_name,iLoop) <>  "" Then%>
+						<div class="file">File ㅣ <a href="../common/download.asp?pach=/ocean/upload/Board/&file=<%=arrList(FI_File_name,iLoop)%>"><%=arrList(FI_File_name,iLoop)%></a></div>
+						<%End If%>
+						<%=arrList(FI_Contants,iLoop)%>
+					</div>
 				</div>
-			</div>
-			<%Next%>
+				<%Next%>
 
-			<%If cntList < 0 Then %>
-			<div class="block">
-				<span style="margin-left:10px;">등록된 내용이 없습니다.</a>
+				<%If cntList < 0 Then %>
+				<div class="block">
+					<span style="margin-left:10px;">등록된 내용이 없습니다.</a>
+				</div>
+				<%End If%>
 			</div>
-			<%End If%>
 		</div>
 
 

@@ -36,6 +36,7 @@ function submenu_open(obj){
 	<li style="<%=IIF(BoardKey=0 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=0">공지사항</a></li>
 	<li style="<%=IIF(BoardKey=1 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=1">다운로드</a></li>
 	<li style="<%=IIF(BoardKey=2 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=2">쇼케이스</a></li>
+	<li style="<%=IIF(BoardKey=3 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=3">커뮤니티</a></li>
 	<li style="<%=IIF(INSTR(LCase(g_url),"customer_03")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_03_L.asp">다운로드 분류관리</a></li>
 	<li style="<%=IIF(INSTR(LCase(g_url),"customer_02")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_02_L.asp">다운로드 로그</a></li>
 </ul>

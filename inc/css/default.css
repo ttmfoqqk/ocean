@@ -52,6 +52,16 @@ button{font-family:ng,'NanumGothic';}
 .color_red{color:red;}
 .color_black{color:black;}
 
+.round{
+	border-radius:7px;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	-o-border-radius:7px;
+	border:1px solid #cccccc;
+	background-color:#ffffff;
+}
+.placeholder{color:#cccccc;}
+
 .checkbox_wrap{line-height:25px;display:inline-block;font-size:12px;}
 .checkbox_wrap .on{display:inline-block;width:25px;height:25px;background:url(../../img/bg_checkbox_on.gif) no-repeat;vertical-align:middle;margin-right:5px;cursor:pointer;}
 .checkbox_wrap .off{display:inline-block;width:25px;height:25px;background:url(../../img/bg_checkbox_off.gif) no-repeat;vertical-align:middle;margin-right:5px;cursor:pointer;}
@@ -235,7 +245,6 @@ button{font-family:ng,'NanumGothic';}
 	border-bottom:0px;
 }
 #left_menu ul li{
-	height:42px;
 	line-height:42px;
 	border-bottom:1px solid #d7d7d7;
 	font-size:14px;
@@ -257,7 +266,25 @@ button{font-family:ng,'NanumGothic';}
 	font-weight:bold;
 }
 
-#left_menu ul li a span{margin-left:10px;}
+#left_menu ul li a div{margin:0px 10px 0px 10px;}
+
+#left_menu ul.sub{
+	list-style:none;
+	border-top:1px solid #d7d7d7;
+	border:0px;
+	
+}
+#left_menu ul.sub li{
+	line-height:180%;
+	margin:5px 0px 5px 0px;
+	font-size:12px;
+	background-color:#ffffff;
+	border-bottom:0px;
+}
+#left_menu ul.sub li a{color:#85868a;background-color:#ffffff;}
+#left_menu ul.sub li a:hover{color:#1c2c35;background:#ffffff url(../../img/bg_left_menu_arrow.png) no-repeat 150px 15px;}
+#left_menu ul.sub li a:over{color:#1c2c35;background:#ffffff url(../../img/bg_left_menu_arrow.png) no-repeat 150px 15px;}
+#left_menu ul.sub li a.over{color:#1c2c35;background:#ffffff url(../../img/bg_left_menu_arrow.png) no-repeat 150px 15px;}
 
 #contant{
 	width:740px;

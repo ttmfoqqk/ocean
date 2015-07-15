@@ -69,375 +69,204 @@ End Sub
 			
 
 			.form_wrap{width:100%;border-bottom:1px solid #999a9d;padding-bottom:10px;text-align:center;margin-top:10px;}
-			.form_wrap .table{width:940px;margin:0px auto;text-align:left;}
-			.form_wrap .row{margin:0px;}
+			.form_wrap .table{width:660px;margin:0px auto;text-align:left;}
+			.form_wrap .row{width:660px;margin:0px auto;margin-bottom:15px;}
+			.form_wrap h3{font-size:20px;font-family:ng,'NanumGothic';color:#777777;margin-bottom:20px;}
+			.form_wrap h4{font-size:16px;font-family:ng,'NanumGothic';color:#777777;margin-bottom:20px;text-align:left;margin-left:10px;}
+			.btn{
+					border-radius:7px;
+					-moz-border-radius:7px;
+					-webkit-border-radius:7px;
+					-o-border-radius:7px;
+			}
+			.form_wrap .row label{
+				float:none;
+				width:auto;
+				font-size:14px;
+				color:#85868a;
+				margin-left:5px;
+			}
+			input[type=checkbox]{
+				vertical-align:middle;
+			}
+			
+			
 		</STYLE>
-
+		
+		
 		<form name="mForm" id="mForm" method="post" action="join_proc.asp" enctype="multipart/form-data" onsubmit="return checkJoin()">
 		<div class="form_wrap">
-			<table cellpadding="0" cellspacing="0" class="table" align="center">
-				<tr>
-					<td class="label">아이디 <span class="color_red">*</span></td>
-					<td class="cont">
-						<div class="row">
-							<input type="text" id="userId" name="userId" class="input" style="width:300px;ime-mode:disabled;" maxlength="12">
-						</div>
-					</td>
-					<td class="label">성명 <span class="color_red">*</span></td>
-					<td class="cont">
-						<div class="row">
-							<input type="text" class="input" id="userName" name="userName" maxlength="30" style="width:300px;ime-mode:active;">
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td class="label">비밀번호 <span class="color_red">*</span></td>
-					<td class="cont" style="font-size:14px;">
-						<div class="row">
-							<input type="password" id="userPwd" name="userPwd" class="input" style="width:300px;" maxlength="20">
-						</div>
-					</td>
-					<td class="label">비밀번호 확인 <span class="color_red">*</span></td>
-					<td class="cont">
-						<div class="row">
-							<input type="password" id="userPwdConfirm" name="userPwdConfirm" class="input" style="width:300px;" maxlength="20">
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td class="label" style="height:40px;">부서/직위 <span class="color_red">*</span></td>
-					<td class="cont">
-						<div class="row">
-							<input type="text" id="userPosition" name="userPosition" class="input" style="width:300px;ime-mode:active;" maxlength="100">
-						</div>
-					</td>
-					<td class="label" style="height:40px;">휴대전화 <span class="color_red">*</span></td>
-					<td class="cont">
-						<div class="row">
-							<select class="input" id="userhPhone1" name="userhPhone1" style="width:85px;height:32px;padding:5px;">
-								<option value="">선택</option>
-								<%=optionhPhone%>
-							</select> -
-							<input type="text" id="userhPhone2" name="userhPhone2" maxlength="4" class="input" style="width:86px;"> -
-							<input type="text" id="userhPhone3" name="userhPhone3" maxlength="4" class="input" style="width:86px;"> 
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td class="label" style="height:40px;">전화 <span class="color_red">*</span></td>
-					<td class="cont">
-						<div class="row">
-							<select class="input" id="userPhone1" name="userPhone1" style="width:85px;height:32px;padding:5px;">
-								<option value="">선택</option>
-								<%=optionPhone%>
-							</select> -
-							<input type="text" id="userPhone2" name="userPhone2" maxlength="4" class="input" style="width:86px;"> -
-							<input type="text" id="userPhone3" name="userPhone3" maxlength="4" class="input" style="width:86px;"> 
-						</div>
-					</td>
-					<td class="label" style="height:40px;">팩스 <span class="color_red">*</span></td>
-					<td class="cont">
-						<div class="row">
-							<select class="input" id="userfax1" name="userfax1" style="width:85px;height:32px;padding:5px;">
-								<option value="">선택</option>
-								<%=optionPhone%>
-							</select> -
-							<input type="text" id="userfax2" name="userfax2" maxlength="4" class="input" style="width:86px;"> -
-							<input type="text" id="userfax3" name="userfax3" maxlength="4" class="input" style="width:86px;"> 
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td class="label" style="padding-bottom:80px;">이메일 <span class="color_red">*</span></td>
-					<td class="cont" style="padding-bottom:80px;">
-						<div class="row">
-							<input type="text" id="userEmail1" name="userEmail1" class="input" style="width:80px;ime-mode:disabled" maxlength="100"> @ <input type="text" id="userEmail2" name="userEmail2" class="input" style="width:80px;ime-mode:disabled" maxlength="100">
-							<select class="input" id="userEmail3" style="width:100px;height:32px;padding:5px;">
-								<option value="">직접입력</option>
-								<%=optionEmail%>
-							</select>
-							<div class="color_red" style="font-size:11px;line-height:160%;position:absolute;bottom:-60px;left:0px;">
-								입력하신 이메일은 아이디, 비밀번호 분실 시 찾기 위한 용도로 <br>사용되오니 신중하게 입력해 주세요.<br>
-								미등록 회사 회원가입시 반드시 회사 이메일을 기입하여 주시기 바랍니다.
-							</div>
-						</div>
-					</td>
-					<td class="label" style="padding-bottom:80px;">회사명 <span class="color_red">*</span></td>
-					<td class="cont" style="padding-bottom:80px;">
-						<div class="row">
-							<input type="hidden" id="companyName" name="companyName">
-							<select class="input" id="companySelect" name="companySelect" style="width:320px;height:32px;padding:5px;">
-								<option value="">선택</option>
-								<%for iLoop = 0 to cntList%>
-								<option value="<%=arrList(FI_idx,iLoop)%>"><%=arrList(FI_cName,iLoop)%></option>
-								<%Next%>
-								<option value="NEW">직접입력</option>
-							</select>
-							<div class="color_red" style="font-size:11px;line-height:160%;position:absolute;bottom:-75px;left:0px;">
-							회사명은 반드시 선택되어야 하는 사항이며<br>
-							기등록된 회사명을 선택하시거나, 회사명이 미등록되었경우는<br>
-							반드시 직접입력을 선택하시어 상세 회사정보를 등록 신청하여 <br>주시기 바랍니다.<br>
-							</div>
-						</div>
-					</td>
-				</tr>
-				
-			</table>
+			<h3>Business account Information</h3>
+
+			<div class="row">
+				<input type="text" id="userId" name="userId" class="input round" style="width:95%;ime-mode:disabled;" maxlength="255" placeholder="Company Email ( User Account )">
+			</div>
+			<div class="row">
+				<input type="password" id="userPwd" name="userPwd" class="input round" style="width:95%;" maxlength="20" placeholder="Create your password">
+			</div>
+			<div class="row">
+				<input type="password" id="userPwdConfirm" name="userPwdConfirm" class="input round" style="width:95%;" maxlength="20" placeholder="Confirm password">
+			</div>
+			<div class="row">
+				<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+					<input type="text" class="input round" id="userName" name="userName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="First Name">
+				</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+					<input type="text" class="input round" id="userName" name="userName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Last Name">
+				</div>
+			</div>
+
+			<div class="row">
+				<input type="text" id="userPosition" name="userPosition" class="input round" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Department/Position">
+			</div>
+			<div class="row">
+				<input type="text" id="userhPhone" name="userhPhone" maxlength="4" class="input round" style="width:95%;" placeholder="Mobile. No">
+			</div>
+			<div class="row">
+				<input type="text" id="userPhone" name="userPhone" maxlength="4" class="input round" style="width:95%;" placeholder="Tel. No">
+			</div>
+			<div class="row">
+				<input type="hidden" id="companyName" name="companyName">
+				<select class="input round" id="companySelect" name="companySelect" style="width:80%;height:32px;padding:5px;">
+					<option value="">Company</option>
+					<%for iLoop = 0 to cntList%>
+					<option value="<%=arrList(FI_idx,iLoop)%>"><%=arrList(FI_cName,iLoop)%></option>
+					<%Next%>
+					<option value="NEW">직접입력</option>
+				</select>
+				<input type="button" class="btn" style="width:15%;height:32px;margin-left:15px;" value="NEW">
+			</div>
 		</div>
 		
-		<div id="company_input" style="display:none;">
+		<div id="company_input" style="display:block;margin-top:20px;">
 			<div class="form_wrap">
-				<table cellpadding="0" cellspacing="0" class="table" align="center">
-					<tr>
-						<td class="label">업체명(상호)<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="cName" name="cName" class="input" style="width:300px;ime-mode:active;" maxlength="100" >
+				<h3>Company Information</h3>
+
+				<div class="row">
+					<input type="text" id="cName" name="cName" class="input round" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Company Name">
+				</div>
+				<div class="row">
+					<select class="input round" id="Country" name="Country" style="width:98%;height:32px;padding:5px;">
+						<option value="">Country</option>
+					</select>
+				</div>
+				<div class="row">
+					<input type="text" id="addr1" name="addr1" class="input round" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Office Address">
+				</div>
+
+				<div class="row">
+					<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+						<input type="text" class="input round" id="companyPhone" name="companyPhone" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Tel. No">
+					</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+						<input type="text" class="input round" id="homepage" name="homepage" maxlength="30" style="width:90%;ime-mode:active;" placeholder="WebSite ( http:// )">
+					</div>
+				</div>
+
+				<div class="row">
+					<input type="text" id="userSaNo" name="userSaNo" class="input round" style="width:95%;" maxlength="10" placeholder="Number of Company Employees">
+				</div>
+
+				<div class="row">
+					<h4>Business Field</h4>
+				</div>
+
+				<div class="row round" style="width:645px;">
+					<div class="row" style="text-align:left;width:100%;">
+						
+						<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+							<div style="margin:10px;">
+								<div>
+									<input type="checkbox" id="business1" name="business1" class="business_check" value="1" >
+									<label for="business1">LED</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business5" name="business5" class="business_check" value="1">
+									<label for="business5">Nano-Materials</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business7" name="business7" class="business_check" value="1">
+									<label for="business7">Bio-Pharmaceutical</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business10" name="business10" class="business_check" value="1">
+									<label for="business10">Construction-Civil Engineering</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business3" name="business3" class="business_check" value="1">
+									<label for="business3">Ship Building</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business9" name="business9" class="business_check" value="1">
+									<label for="business9">Food and Life</label>
+								</div>
 							</div>
-						</td>
-						<td class="label">대표자<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="ceo" name="ceo" class="input" style="width:300px;ime-mode:active;" maxlength="100" >
+
+						</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+							
+							<div style="margin:10px;">
+								<div>
+									<input type="checkbox" id="business2" name="business2" class="business_check" value="1">
+									<label for="business2">Electrical Electronics</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business4" name="business4" class="business_check" value="1">
+									<label for="business4">Information and Communication</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business8" name="business8" class="business_check" value="1">
+									<label for="business8">Textile-Chemical</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business11" name="business11" class="business_check" value="1">
+									<label for="business11">Green Energy</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business6" name="business6" class="business_check" value="1">
+									<label for="business6">Mechanical Car Parts and Material</label>
+								</div>
+								<div>
+									<input type="checkbox" id="business12" name="business12" class="business_check" value="1">
+									<label for="business12">etc.(
+										<input type="text" id="business" name="business" style="width:180px;ime-mode:active;border:0px;vertical-align:middle;" maxlength="100" >
+									)</label>
+								</div>
 							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="label">사업자등록번호<span class="color_red">*</span></td>
-						<td class="cont" style="font-size:14px;">
-							<div class="row">
-								<input type="text" id="userSaNo" name="userSaNo" class="input" style="width:300px;" maxlength="10">
-							</div>
-						</td>
-						<td class="label">설립일<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="cDate" name="cDate" class="input" style="width:300px;" maxlength="10" readonly>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="label" style="height:40px;">주소<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="addr1" name="addr1" class="input" style="width:300px;ime-mode:active;" maxlength="100" readonly onclick="openDaumPostcode()">
-							</div>
-						</td>
-						<td class="label" style="height:40px;"> </td>
-						<td class="cont">
-							 
-						</td>
-					</tr>
-					<tr>
-						<td class="label" style="height:40px;">상세주소<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="addr2" name="addr2" class="input" style="width:300px;ime-mode:active;" maxlength="100" >
-							</div>
-						</td>
-						<td class="label" style="height:40px;"> </td>
-						<td class="cont">
-							 
-						</td>
-					</tr>
-					<tr>
-						<td class="label">기업 규모<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="radio_wrap">
-								<span name="_radio" class="off"><span class="blind"><input type="radio" name="cScale" value="1" checked></span></span>
-								<label><b>대기업</b></label>
-							</div>&nbsp;&nbsp;&nbsp;
-							<div class="radio_wrap">
-								<span name="_radio" class="off"><span class="blind"><input type="radio" name="cScale" value="2"></span></span>
-								<label><b>중소기업</b></label>
-							</div>&nbsp;&nbsp;&nbsp;
-							<div class="radio_wrap">
-								<span name="_radio" class="off"><span class="blind"><input type="radio" name="cScale" value="3"></span></span>
-								<label><b>기관</b></label>
-							</div>
-						</td>
-						<td class="label">대표전화<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="cPhone" name="cPhone" class="input" style="width:300px;ime-mode:active;" maxlength="50" >
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="label">업종<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="cSectors" name="cSectors" class="input" style="width:300px;ime-mode:active;" maxlength="100" >
-							</div>
-						</td>
-						<td class="label">홈페이지<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="homepage" name="homepage" class="input" style="width:300px;ime-mode:disabled;" maxlength="200" >
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="label">주생산품목<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="cItems" name="cItems" class="input" style="width:300px;ime-mode:active;" maxlength="100" >
-							</div>
-						</td>
-						<td class="label">전년도매출액<span class="color_red">*</span><br><span style="font-size:12px;">(단위: 백만원)</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="cSales" name="cSales" class="input" style="width:300px;ime-mode:disabled;" maxlength="50" >
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="label">상시종업원수<span class="color_red">*</span><br><span style="font-size:12px;">(단위: 명)</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="text" id="cStaff" name="cStaff" class="input" style="width:300px;ime-mode:active;" maxlength="50" >
-							</div>
-						</td>
-						<td class="label">연구소<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="radio_wrap">
-								<span name="_radio" class="off"><span class="blind"><input type="radio" name="cCenter" value="1" checked></span></span>
-								<label><b>유</b></label>
-							</div>&nbsp;&nbsp;&nbsp;
-							<div class="radio_wrap">
-								<span name="_radio" class="off"><span class="blind"><input type="radio" name="cCenter" value="2"></span></span>
-								<label><b>무</b></label>
-							</div>
-						</td>
-					</tr>
-				</table>
+
+						</div>
+
+
+						
+					</div>
+
+					
+				</div>
+
+				<!-- 파일 스크립트 추가 -->
+				<div class="row">
+					<input type="file" id="files2" name="files2" style="width:1px;height:1px;overflow:hidden;" onchange="$('#files2_text').val( $(this).val() );">
+					<input type="text" id="files2_text" class="input round" style="width:77%;" placeholder="Company Logo Image File ( jpg, bmp, gif, png )" readonly onclick="$('#files2').click();">
+					<input type="button" class="btn" style="width:15%;height:32px;margin-left:15px;" value="SEARCH" onclick="$('#files2').click();">
+				</div>
+
+
 			</div>
 
-			<div class="form_wrap">
-				<table cellpadding="0" cellspacing="0" class="table" align="center">
-					<tr>
-						<td class="label">사업분야<span class="color_red">*</span></td>
-						<td class="cont2">
-							<div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business1" class="business_check" value="1"></span></span>
-								<label><b>LED</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business2" class="business_check" value="1"></span></span>
-								<label><b>전기·전자</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business3" class="business_check" value="1"></span></span>
-								<label><b>조선해양</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business4" class="business_check" value="1"></span></span>
-								<label><b>정보통신</b></label>
-							</div>
-							<br><br>
-
-							<div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business5" class="business_check" value="1"></span></span>
-								<label><b>나노·신소재</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business6" class="business_check" value="1"></span></span>
-								<label><b>기계·자동차 부품소재</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business7" class="business_check" value="1"></span></span>
-								<label><b>바이오·제약</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business8" class="business_check" value="1"></span></span>
-								<label><b>섬유·화학</b></label>
-							</div>
-							<br><br>
-
-							<div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business9" class="business_check" value="1"></span></span>
-								<label><b>식품생명</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business10" class="business_check" value="1"></span></span>
-								<label><b>건축·토목</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business11" class="business_check" value="1"></span></span>
-								<label><b>녹색에너지</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="business12" class="business_check" value="1"></span></span>
-								<label><b>기타</b></label>
-							</div>
-							<br><br>
-
-							<div class="row">
-								<input type="text" id="business" name="business" class="input" style="width:770px;ime-mode:active;" maxlength="100" >
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
+			
 
 			<div class="form_wrap">
-				<table cellpadding="0" cellspacing="0" class="table" align="center">
-					<tr>
-						<td class="label">사물인터넷<br>사업분야<span class="color_red">*</span></td>
-						<td class="cont2">
-							<div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="iot_business1" class="iot_business_check" value="1"></span></span>
-								<label><b>사물인터넷 플랫폼</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="iot_business2" class="iot_business_check" value="1"></span></span>
-								<label><b>연구 및 용역개발</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="iot_business3" class="iot_business_check" value="1"></span></span>
-								<label><b>사물인터넷 서비스</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="iot_business4" class="iot_business_check" value="1"></span></span>
-								<label><b>기술 및 경영자문</b></label>
-							</div>
-							<br><br>
-
-							<div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="iot_business5" class="iot_business_check" value="1"></span></span>
-								<label><b>사물인터넷 기기 및 제품</b></label>
-							</div><div class="checkbox_wrap" style="width:25%;display:inline-block;zoom:1;*display:inline;_display:inline;">
-								<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="iot_business6" class="iot_business_check" value="1"></span></span>
-								<label><b>기타</b></label>
-							</div>
-							<br><br>
-
-							<div class="row">
-								<input type="text" id="iot_business" name="iot_business" class="input" style="width:770px;ime-mode:active;" maxlength="100" >
-							</div>
-						</td>
-					</tr>
-				</table>
+				<div class="row" style="margin-top:20px;">
+					<textarea name="other_information" class="input round" style="width:95%;height:100px;" placeholder="Share additional Information"></textarea>
+				</div>
 			</div>
 
-			<div class="form_wrap">
-				<table cellpadding="0" cellspacing="0" class="table" align="center">
-					<tr>
-						<td class="label">사업자등록증<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="file" id="files1" name="files1" class="input" style="width:300px;">
-							</div>
-						</td>
-						<td class="label">회사로고<span class="color_red">*</span></td>
-						<td class="cont">
-							<div class="row">
-								<input type="file" id="files2" name="files2" class="input" style="width:300px;">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td> </td>
-						<td colspan="3" style="font-size:11px;color:#000000;line-height:160%;">
-							사용 가능한 첨부파일 확장자는 gif, jpg, jpeg, zip, egg, doc, docx, txt, alz, rar, png, bmp 입니다.<br>
-							오류 문의시 브라우저명, 버전과 구체적 상황 또는 캡쳐화면을 첨부해주시면 신속하고 정확한 답변이 가능합니다.<br>
-							파일의 크기가 3MB를 초과하거나 2개 이상의 파일을 첨부하실 경우 spweb@naver.com 으로 보내주시기 바랍니다. <br>
-						</td>
-					</tr>
-				</table>
-			</div>
+
+
+
+
+
 		</div>
 
 		<div style="margin:30px;line-height:40px;" class="btn_area">
-			<button type="submit" class="btn">멤버신청 완료</button>
+			<button type="submit" class="btn">REGISTER</button>
 		</div>
 
 		</form>
@@ -451,7 +280,7 @@ End Sub
 <script type="text/JavaScript" src="../inc/js/checked.js"></script>
 <SCRIPT type="text/javascript">
 $(function(){
-	$userId.focus();
+	//$userId.focus();
 
 	$('#companySelect').change(function(){
 		var v = $(this).val();

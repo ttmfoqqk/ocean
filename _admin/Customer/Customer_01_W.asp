@@ -157,6 +157,24 @@ $(document).ready( function() {
 										<option value="">선택</option>
 										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "1","selected","")%>>Mobius</option>
 										<option value="2" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "2","selected","")%>>&CUBE</option>
+										<option value="3" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "3","selected","")%>>Open Contribution</option>
+									</select>
+
+									<select id="tab2" name="tab2">
+										<option value="">중분류 선택</option>
+									</select>
+								</td>
+							</tr>
+							<%elseIf BoardKey = "3" Then %>
+							<tr>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
+								<td class="line_box">
+									<select id="tab" name="tab">
+										<option value="">선택</option>
+										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "1","selected","")%>>자료실</option>
+										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "2","selected","")%>>community 1</option>
+										<option value="2" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "3","selected","")%>>community 2</option>
+										<option value="3" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "4","selected","")%>>community 3</option>
 									</select>
 
 									<select id="tab2" name="tab2">
@@ -373,7 +391,7 @@ call_depth( $tab2 , temp1 , temp2 );
 
 function call_depth(obj,parent,value){
 	if(!parent){return false;}
-	var param  = 'parent='+parent;
+	var param  = 'parent='+parent+'&boardKey=<%=BoardKey%>';
 
 	obj.html( '<option value="">로딩 중입니다.</option>' );
 	$.ajax({
