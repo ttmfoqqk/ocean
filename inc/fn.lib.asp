@@ -11,7 +11,7 @@ End Function
 '------------------------------------------------------------------------------------
 Function printPageList(pTotCount, pPageNo, pRows, url)
 	if pTotCount = 0 then 
-		printPageList = "<a class=""on"">1</a>"	: Exit Function
+		printPageList = "<a class=""prev_off""><span class=""blind"">이전</span></a><a class=""on"">1</a><a class=""next_off""><span class=""blind"">다음</span></a>"	: Exit Function
 	end if
 	
 	' 하단에 보여줄 페이지 건수...

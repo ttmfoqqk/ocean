@@ -73,12 +73,7 @@ End Sub
 			.form_wrap .row{width:660px;margin:0px auto;margin-bottom:15px;}
 			.form_wrap h3{font-size:20px;font-family:ng,'NanumGothic';color:#777777;margin-bottom:20px;}
 			.form_wrap h4{font-size:16px;font-family:ng,'NanumGothic';color:#777777;margin-bottom:20px;text-align:left;margin-left:10px;}
-			.btn{
-					border-radius:7px;
-					-moz-border-radius:7px;
-					-webkit-border-radius:7px;
-					-o-border-radius:7px;
-			}
+			
 			.form_wrap .row label{
 				float:none;
 				width:auto;
@@ -99,34 +94,34 @@ End Sub
 			<h3>Business account Information</h3>
 
 			<div class="row">
-				<input type="text" id="userId" name="userId" class="input round" style="width:95%;ime-mode:disabled;" maxlength="255" placeholder="Company Email ( User Account )">
+				<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" maxlength="255" placeholder="Company Email ( User Account )">
 			</div>
 			<div class="row">
-				<input type="password" id="userPwd" name="userPwd" class="input round" style="width:95%;" maxlength="20" placeholder="Create your password">
+				<input type="password" id="userPwd" name="userPwd" class="input" style="width:95%;" maxlength="20" placeholder="Create your password">
 			</div>
 			<div class="row">
-				<input type="password" id="userPwdConfirm" name="userPwdConfirm" class="input round" style="width:95%;" maxlength="20" placeholder="Confirm password">
+				<input type="password" id="userPwdConfirm" name="userPwdConfirm" class="input" style="width:95%;" maxlength="20" placeholder="Confirm password">
 			</div>
 			<div class="row">
 				<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-					<input type="text" class="input round" id="userName" name="userName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="First Name">
+					<input type="text" class="input" id="userName" name="userName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="First Name">
 				</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-					<input type="text" class="input round" id="userName" name="userName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Last Name">
+					<input type="text" class="input" id="userName" name="userName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Last Name">
 				</div>
 			</div>
 
 			<div class="row">
-				<input type="text" id="userPosition" name="userPosition" class="input round" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Department/Position">
+				<input type="text" id="userPosition" name="userPosition" class="input" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Department/Position">
 			</div>
 			<div class="row">
-				<input type="text" id="userhPhone" name="userhPhone" maxlength="4" class="input round" style="width:95%;" placeholder="Mobile. No">
+				<input type="text" id="userhPhone" name="userhPhone" maxlength="4" class="input" style="width:95%;" placeholder="Mobile. No">
 			</div>
 			<div class="row">
-				<input type="text" id="userPhone" name="userPhone" maxlength="4" class="input round" style="width:95%;" placeholder="Tel. No">
+				<input type="text" id="userPhone" name="userPhone" maxlength="4" class="input" style="width:95%;" placeholder="Tel. No">
 			</div>
 			<div class="row">
 				<input type="hidden" id="companyName" name="companyName">
-				<select class="input round" id="companySelect" name="companySelect" style="width:80%;height:32px;padding:5px;">
+				<select class="input" id="companySelect" name="companySelect" style="width:80%;height:32px;padding:5px;">
 					<option value="">Company</option>
 					<%for iLoop = 0 to cntList%>
 					<option value="<%=arrList(FI_idx,iLoop)%>"><%=arrList(FI_cName,iLoop)%></option>
@@ -142,27 +137,27 @@ End Sub
 				<h3>Company Information</h3>
 
 				<div class="row">
-					<input type="text" id="cName" name="cName" class="input round" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Company Name">
+					<input type="text" id="cName" name="cName" class="input" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Company Name">
 				</div>
 				<div class="row">
-					<select class="input round" id="Country" name="Country" style="width:98%;height:32px;padding:5px;">
+					<select class="input" id="Country" name="Country" style="width:98%;height:32px;padding:5px;">
 						<option value="">Country</option>
 					</select>
 				</div>
 				<div class="row">
-					<input type="text" id="addr1" name="addr1" class="input round" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Office Address">
+					<input type="text" id="addr1" name="addr1" class="input" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Office Address">
 				</div>
 
 				<div class="row">
 					<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-						<input type="text" class="input round" id="companyPhone" name="companyPhone" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Tel. No">
+						<input type="text" class="input" id="companyPhone" name="companyPhone" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Tel. No">
 					</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-						<input type="text" class="input round" id="homepage" name="homepage" maxlength="30" style="width:90%;ime-mode:active;" placeholder="WebSite ( http:// )">
+						<input type="text" class="input" id="homepage" name="homepage" maxlength="30" style="width:90%;ime-mode:active;" placeholder="WebSite ( http:// )">
 					</div>
 				</div>
 
 				<div class="row">
-					<input type="text" id="userSaNo" name="userSaNo" class="input round" style="width:95%;" maxlength="10" placeholder="Number of Company Employees">
+					<input type="text" id="userSaNo" name="userSaNo" class="input" style="width:95%;" maxlength="10" placeholder="Number of Company Employees">
 				</div>
 
 				<div class="row">
@@ -224,8 +219,8 @@ End Sub
 									<label for="business6">Mechanical Car Parts and Material</label>
 								</div>
 								<div>
-									<input type="checkbox" id="business12" name="business12" class="business_check" value="1">
-									<label for="business12">etc.(
+									<input type="checkbox" id="business12" name="business12" class="business_check" value="1" onclick="$('#business').focus();">
+									<label for="business12" >etc.(
 										<input type="text" id="business" name="business" style="width:180px;ime-mode:active;border:0px;vertical-align:middle;" maxlength="100" >
 									)</label>
 								</div>
@@ -234,7 +229,6 @@ End Sub
 						</div>
 
 
-						
 					</div>
 
 					
@@ -243,7 +237,7 @@ End Sub
 				<!-- 파일 스크립트 추가 -->
 				<div class="row">
 					<input type="file" id="files2" name="files2" style="width:1px;height:1px;overflow:hidden;" onchange="$('#files2_text').val( $(this).val() );">
-					<input type="text" id="files2_text" class="input round" style="width:77%;" placeholder="Company Logo Image File ( jpg, bmp, gif, png )" readonly onclick="$('#files2').click();">
+					<input type="text" id="files2_text" class="input" style="width:77%;" placeholder="Company Logo Image File ( jpg, bmp, gif, png )" readonly onclick="$('#files2').click();">
 					<input type="button" class="btn" style="width:15%;height:32px;margin-left:15px;" value="SEARCH" onclick="$('#files2').click();">
 				</div>
 
@@ -254,7 +248,7 @@ End Sub
 
 			<div class="form_wrap">
 				<div class="row" style="margin-top:20px;">
-					<textarea name="other_information" class="input round" style="width:95%;height:100px;" placeholder="Share additional Information"></textarea>
+					<textarea name="other_information" class="input" style="width:95%;height:100px;" placeholder="Share additional Information"></textarea>
 				</div>
 			</div>
 

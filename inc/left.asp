@@ -67,8 +67,58 @@
 	<div id="left_menu">
 		<h2>Community</h2>
 		<ul>
-			<li><a href="../Community/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>게시판1</div></a></li>
-			<li><a href="../Community/?tab1=2" class="<%=IIF( tab1 = 2 ,"over" , "" )%>"><div>게시판2</div></a></li>
+			<li><a href="../Community/?tab1=2" class="<%=IIF( tab1 = 2 ,"over" , "" )%>"><div>게시판 1</div></a>
+				<%
+				If tab1=2 Then
+					response.Write("<ul class=""sub"">")
+					for iLoop = 0 to cntListMenu
+				%>
+					<li><a href="../download/?tab1=<%=tab1%>&tab2=<%=arrListMenu(MENU_idx,iLoop)%>" class="<%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"over","")%>"><div><%=arrListMenu(MENU_name,iLoop)%></div></a></li>
+				<%
+					next
+					response.Write("</ul>")
+				end if
+				%>
+			</li>
+			<li><a href="../Community/?tab1=3" class="<%=IIF( tab1 = 3 ,"over" , "" )%>"><div>게시판 2</div></a>
+				<%
+				If tab1=3 Then
+					response.Write("<ul class=""sub"">")
+					for iLoop = 0 to cntListMenu
+				%>
+					<li><a href="../download/?tab1=<%=tab1%>&tab2=<%=arrListMenu(MENU_idx,iLoop)%>" class="<%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"over","")%>"><div><%=arrListMenu(MENU_name,iLoop)%></div></a></li>
+				<%
+					next
+					response.Write("</ul>")
+				end if
+				%>
+			</li>
+			<li><a href="../Community/?tab1=4" class="<%=IIF( tab1 = 4 ,"over" , "" )%>"><div>게시판 3</div></a>
+				<%
+				If tab1=4 Then
+					response.Write("<ul class=""sub"">")
+					for iLoop = 0 to cntListMenu
+				%>
+					<li><a href="../download/?tab1=<%=tab1%>&tab2=<%=arrListMenu(MENU_idx,iLoop)%>" class="<%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"over","")%>"><div><%=arrListMenu(MENU_name,iLoop)%></div></a></li>
+				<%
+					next
+					response.Write("</ul>")
+				end if
+				%>
+			</li>
+			<li><a href="../Community/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>자료실</div></a>
+				<%
+				If tab1=1 Then
+					response.Write("<ul class=""sub"">")
+					for iLoop = 0 to cntListMenu
+				%>
+					<li><a href="../download/?tab1=<%=tab1%>&tab2=<%=arrListMenu(MENU_idx,iLoop)%>" class="<%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"over","")%>"><div><%=arrListMenu(MENU_name,iLoop)%></div></a></li>
+				<%
+					next
+					response.Write("</ul>")
+				end if
+				%>
+			</li>
 		</ul>
 	</div>
 	<% End If %>
