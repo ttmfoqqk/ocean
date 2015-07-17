@@ -46,6 +46,9 @@ Call dbopen()
 	Call View()
 Call dbclose()
 
+' 게시완료 -> 읽기 가능
+
+' 게시요청 -> 수정/삭제 가능
 
 Sub View()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")

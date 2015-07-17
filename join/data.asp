@@ -23,9 +23,8 @@ End If
 
 Call Expires()
 Call dbopen()
-	Dim optionEmail  : optionEmail  = setCodeOption( 11  , "select" , 1 , "" )
-	Dim optionPhone  : optionPhone  = setCodeOption( 9  , "select" , 1 , "" )
-	Dim optionhPhone : optionhPhone = setCodeOption( 10  , "select" , 1 , "" )
+	Dim optionCountry : optionCountry = setCodeOption( 13  , "select" , 1 , "" )
+	Dim optionCStaff : optionCStaff   = setCodeOption( 14  , "select" , 1 , "" )
 
 	Call GetList()
 
@@ -104,9 +103,9 @@ End Sub
 			</div>
 			<div class="row">
 				<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-					<input type="text" class="input" id="userName" name="userName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="First Name">
+					<input type="text" class="input" id="FirstName" name="FirstName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="First Name">
 				</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-					<input type="text" class="input" id="userName" name="userName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Last Name">
+					<input type="text" class="input" id="LastName" name="LastName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Last Name">
 				</div>
 			</div>
 
@@ -126,13 +125,13 @@ End Sub
 					<%for iLoop = 0 to cntList%>
 					<option value="<%=arrList(FI_idx,iLoop)%>"><%=arrList(FI_cName,iLoop)%></option>
 					<%Next%>
-					<option value="NEW">직접입력</option>
+					<option value="NEW">Other Company</option>
 				</select>
-				<input type="button" class="btn" style="width:15%;height:32px;margin-left:15px;" value="NEW">
+				<input type="button" class="btn" id="companyCreate" style="width:15%;height:32px;margin-left:15px;" value="NEW">
 			</div>
 		</div>
 		
-		<div id="company_input" style="display:block;margin-top:20px;">
+		<div id="company_input" style="display:none;margin-top:20px;">
 			<div class="form_wrap">
 				<h3>Company Information</h3>
 
@@ -142,10 +141,11 @@ End Sub
 				<div class="row">
 					<select class="input" id="Country" name="Country" style="width:98%;height:32px;padding:5px;">
 						<option value="">Country</option>
+						<%=optionCountry%>
 					</select>
 				</div>
 				<div class="row">
-					<input type="text" id="addr1" name="addr1" class="input" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Office Address">
+					<input type="text" id="addr" name="addr" class="input" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Office Address">
 				</div>
 
 				<div class="row">
@@ -157,7 +157,10 @@ End Sub
 				</div>
 
 				<div class="row">
-					<input type="text" id="userSaNo" name="userSaNo" class="input" style="width:95%;" maxlength="10" placeholder="Number of Company Employees">
+					<select class="input" id="cStaff" name="cStaff" style="width:98%;height:32px;padding:5px;">
+						<option value="">Number of Company Employees</option>
+						<%=optionCStaff%>
+					</select>
 				</div>
 
 				<div class="row">
@@ -270,12 +273,11 @@ End Sub
 	</div>
 </div>
 
-<script type="text/JavaScript" src="../inc/js/member.js"></script>
-<script type="text/JavaScript" src="../inc/js/checked.js"></script>
 <SCRIPT type="text/javascript">
 $(function(){
-	//$userId.focus();
-
+	$('#companyCreate').click(function(){
+		$('#companySelect').val('NEW').change();
+	});
 	$('#companySelect').change(function(){
 		var v = $(this).val();
 		var t = $('#companySelect option:selected').text();
@@ -289,110 +291,69 @@ $(function(){
 		setLeftHeight();
 	});
 });
+
+var $ajaxIdCheck = false;
+var ajaxIdCheck = function( value ){
+	$.ajax({
+		type    : 'GET',
+		url     : '../inc/ajax.member.check.asp',
+		data    : 'actType=id&search='+value ,
+		dataType: 'text',
+		cache   : false,
+		scriptCharset:'utf-8',
+		success: function(text){
+			if(text > 0){
+				$ajaxIdCheck = false;
+			}else{
+				$ajaxIdCheck = true;
+			}
+		},error:function(err){
+			//alert(err.responseText)
+		}
+	});
+}
+
+$userId = $('#userId');
+$userId.blur(function(){
+	ajaxIdCheck($(this).val());
+}).keyup(function(){
+	ajaxIdCheck($(this).val());
+});
+
 function checkJoin(){
+	var data = [
+		 ['userId','length','아이디를 입력해 주시기 바랍니다.']
+		,['userId','mail','이메일 형식이 틀렸습니다.']
+		,['userPwd','length','비밀번호를 입력해 주시기 바랍니다.']
+		,['userPwd','pwd','비밀번호는 6~20자까지 가능합니다.']
+		,['userPwdConfirm','length','비밀번호 확인을 입력해 주시기 바랍니다.']
+		,['userPwdConfirm','confirm','비밀번호와 동일하게 입력해 주시기 바랍니다.','userPwd']
+		,['FirstName','length','First Name 을 입력해 주시기 바랍니다.']
+		,['LastName','length','Last Name 을 입력해 주시기 바랍니다.']
+		,['userPosition','length','부서/직위를 입력해 주시기 바랍니다.']
+		,['userhPhone','length','휴대전화 번호를 입력해 주시기 바랍니다.']
+		,['userPhone','length','전화 번호를 입력해 주시기 바랍니다.']
+		,['companySelect','length','회사명을 선택해주세요.']
+	];
+	var dataCo = [
+		 ['cName','length','업체명을 입력해 주시기 바랍니다.']
+		,['Country','length','Country를 선택해주세요.']
+		,['addr','length','Office Address를 입력해 주시기 바랍니다.']
+		,['companyPhone','length','Tel. No를 입력해 주시기 바랍니다.']
+		,['homepage','length','homepage를 입력해 주시기 바랍니다.']
+		,['cStaff','length','상시종업원수를 입력하세요.']
+		,['files2','length','회사로고를 등록해주세요.']
+	];
 
-	var userId = checkFormUserId(true,false);
-	if( userId == false ){$userId.focus();return false;}
 
-	if(!$ajaxIdCheck){
-		alert(member_msg.userId.m4);
-		return false;
-	}
+	var checkform = checkInputValue(data);
+	if(!checkform){return false;}
 
-	var userName = checkFormUserName(true);
-	if( !userName ){$userName.focus();return false;}
-	
-	var userPwd = checkFormUserPwd(true);
-	if( !userPwd ){$userPwd.focus();return false;}
-	
-	var userPwdConfirm = checkFormUserPwdConfirm(true);
-	if( !userPwdConfirm ){$userPwdConfirm.focus();return false;}
-	
-	if( !$.trim( $('#userPosition').val() ) ){
-		alert('부서/직위를 입력해 주시기 바랍니다.');$('#userPosition').focus();return false; 
-	}
-
-	//var userSaNo = checkFormUserSaNo(true,false);
-	//if( !userSaNo ){$userSaNo.focus();return false;}
-
-	//if( $('#userhPhone1').val() || $('#userhPhone2').val() || $('#userhPhone3').val() ){
-		var userhPhone = checkFormUserphoen(true);
-		if( !userhPhone ){return false;}
-	//}
-	//if( $('#userPhone1').val() || $('#userPhone2').val() || $('#userPhone3').val() ){
-		var userPhone = checkFormUserphoen2(true);
-		if( !userPhone ){return false;}
-	//}
-	//if( $('#userfax1').val() || $('#userfax2').val() || $('#userfax3').val() ){
-		var userFax = checkFormUserFax(true);
-		if( !userFax ){return false;}
-	//}
-
-	var userEmail = checkFormUserEmail(true);	
-	if( !userEmail ){$userEmail1.focus();return false;}
-	
-	if( !$('#companySelect').val() ){
-		alert('회사명을 선택해주세요.');return false;
-	}
 	if( $('#companySelect').val() == 'NEW' ){
-	
-		if( !$.trim( $('#cName').val() ) ){
-			alert('업체명을 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#ceo').val() ) ){
-			alert('대표자를 입력하세요.');
-			return false;
-		}
 		
-		var userSaNo = checkFormUserSaNo(true,false);
-		if( !userSaNo ){$userSaNo.focus();return false;}
+		var checkformCo = checkInputValue(dataCo);
+		if(!checkformCo){return false;}
 
-		if(!$ajaxSanoCheck){
-			alert(member_msg.userSaNo.m4);
-			return false;
-		}
-
-		if( !$.trim( $('#cDate').val() ) ){
-			alert('설립일을 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#addr1').val() ) ){
-			alert('주소를 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#addr2').val() ) ){
-			alert('상세주소를 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#addr2').val() ) ){
-			alert('상세주소를 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#cPhone').val() ) ){
-			alert('대표전화를 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#cSectors').val() ) ){
-			alert('업종을 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#homepage').val() ) ){
-			alert('홈페이지를 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#cItems').val() ) ){
-			alert('주생산품목을 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#cSales').val() ) ){
-			alert('전년도매출액을 입력하세요.');
-			return false;
-		}
-		if( !$.trim( $('#cStaff').val() ) ){
-			alert('상시종업원수를 입력하세요.');
-			return false;
-		}
 		if( $('.business_check:checked').length <= 0 ){
 			alert('사업분야를 1개이상 선택해주세요.');
 			return false;
@@ -401,65 +362,11 @@ function checkJoin(){
 			alert('사업분야 기타 내용을 입력해주세요.');
 			return false;
 		}
-		if( $('.iot_business_check:checked').length <= 0 ){
-			alert('사물인터넷 사업분야를 1개이상 선택해주세요.');
-			return false;
-		}
-		if( $('input[name="iot_business6"]:checked').length > 0 && !$.trim( $('#iot_business').val() ) ){
-			alert('사물인터넷 사업분야 기타 내용을 입력해주세요.');
-			return false;
-		}
-		if( !$.trim( $('#files1').val() ) ){
-			alert('사업자등록증을 등록해주세요.');
-			return false;
-		}
-		if( !$.trim( $('#files2').val() ) ){
-			alert('회사로고를 등록해주세요.');
-			return false;
-		}
-
 	}
-
+	alert('폼 작업중');
+	return false;
 	$('.btn_area').html('처리 중입니다.');
 }
 
-
-function openDaumPostcode() {
-	new daum.Postcode({
-		oncomplete: function(data) {
-			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-			// 우편번호와 주소 정보를 해당 필드에 넣고, 커서를 상세주소 필드로 이동한다.
-			//document.getElementById('post1').value = data.postcode1;
-			//document.getElementById('post2').value = data.postcode2;
-			//document.getElementById('addr').value = data.address;
-			//전체 주소에서 연결 번지 및 ()로 묶여 있는 부가정보를 제거하고자 할 경우,
-			//아래와 같은 정규식을 사용해도 된다. 정규식은 개발자의 목적에 맞게 수정해서 사용 가능하다.
-			var addr = data.address.replace(/(\s|^)\(.+\)$|\S+~\S+/g, '');
-			document.getElementById('addr1').value = addr;
-			document.getElementById('addr2').focus();
-		}
-	}).open();
-}
-
-$(function() {
-  $( "#cDate" ).datepicker({
-    dateFormat: 'yy-mm-dd',
-    prevText: '이전 달',
-    nextText: '다음 달',
-    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    dayNames: ['일','월','화','수','목','금','토'],
-    dayNamesShort: ['일','월','화','수','목','금','토'],
-    dayNamesMin: ['일','월','화','수','목','금','토'],
-    showMonthAfterYear: true,
-    yearSuffix: '년',
-	changeMonth : true,
-	changeYear : true,
-	//showOtherMonths:true,
-	//selectOtherMonths: true,
-	maxDate: "+0D",
-	yearRange: 'c-100:c+0'
-  });
-});
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" -->

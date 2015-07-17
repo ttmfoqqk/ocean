@@ -54,6 +54,11 @@ Else
 	onclick = ""
 End If
 
+
+' 게시완료 -> 읽기 가능
+
+' 게시요청 -> 수정/삭제 가능
+
 Sub View()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")
 	SET objCmd = Server.CreateObject("adodb.command")
@@ -169,9 +174,9 @@ End Sub
 				</table>
 				<div class="btn_area">
 					<input type="button" class="btn" value="List" onclick="location.href='../download/?<%=PageParams%>'" style="float:left;">
-					<%'if session("UserIdx") = FI_UserIdx then %>
+					<%if session("UserIdx") = FI_UserIdx and FI_status = "0" then %>
 					<input type="button" class="btn" value="Edit" onclick="location.href='../download/write.asp?<%=PageParams%>&Idx=<%=FI_Idx%>'">
-					<%'end if%>
+					<%end if%>
 				</div>
 				
 			</div>

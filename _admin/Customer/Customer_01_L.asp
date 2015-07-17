@@ -20,6 +20,7 @@ Dim BoardKey : BoardKey = request("BoardKey")
 Dim Title    : Title    = request("Title")
 Dim tab      : tab      = IIF( request("tab")="",0,request("tab") )
 Dim tab2     : tab2     = IIF( request("tab2")="",0,request("tab2") )
+dim sstatus  : sstatus  = request("status")
 
 
 Call Expires()
@@ -39,7 +40,8 @@ pageURL	= g_url & "?pageNo=__PAGE__" &_
 		"&Outdate="  & Outdate &_
 		"&tab="      & tab &_
 		"&tab2="     & tab2 &_
-		"&Title="    & Title
+		"&Title="    & Title &_
+		"&sstatus="  & sstatus
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
@@ -50,7 +52,8 @@ PageParams = "pageNo=" & pageNo &_
 		"&Outdate="  & Outdate &_
 		"&tab="      & tab &_
 		"&tab2="     & tab2 &_
-		"&Title="    & Title
+		"&Title="    & Title &_
+		"&sstatus="  & sstatus
 
 
 Sub BoardCodeList()
@@ -109,6 +112,7 @@ Sub GetList()
 		.Parameters("@Outdate").value  = Outdate
 		.Parameters("@tab").value      = tab
 		.Parameters("@tab2").value     = tab2
+		.Parameters("@status").value   = sstatus
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -207,6 +211,19 @@ End Sub
 									<%End If%>
 								</td>
 							</tr>
+							<tr>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
+								<td class="line_box">
+									<select id="status" name="status">
+										<option value="">선택</option>
+										<option value="0" <%=IIF(sstatus="0","selected","")%>>게시요청</option>
+										<option value="1" <%=IIF(sstatus="1","selected","")%>>검토중</option>
+										<option value="2" <%=IIF(sstatus="2","selected","")%>>완료</option>
+									</select>
+								</td>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140"> </td>
+								<td class="line_box" width="250"> </td>
+							</tr>
 						</table>
 
 					</td>
@@ -238,12 +255,24 @@ End Sub
 								<%End If%>
 								<td class="line_box" width="10%">작성자</td>
 								<td class="line_box" width="10%">등록일</td>
-								<td class="line_box" width="8%">조회</td>
+								<%If BoardKey = "1" or BoardKey = "3" Then %>
+								<td class="line_box" width="8%">진행상황</td>
+								<%End If%>
+								<td class="line_box" width="6%">조회</td>
 							</tr>
 							<%
 							Dim PageLink,nbsp
 							for iLoop = 0 to cntNoti
 								PageLink = "location.href='Customer_01_V.asp?" & PageParams & "&Idx=" & arrNoti(NOTICE_Idx,iLoop) & "'"
+
+								statusText = ""
+								if arrNoti(NOTICE_status,iLoop)="0" then 
+									statusText = "요청"
+								elseif arrNoti(NOTICE_status,iLoop)="1" then 
+									statusText = "검토중"
+								elseif arrNoti(NOTICE_status,iLoop)="2" then 
+									statusText = "완료"
+								end if
 							%>
 							<tr height="30" align=center>
 								<td class="line_box" style="padding:0px;" ><input type="checkbox" name="Idx" value="<%=arrNoti(NOTICE_Idx,iLoop)%>"></td>
@@ -269,6 +298,9 @@ End Sub
 								<%End If%>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrNoti(NOTICE_ContName,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrNoti(NOTICE_Indate,iLoop)%></td>
+								<%If BoardKey = "1" or BoardKey = "3" Then %>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=statusText%></td>
+								<%end if%>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrNoti(NOTICE_Read_cnt,iLoop)%></td>
 							</tr>
 							<%next%>
@@ -283,6 +315,18 @@ End Sub
 								Next
 								nbsp = nbsp & "<b>></b> [RE] "
 							End If
+
+
+							statusText = ""
+							if arrList(FI_tab,iLoop) = "3" then 
+								if arrList(FI_status,iLoop)="0" then 
+									statusText = "게시요청"
+								elseif arrList(FI_status,iLoop)="1" then 
+									statusText = "검토중"
+								elseif arrList(FI_status,iLoop)="2" then 
+									statusText = "완료"
+								end if
+							end if
 							%>
 							<tr height="30" align=center>
 								<td class="line_box" style="padding:0px;" ><input type="checkbox" name="Idx" value="<%=arrList(FI_Idx,iLoop)%>"></td>
@@ -308,6 +352,9 @@ End Sub
 								<%End If%>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_ContName,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_Indate,iLoop)%></td>
+								<%If BoardKey = "1" or BoardKey = "3" Then %>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=statusText%></td>
+								<%end if%>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_Read_cnt,iLoop)%></td>
 							</tr>
 							<%next%>

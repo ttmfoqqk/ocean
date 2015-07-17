@@ -46,3 +46,44 @@ var snsShare = function(sns) {
 		break;
 	}
 }
+
+
+
+var _reg_space   = /^([^\s])*$/;
+var _reg_id      = /^[a-z0-9]{6,12}$/;
+var _reg_pwd     = /^([a-zA-Z0-9_~!-\/:-@\[-`{-]){6,20}$/;
+var _reg_name    = /^([a-zA-Z]{2,30}|[가-힣]{1,16})$/;
+var _reg_company = /^([a-zA-Z0-9가-힣_~!-\/:-@\[-`{-]){2,100}$/;
+var _reg_sano    = /^[0-9]{10}$/;
+var _reg_mail    = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,10}$/i;
+var _reg_phone   = /^[0-9]{1,4}$/;
+var _reg_auth    = /^[0-9]{6}$/;
+
+function CheckReg(m,str) {
+	var reg = eval('_reg_'+m);
+	return (reg.test(str));
+}
+
+function checkInputValue( data ){
+	var obj,reg;
+	for(i=0;i<data.length;i++){
+		obj = document.getElementById(data[i][0]);
+		reg = data[i][1];
+		msg = data[i][2];
+		if(reg == 'length'){
+			t = obj.value.length<=0 ? false : true;
+		}else if(reg == 'confirm'){
+			obj2 = document.getElementById(data[i][3]);
+			t = obj.value!=obj2.value ? false : true;
+		}else{
+			t = CheckReg( reg , obj.value );
+		}
+		if( !t ){
+			alert(msg);
+			obj.focus();
+			return false;
+			break;			
+		}
+	}
+	return true;
+}

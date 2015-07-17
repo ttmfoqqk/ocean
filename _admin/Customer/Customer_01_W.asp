@@ -19,6 +19,7 @@ Dim BoardKey : BoardKey = request("BoardKey")
 Dim Title    : Title    = request("Title")
 Dim tab      : tab      = IIF( request("tab")="",0,request("tab") )
 Dim tab2     : tab2     = IIF( request("tab2")="",0,request("tab2") )
+dim sstatus  : sstatus  = request("status")
 Dim Idx      : Idx      = IIF( request("Idx")="" , 0 , request("Idx") )
 
 Dim actType  : actType  = request("actType")
@@ -32,7 +33,8 @@ PageParams = "pageNo=" & pageNo &_
 		"&Outdate="  & Outdate &_
 		"&tab="      & tab &_
 		"&tab2="     & tab2 &_
-		"&Title="    & Title
+		"&Title="    & Title &_
+		"&sstatus="  & sstatus
 
 
 Call Expires()
@@ -321,6 +323,19 @@ $(document).ready( function() {
 
 								</td>
 							</tr>
+							<%If BoardKey = "1" and FI_tab = "3" Then %>
+							<tr>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
+								<td class="line_box" style="word-break:break-all">
+									<select id="status" name="status">
+										<option value="">선택</option>
+										<option value="0" <%=IIF(FI_status="0","selected","")%>>게시요청</option>
+										<option value="1" <%=IIF(FI_status="1","selected","")%>>검토중</option>
+										<option value="2" <%=IIF(FI_status="2","selected","")%>>완료</option>
+									</select>
+								</td>
+							</tr>	
+							<%end if%>
 							<%If BoardKey = "0" Then %>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">공지</td>

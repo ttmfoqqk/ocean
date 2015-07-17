@@ -20,6 +20,7 @@ Dim BoardKey   : BoardKey   = request("BoardKey")
 Dim Title      : Title      = request("Title")
 Dim tab        : tab        = IIF( request("tab")="",0,request("tab") )
 Dim tab2       : tab2       = IIF( request("tab2")="",0,request("tab2") )
+dim sstatus    : sstatus    = request("status")
 
 Dim Idx        : Idx        = IIF( request("Idx")="" , 0 , request("Idx") )
 
@@ -32,7 +33,8 @@ PageParams = "pageNo=" & pageNo &_
 		"&Outdate="  & Outdate &_
 		"&tab="      & tab &_
 		"&tab2="     & tab2 &_
-		"&Title="    & Title
+		"&Title="    & Title &_
+		"&sstatus="  & sstatus
 
 
 Call Expires()
@@ -207,6 +209,21 @@ function del_fm_checkbox(){
 								<%End If%>
 								</td>
 							</tr>
+							<%If BoardKey = "1" and FI_tab = "3" Then 
+							statusText = ""
+							if FI_status="0" then 
+								statusText = "게시요청"
+							elseif FI_status="1" then 
+								statusText = "검토중"
+							elseif FI_status="2" then 
+								statusText = "완료"
+							end if
+							%>
+							<tr>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
+								<td class="line_box" style="word-break:break-all"><%=statusText%></td>
+							</tr>	
+							<%end if%>
 							
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">등록일</td>
