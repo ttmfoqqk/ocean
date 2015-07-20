@@ -162,7 +162,7 @@ function del_fm_checkbox(){
 								<td class="line_box" width="50">번호</td>
 								<td class="line_box" width="10%">가입일자</td>
 								<td class="line_box" width="20%">상호</td>
-								<td class="line_box" width="15%">대표자</td>
+								<!--td class="line_box" width="15%">대표자</td-->
 								<td class="line_box">주소</td>
 								<td class="line_box" width="8%">탈퇴여부</td>
 							
@@ -171,13 +171,15 @@ function del_fm_checkbox(){
 							Dim PageLink,UserHphone
 							for iLoop = 0 to cntList
 								PageLink = "location.href='Member_02_V.asp?" & PageParams & "&Idx=" & arrList(FI_Idx,iLoop) & "'"
+								addr = ""
+								addr = IIF( arrList(FI_addr,iLoop) = "", arrList(FI_addr1,iLoop) & " " & arrList(FI_addr2,iLoop) ,arrList(FI_addr,iLoop) )
 							%>
 							<tr height="30" align=center>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_rownum,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_Indate,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_cName,iLoop)%></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_ceo,iLoop)%></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_addr1,iLoop) & arrList(FI_addr2,iLoop)%></td>
+								<!--td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_ceo,iLoop)%></td-->
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand;text-align:left;padding-left:10px;"><%=addr%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=IIF( arrList(FI_state,iLoop)="0","사용중","<font color=red>탈퇴</font>" )%></td>
 							</tr>
 							<%next%>

@@ -52,6 +52,8 @@ Call dbopen()
 		Session("UserCIdx")  = FI_companyIdx
 		Session("UserCeoFg") = FI_ceo
 
+		' id 이메일 정규 체크후 session 생성 -> redirect 수정 [ 전 페이지 session 체크 redirect function]
+
 		response.redirect GoUrl
 	Else
 		With Response

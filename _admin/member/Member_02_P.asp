@@ -12,20 +12,11 @@ UPLOAD__FORM.MaxFileLen		= 3 * 1024 * 1024 '3메가
 Dim actType       : actType       = UPLOAD__FORM("actType")
 Dim idx           : idx           = UPLOAD__FORM("idx")
 Dim cName         : cName         = TagEncode( UPLOAD__FORM("cName") )
-Dim ceo           : ceo           = TagEncode( UPLOAD__FORM("ceo") )
-Dim sano          : sano          = Trim( UPLOAD__FORM("sano") )
-Dim cDate         : cDate         = Trim( UPLOAD__FORM("cDate") )
-Dim addr1         : addr1         = TagEncode( UPLOAD__FORM("addr1") )
-Dim addr2         : addr2         = TagEncode( UPLOAD__FORM("addr2") )
-Dim cScale        : cScale        = UPLOAD__FORM("cScale")
+Dim Country       : Country       = UPLOAD__FORM("Country")
+Dim addr          : addr          = TagEncode( UPLOAD__FORM("addr") )
 Dim cPhone        : cPhone        = TagEncode( UPLOAD__FORM("cPhone") )
-Dim cSectors      : cSectors      = TagEncode( UPLOAD__FORM("cSectors") )
 Dim homepage      : homepage      = TagEncode( UPLOAD__FORM("homepage") )
-Dim cItems        : cItems        = TagEncode( UPLOAD__FORM("cItems") )
-Dim cSales        : cSales        = TagEncode( UPLOAD__FORM("cSales") )
 Dim cStaff        : cStaff        = TagEncode( UPLOAD__FORM("cStaff") )
-Dim cCenter       : cCenter       = UPLOAD__FORM("cCenter")
-
 Dim business      : business      = TagEncode( UPLOAD__FORM("business") )
 Dim business1     : business1     = UPLOAD__FORM("business1")
 Dim business2     : business2     = UPLOAD__FORM("business2")
@@ -39,22 +30,12 @@ Dim business9     : business9     = UPLOAD__FORM("business9")
 Dim business10    : business10    = UPLOAD__FORM("business10")
 Dim business11    : business11    = UPLOAD__FORM("business11")
 Dim business12    : business12    = UPLOAD__FORM("business12")
-
-Dim iot_business  : iot_business  = TagEncode( UPLOAD__FORM("iot_business") )
-Dim iot_business1 : iot_business1 = UPLOAD__FORM("iot_business1")
-Dim iot_business2 : iot_business2 = UPLOAD__FORM("iot_business2")
-Dim iot_business3 : iot_business3 = UPLOAD__FORM("iot_business3")
-Dim iot_business4 : iot_business4 = UPLOAD__FORM("iot_business4")
-Dim iot_business5 : iot_business5 = UPLOAD__FORM("iot_business5")
-Dim iot_business6 : iot_business6 = UPLOAD__FORM("iot_business6")
-
+Dim bigo          : bigo          = UPLOAD__FORM("bigo")
 Dim State         : State         = UPLOAD__FORM("State")
 
-Dim files1        : files1        = Trim( UPLOAD__FORM("files1") )
+
 Dim files2        : files2        = Trim( UPLOAD__FORM("files2") )
-Dim oldFileName1  : oldFileName1  = Trim( UPLOAD__FORM("oldFileName1") )
 Dim oldFileName2  : oldFileName2  = Trim( UPLOAD__FORM("oldFileName2") )
-Dim DellFileFg1   : DellFileFg1   = UPLOAD__FORM("DellFileFg1")
 Dim DellFileFg2   : DellFileFg2   = UPLOAD__FORM("DellFileFg2")
 
 Dim PageParams    : PageParams   = URLDecode(UPLOAD__FORM("PageParams"))
@@ -101,7 +82,7 @@ Dim PageParams    : PageParams   = URLDecode(UPLOAD__FORM("PageParams"))
 
 '==================================
 
-If cName="" Or ceo="" Or sano="" Or addr1="" Or addr2="" Or cScale="" Or cPhone="" Or cSectors="" Or homepage="" Or cItems="" Or cSales="" Or cStaff="" Or cCenter="" Or (business="" And business1="" And business2="" And business3="" And business4="" And business5="" And business6="" And business7="" And business8="" And business9="" And business10="" And business11="" And business12="") Or (iot_business="" And iot_business1="" And iot_business2="" And iot_business3="" And iot_business4="" And iot_business5="" And iot_business6="") Then 
+If cName="" Or Country="" Or addr="" Or cPhone="" Or homepage="" Or cStaff="" Or (business="" And business1="" And business2="" And business3="" And business4="" And business5="" And business6="" And business7="" And business8="" And business9="" And business10="" And business11="" And business12="") Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
 	 .Write "alert('누락된 내용이 있습니다.');"
@@ -214,7 +195,7 @@ Call dbclose()
 If FI_CNT > 0 Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('이미 등록된 사업자등록번호 입니다.');"
+	 .Write "alert('이미 등록된 회사명 입니다.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -251,19 +232,11 @@ Sub insert()
 		.Parameters("@actType").value       = actType
 		.Parameters("@idx").value           = IIF(idx="",0,idx)
 		.Parameters("@cName").value         = cName
-		.Parameters("@ceo").value           = ceo
-		.Parameters("@sano").value          = sano
-		.Parameters("@cDate").value         = cDate
-		.Parameters("@addr1").value         = addr1
-		.Parameters("@addr2").value         = addr2
-		.Parameters("@cScale").value        = IIF(cScale="",0,cScale)
+		.Parameters("@Country").value       = Country
+		.Parameters("@addr").value          = addr
 		.Parameters("@cPhone").value        = cPhone
-		.Parameters("@cSectors").value      = cSectors
 		.Parameters("@homepage").value      = homepage
-		.Parameters("@cItems").value        = cItems
-		.Parameters("@cSales").value        = cSales
 		.Parameters("@cStaff").value        = cStaff
-		.Parameters("@cCenter").value       = IIF(cCenter="",0,cCenter)
 		.Parameters("@business").value      = business
 		.Parameters("@business1").value     = IIF(business1="",0,business1)
 		.Parameters("@business2").value     = IIF(business2="",0,business2)
@@ -277,15 +250,8 @@ Sub insert()
 		.Parameters("@business10").value    = IIF(business10="",0,business10)
 		.Parameters("@business11").value    = IIF(business11="",0,business11)
 		.Parameters("@business12").value    = IIF(business12="",0,business12)
-		.Parameters("@iot_business").value  = iot_business
-		.Parameters("@iot_business1").value = IIF(iot_business1="",0,iot_business1)
-		.Parameters("@iot_business2").value = IIF(iot_business2="",0,iot_business2)
-		.Parameters("@iot_business3").value = IIF(iot_business3="",0,iot_business3)
-		.Parameters("@iot_business4").value = IIF(iot_business4="",0,iot_business4)
-		.Parameters("@iot_business5").value = IIF(iot_business5="",0,iot_business5)
-		.Parameters("@iot_business6").value = IIF(iot_business6="",0,iot_business6)
-		.Parameters("@files1").value        = files1
 		.Parameters("@files2").value        = files2
+		.Parameters("@bigo").value          = bigo
 		.Parameters("@State").value         = IIF(State="",0,State)
 		Set objRs = .Execute
 	End with

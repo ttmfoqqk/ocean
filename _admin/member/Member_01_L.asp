@@ -145,7 +145,6 @@ function openPop(user_idx){
 					'<tr>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0">회사명</td>'+
 						'<td class="line_box">'+
-							'<input type="hidden" id="companyName" name="companyName">' +
 							'<select id="user_companyIdx" name="user_companyIdx" style="width:300px;"></select>' +
 							' <label><input type="checkbox" id="user_ceoFg" name="user_ceoFg" value="1" style="vertical-align:top;"> 대표</label>' +
 						'</td>'+
@@ -159,34 +158,13 @@ function openPop(user_idx){
 					'<tr>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0">휴대폰</td>'+
 						'<td class="line_box">'+
-							'<select id="user_hphone1" name="user_hphone1" style="width:50px"></select> - ' +
-							'<input type="text" id="user_hphone2" name="user_hphone2" maxlength=4 class="input" size=4> - ' +
-							'<input type="text" id="user_hphone3" name="user_hphone3" maxlength=4 class="input" size=4>' +
+							'<input type="text" id="user_hphone" name="user_hphone" maxlength=50 class="input" size=50>' +
 						'</td>'+
 					'</tr>'+
 					'<tr>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0">전화</td>'+
 						'<td class="line_box">'+
-							'<select id="user_phone1" name="user_phone1" style="width:50px"></select> - ' +
-							'<input type="text" id="user_phone2" name="user_phone2" maxlength=4 class="input" size=4> - ' +
-							'<input type="text" id="user_phone3" name="user_phone3" maxlength=4 class="input" size=4>' +
-						'</td>'+
-					'</tr>'+
-					'<tr>' +
-						'<td class="line_box" align=right bgcolor="f0f0f0">팩스</td>'+
-						'<td class="line_box">'+
-							'<select id="user_fax1" name="user_fax1" style="width:50px"></select> - ' +
-							'<input type="text" id="user_fax2" name="user_fax2" maxlength=4 class="input" size=4> - ' +
-							'<input type="text" id="user_fax3" name="user_fax3" maxlength=4 class="input" size=4>' +
-						'</td>'+
-					'</tr>'+
-					
-					'<tr>' +
-						'<td class="line_box" align=right bgcolor="f0f0f0">E-Mail</td>'+
-						'<td class="line_box">'+
-							'<input type="text" id="user_mail1" name="user_mail1" class="input" size=12> @ '+
-							'<input type="text" id="user_mail3" name="user_mail3" class="input" size=12> '+
-							'<select id="user_mail2" name="user_mail2" style="width:130px;"></select>' +
+							'<input type="text" id="user_phone" name="user_phone" maxlength=50 class="input" size=50>' +
 						'</td>'+
 					'</tr>'+
 					'<tr>' +
@@ -218,16 +196,8 @@ function openPop(user_idx){
 		e.preventDefault();
 		layerPopupClose('wall','admin_popup');
 	});
-	$('#user_mail2').change(function(e){
-		$('#user_mail3').val( $(this).val() );
-	});
-	
+		
 	layerPopupOpen('wall',10,'admin_popup',20);
-
-	getCodeAdd_combobox('#user_mail2','<%=fc_code_list(11)%>','');
-	getCodeAdd_combobox('#user_hphone1','<%=fc_code_list(10)%>','');
-	getCodeAdd_combobox('#user_phone1','<%=fc_code_list(9)%>','');
-	getCodeAdd_combobox('#user_fax1','<%=fc_code_list(9)%>','');
 
 	$.ajax({
 		type: "POST",
@@ -258,26 +228,13 @@ function openPop(user_idx){
 					var UserIdx         = $(this).find("UserIdx").text();
 					var UserId          = $(this).find("UserId").text();
 					var UserName        = $(this).find("UserName").text();
-					var UserHPhone0     = $(this).find("UserHPhone0").text();
-					var UserHPhone1     = $(this).find("UserHPhone1").text();
-					var UserHPhone2     = $(this).find("UserHPhone2").text();
-					var UserHPhone3     = $(this).find("UserHPhone3").text();
-					var UserPhone1      = $(this).find("UserPhone1").text();
-					var UserPhone2      = $(this).find("UserPhone2").text();
-					var UserPhone3      = $(this).find("UserPhone3").text();
-					var UserFax1        = $(this).find("UserFax1").text();
-					var UserFax2        = $(this).find("UserFax2").text();
-					var UserFax3        = $(this).find("UserFax3").text();
-					var UserEmail1      = $(this).find("UserEmail1").text();
-					var UserEmail2      = $(this).find("UserEmail2").text();
-					var UserZipcode1    = $(this).find("UserZipcode1").text();
-					var UserZipcode2    = $(this).find("UserZipcode2").text();
-					var UserAddr1       = $(this).find("UserAddr1").text();
-					var UserAddr2       = $(this).find("UserAddr2").text();
+					var UserNameLast    = $(this).find("UserNameLast").text();
+					var UserHPhone      = $(this).find("UserHPhone").text();
+					var UserPhone       = $(this).find("UserPhone").text();
+					var UserEmail       = $(this).find("UserEmail").text();
 					var UserIndate_full = $(this).find("UserIndate_full").text();
 					var UserOutdate     = $(this).find("UserOutdate").text();
 					var UserDelFg       = $(this).find("UserDelFg").text();
-					var UserEmailFg     = $(this).find("UserEmailFg").text();
 					var UserBigo        = $(this).find("UserBigo").text();
 					var UserState       = $(this).find("state").text();
 					var companyIdx      = $(this).find("companyIdx").text();
@@ -286,36 +243,22 @@ function openPop(user_idx){
 
 
 					$('#user_date').text( UserIndate_full );
-					$('#user_name').text( UserName );
-					$('#user_id').text( UserId );
-
+					$('#user_name').text( UserName + ' ' + UserNameLast );
+					$('#user_id').text( UserId +' '+ ( UserEmail==''?'':' [ '+UserEmail+' ] ' ) );
 					$('#user_id_hidden').val(UserId);
+					$('#user_hphone').val( UserHPhone );
+					$('#user_phone').val( UserPhone );
+					$('#user_mail').val( UserEmail );
 
-					$("#user_hphone1 > option[value = " + UserHPhone1 + "]").attr("selected", "ture");
-					$('#user_hphone2').val( UserHPhone2 );
-					$('#user_hphone3').val( UserHPhone3 );
-					$("#user_phone1 > option[value = " + UserPhone1 + "]").attr("selected", "ture");
-					$('#user_phone2').val( UserPhone2 );
-					$('#user_phone3').val( UserPhone3 );
-					$("#user_fax1 > option[value = " + UserFax1 + "]").attr("selected", "ture");
-					$('#user_fax2').val( UserFax2 );
-					$('#user_fax3').val( UserFax3 );
-
-					$('#user_mail1').val( UserEmail1 );
-					$("#user_mail2 > option[value = " + UserEmail2 + "]").attr("selected", "ture");
-					$('#user_mail3').val( UserEmail2 );
 					$('#user_bigo').val( UserBigo );
 					$("#user_delFg > option[value = " + UserDelFg + "]").attr("selected", "ture");
 					$("#user_state > option[value = " + UserState + "]").attr("selected", "ture");
 					$("#user_companyIdx > option[value = " + companyIdx + "]").attr("selected", "ture");
 
-					$('#companyName').val( $('#user_companyIdx option:selected').text() );
+					
 					$('#user_state_old').val(UserState);
 
-					$('#user_companyIdx').change(function(){
-						$('#companyName').val( $('#user_companyIdx option:selected').text() );
-					});
-
+					
 					$('#user_position').val( UserPosition );
 					
 					if( ceoFg == '1' ){
@@ -433,8 +376,8 @@ function del_fm(){
 
 									<label><input type="checkbox" name="ceoFg" value="1" <%=IIF(ceoFg="1","checked","")%> style="vertical-align:top;"> 대표</label>
 								</td>
-								<td class="line_box" align=center bgcolor="f0f0f0" width="140">휴대폰뒷자리</td>
-								<td class="line_box"><input type="text" class="input" name="Hphone3" value="<%=Hphone3%>" maxlength="4"></td>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">휴대폰</td>
+								<td class="line_box"><input type="text" class="input" name="Hphone3" value="<%=Hphone3%>" maxlength="30"></td>
 							</tr>
 						</table>
 
@@ -458,9 +401,8 @@ function del_fm(){
 								<td class="line_box" width="50">번호</td>
 								<td class="line_box" width="30">대표</td>
 								<td class="line_box" width="13%">가입일자</td>
-								<td class="line_box" width="13%">이름</td>
-								<td class="line_box" width="13%">아이디</td>
-								<td class="line_box">이메일</td>
+								<td class="line_box" width="15%">이름</td>
+								<td class="line_box">아이디</td>
 								<td class="line_box" width="15%">승인여부</td>
 								<td class="line_box" width="10%">탈퇴여부</td>
 							
@@ -480,14 +422,17 @@ function del_fm(){
 								Else
 									stateTxt = ""
 								End If
+								
+								tmp_UserId    = arrList(FI_UserId,iLoop)
+								tmp_UserEmail = arrList(FI_UserEmail,iLoop)
+								tmp_UserId    = IIF( isValidEmail(tmp_UserId),tmp_UserId, tmp_UserId &"<div style='color:#777777;'>[ "& tmp_UserEmail & " ]</div> " )
 							%>
 							<tr height="30" align=center>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_rownum,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=IIF( arrList(FI_ceo,iLoop)="1" , "v" , "" )%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_UserIndate,iLoop)%></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_UserName,iLoop)%></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_UserId,iLoop)%></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_UserEmail,iLoop)%></td>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_UserName,iLoop) &" "& arrList(FI_UserNameLast,iLoop)%></td>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand;text-align:left;padding-left:10px;"><%=tmp_UserId%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=stateTxt%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=IIF( arrList(FI_UserDelFg,iLoop)="0","사용중","<font color=red>탈퇴</font>" )%></td>
 							</tr>

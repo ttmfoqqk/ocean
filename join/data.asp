@@ -23,8 +23,8 @@ End If
 
 Call Expires()
 Call dbopen()
-	Dim optionCountry : optionCountry = setCodeOption( 13  , "select" , 1 , "" )
-	Dim optionCStaff : optionCStaff   = setCodeOption( 14  , "select" , 1 , "" )
+	Dim optionCountry : optionCountry = setCodeOption( 13  , "select" , 0 , "" )
+	Dim optionCStaff  : optionCStaff  = setCodeOption( 14  , "select" , 0 , "" )
 
 	Call GetList()
 
@@ -103,20 +103,20 @@ End Sub
 			</div>
 			<div class="row">
 				<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-					<input type="text" class="input" id="FirstName" name="FirstName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="First Name">
+					<input type="text" class="input" id="FirstName" name="FirstName" maxlength="30" style="width:90%;" placeholder="First Name">
 				</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-					<input type="text" class="input" id="LastName" name="LastName" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Last Name">
+					<input type="text" class="input" id="LastName" name="LastName" maxlength="30" style="width:90%;" placeholder="Last Name">
 				</div>
 			</div>
 
 			<div class="row">
-				<input type="text" id="userPosition" name="userPosition" class="input" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Department/Position">
+				<input type="text" id="userPosition" name="userPosition" class="input" style="width:95%;" maxlength="100" placeholder="Department/Position">
 			</div>
 			<div class="row">
-				<input type="text" id="userhPhone" name="userhPhone" maxlength="4" class="input" style="width:95%;" placeholder="Mobile. No">
+				<input type="text" id="userhPhone" name="userhPhone" maxlength="30" class="input" style="width:95%;" placeholder="Mobile. No">
 			</div>
 			<div class="row">
-				<input type="text" id="userPhone" name="userPhone" maxlength="4" class="input" style="width:95%;" placeholder="Tel. No">
+				<input type="text" id="userPhone" name="userPhone" maxlength="30" class="input" style="width:95%;" placeholder="Tel. No">
 			</div>
 			<div class="row">
 				<input type="hidden" id="companyName" name="companyName">
@@ -136,7 +136,7 @@ End Sub
 				<h3>Company Information</h3>
 
 				<div class="row">
-					<input type="text" id="cName" name="cName" class="input" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Company Name">
+					<input type="text" id="cName" name="cName" class="input" style="width:95%;" maxlength="100" placeholder="Company Name">
 				</div>
 				<div class="row">
 					<select class="input" id="Country" name="Country" style="width:98%;height:32px;padding:5px;">
@@ -145,14 +145,14 @@ End Sub
 					</select>
 				</div>
 				<div class="row">
-					<input type="text" id="addr" name="addr" class="input" style="width:95%;ime-mode:active;" maxlength="100" placeholder="Office Address">
+					<input type="text" id="addr" name="addr" class="input" style="width:95%;" maxlength="200" placeholder="Office Address">
 				</div>
 
 				<div class="row">
 					<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-						<input type="text" class="input" id="companyPhone" name="companyPhone" maxlength="30" style="width:90%;ime-mode:active;" placeholder="Tel. No">
+						<input type="text" class="input" id="cPhone" name="cPhone" maxlength="30" style="width:90%;" placeholder="Tel. No">
 					</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
-						<input type="text" class="input" id="homepage" name="homepage" maxlength="30" style="width:90%;ime-mode:active;" placeholder="WebSite ( http:// )">
+						<input type="text" class="input" id="homepage" name="homepage" maxlength="200" style="width:90%;" placeholder="WebSite ( http:// )">
 					</div>
 				</div>
 
@@ -224,7 +224,7 @@ End Sub
 								<div>
 									<input type="checkbox" id="business12" name="business12" class="business_check" value="1" onclick="$('#business').focus();">
 									<label for="business12" >etc.(
-										<input type="text" id="business" name="business" style="width:180px;ime-mode:active;border:0px;vertical-align:middle;" maxlength="100" >
+										<input type="text" id="business" name="business" style="width:180px;border:0px;vertical-align:middle;" maxlength="100" >
 									)</label>
 								</div>
 							</div>
@@ -239,9 +239,9 @@ End Sub
 
 				<!-- 파일 스크립트 추가 -->
 				<div class="row">
-					<input type="file" id="files2" name="files2" style="width:1px;height:1px;overflow:hidden;" onchange="$('#files2_text').val( $(this).val() );">
-					<input type="text" id="files2_text" class="input" style="width:77%;" placeholder="Company Logo Image File ( jpg, bmp, gif, png )" readonly onclick="$('#files2').click();">
-					<input type="button" class="btn" style="width:15%;height:32px;margin-left:15px;" value="SEARCH" onclick="$('#files2').click();">
+					<input type="file" id="files2" name="files2" style="width:1px;height:1px;overflow:hidden;">
+					<input type="text" id="files2_input" class="input" style="width:77%;" placeholder="Company Logo Image File ( jpg, bmp, gif, png )" readonly>
+					<input type="button" id="files2_btn" class="btn" style="width:15%;height:32px;margin-left:15px;" value="SEARCH">
 				</div>
 
 
@@ -249,9 +249,10 @@ End Sub
 
 			
 
+
 			<div class="form_wrap">
 				<div class="row" style="margin-top:20px;">
-					<textarea name="other_information" class="input" style="width:95%;height:100px;" placeholder="Share additional Information"></textarea>
+					<textarea name="other_infor" class="input" style="width:95%;height:100px;line-height:160%;" placeholder="Share additional Information"></textarea>
 				</div>
 			</div>
 
@@ -290,6 +291,16 @@ $(function(){
 		}
 		setLeftHeight();
 	});
+	$('#files2_input').click(function(){
+		$('#files2').click();
+	})
+	$('#files2_btn').click(function(){
+		$('#files2').click();
+	});
+	$('#files2').change(function(){
+		$('#files2_input').val( $(this).val() );
+	});
+
 });
 
 var $ajaxIdCheck = false;
@@ -339,7 +350,7 @@ function checkJoin(){
 		 ['cName','length','업체명을 입력해 주시기 바랍니다.']
 		,['Country','length','Country를 선택해주세요.']
 		,['addr','length','Office Address를 입력해 주시기 바랍니다.']
-		,['companyPhone','length','Tel. No를 입력해 주시기 바랍니다.']
+		,['cPhone','length','Tel. No를 입력해 주시기 바랍니다.']
 		,['homepage','length','homepage를 입력해 주시기 바랍니다.']
 		,['cStaff','length','상시종업원수를 입력하세요.']
 		,['files2','length','회사로고를 등록해주세요.']
@@ -360,11 +371,10 @@ function checkJoin(){
 		}
 		if( $('input[name="business12"]:checked').length > 0 && !$.trim( $('#business').val() ) ){
 			alert('사업분야 기타 내용을 입력해주세요.');
+			$('#business').focus();
 			return false;
 		}
 	}
-	alert('폼 작업중');
-	return false;
 	$('.btn_area').html('처리 중입니다.');
 }
 

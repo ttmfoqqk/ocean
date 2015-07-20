@@ -24,7 +24,7 @@
 				<table cellpadding="0" cellspacing="0" class="table" align="center">
 					<tr>
 						<td style="width:255px;height:37px;vertical-align:top;">
-							<input id="userId" name="userId" type="text" class="input" maxlength="12" placeholder="아이디" style="width:235px;padding:5px;ime-mode:disabled;" tabindex="1" value="<%=save_id%>">
+							<input id="userId" name="userId" type="text" class="input" maxlength="320" placeholder="아이디" style="width:235px;padding:5px;ime-mode:disabled;" tabindex="1" value="<%=save_id%>">
 						</td>
 						<td rowspan="2" style="vertical-align:top;">
 							<button class="btn" style="width:100%;height:65px;" tabindex="3">로그인</button>

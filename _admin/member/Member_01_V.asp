@@ -13,28 +13,21 @@ If Session("Admin_Idx") <> "" Then
 	Call dbopen()
 		Call GetList()
 		Call getView()
+		'전화번호,휴대폰 번호 
+		UserHPhone = IIF( FI_UserHPhone="",FI_UserHPhone1 &"-"& FI_UserHPhone2 &"-"& FI_UserHPhone3,FI_UserHPhone )
+		UserPhone  = IIF( FI_UserPhone="",FI_UserPhone1 &"-"& FI_UserPhone2 &"-"& FI_UserPhone3,FI_UserPhone )
+		UserEmail  = IIF( isValidEmail(FI_UserId),"", FI_UserEmail )
+
 		DataMsg = "<data>"
 		DataMsg = DataMsg &  "<admin_login>success</admin_login>"
 		DataMsg = DataMsg &  "<item>"
 		DataMsg = DataMsg &  "<UserIdx><![CDATA["         & Trim( FI_UserIdx )                 & "]]></UserIdx>"
 		DataMsg = DataMsg &  "<UserId><![CDATA["          & Trim( FI_UserId )                  & "]]></UserId>"
 		DataMsg = DataMsg &  "<UserName><![CDATA["        & Trim( FI_UserName )                & "]]></UserName>"
-		DataMsg = DataMsg &  "<UserHPhone0><![CDATA["     & Trim( FI_UserHPhone0 )             & "]]></UserHPhone0>"
-		DataMsg = DataMsg &  "<UserHPhone1><![CDATA["     & Trim( FI_UserHPhone1 )             & "]]></UserHPhone1>"
-		DataMsg = DataMsg &  "<UserHPhone2><![CDATA["     & Trim( FI_UserHPhone2 )             & "]]></UserHPhone2>"
-		DataMsg = DataMsg &  "<UserHPhone3><![CDATA["     & Trim( FI_UserHPhone3 )             & "]]></UserHPhone3>"
-		DataMsg = DataMsg &  "<UserPhone1><![CDATA["      & Trim( FI_UserPhone1 )              & "]]></UserPhone1>"
-		DataMsg = DataMsg &  "<UserPhone2><![CDATA["      & Trim( FI_UserPhone2 )              & "]]></UserPhone2>"
-		DataMsg = DataMsg &  "<UserPhone3><![CDATA["      & Trim( FI_UserPhone3 )              & "]]></UserPhone3>"
-		DataMsg = DataMsg &  "<UserFax1><![CDATA["        & Trim( FI_UserFax1 )                & "]]></UserFax1>"
-		DataMsg = DataMsg &  "<UserFax2><![CDATA["        & Trim( FI_UserFax2 )                & "]]></UserFax2>"
-		DataMsg = DataMsg &  "<UserFax3><![CDATA["        & Trim( FI_UserFax3 )                & "]]></UserFax3>"
-		DataMsg = DataMsg &  "<UserEmail1><![CDATA["      & Trim( Split(FI_UserEmail,"@")(0) ) & "]]></UserEmail1>"
-		DataMsg = DataMsg &  "<UserEmail2><![CDATA["      & Trim( Split(FI_UserEmail,"@")(1) ) & "]]></UserEmail2>"
-		DataMsg = DataMsg &  "<UserZipcode1><![CDATA["    & Trim( Left(FI_UserZipcode,3) )     & "]]></UserZipcode1>"
-		DataMsg = DataMsg &  "<UserZipcode2><![CDATA["    & Trim( Right(FI_UserZipcode,3) )    & "]]></UserZipcode2>"
-		DataMsg = DataMsg &  "<UserAddr1><![CDATA["       & Trim( FI_UserAddr1 )               & "]]></UserAddr1>"
-		DataMsg = DataMsg &  "<UserAddr2><![CDATA["       & Trim( FI_UserAddr2 )               & "]]></UserAddr2>"
+		DataMsg = DataMsg &  "<UserNameLast><![CDATA["    & Trim( FI_UserNameLast )            & "]]></UserNameLast>"
+		DataMsg = DataMsg &  "<UserHPhone><![CDATA["      & Trim( UserHPhone )                 & "]]></UserHPhone>"
+		DataMsg = DataMsg &  "<UserPhone><![CDATA["       & Trim( UserPhone )                  & "]]></UserPhone>"
+		DataMsg = DataMsg &  "<UserEmail><![CDATA["       & Trim( UserEmail )                  & "]]></UserEmail>"
 		DataMsg = DataMsg &  "<UserIndate><![CDATA["      & Trim( FI_UserIndate )              & "]]></UserIndate>"
 		DataMsg = DataMsg &  "<UserIndate_full><![CDATA[" & Trim( FI_UserIndate_full )         & "]]></UserIndate_full>"
 		DataMsg = DataMsg &  "<UserOutdate><![CDATA["     & Trim( FI_UserOutdate )             & "]]></UserOutdate>"
