@@ -173,10 +173,9 @@ $(document).ready( function() {
 								<td class="line_box">
 									<select id="tab" name="tab">
 										<option value="">선택</option>
-										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "1","selected","")%>>자료실</option>
-										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "2","selected","")%>>community 1</option>
-										<option value="2" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "3","selected","")%>>community 2</option>
-										<option value="3" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "4","selected","")%>>community 3</option>
+										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "1","selected","")%>>community 1</option>
+										<option value="2" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "2","selected","")%>>community 2</option>
+										<option value="3" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "3","selected","")%>>community 3</option>
 									</select>
 
 									<select id="tab2" name="tab2">
@@ -323,7 +322,7 @@ $(document).ready( function() {
 
 								</td>
 							</tr>
-							<%If BoardKey = "1" and FI_tab = "3" Then %>
+							<%If (BoardKey = "1" and FI_tab = "3") or BoardKey = "3" Then %>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
 								<td class="line_box" style="word-break:break-all">
@@ -336,7 +335,7 @@ $(document).ready( function() {
 								</td>
 							</tr>	
 							<%end if%>
-							<%If BoardKey = "0" Then %>
+							<%If BoardKey = "0" or BoardKey = "4" Then %>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">공지</td>
 								<td class="line_box"><input type="checkbox" value="1" name="Notice" <%=IIF( FI_Notice="1","checked","" )%>></td>

@@ -152,14 +152,14 @@ End Sub
 								<td class="line_box" width="50">번호</td>
 								<td class="line_box">제목</td>
 								<td class="line_box" width="10%">이름</td>
-								<td class="line_box" width="10%">ID</td>
-								<td class="line_box" width="20%">다운로드 일자</td>
+								<td class="line_box" width="15%">ID</td>
+								<td class="line_box" width="22%">다운로드 일자</td>
 							</tr>
 							<%for iLoop = 0 to cntList%>
 							<tr height="30" align=center>
 								<td class="line_box"><%=arrList(FI_rownum,iLoop)%></td>
 								<td class="line_box" align=left><%=nbsp & HtmlTagRemover( arrList(FI_Title,iLoop) , 60 )%></td>
-								<td class="line_box"><%=arrList(FI_userName,iLoop)%></td>
+								<td class="line_box"><%=arrList(FI_userName,iLoop) & " " & arrList(FI_userNameLast,iLoop)%></td>
 								<td class="line_box"><%=arrList(FI_userId,iLoop)%></td>
 								<td class="line_box"><%=arrList(FI_date,iLoop)%></td>
 							</tr>

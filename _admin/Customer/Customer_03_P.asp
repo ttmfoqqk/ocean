@@ -4,6 +4,7 @@ Dim alertMsg
 Dim actType    : actType    = request("actType")
 Dim Idx        : Idx        = IIF( request("Idx")="" , "0" , request("Idx") )
 Dim Title      : Title      = TagEncode( Trim( request("Title") ) )
+Dim BoardKey   : BoardKey   = request("BoardKey")
 Dim tab        : tab        = IIF( request("tab")="" , 0 , request("tab") )
 Dim Order      : Order      = IIF( request("order")="" , 0 , request("order") )
 Dim PageParams : PageParams = URLDecode(request("PageParams"))
@@ -37,7 +38,7 @@ Sub insert()
 		.CommandText		= "OCEAN_BOARD_TAP_P"
 		.Parameters("@actType").value = actType
 		.Parameters("@Idx").value     = Idx
-		.Parameters("@Key").value     = 1
+		.Parameters("@Key").value     = BoardKey
 		.Parameters("@Title").value   = Title
 		.Parameters("@tab").value     = tab
 		.Parameters("@order").value   = order

@@ -2,23 +2,26 @@
 <%
 Dim arrList
 Dim cntList : cntList = -1
-Dim rows    : rows    = 10
+
+Dim arrList2
+Dim cntList2 : cntList2 = -1
 
 Call Expires()
 Call dbopen()
-	Call GetList()
+	Call GetNotice()
+	call GetFiles()
 Call dbclose()
 
-Sub GetList()
+Sub GetNotice()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")
 	SET objCmd = Server.CreateObject("adodb.command")
 	with objCmd
 		.ActiveConnection = objConn
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
-		.CommandText      = "OCEAN_BOARD_CONT_L"
-		.Parameters("@rows").value     = rows 
-		.Parameters("@Key").value      = 0
+		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
+		.Parameters("@Key").value = 0
+		.Parameters("@CNT").value = 10
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -26,6 +29,27 @@ Sub GetList()
 	If NOT(objRs.BOF or objRs.EOF) Then
 		arrList = objRs.GetRows()
 		cntList = UBound(arrList, 2)
+	End If
+	objRs.close	: Set objRs = Nothing
+End Sub
+
+Sub GetFiles()
+	SET objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
+	with objCmd
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
+		.Parameters("@Key").value = 4
+		.Parameters("@CNT").value = 10
+		Set objRs = .Execute
+	End with
+	set objCmd = nothing
+	CALL setFieldIndex(objRs, "FI2")
+	If NOT(objRs.BOF or objRs.EOF) Then
+		arrList2 = objRs.GetRows()
+		cntList2 = UBound(arrList2, 2)
 	End If
 	objRs.close	: Set objRs = Nothing
 End Sub
@@ -81,24 +105,42 @@ End Sub
 				<table cellpadding="0" cellspacing="0" class="table">
 					<%for iLoop = 0 to cntList%>
 					<tr>
-						<td><a href="../about/notice.asp?idx=<%=arrList(FI_idx,iLoop)%>"><%=arrList(FI_Title,iLoop)%></a></td>
+						<td>
+							<div class="ellipsis">
+								<a href="../about/notice.asp?idx=<%=arrList(FI_idx,iLoop)%>" title="<%=arrList(FI_Title,iLoop)%>"><%=arrList(FI_Title,iLoop)%></a>
+							</div>
+						</td>
 						<td class="data"><%=arrList(FI_Indate,iLoop)%></td>
 					</tr>
 					<%Next%>
+					<%if cntList < 0 then %>
+					<tr>
+						<td>등록된 내용이 없습니다.</td>
+					</tr>
+					<%end if%>
 				</table>
 			</div>
 		</div>
 
 		<div class="main_notice">
-			<div class="title">자료실 <a href="../community/" class="more">+ 더보기</a></div>
+			<div class="title">자료실 <a href="../community/files.asp" class="more">+ 더보기</a></div>
 			<div class="contants">
 				<table cellpadding="0" cellspacing="0" class="table">
-					<%for iLoop = 0 to cntList%>
+					<%for iLoop = 0 to cntList2%>
 					<tr>
-						<td><a href="../customer/?idx=<%=arrList(FI_idx,iLoop)%>"><%=arrList(FI_Title,iLoop)%></a></td>
-						<td class="data"><%=arrList(FI_Indate,iLoop)%></td>
+						<td>
+							<div class="ellipsis">
+								<a href="../community/files.asp?idx=<%=arrList2(FI2_idx,iLoop)%>" title="<%=arrList2(FI2_Title,iLoop)%>"><%=arrList2(FI2_Title,iLoop)%></a>
+							</div>
+						</td>
+						<td class="data"><%=arrList2(FI2_Indate,iLoop)%></td>
 					</tr>
 					<%Next%>
+					<%if cntList2 < 0 then %>
+					<tr>
+						<td>등록된 내용이 없습니다.</td>
+					</tr>
+					<%end if%>
 				</table>
 			</div>
 		</div>

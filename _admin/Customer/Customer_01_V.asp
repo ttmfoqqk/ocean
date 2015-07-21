@@ -169,10 +169,9 @@ function del_fm_checkbox(){
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box">
-									<%=IIF(FI_tab="1","자료실","")%>
-									<%=IIF(FI_tab="2","community 1","")%>
-									<%=IIF(FI_tab="3","community 2","")%>
-									<%=IIF(FI_tab="4","community 3","")%>
+									<%=IIF(FI_tab="1","community 1","")%>
+									<%=IIF(FI_tab="2","community 2","")%>
+									<%=IIF(FI_tab="3","community 3","")%>
 
 									<%=IIF(FI_tab2Name<>""," > " & FI_tab2Name,"")%>
 								</td>
@@ -209,7 +208,7 @@ function del_fm_checkbox(){
 								<%End If%>
 								</td>
 							</tr>
-							<%If BoardKey = "1" and FI_tab = "3" Then 
+							<%If (BoardKey = "1" and FI_tab = "3") or BoardKey = "3" Then 
 							statusText = ""
 							if FI_status="0" then 
 								statusText = "게시요청"

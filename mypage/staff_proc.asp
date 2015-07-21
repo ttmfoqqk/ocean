@@ -35,8 +35,12 @@ Call dbopen()
 Call dbclose()
 
 for iLoop = 0 to cntList
-	phone = arrList(FI_UserHPhone1,iLoop) &"-"& arrList(FI_UserHPhone2,iLoop) &"-"& arrList(FI_UserHPhone3,iLoop)
-	email_result = sendSmsEmail_state( "join_state_admin" , admin_email_addr , arrList(FI_cName,iLoop) , "일반가입자" , arrList(FI_UserPosition,iLoop) , arrList(FI_UserName,iLoop) , phone , now() , "" )
+	userCname    = arrList(FI_cName,iLoop)
+	userPosition = arrList(FI_UserPosition,iLoop)
+	userPhone    = IIF( arrList(FI_UserHPhone,iLoop)="",arrList(FI_UserHPhone1,iLoop) &"-"& arrList(FI_UserHPhone2,iLoop) &"-"& arrList(FI_UserHPhone3,iLoop) ,arrList(FI_UserHPhone,iLoop) )
+	userName     = arrList(FI_UserName,iLoop) & " " & arrList(FI_UserNameLast,iLoop)
+	
+	email_result = sendSmsEmail_state( "join_state_admin" , admin_email_addr , userCname , "일반가입자" , userPosition , userName , userPhone , now() , "" )
 Next 
 
 With Response

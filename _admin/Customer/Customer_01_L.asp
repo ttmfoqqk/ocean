@@ -183,37 +183,8 @@ End Sub
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">제목</td>
 								<td class="line_box"><input type="text" class="input" name="Title" value="<%=Title%>"></td>
-								<td class="line_box" align=center bgcolor="f0f0f0" width="140"><%=IIF( BoardKey="1" or BoardKey="3" , "분류" , " " )%></td>
-								<td class="line_box" width="250">
-									<%If BoardKey="1" Then%>
-									<select id="tab" name="tab">
-										<option value="">선택</option>
-										<option value="1" <%=IIF(tab = "1","selected","")%>>Mobius</option>
-										<option value="2" <%=IIF(tab = "2","selected","")%>>&CUBE</option>
-										<option value="3" <%=IIF(tab = "3","selected","")%>>Open Contribution</option>
-									</select>
-
-									<select id="tab2" name="tab2">
-										<option value="">중분류 선택</option>
-									</select>
-									<%elseIf BoardKey="3" Then%>
-									<select id="tab" name="tab">
-										<option value="">선택</option>
-										<option value="1" <%=IIF(tab = "1","selected","")%>>자료실</option>
-										<option value="2" <%=IIF(tab = "2","selected","")%>>community 1</option>
-										<option value="3" <%=IIF(tab = "3","selected","")%>>community 2</option>
-										<option value="4" <%=IIF(tab = "4","selected","")%>>community 3</option>
-									</select>
-
-									<select id="tab2" name="tab2">
-										<option value="">중분류 선택</option>
-									</select>
-									<%End If%>
-								</td>
-							</tr>
-							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
-								<td class="line_box">
+								<td class="line_box" width="250">
 									<select id="status" name="status">
 										<option value="">선택</option>
 										<option value="0" <%=IIF(sstatus="0","selected","")%>>게시요청</option>
@@ -221,9 +192,34 @@ End Sub
 										<option value="2" <%=IIF(sstatus="2","selected","")%>>완료</option>
 									</select>
 								</td>
-								<td class="line_box" align=center bgcolor="f0f0f0" width="140"> </td>
-								<td class="line_box" width="250"> </td>
+								
 							</tr>
+							<%if BoardKey="1" or BoardKey="3" then %>
+							<tr>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
+								<td class="line_box" colspan="3">
+									<%If BoardKey="1" Then%>
+									<select id="tab" name="tab">
+										<option value="">선택</option>
+										<option value="1" <%=IIF(tab = "1","selected","")%>>Mobius</option>
+										<option value="2" <%=IIF(tab = "2","selected","")%>>&CUBE</option>
+										<option value="3" <%=IIF(tab = "3","selected","")%>>Open Contribution</option>
+									</select>
+									<%elseIf BoardKey="3" Then%>
+									<select id="tab" name="tab">
+										<option value="">선택</option>
+										<option value="1" <%=IIF(tab = "1","selected","")%>>community 1</option>
+										<option value="2" <%=IIF(tab = "2","selected","")%>>community 2</option>
+										<option value="3" <%=IIF(tab = "3","selected","")%>>community 3</option>
+									</select>
+									<%End If%>
+
+									<select id="tab2" name="tab2">
+										<option value="">중분류 선택</option>
+									</select>
+								</td>
+							</tr>
+							<%end if%>
 						</table>
 
 					</td>
@@ -254,7 +250,7 @@ End Sub
 								<td class="line_box" width="20%">분류</td>
 								<%End If%>
 								<td class="line_box" width="10%">작성자</td>
-								<td class="line_box" width="10%">등록일</td>
+								<td class="line_box" width="11%">등록일</td>
 								<%If BoardKey = "1" or BoardKey = "3" Then %>
 								<td class="line_box" width="8%">진행상황</td>
 								<%End If%>
@@ -288,10 +284,9 @@ End Sub
 								</td>
 								<%elseIf BoardKey = "3" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","자료실","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","community 1","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","community 2","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="4","community 3","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","community 1","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","community 2","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","community 3","")%>
 
 									<%=IIF(arrNoti(NOTICE_tab2,iLoop)<>""," > " & arrNoti(NOTICE_tab2,iLoop),"")%>
 								</td>
@@ -318,7 +313,7 @@ End Sub
 
 
 							statusText = ""
-							if arrList(FI_tab,iLoop) = "3" then 
+							if (BoardKey = "1" and arrList(FI_tab,iLoop) = "3") or BoardKey = "3" then 
 								if arrList(FI_status,iLoop)="0" then 
 									statusText = "게시요청"
 								elseif arrList(FI_status,iLoop)="1" then 
@@ -342,10 +337,9 @@ End Sub
 								</td>
 								<%elseIf BoardKey = "3" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<%=IIF(arrList(FI_tab,iLoop)="1","자료실","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="2","community 1","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="3","community 2","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="4","community 3","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="1","community 1","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="2","community 2","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="3","community 3","")%>
 
 									<%=IIF(arrList(FI_tab2Name,iLoop)<>""," > " & arrList(FI_tab2Name,iLoop),"")%>
 								</td>

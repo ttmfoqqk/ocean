@@ -48,7 +48,7 @@ Call dbopen()
 
 		Session("UserIdx")   = FI_UserIdx
 		Session("UserId")    = FI_UserId
-		Session("UserName")  = FI_UserName
+		Session("UserName")  = FI_UserName & " " & FI_UserNameLast
 		Session("UserCIdx")  = FI_companyIdx
 		Session("UserCeoFg") = FI_ceo
 

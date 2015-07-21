@@ -39,8 +39,8 @@ Dim business9      : business9      = UPLOAD__FORM("business9")
 Dim business10     : business10     = UPLOAD__FORM("business10")
 Dim business11     : business11     = UPLOAD__FORM("business11")
 Dim business12     : business12     = UPLOAD__FORM("business12")
-Dim files2         : files2         = Trim( UPLOAD__FORM("files2") )
-dim other_infor    : other_infor    = Trim( UPLOAD__FORM("other_infor") )
+Dim files2         : files2         = UPLOAD__FORM("files2")
+dim other_infor    : other_infor    = TagEncode( Trim( UPLOAD__FORM("other_infor") ) )
 
 
 
@@ -112,7 +112,7 @@ Call dbclose()
 If FI_IN_CNT > 0 Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('현재 사용중인 아이디입니다');"
+	 .Write "alert('현재 사용중인 아이디입니다.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -122,7 +122,7 @@ End If
 If FI_CO_CNT > 0 Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('현재 등록된 회사명 입니다');"
+	 .Write "alert('현재 등록된 회사명 입니다.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End

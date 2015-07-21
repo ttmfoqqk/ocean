@@ -1,10 +1,10 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
-Dim userName   : userName   = request.Form("userName")
-Dim userEmail1 : userEmail1 = request.Form("userEmail1")
-Dim userEmail2 : userEmail2 = request.Form("userEmail2")
+Dim FirstName     : FirstName     = request.Form("FirstName")
+Dim LastName      : LastName      = request.Form("LastName")
+Dim companySelect : companySelect = request.Form("companySelect")
 
-If userName = "" Or userEmail1 = "" Or userEmail2 = "" Then 
+If FirstName = "" Or FirstName = "" Or companySelect = "" Then 
 	Response.redirect "find_id.asp"
 End If
 
@@ -32,8 +32,9 @@ Sub getList()
 		.CommandType       = adCmdStoredProc
 		.CommandText       = "ocean_user_member_search"
 		.Parameters("@actType").value = "id"
-		.Parameters("@name").value    = userName
-		.Parameters("@email").value   = userEmail1 & "@" & userEmail2
+		.Parameters("@FirstName").value = FirstName
+		.Parameters("@LastName").value  = LastName
+		.Parameters("@cIdx").value      = companySelect
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing

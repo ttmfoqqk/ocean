@@ -5,6 +5,7 @@ checkAdminLogin(g_host & g_url)
 
 Dim pageNo   : pageNo   = CInt(IIF(request("pageNo")="","1",request("pageNo")))
 Dim Title    : Title    = request("Title")
+Dim BoardKey : BoardKey = request("BoardKey")
 Dim tab      : tab      = IIF( request("tab")="",0,request("tab") )
 Dim Idx      : Idx      = IIF( request("Idx")="" , 0 , request("Idx") )
 
@@ -12,6 +13,7 @@ Dim actType  : actType  = request("actType")
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
+		"&BoardKey=" & BoardKey &_
 		"&tab="      & tab &_
 		"&Title="    & Title
 
@@ -31,7 +33,7 @@ Sub GetList()
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_BOARD_TAP_V"
 		.Parameters("@Idx").value = Idx
-		.Parameters("@Key").value = 1
+		.Parameters("@Key").value = BoardKey
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -56,6 +58,7 @@ End Sub
 				</tr>
 
 				<form name="AdminForm" method="POST" action="Customer_03_P.asp" onsubmit="return check()">
+				<input type="hidden" name="BoardKey" value="<%=BoardKey%>">
 				<input type="hidden" name="Idx" value="<%=FI_Idx%>">
 				<input type="hidden" name="actType" value="<%=IIF( FI_Idx="","INSERT" , "UPDATE" )%>">
 
@@ -69,12 +72,21 @@ End Sub
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box">
+									<%if BoardKey = "1" then %>
 									<select id="tab" name="tab">
 										<option value="">선택</option>
 										<option value="1" <%=IIF(FI_tap = "1","selected","")%>>Mobius</option>
 										<option value="2" <%=IIF(FI_tap = "2","selected","")%>>&CUBE</option>
 										<option value="3" <%=IIF(FI_tap = "3","selected","")%>>Open Contribution</option>
 									</select>
+									<%elseif BoardKey = "3" then %>
+									<select id="tab" name="tab">
+										<option value="">선택</option>
+										<option value="1" <%=IIF(FI_tap = "1","selected","")%>>community 1</option>
+										<option value="2" <%=IIF(FI_tap = "2","selected","")%>>community 2</option>
+										<option value="3" <%=IIF(FI_tap = "3","selected","")%>>community 3</option>
+									</select>
+									<%end if%>
 								</td>
 							</tr>
 							<tr>

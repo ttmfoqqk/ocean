@@ -9,18 +9,15 @@
 			<h3 class="title">비밀번호 변경</h3>
 
 			<form name="mForm" id="mForm" method="post" action="pwdChange_proc.asp" onsubmit="return check();">
-			<div class="form_wrap" style="width:490px;">
+			<div class="form_wrap" style="width:450px;">
 				<div class="row">
-					<label style="width:170px;">현재 비밀번호 <span class="color_red">*</span></label>
-					<input type="password" id="oldUserPwd" name="oldUserPwd" class="input" style="width:300px;">
+					<input type="password" id="oldUserPwd" name="oldUserPwd" class="input" style="width:95%;" placeholder="Your password">
 				</div>
 				<div class="row">
-					<label style="width:170px;">새로운 비밀번호 <span class="color_red">*</span></label>
-					<input type="password" id="userPwd" name="userPwd" class="input" style="width:300px;">
+					<input type="password" id="userPwd" name="userPwd" class="input" style="width:95%;" placeholder="New password">
 				</div>
 				<div class="row">
-					<label style="width:170px;">새로운 비밀번호 확인 <span class="color_red">*</span></label>
-					<input type="password" id="userPwdConfirm" name="userPwdConfirm" class="input" style="width:300px;">
+					<input type="password" id="userPwdConfirm" name="userPwdConfirm" class="input" style="width:95%;" placeholder="Confirm New password">
 				</div>
 			</div>
 			
@@ -39,25 +36,16 @@
 		
 	</div>
 </div>
-<script type="text/JavaScript" src="../inc/js/member.js"></script>
 <SCRIPT type="text/javascript">
-$oldUserPwd = $('#oldUserPwd');
-$(function(){
-	$oldUserPwd.focus();
-});
 function check(){
-	
-	if( !$.trim( $oldUserPwd.val() ) ){
-		alert( '현재 비밀번호를 입력해주세요.' );
-		$oldUserPwd.focus();
-		return false;
-	}
-	var userPwd = checkFormUserPwd(true);
-	if( !userPwd ){$userPwd.focus();return false;}
-
-	var userPwdConfirm = checkFormUserPwdConfirm(true);
-	if( !userPwdConfirm ){$userPwdConfirm.focus();return false;}
-	
+	var data = [
+		 ['oldUserPwd','length','현재 비밀번호를 입력해주세요.']
+		,['userPwd','length','비밀번호를 입력해 주시기 바랍니다.']
+		,['userPwd','pwd','비밀번호는 6~20자까지 가능합니다.']
+		,['userPwdConfirm','length','비밀번호 확인을 입력해 주시기 바랍니다.']
+	];
+	var checkform = checkInputValue(data);
+	if(!checkform){return false;}
 }
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" -->

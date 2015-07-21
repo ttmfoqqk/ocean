@@ -30,7 +30,7 @@ Dim business9     : business9     = UPLOAD__FORM("business9")
 Dim business10    : business10    = UPLOAD__FORM("business10")
 Dim business11    : business11    = UPLOAD__FORM("business11")
 Dim business12    : business12    = UPLOAD__FORM("business12")
-Dim bigo          : bigo          = UPLOAD__FORM("bigo")
+Dim bigo          : bigo          = TagEncode(UPLOAD__FORM("bigo"))
 Dim State         : State         = UPLOAD__FORM("State")
 
 
@@ -206,7 +206,7 @@ If actType = "UPDATE" Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
 	 .Write "alert('수정 되었습니다.');"
-	 .Write "location.href='Member_02_L.asp?" & pageParams & "';"
+	 .Write "location.href='Member_02_V.asp?" & pageParams & "&Idx="& idx &"';"
 	 .Write "</script>"
 	 .End
 	End With

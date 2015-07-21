@@ -69,19 +69,17 @@ End Sub
 			<table cellpadding="0" cellspacing="0" class="table">
 				<tr>
 					<td style="width:20px;"><input type="checkbox" name="check_all"></td>
-					<td style="width:100px;"><b>아이디</b></td>
-					<td style="width:100px;"><b>이름</b></td>
+					<td><b>아이디</b></td>
+					<td style="width:150px;"><b>이름</b></td>
 					<td style="width:100px;"><b>부서/직위</b></td>
-					<td><b>이메일</b></td>
 					<td style="width:140px;"><b>가입일자</b></td>
 				</tr>
 				<%for iLoop = 0 to cntList%>
 				<tr>
 					<td><input type="checkbox" name="Idx" value="<%=arrList(FI_UserIdx,iLoop)%>"></td>
 					<td><%=arrList(FI_UserId,iLoop)%></td>
-					<td><%=arrList(FI_UserName,iLoop)%></td>
+					<td><%=arrList(FI_UserName,iLoop) & "  " & arrList(FI_UserNameLast,iLoop) %></td>
 					<td><%=arrList(FI_UserPosition,iLoop)%></td>
-					<td><%=arrList(FI_UserEmail,iLoop)%></td>
 					<td><%=arrList(FI_UserIndate_full,iLoop)%></td>
 				</tr>
 				<%Next%>

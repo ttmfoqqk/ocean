@@ -9,6 +9,7 @@ Dim cntTotal : cntTotal = 0
 Dim rows     : rows     = 20
 Dim pageNo   : pageNo   = CInt(IIF(request("pageNo")="","1",request("pageNo")))
 Dim Title    : Title    = request("Title")
+Dim BoardKey : BoardKey = request("BoardKey")
 Dim tab      : tab      = IIF( request("tab")="",0,request("tab") )
 
 
@@ -19,11 +20,13 @@ Call dbclose()
 
 Dim pageURL
 pageURL	= g_url & "?pageNo=__PAGE__" &_
+		"&BoardKey=" & BoardKey &_
 		"&tab="      & tab &_
 		"&Title="    & Title
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
+		"&BoardKey=" & BoardKey &_
 		"&tab="      & tab &_
 		"&Title="    & Title
 
@@ -38,7 +41,7 @@ Sub GetList()
 		.CommandText      = "OCEAN_BOARD_TAP_L"
 		.Parameters("@rows").value   = rows 
 		.Parameters("@pageNo").value = pageNo
-		.Parameters("@Key").value    = 1
+		.Parameters("@Key").value    = BoardKey
 		.Parameters("@Title").value  = Title
 		.Parameters("@tab").value    = tab
 		Set objRs = .Execute
@@ -79,7 +82,7 @@ function del_fm_checkbox(){
 			<table cellpadding=0 cellspacing=0 width="100%" >
 				<tr>
 					<td width="50%"><img src="../img/center_title_05_01.gif"></td>
-					<td width="50%" align=right><img src="../img/navi_icon.gif"> <%=AdminLeftName%> > 다운로드 분류관리 </td>
+					<td width="50%" align=right><img src="../img/navi_icon.gif"> <%=AdminLeftName%> > 분류관리 </td>
 				</tr>
 				<tr><td class=center_cont_title_bg colspan=2></td></tr>
 				<tr>
@@ -87,6 +90,7 @@ function del_fm_checkbox(){
 				</tr>
 
 				<form name="SearchForm" method="get">
+				<input type="hidden" name="BoardKey" value="<%=BoardKey%>">
 
 				<tr><td height="10"></td></tr>
 				<tr>
@@ -98,12 +102,21 @@ function del_fm_checkbox(){
 								<td class="line_box"><input type="text" class="input" name="Title" value="<%=Title%>"></td>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box" width="250">
+									<%if BoardKey = "1" then %>
 									<select name="tab">
 										<option value="">선택</option>
 										<option value="1" <%=IIF(tab = "1","selected","")%>>Mobius</option>
 										<option value="2" <%=IIF(tab = "2","selected","")%>>&CUBE</option>
 										<option value="3" <%=IIF(tab = "3","selected","")%>>Open Contribution</option>
 									</select>
+									<%elseif BoardKey = "3" then %>
+									<select name="tab">
+										<option value="">선택</option>
+										<option value="1" <%=IIF(tab = "1","selected","")%>>community 1</option>
+										<option value="2" <%=IIF(tab = "2","selected","")%>>community 2</option>
+										<option value="3" <%=IIF(tab = "3","selected","")%>>community 3</option>
+									</select>
+									<%end if%>
 								</td>
 							</tr>
 						</table>
@@ -130,7 +143,7 @@ function del_fm_checkbox(){
 							<tr height="30" align=center bgcolor="f0f0f0">
 								<td class="line_box" style="padding:0px;" width="30"><input type="checkbox" name="check_all"></td>
 								<td class="line_box" width="50">번호</td>
-								<td class="line_box" width="10%">분류</td>
+								<td class="line_box" width="20%">분류</td>
 								<td class="line_box">제목</td>								
 								<td class="line_box" width="10%">순서</td>
 							</tr>
@@ -142,9 +155,21 @@ function del_fm_checkbox(){
 								<td class="line_box" style="padding:0px;" ><input type="checkbox" name="Idx" value="<%=arrList(FI_Idx,iLoop)%>"></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_rownum,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand">
-									<%=IIF(arrList(FI_tap,iLoop)="1","Mobius","")%>
-									<%=IIF(arrList(FI_tap,iLoop)="2","&CUBE","")%>
-									<%=IIF(arrList(FI_tap,iLoop)="3","Open Contribution","")%>
+									<%
+									If (BoardKey="1") Then
+										Select Case ( arrList(FI_tap,iLoop) ) 
+											Case "1" Response.Write("Mobius")
+											Case "2" Response.Write("&CUBE")
+											Case "3" Response.Write("Open Contribution")
+										End Select
+									elseif (BoardKey="3") then 
+										Select Case ( arrList(FI_tap,iLoop) ) 
+											Case "1" Response.Write("community 1")
+											Case "2" Response.Write("community 2")
+											Case "3" Response.Write("community 3")
+										End Select
+									End if
+									%>
 								</td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left><%=arrList(FI_name,iLoop)%></td>								
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_order,iLoop)%></td>

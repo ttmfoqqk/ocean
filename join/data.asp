@@ -356,9 +356,9 @@ function checkJoin(){
 		,['files2','length','회사로고를 등록해주세요.']
 	];
 
-
 	var checkform = checkInputValue(data);
 	if(!checkform){return false;}
+	if(!$ajaxIdCheck){alert('현재 사용중인 아이디입니다.');return false;}
 
 	if( $('#companySelect').val() == 'NEW' ){
 		

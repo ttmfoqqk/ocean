@@ -13,6 +13,7 @@ Dim ceo      : ceo      = request("ceo")
 Dim State    : State    = request("State")
 Dim Indate   : Indate   = request("Indate")
 Dim Outdate  : Outdate  = request("Outdate")
+Dim country  : country  = request("Country")
 Dim pageURL
 pageURL	= g_url & "?pageNo=__PAGE__" &_
 		"&cName="   & cName &_
@@ -20,7 +21,8 @@ pageURL	= g_url & "?pageNo=__PAGE__" &_
 		"&ceo="     & ceo &_
 		"&State="   & State &_
 		"&Indate="  & Indate &_
-		"&Outdate=" & Outdate
+		"&Outdate=" & Outdate &_
+		"&country=" & country
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
@@ -29,10 +31,12 @@ PageParams = "pageNo=" & pageNo &_
 		"&ceo="     & ceo &_
 		"&State="   & State &_
 		"&Indate="  & Indate &_
-		"&Outdate=" & Outdate
+		"&Outdate=" & Outdate &_
+		"&country=" & country
 
 Call Expires()
 Call dbopen()
+	Dim optionCountry : optionCountry = setCodeOption( 13  , "select" , 0 , country )
 	Call GetList()
 Call dbclose()
 
@@ -52,6 +56,7 @@ Sub GetList()
 		.Parameters("@State").value   = State
 		.Parameters("@Indate").value  = Indate
 		.Parameters("@Outdate").value = Outdate
+		.Parameters("@Country").value = country
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -121,12 +126,15 @@ function del_fm_checkbox(){
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">상호</td>
 								<td class="line_box"><input type="text" class="input" name="cName" value="<%=cName%>"></td>
-								<td class="line_box" align=center bgcolor="f0f0f0" width="140">사업자등록번호</td>
-								<td class="line_box" width="250"><input type="text" class="input" name="sano" value="<%=sano%>" maxlength="10"></td>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">국가</td>
+								<td class="line_box" width="250">
+									<select class="input" id="Country" name="Country">
+										<option value="">국가</option>
+										<%=optionCountry%>
+									</select>
+								</td>
 							</tr>
 							<tr>
-								<td class="line_box" align=center bgcolor="f0f0f0" width="140">대표자</td>
-								<td class="line_box"><input type="text" class="input" name="ceo" value="<%=ceo%>"></td>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">탈퇴여부</td>
 								<td class="line_box" width="250">
 									<select name="State">
@@ -135,6 +143,8 @@ function del_fm_checkbox(){
 										<option value="1" <%=IIF(State="1","selected","")%>>탈퇴</option>
 									</select>
 								</td>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140"> </td>
+								<td class="line_box"> </td>
 							</tr>
 						</table>
 
@@ -159,11 +169,11 @@ function del_fm_checkbox(){
 
 						<table cellpadding=0 cellspacing=0 width="100%" >
 							<tr height="30" align=center bgcolor="f0f0f0">
-								<td class="line_box" width="50">번호</td>
-								<td class="line_box" width="10%">가입일자</td>
-								<td class="line_box" width="20%">상호</td>
-								<!--td class="line_box" width="15%">대표자</td-->
+								<td class="line_box" width="45">번호</td>
+								<td class="line_box" width="11%">가입일자</td>
+								<td class="line_box" width="22%">상호</td>
 								<td class="line_box">주소</td>
+								<td class="line_box" width="10%">국가</td>
 								<td class="line_box" width="8%">탈퇴여부</td>
 							
 							</tr>
@@ -177,9 +187,9 @@ function del_fm_checkbox(){
 							<tr height="30" align=center>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_rownum,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_Indate,iLoop)%></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_cName,iLoop)%></td>
-								<!--td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_ceo,iLoop)%></td-->
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand;text-align:left;padding-left:10px;"><%=arrList(FI_cName,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand;text-align:left;padding-left:10px;"><%=addr%></td>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_CountryName,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=IIF( arrList(FI_state,iLoop)="0","사용중","<font color=red>탈퇴</font>" )%></td>
 							</tr>
 							<%next%>

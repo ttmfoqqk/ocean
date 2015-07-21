@@ -15,7 +15,7 @@ function setCodeOption(optionKey , htmlType , value , selecter )
 		Set objRs = .Execute
 	End with
 	set objCmd = Nothing
-	CALL setFieldIndex(objRs, "FI")
+	CALL setFieldIndex(objRs, "OPTION")
 	If NOT(objRs.BOF or objRs.EOF) Then
 		arrList		= objRs.GetRows()
 		cntList		= UBound(arrList, 2)
@@ -25,26 +25,26 @@ function setCodeOption(optionKey , htmlType , value , selecter )
 	for iLoop = 0 to cntList
 		checked = ""
 		If value = 0 Then 
-			setValue = arrList(FI_idx, iLoop)
+			setValue = cstr(arrList(OPTION_idx, iLoop))
 		Else
-			setValue = arrList(FI_name, iLoop)
+			setValue = arrList(OPTION_name, iLoop)
 		End If
 		
 		If htmlType = "select" Then 
 			If setValue = selecter Then
 				checked = "selected"
 			End If
-			html = html & "<option value=""" & setValue & """ "&checked&">" & arrList(FI_name, iLoop) & "</option>"
+			html = html & "<option value=""" & setValue & """ "&checked&">" & arrList(OPTION_name, iLoop) & "</option>"
 		ElseIf htmlType = "checkbox" Then 
 			If setValue = selecter Then
 				checked = "checked"
 			End If
-			html = html & "<input type=""checkbox"" name=""" & optionKey & """ value=""" & setValue & """ "&checked&"> " & arrList(FI_name, iLoop)
+			html = html & "<input type=""checkbox"" name=""" & optionKey & """ value=""" & setValue & """ "&checked&"> " & arrList(OPTION_name, iLoop)
 		ElseIf htmlType = "radio" Then 
 			If setValue = selecter Then
 				checked = "selected"
 			End If
-			html = html & "<input type=""radio"" name=""" & optionKey & """ value=""" & setValue & """ "&checked&"> " & arrList(FI_name, iLoop)
+			html = html & "<input type=""radio"" name=""" & optionKey & """ value=""" & setValue & """ "&checked&"> " & arrList(OPTION_name, iLoop)
 		End If
 	Next
 
@@ -82,7 +82,7 @@ function sendSmsEmail( actType , userId , userEmail , contants , attachPath )
 		strTitle = "[OCEAN 고객센터] 회원 탈퇴가 성공적으로 이루어졌습니다."
 	End If
 
-	Dim mfrom		: mfrom		= "OCEAN<araha@keti.re.kr>"
+	Dim mfrom		: mfrom		= "박동하<araha@keti.re.kr>"
 	Dim mto			: mto		= userEmail
 	Dim mtitle		: mtitle	= strTitle
 	Dim mcontents	: mcontents	= ReadFile(strFile)
@@ -107,7 +107,7 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 		strTitle = "[OCEAN 고객센터] 회원가입 신청자 승인요청안내"
 	End If
 
-	Dim mfrom		: mfrom		= "OCEAN<araha@keti.re.kr>"
+	Dim mfrom		: mfrom		= "박동하<araha@keti.re.kr>"
 	Dim mto			: mto		= userEmail
 	Dim mtitle		: mtitle	= strTitle
 	Dim mcontents	: mcontents	= ReadFile(strFile)

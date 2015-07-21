@@ -1,11 +1,11 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
-Dim userId     : userId     = request.Form("userId")
-Dim userName   : userName   = request.Form("userName")
-Dim userEmail1 : userEmail1 = request.Form("userEmail1")
-Dim userEmail2 : userEmail2 = request.Form("userEmail2")
+Dim userId        : userId        = request.Form("userId")
+Dim FirstName     : FirstName     = request.Form("FirstName")
+Dim LastName      : LastName      = request.Form("LastName")
+Dim companySelect : companySelect = request.Form("companySelect")
 
-If userName = "" Or userId = "" Or userEmail1 = "" Or userEmail2 = "" Then 
+If userId = "" Or FirstName = "" Or LastName = "" Or companySelect = "" Then 
 	Response.redirect "find_pwd.asp"
 End If
 
@@ -25,11 +25,11 @@ Call dbopen()
 
 	' 난수발생 비밀번호변경 -> 이메일 발송.
 	Dim tpm_rand : tpm_rand = RandomNumber(10,"")
-	Dim result   : result   = sendSmsEmail( "pwd_search" , userId , userEmail1 & "@" & userEmail2 , tpm_rand , "" )
+	Dim result   : result   = sendSmsEmail( "pwd_search" , userId , userId , tpm_rand , "" )
 
 	Call update()
 
-	session("search_pwd_email") = userEmail1 & "@" & userEmail2
+	session("search_pwd_email") = userId
 
 Call dbclose()
 
@@ -43,10 +43,11 @@ Sub getList()
 		.prepared          = true
 		.CommandType       = adCmdStoredProc
 		.CommandText       = "ocean_user_member_search"
-		.Parameters("@actType").value = "pwd"
-		.Parameters("@id").value    = userId
-		.Parameters("@name").value  = userName
-		.Parameters("@email").value = userEmail1 & "@" & userEmail2
+		.Parameters("@actType").value   = "pwd"
+		.Parameters("@id").value        = userId
+		.Parameters("@FirstName").value = FirstName
+		.Parameters("@LastName").value  = LastName
+		.Parameters("@cIdx").value      = companySelect
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing

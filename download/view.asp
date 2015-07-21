@@ -47,17 +47,22 @@ Call dbopen()
 	call Check()
 Call dbclose()
 
+' 3번탭 게시글 읽기 제한
+If (FI_status <> "2" and session("UserIdx") <> FI_UserIdx and tab1 = "3") Then
+	With Response
+	    .Write "<script language='javascript' type='text/javascript'>"
+	    .Write "alert('게시완료후 읽기 가능합니다.');"
+	    .Write "history.go(-1);"
+	    .Write "</script>"
+	    .End
+	End With
+End if
 
 If CHECK_CNT = 0 Then
 	onclick = "alert('관리자 승인 후 다운로드가 가능합니다.');return false;"
 Else
 	onclick = ""
 End If
-
-
-' 게시완료 -> 읽기 가능
-
-' 게시요청 -> 수정/삭제 가능
 
 Sub View()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")

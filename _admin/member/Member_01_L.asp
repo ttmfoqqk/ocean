@@ -136,11 +136,11 @@ function openPop(user_idx){
 					'</tr>'+
 					'<tr height=28>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0" width="115">새 비밀번호</td>'+
-						'<td class="line_box"><input type="text" id="user_pass" name="user_pass" class="input"> ※변경시 작성</td>'+
+						'<td class="line_box"><input type="password" id="user_pass" name="user_pass" class="input"> ※변경시 작성</td>'+
 					'</tr>'+
 					'<tr height=28>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0" width="115">새 비밀번호 확인</td>'+
-						'<td class="line_box"><input type="text" id="user_pass_ch" name="user_pass_ch"  class="input"></td>'+
+						'<td class="line_box"><input type="password" id="user_pass_ch" name="user_pass_ch"  class="input"></td>'+
 					'</tr>'+
 					'<tr>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0">회사명</td>'+

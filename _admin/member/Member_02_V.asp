@@ -11,6 +11,7 @@ Dim ceo      : ceo      = request("ceo")
 Dim State    : State    = request("State")
 Dim Indate   : Indate   = request("Indate")
 Dim Outdate  : Outdate  = request("Outdate")
+Dim country  : country  = request("country")
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
@@ -19,18 +20,19 @@ PageParams = "pageNo=" & pageNo &_
 		"&ceo="     & ceo &_
 		"&State="   & State &_
 		"&Indate="  & Indate &_
-		"&Outdate=" & Outdate
+		"&Outdate=" & Outdate &_
+		"&country=" & country
 
 
 Call Expires()
 Call dbopen()
-	Dim optionCountry : optionCountry = setCodeOption( 13  , "select" , 0 , "" )
-	Dim optionCStaff  : optionCStaff  = setCodeOption( 14  , "select" , 0 , "" )
-
 	Call GetList()
+
+	Dim optionCountry : optionCountry = setCodeOption( 13  , "select" , 0 , FI_Country )
+	Dim optionCStaff  : optionCStaff  = setCodeOption( 14  , "select" , 0 , FI_CStaff )
 Call dbclose()
 
-addr = IIF( FI_addr="",FI_addr1 & " " & FI_addr2 , FI_addr )
+addr = IIF( FI_addr="",FI_addr1 & " " & FI_addr2 , trim(FI_addr) )
 
 
 Sub GetList()
@@ -71,10 +73,9 @@ function del_fm_checkbox(){
 				</tr>
 				<tr><td class=center_cont_title_bg colspan=2></td></tr>
 				
-
 				<form id="AdminForm" name="AdminForm" method="POST" action="Member_02_P.asp" enctype="multipart/form-data">
 				<input type="hidden" name="idx" id="idx" value="<%=IIF( FI_idx="","0" , FI_idx )%>">
-				<input type="hidden" name="actType" value="<%=IIF( FI_Idx="","INSERT" , "UPDATE" )%>">
+				<input type="hidden" name="actType" value="<%=IIF( FI_idx="","INSERT" , "UPDATE" )%>">
 				<input type="hidden" name="PageParams" value="<%=Server.urlencode(PageParams)%>">
 
 				<tr><td height="10"></td></tr>
@@ -95,12 +96,7 @@ function del_fm_checkbox(){
 									</select>
 								</td>
 							</tr>
-							<tr>
-								<td class="line_box" align="left" bgcolor="f0f0f0" width="140" style="height:40px;">주소</td>
-								<td class="line_box" style="word-break:break-all" colspan="3">
-									<input type="text" id="addr" name="addr" class="input" style="width:100%;ime-mode:active;" value="<%=addr%>">
-								</td>
-							</tr>
+							
 							<tr>
 								<td class="line_box" align="left" bgcolor="f0f0f0" width="140">상시종업원수</td>
 								<td class="line_box" style="word-break:break-all">
@@ -118,6 +114,12 @@ function del_fm_checkbox(){
 								<td class="line_box" align="left" bgcolor="f0f0f0" width="140">홈페이지</td>
 								<td class="line_box" style="word-break:break-all" colspan="3">
 									<input type="text" id="homepage" name="homepage" class="input" style="width:100%;ime-mode:disabled;" maxlength="200" value="<%=FI_homepage%>">
+								</td>
+							</tr>
+							<tr>
+								<td class="line_box" align="left" bgcolor="f0f0f0" width="140" style="height:40px;">주소</td>
+								<td class="line_box" style="word-break:break-all" colspan="3">
+									<input type="text" id="addr" name="addr" class="input" style="width:100%;ime-mode:active;" value="<%=addr%>">
 								</td>
 							</tr>
 							<tr>
@@ -143,6 +145,12 @@ function del_fm_checkbox(){
 									<br><br>
 
 									<input type="text" id="business" name="business" class="input" style="width:100%;ime-mode:active;" maxlength="100" value="<%=FI_business%>">
+								</td>
+							</tr>
+							<tr>
+								<td class="line_box" align="left" bgcolor="f0f0f0" width="140">그외 정보</td>
+								<td class="line_box" style="word-break:break-all" colspan="3">
+									<textarea id="bigo" name="bigo" class="input" style="width:100%;height:150px;"><%=TagDecode(FI_bigo)%></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -198,8 +206,8 @@ function checkJoin(){
 		alert('국가를 입력하세요.');
 		return false;
 	}
-	if( !$.trim( $('#addr').val() ) ){
-		alert('주소를 입력하세요.');
+	if( !$.trim( $('#cStaff').val() ) ){
+		alert('상시종업원수를 입력하세요.');
 		return false;
 	}
 	if( !$.trim( $('#cPhone').val() ) ){
@@ -210,8 +218,8 @@ function checkJoin(){
 		alert('홈페이지를 입력하세요.');
 		return false;
 	}
-	if( !$.trim( $('#cStaff').val() ) ){
-		alert('상시종업원수를 입력하세요.');
+	if( !$.trim( $('#addr').val() ) ){
+		alert('주소를 입력하세요.');
 		return false;
 	}
 	if( $('.business_check:checked').length <= 0 ){

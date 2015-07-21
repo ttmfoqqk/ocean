@@ -15,7 +15,7 @@ Call dbopen()
 Call dbclose()
 
 
-Dim result : result = sendSmsEmail( "secede" , session("userId") , FI_UserEmail , now() , "" )
+Dim result : result = sendSmsEmail( "secede" , session("userId") , FI_EMAIL , now() , "" )
 
 Session("UserIdx")  = ""
 Session("UserId")   = ""
