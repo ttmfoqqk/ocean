@@ -1,7 +1,7 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
 checkLogin( g_host & g_url )
-
+dim BoardKey    : BoardKey  = 3
 Dim arrListMenu
 Dim cntListMenu : cntListMenu  = -1
 Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
@@ -59,7 +59,7 @@ Sub View()
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_BOARD_CONT_V"
 		.Parameters("@Idx").value      = Idx
-		.Parameters("@BoardKey").value = 1
+		.Parameters("@BoardKey").value = BoardKey
 		.Parameters("@UserIdx").value  = IIF( session("UserIdx")="" ,0,session("UserIdx") )
 		
 		Set objRs = .Execute
@@ -77,7 +77,7 @@ Sub GetListMenu()
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_BOARD_TAP_S"
-		.Parameters("@Key").value  = 1
+		.Parameters("@Key").value  = BoardKey
 		.Parameters("@tab").value  = tab1
 		Set objRs = .Execute
 	End with
@@ -98,14 +98,12 @@ End Sub
 		<div id="contant">
 			<h3 class="title" id="page_title"><!-- script 에서 작성 --></h3>
 			
-			<%If(tab1="3") Then%>
 			<div class="board_tap">
-				<a href="../download/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all">전체</a>
-				<a href="../download/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my">나의질문내역</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all">전체</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my">나의질문내역</a>
 				<a class="on">질문하기</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
-			<%end if%>
 
 			<form name="mForm" method="POST" action="proc.asp" enctype="multipart/form-data" onsubmit="return check();">
 			<input type="hidden" name="oldFileName" value="<%=FI_File_name%>">
@@ -147,14 +145,14 @@ End Sub
 						<td class="cell_cont">
 							<input type="file" name="FileName" class="input" style="vertical-align:middle;">
 							<%If FI_File_name<>"" Then %>
-							<a href="download.asp?file=<%=escape(FI_File_name)%>&idx=<%=FI_idx%>" style="vertical-align:middle;"><%=FI_File_name%></a>
+							<a href="/common/download.asp?pach=/ocean/upload/Board/&file=<%=FI_File_name%>" style="vertical-align:middle;"><%=FI_File_name%></a>
 							<input type="checkbox" value="1" name="DellFileFg" style="vertical-align:middle;"> 기존파일 삭제
 							<%End If%>
 						</td>
 					</tr>
 				</table>
 				<div class="btn_area" style="text-align:center;">
-					<input type="button" class="btn" value="Cancel" onclick="location.href='../download/?<%=PageParams%>'">
+					<input type="button" class="btn" value="Cancel" onclick="location.href='../Community/?<%=PageParams%>'">
 					<input type="submit" class="btn" value="Submit">
 				</div>
 				

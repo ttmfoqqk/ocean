@@ -39,7 +39,7 @@ End Sub
 		<!-- #include file = "../inc/left.asp" -->
 		<div id="contant">
 			
-			<h3 class="title">공지사항</h3>
+			<h3 class="title">NOTICE</h3>
 			
 			<div class="dowunload_list">
 				<%for iLoop = 0 to cntList%>

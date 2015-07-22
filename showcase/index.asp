@@ -39,7 +39,7 @@ End Sub
 		<h2 class="page_title">Showcase OCEAN</h2>
 
 		<p class="page_contants">
-			<b class="color_green">사물인터넷 관련 동영상</b><br>
+			<b class="color_green">Internet of Things Related Videos</b><br>
 		</p>
 		
 		<div class="dowunload_list">

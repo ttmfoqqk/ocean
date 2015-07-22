@@ -21,7 +21,7 @@ Sub GetNotice()
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
 		.Parameters("@Key").value = 0
-		.Parameters("@CNT").value = 10
+		.Parameters("@CNT").value = 5
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -41,8 +41,8 @@ Sub GetFiles()
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
-		.Parameters("@Key").value = 4
-		.Parameters("@CNT").value = 10
+		.Parameters("@Key").value = 1
+		.Parameters("@CNT").value = 5
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -63,8 +63,11 @@ End Sub
 		<div class="visual_wrap">
 			<div class="item" style="background:url(../img/visual/main/01.jpg) no-repeat center;background-size:auto 349px;">
 				<div class="visual_text">
-					<h4>표준 기반 사물인터넷 오픈소스 연합체</h4>
-					<p>IoT 글로벌 표준을 기반으로 개발된 오픈소스를 공유합니다.<br>다양한 사물 인터넷 서비스의 조기 개발 및 상용화를 촉진하기 위한 연합체 입니다.</p>
+					<h4>A global alliance based on open source and IoT standards</h4>
+					<p>
+						ts aim is to share the open source developed based on IoT standards  and to promote the development and <br>
+						commercialization of diverse IoT services.
+					</p>
 				</div>
 				<div class="mask_left"></div>
 				<div class="mask_right"></div>
@@ -72,8 +75,14 @@ End Sub
 			</div>
 			<div class="item" style="background:url(../img/visual/main/02.jpg) no-repeat center;background-size:auto 349px;">
 				<div class="visual_text">
-					<h4>openMobius®  &CUBE®  공개</h4>
-					<p>openMobius® 는 IoT 글로벌 표준을 기반으로 개발된 사물인터넷 서버 플랫폼입니다.<br>&CUBE® 사물인터넷 디바이스 플랫폼입니다.<br>지금 다운로드 받아 사용하실 수 있습니다.</p>
+					<h4>openMobius® &CUBE® Release</h4>
+					<p>
+						openMobius® is an IoT service platform complying with globally-accepted, <br>
+						widely-used IoT standards, i.e., oneM2M specifications. <br>
+						&CUBE® is a device software platform, i.e., a middleware and designed to <br>
+						serve as the oneM2M specs-defined platforms for IoT gateways and devices.<br>
+						The source code for the openMobius® and &CUBE® is now available. <br>
+					</p>
 				</div>
 				<div class="mask_left"></div>
 				<div class="mask_right"></div>
@@ -81,8 +90,8 @@ End Sub
 			</div>
 			<div class="item" style="background:url(../img/visual/main/03.jpg) no-repeat center;background-size:auto 349px;">
 				<div class="visual_text">
-					<h4>3-clause BSD-style 라이센스</h4>
-					<p>개발된 코드는 여러분의 것입니다. <br>라이센스 규정을 확인하세요.</p>
+					<h4>3-claus BSD-style license</h4>
+					<p>Free to use and modify the source code provided.<br>Read the license terms and conditions for more details.</p>
 				</div>
 				<div class="mask_left"></div>
 				<div class="mask_right"></div>
@@ -90,8 +99,8 @@ End Sub
 			</div>
 
 		<div class="visual_page" id="main_rolling_icon"></div>
-		<div class="visual_page_left"  id="main_rolling_icon_left"><a href="javascript:;"><span class="blind">이전</span></a></div>
-		<div class="visual_page_right" id="main_rolling_icon_right"><a href="javascript:;"><span class="blind">다음</span></a></div>
+		<div class="visual_page_left"  id="main_rolling_icon_left"><a href="javascript:;"><span class="blind">prev</span></a></div>
+		<div class="visual_page_right" id="main_rolling_icon_right"><a href="javascript:;"><span class="blind">next</span></a></div>
 		</div>
 	</div>
 	
@@ -100,7 +109,7 @@ End Sub
 		
 		<!-- 게시판 -->
 		<div class="main_notice" style="margin-right:15px;">
-			<div class="title">공지사항 <a href="../about/notice.asp" class="more">+ 더보기</a></div>
+			<div class="title">NOTICE <a href="../about/notice.asp" class="more">+ MORE</a></div>
 			<div class="contants">
 				<table cellpadding="0" cellspacing="0" class="table">
 					<%for iLoop = 0 to cntList%>
@@ -123,14 +132,14 @@ End Sub
 		</div>
 
 		<div class="main_notice">
-			<div class="title">자료실 <a href="../community/files.asp" class="more">+ 더보기</a></div>
+			<div class="title">DOWNLOAD <!--a href="../community/files.asp" class="more">+ 더보기</a--></div>
 			<div class="contants">
 				<table cellpadding="0" cellspacing="0" class="table">
 					<%for iLoop = 0 to cntList2%>
 					<tr>
 						<td>
 							<div class="ellipsis">
-								<a href="../community/files.asp?idx=<%=arrList2(FI2_idx,iLoop)%>" title="<%=arrList2(FI2_Title,iLoop)%>"><%=arrList2(FI2_Title,iLoop)%></a>
+								<a href="../download/?tab1=<%=arrList2(FI2_tab,iLoop)%>&tab2=<%=arrList2(FI2_tab2,iLoop)%>&idx=<%=arrList2(FI2_idx,iLoop)%>" title="<%=arrList2(FI2_Title,iLoop)%>"><%=arrList2(FI2_Title,iLoop)%></a>
 							</div>
 						</td>
 						<td class="data"><%=arrList2(FI2_Indate,iLoop)%></td>
@@ -148,25 +157,26 @@ End Sub
 
 		<div class="main_description">
 			<div class="rap">
-				<a href="../join/"><h4 class="color_green icon1">회원가입</h4></a>
+				<a href="../join/"><h4 class="color_green icon1">Membership application</h4></a>
 				<p>
-				OCEAN의 회원가입 및 모든 정보이용은 무료로<br>
-				제공되며 IoT 플랫폼 소스코드 다운로드는 회원<br>
-				가입을 원칙으로 하고 있습니다.<br>
-				회원가입유형은 기업회원만 가입할 수 있으며<br>
-				개인회원은 OCEAN 정책상 기업/기관 회원에<br>
-				소속된 개인만 가입할 수 있음을 양지해 주시기 바랍니다.
+				The OCEAN services including downloading<br>
+				source codes are provided for free under <br>
+				the OCEAN membership.<br>
+				In principle, the OCEAN membership is <br>
+				permitted only to a person affiliated to a <br>
+				company or organization.<br>
+
 				</p>
 			</div>
 		</div>
 		<div class="main_description">
 			<div class="rap">
-				<a href="../download/"><h4 class="color_green icon2">다운로드</h4></a>
+				<a href="../download/"><h4 class="color_green icon2">Download</h4></a>
 				<p>
-				표준기반 IoT 서버 플랫폼인 openMobius® 와<br>
-				IoT 디바이스 플랫폼인 &CUBE ® 의 이미지와<br>
-				소스코드를 다운로드 할 수 있습니다. 
-
+				You can download the source code and <br>
+				documents of the standard IoT server <br>
+				platform, openMobius® and IoT device <br>
+				platform, &Cube®.<br>
 				</p>
 			</div>
 		</div>
@@ -174,9 +184,10 @@ End Sub
 			<div class="rap">
 				<a href="../showcase/"><h4 class="color_green icon3">Showcase</h4></a>
 				<p>
-				참여하고 있는 멤버사가 OCEAN 오픈소스를<br>
-				기반으로 개발한 기술개발 결과물을 게시하고 <br>
-				공유할 수 있습니다. 기업간 협력의 장이 될 것입니다.
+				All OCEAN members are encouraged to <br>
+				publish and share their developments <br>
+				based on the OCEAN's open sources for <br>
+				further collaboration.<br>
 				</p>
 			</div>
 		</div>

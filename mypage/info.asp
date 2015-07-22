@@ -33,7 +33,7 @@ End Sub
 	<div class="wrap">
 		<!-- #include file = "../inc/left.asp" -->
 		<div id="contant">
-			<h3 class="title">회원정보 변경</h3>
+			<h3 class="title">Account Changes</h3>
 
 			<form name="mForm" id="mForm" method="post" action="info_proc.asp" onsubmit="return checkJoin()">
 			<div class="form_wrap" style="width:450px;">

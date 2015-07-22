@@ -5,10 +5,28 @@ Dim arrList , arrListMenu
 Dim cntList : cntList  = -1
 Dim cntListMenu : cntListMenu  = -1
 
-Dim rows     : rows      = 1000
+Dim rows     : rows      = 10
 Dim idx      : idx       = request("idx")
 Dim tab1     : tab1      = IIF( request("tab1")="",1,request("tab1") )
 Dim tab2     : tab2      = IIF( request("tab2")="",0,request("tab2") )
+Dim tab3     : tab3      = IIF( request("tab3")="","all",request("tab3") )
+Dim pageNo   : pageNo    = CInt(IIF(request("pageNo")="","1",request("pageNo")))
+
+Dim PageParams
+PageParams = "pageNo=" & pageNo &_
+		"&tab1=" & tab1 &_
+		"&tab2=" & tab2 &_
+		"&tab3=" & tab3
+
+Dim pageUrl 
+pageUrl = g_url & "?" & "pageNo=__PAGE__" &_
+		"&tab1=" & tab1 &_
+		"&tab2=" & tab2 &_
+		"&tab3=" & tab3
+
+If(tab3="my") Then
+	checkLogin( g_host & g_url )
+End if
 
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
@@ -50,10 +68,14 @@ Sub GetList()
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_BOARD_CONT_L"
-		.Parameters("@rows").value = rows 
-		.Parameters("@Key").value  = BoardKey
-		.Parameters("@tab").value  = tab1
-		.Parameters("@tab2").value = tab2
+		.Parameters("@rows").value   = rows 
+		.Parameters("@pageNo").value = pageNo
+		.Parameters("@Key").value    = BoardKey
+		.Parameters("@tab").value    = tab1
+		.Parameters("@tab2").value   = tab2
+		If(tab3="my") Then
+		.Parameters("@UserIdx").value = IIF( session("UserIdx")="" ,0,session("UserIdx") )
+		End if
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -93,25 +115,55 @@ End Sub
 		<!-- #include file = "../inc/left.asp" -->
 		<div id="contant">
 			<h3 class="title" id="page_title"><!-- script 에서 작성 --></h3>
-		
-			<div class="dowunload_list">
-				<%for iLoop = 0 to cntList%>
-				<div class="block">
-					<a href="#" class="link" data-idx="<%=arrList(FI_Idx,iLoop)%>"><%=arrList(FI_Title,iLoop)%> <span class="data"><%=arrList(FI_Indate,iLoop)%></span></a>
-					<div class="sub">
-						<%If arrList(FI_File_name,iLoop) <>  "" Then%>
-						<div class="file">File ㅣ <a href="../common/download.asp?pach=/ocean/upload/Board/&file=<%=arrList(FI_File_name,iLoop)%>"><%=arrList(FI_File_name,iLoop)%></a></div>
-						<%End If%>
-						<%=arrList(FI_Contants,iLoop)%>
-					</div>
-				</div>
-				<%Next%>
 
-				<%If cntList < 0 Then %>
-				<div class="block">
-					<span style="margin-left:10px;">등록된 내용이 없습니다.</a>
+			<div class="board_tap">
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My Contribution</a>
+				<a href="../Community/write.asp?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=<%=tab3%>">Contribution</a>
+				<div class="underline"><!-- underline --></div>
+			</div>
+
+			<div id="board_wrap">
+
+				<table cellpadding=0 cellspacing=0 width="100%" class="table_wrap">
+					<tr>
+						<td class="cell_title" width="60">번호</td>
+						<td class="cell_title">제목</td>
+						<td class="cell_title" width="75">등록자</td>
+						<td class="cell_title" width="100">등록일자</td>
+						<td class="cell_title" width="85">진행상황</td>
+					</tr>
+					<%for iLoop = 0 to cntList
+						onclick = "view.asp?" & PageParams & "&idx=" & arrList(FI_Idx,iLoop)
+
+						statusTxt = ""
+
+						If arrList(FI_status,iLoop) = "0" Then
+							statusTxt = "접수"
+						elseif arrList(FI_status,iLoop) = "1" Then
+							statusTxt = "처리중"
+						elseif arrList(FI_status,iLoop) = "2" Then
+							statusTxt = "완료"
+						End if
+					%>
+					<tr>
+						<td class="cell_cont"><%=arrList(FI_rownum,iLoop)%></td>
+						<td class="cell_cont" style="text-align:left;"><a href="<%=onclick%>"><%=arrList(FI_Title,iLoop)%></a></td>
+						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI_ContName,iLoop)%></a></td>
+						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI_Indate,iLoop)%></a></td>
+						<td class="cell_cont"><a href="<%=onclick%>"><%=statusTxt%></a></td>
+					</tr>
+					<%Next%>
+					<%If cntList < 0 Then %>
+					<tr>
+						<td class="cell_cont" colspan="5">등록된 내용이 없습니다.</td>
+					</tr>
+					<%End If%>
+				</table>
+				<div class="btn_area"></div>
+				<div class="page_list_area">
+					<div class="page_wrap"><%=printPageList(cntTotal, pageNo, rows, pageUrl)%></div>
 				</div>
-				<%End If%>
 			</div>
 		</div>
 

@@ -25,15 +25,14 @@ End Sub
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
 		<div class="member_title_wrap" style="border-bottom:2px solid #999a9d;padding-bottom:40px;">
-			<h3 class="title">회원가입을 위해 <span class="color_green">이용약관</span>과 <span class="color_green">개인정보 수집 및 이용</span>에 동의해 주세요.</h3>
-			<p>
-				회원이 되시면 OCEAN에서 제공하는 다양한 서비스를 이용하실 수 있습니다.<br>
-				아래의 서비스 약관 및 개인정보 수집 이용에 대한 안내를 반드시 읽고 동의해 주세요.
-			</p>
+			<h3 class="title" style="line-height:100%;">
+				You need to agree to the terms of use and privacy policy <br>
+				for submitting your OCEAN membership application.
+			</h3>
 			<br><br>
 			<div class="checkbox_wrap">
 				<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" name="agree" value="all"></span></span>
-				<label><b>이용약관, 개인정보 수집 및 이용약관(선택)에 모두 동의합니다.</b></label>
+				<label><b>Agree to the terms of use and privacy policy of the OCEAN.</b></label>
 			</div>
 		</div>
 		
@@ -41,28 +40,28 @@ End Sub
 		
 			<div style="text-align:left;">
 				<p class="page_contants">
-					<b class="color_green">이용약관</b><br>
+					<b class="color_green">Terms of use</b><br>
 					<div class="textarea" style="width:100%;height:150px;overflow-x:hidden;overflow-y:scroll;line-height:160%;"><%=FI_agree1%></div>
 
 					<div class="checkbox_wrap" style="margin:0px;">
 						<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" id="agree1" name="agree" value="agree1"></span></span>
-						<label><b>이용약관에 동의합니다.</b></label>
+						<label><b>Agree to the terms of use of the OCEAN.</b></label>
 					</div>
 				</p>
 				<br><br>
 
 				<p class="page_contants">
-					<b class="color_green">개인정보 수집 및 이용</b><br>
+					<b class="color_green">Privacy policy</b><br>
 					<div class="textarea" style="width:100%;height:150px;overflow-x:hidden;overflow-y:scroll;line-height:160%;"><%=FI_agree2%></div>
 
 					<div class="checkbox_wrap">
 						<span name="_checkbox" class="off"><span class="blind"><input type="checkbox" id="agree2" name="agree" value="agree2"></span></span>
-						<label><b>개인정보 수집 및 이용에 동의합니다.</b> </label>
+						<label><b>Agree to the privacy policy of the OCEAN.</b> </label>
 					</div>
 				</p>
 			</div>
 			<div style="margin:30px;">
-				<button type="submit" class="btn">다음단계</button>
+				<button type="submit" class="btn">Next</button>
 			</div>
 
 

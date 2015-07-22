@@ -2,9 +2,9 @@
 	<div id="left_menu">
 		<h2>마이페이지</h2>
 		<ul>
-			<li><a href="pwdChange.asp" class="<%=IIF( INSTR(LCase(g_url),"pwdchange") > 0 ,"over" , "" )%>"><div>비밀번호 변경</div></a></li>
-			<li><a href="info.asp" class="<%=IIF( INSTR(LCase(g_url),"info") > 0 ,"over" , "" )%>"><div>회원정보 변경</div></a></li>
-			<li><a href="secede.asp" class="<%=IIF( INSTR(LCase(g_url),"secede") > 0 ,"over" , "" )%>"><div>회원탈퇴</div></a></li>
+			<li><a href="pwdChange.asp" class="<%=IIF( INSTR(LCase(g_url),"pwdchange") > 0 ,"over" , "" )%>"><div>Password Changes</div></a></li>
+			<li><a href="info.asp" class="<%=IIF( INSTR(LCase(g_url),"info") > 0 ,"over" , "" )%>"><div>Account Changes</div></a></li>
+			<li><a href="secede.asp" class="<%=IIF( INSTR(LCase(g_url),"secede") > 0 ,"over" , "" )%>"><div>Secession</div></a></li>
 			<%If Session("UserCeoFg") = "1" Then %>
 			<li><a href="staff.asp" class="<%=IIF( INSTR(LCase(g_url),"staff") > 0 ,"over" , "" )%>"><div>승인요청</div></a></li>
 			<%End If%>
@@ -14,8 +14,8 @@
 	<div id="left_menu">
 		<h2>About</h2>
 		<ul>
-			<li><a href="../about/" class="<%=IIF( INSTR(LCase(g_url),"index") > 0 ,"over" , "" )%>"><div>Ocean이란?</div></a></li>
-			<li><a href="../about/notice.asp" class="<%=IIF( INSTR(LCase(g_url),"notice") > 0 ,"over" , "" )%>"><div>공지사항</div></a></li>
+			<li><a href="../about/" class="<%=IIF( INSTR(LCase(g_url),"index") > 0 ,"over" , "" )%>"><div>What is OCEAN?</div></a></li>
+			<li><a href="../about/notice.asp" class="<%=IIF( INSTR(LCase(g_url),"notice") > 0 ,"over" , "" )%>"><div>NOTICE</div></a></li>
 		</ul>
 	</div>
 	<% elseif INSTR(LCase(g_url),"/download/")>0 Then %>

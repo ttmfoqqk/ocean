@@ -13,11 +13,11 @@
 		<div class="wrap">
 			<h1 class="logo"><span class="blind">CRZ.TECHNOLOGY</span></h1>
 			<div class="menu">
-				<a href="../agree/agree1.asp">이용약관</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="../agree/agree2.asp">개인정보취급방침</a>
+				<a href="../agree/agree1.asp">Terms of use</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="../agree/agree2.asp">Privacy policy</a>
 			</div>
 			<p class="copy">
-				463-816 경기도 성남시 분당구 새나리로 25 (야탑동)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tel : 031-789-7586<br>
-				Copyright ⓒ2014 OCEAN.All Right Reserved.
+				25, Saenari-ro, Bundang-gu, Seongnam-si, Gyeonggi-do, 463-816 Korea<br>
+				Copyright(C) 2010 KETI. All Rights Reserved.
 			</p>
 		</div>
 	</div>

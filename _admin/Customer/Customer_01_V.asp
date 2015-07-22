@@ -211,9 +211,9 @@ function del_fm_checkbox(){
 							<%If (BoardKey = "1" and FI_tab = "3") or BoardKey = "3" Then 
 							statusText = ""
 							if FI_status="0" then 
-								statusText = "게시요청"
+								statusText = IIF(BoardKey="1","게시요청","접수")
 							elseif FI_status="1" then 
-								statusText = "검토중"
+								statusText = IIF(BoardKey="1","검토중","처리중")
 							elseif FI_status="2" then 
 								statusText = "완료"
 							end if

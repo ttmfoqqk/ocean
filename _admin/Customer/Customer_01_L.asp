@@ -185,12 +185,21 @@ End Sub
 								<td class="line_box"><input type="text" class="input" name="Title" value="<%=Title%>"></td>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
 								<td class="line_box" width="250">
+									<%If BoardKey="1" Then%>
 									<select id="status" name="status">
 										<option value="">선택</option>
 										<option value="0" <%=IIF(sstatus="0","selected","")%>>게시요청</option>
 										<option value="1" <%=IIF(sstatus="1","selected","")%>>검토중</option>
 										<option value="2" <%=IIF(sstatus="2","selected","")%>>완료</option>
 									</select>
+									<%elseIf BoardKey="3" Then%>
+									<select id="status" name="status">
+										<option value="">선택</option>
+										<option value="0" <%=IIF(sstatus="0","selected","")%>>접수</option>
+										<option value="1" <%=IIF(sstatus="1","selected","")%>>처리중</option>
+										<option value="2" <%=IIF(sstatus="2","selected","")%>>완료</option>
+									</select>
+									<%End If%>
 								</td>
 								
 							</tr>
@@ -315,9 +324,9 @@ End Sub
 							statusText = ""
 							if (BoardKey = "1" and arrList(FI_tab,iLoop) = "3") or BoardKey = "3" then 
 								if arrList(FI_status,iLoop)="0" then 
-									statusText = "게시요청"
+									statusText = IIF(BoardKey="1", "게시요청" ,"접수" )
 								elseif arrList(FI_status,iLoop)="1" then 
-									statusText = "검토중"
+									statusText = IIF(BoardKey="1", "검토중" , "처리중")
 								elseif arrList(FI_status,iLoop)="2" then 
 									statusText = "완료"
 								end if

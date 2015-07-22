@@ -1,13 +1,14 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
-Dim arrList , arrListMenu
-Dim cntList     : cntList     = -1
-dim cntTotal    : cntTotal     = 0
+checkLogin( g_host & g_url )
+Dim BoardKey    : BoardKey     = 3
+
+Dim arrListMenu
 Dim cntListMenu : cntListMenu  = -1
-Dim rows        : rows         = 10
 Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
 Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
+Dim Idx         : Idx          = IIF( request("Idx")="" , 0 , request("Idx") )
 Dim pageNo      : pageNo       = CInt(IIF(request("pageNo")="","1",request("pageNo")))
 
 Dim PageParams
@@ -15,20 +16,6 @@ PageParams = "pageNo=" & pageNo &_
 		"&tab1=" & tab1 &_
 		"&tab2=" & tab2 &_
 		"&tab3=" & tab3
-
-Dim pageUrl 
-pageUrl = g_url & "?" & "pageNo=__PAGE__" &_
-		"&tab1=" & tab1 &_
-		"&tab2=" & tab2 &_
-		"&tab3=" & tab3
-
-
-
-If(tab3="write" or tab3="view" or tab3="my") Then
-	checkLogin( g_host & g_url )
-End if
-
-
 
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
@@ -53,40 +40,30 @@ End If
 Call Expires()
 Call dbopen()
 	Call GetListMenu()
-	
 	If cntListMenu >= 0 Then
 		tab2 = IIF( tab2=0,arrListMenu(MENU_idx,0),tab2 )
 	End If
-	
-	Call GetList1()
+
+	Call View()
 Call dbclose()
 
-Sub GetList1()
+
+Sub View()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")
 	SET objCmd = Server.CreateObject("adodb.command")
 	with objCmd
 		.ActiveConnection = objConn
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
-		.CommandText      = "OCEAN_BOARD_CONT_L"
-		.Parameters("@rows").value   = rows 
-		.Parameters("@pageNo").value = pageNo
-		.Parameters("@Key").value    = 1
-		.Parameters("@tab").value    = tab1
-		.Parameters("@tab2").value   = tab2
-		If(tab3="my") Then
-		.Parameters("@UserIdx").value = IIF( session("UserIdx")="" ,0,session("UserIdx") )
-		End if
+		.CommandText      = "OCEAN_BOARD_CONT_V"
+		.Parameters("@actType").value  = "VIEW"
+		.Parameters("@Idx").value      = Idx
+		.Parameters("@BoardKey").value = BoardKey
 		
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
-	CALL setFieldIndex(objRs, "FI1")
-	If NOT(objRs.BOF or objRs.EOF) Then
-		arrList = objRs.GetRows()
-		cntList = UBound(arrList, 2)
-		cntTotal = arrList(FI1_tcount, 0)
-	End If
+	CALL setFieldValue(objRs, "FI")
 	objRs.close	: Set objRs = Nothing
 End Sub
 
@@ -98,7 +75,7 @@ Sub GetListMenu()
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_BOARD_TAP_S"
-		.Parameters("@Key").value  = 1
+		.Parameters("@Key").value  = BoardKey
 		.Parameters("@tab").value  = tab1
 		Set objRs = .Execute
 	End with
@@ -119,56 +96,66 @@ End Sub
 		<div id="contant">
 			<h3 class="title" id="page_title"><!-- script 에서 작성 --></h3>
 			
-			<%If(tab1="3") Then%>
 			<div class="board_tap">
-				<a href="../download/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
-				<a href="../download/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My Contribution</a>
-				<a href="../download/write.asp?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=<%=tab3%>">Contribution</a>
+				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">전체</a>
+				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">나의질문내역</a>
+				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=<%=tab3%>">질문하기</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
-			<%end if%>
 			
+			<style type="text/css">
+				#board_wrap .cell_title{text-align:left;padding:0px 20px 0px 20px;}
+				#board_wrap .cell_cont{text-align:left;padding:0px 0px 0px 20px;}
+				#board_wrap a{display:inline-block;width:165px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;vertical-align:top;}
+			</style>
 			<div id="board_wrap">
-
 				<table cellpadding=0 cellspacing=0 width="100%" class="table_wrap">
 					<tr>
-						<td class="cell_title" width="60">번호</td>
-						<td class="cell_title">제목</td>
-						<td class="cell_title" width="75">등록자</td>
-						<td class="cell_title" width="100">등록일자</td>
-						<%If(tab1=3) Then%><td class="cell_title" width="85">진행상황</td><%end if%>
+						<td class="cell_title" colspan="2"><%=FI_title%></td>
 					</tr>
-					<%for iLoop = 0 to cntList
-						onclick = "view.asp?" & PageParams & "&idx=" & arrList(FI1_Idx,iLoop)
-
-						statusTxt = ""
-
-						If arrList(FI1_status,iLoop) = "0" Then
-							statusTxt = "게시요청"
-						elseif arrList(FI1_status,iLoop) = "1" Then
-							statusTxt = "검토중"
-						elseif arrList(FI1_status,iLoop) = "2" Then
-							statusTxt = "완료"
-						End if
-					%>
 					<tr>
-						<td class="cell_cont"><%=arrList(FI1_rownum,iLoop)%></td>
-						<td class="cell_cont" style="text-align:left;"><a href="<%=onclick%>"><%=arrList(FI1_Title,iLoop)%></a></td>
-						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI1_ContName,iLoop)%></a></td>
-						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI1_Indate,iLoop)%></a></td>
-						<%If(tab1=3) Then%><td class="cell_cont"><a href="<%=onclick%>"><%=statusTxt%></a></td><%end if%>
+						<td class="cell_cont" style="width:490px;line-height:40px;vertical-align:top;">
+							<%=FI_ContName%> | 
+							<%=FI_Indate%> | 
+							Views <%=FI_Read_cnt%> | 
+							<%
+							If FI_status = "0" Then
+								Response.Write("접수")
+							elseif FI_status= "1" Then
+								Response.Write("처리중")
+							elseif FI_status= "2" Then
+								Response.Write("완료")
+							End if
+							%>
+						</td>
+						<td class="cell_cont">
+							<div style="vertical-align:top;margin:10px 0px 10px 0px;">
+							<%
+							For i=1 to 10
+								fileName = ""
+								execute("fileName =" & "FI_File_name" & IIF(i=1,"",i) )
+
+								if fileName <> "" then 
+									response.Write "File ㅣ <a href=""../common/download.asp?pach=/ocean/upload/Board/&file=" & fileName &""">"& fileName & "</a><br>"
+								end if
+							Next
+							%>
+							</div>
+						</td>
 					</tr>
-					<%Next%>
-					<%If cntList < 0 Then %>
 					<tr>
-						<td class="cell_cont" colspan="5">등록된 내용이 없습니다.</td>
+						<td class="cell_cont" colspan="2">
+							<div style="padding:20px 0px 20px 0px;line-height:160%;"><%=FI_Contants%></div>
+						</td>
 					</tr>
-					<%End If%>
 				</table>
-				<div class="btn_area"></div>
-				<div class="page_list_area">
-					<div class="page_wrap"><%=printPageList(cntTotal, pageNo, rows, pageUrl)%></div>
+				<div class="btn_area">
+					<input type="button" class="btn" value="List" onclick="location.href='../Community/?<%=PageParams%>'" style="float:left;">
+					<%if session("UserIdx") = FI_UserIdx then %>
+					<input type="button" class="btn" value="Edit" onclick="location.href='../Community/write.asp?<%=PageParams%>&Idx=<%=FI_Idx%>'">
+					<%end if%>
 				</div>
+				
 			</div>
 
 		</div>

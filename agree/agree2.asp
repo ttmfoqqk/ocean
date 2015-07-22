@@ -24,7 +24,7 @@ End Sub
 <div id="middle">
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
-		<h2 class="page_title">개인정보취급방침</h2>
+		<h2 class="page_title">Privacy policy</h2>
 		<p class="page_contants"><%=FI_agree2%></p>
 	</div>
 </div>

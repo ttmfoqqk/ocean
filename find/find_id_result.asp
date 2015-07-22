@@ -46,7 +46,7 @@ End Sub
 <div id="middle">
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
-		<h2 class="page_title">아이디찾기</h2>
+		<h2 class="page_title">Find ID</h2>
 		
 		<div style="font-size:14px;line-height:180%;">
 			<h3>입력하신 회원정보로 가입된 <span class="color_blue">아이디</span>를 알려드립니다.</h3>
@@ -61,14 +61,10 @@ End Sub
 		</center>
 		
 		<div style="margin:30px;text-align:center;">
-			<button class="btn" onclick="location.href='../login/'">로그인</button>
+			<button class="btn" onclick="location.href='../login/'">Login</button>
 		</div>
 
-		<div style="padding:25px;border:1px solid #bfbfbf;background-color:#fafafa;line-height:160%;text-align:left;">
-			만약 자신이 만든 아이디가 아니라면 개인정보 도용 신고 절차에 따라 신고해 주시기 바랍니다.<br>
-			위의 방법으로 아이디 찾을 수 없을 경우 별도 확인이 불가능하오니, 새로운 아이디로 가입하여 주시기 바랍니다.<br>
-		</div>
-
+		
 
 	</div>
 </div>

@@ -32,7 +32,7 @@ End Sub
 <div id="middle">
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
-		<h2 class="page_title">아이디찾기</h2>
+		<h2 class="page_title">Find ID</h2>
 		
 		<form name="mForm" id="mForm" method="post" action="find_id_result.asp" onsubmit="return check();">
 		<div class="form_wrap">
@@ -54,7 +54,7 @@ End Sub
 		</div>
 		
 		<div style="margin:30px;text-align:center;">
-			<button class="btn" type="submit">아이디 찾기</button>
+			<button class="btn" type="submit">submit</button>
 		</div>
 		</form>
 

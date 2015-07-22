@@ -6,7 +6,7 @@
 	<div class="wrap">
 		<!-- #include file = "../inc/left.asp" -->
 		<div id="contant">
-			<h3 class="title">비밀번호 변경</h3>
+			<h3 class="title">Password Changes</h3>
 
 			<form name="mForm" id="mForm" method="post" action="pwdChange_proc.asp" onsubmit="return check();">
 			<div class="form_wrap" style="width:450px;">
@@ -26,11 +26,7 @@
 			</div>
 			</form>
 
-			<div style="padding:25px;border:1px solid #bfbfbf;background-color:#fafafa;line-height:160%;">
-				비밀번호는 주기적으로 변경하는 것이 안전합니다.<br>
-				다른 사이트와 같은 아이디, 비밀번호를 사용하는 것은 비밀번호 도용의 위험이 매우 높습니다.<br>
-				아이디, 주민등록번호, 전화번호등 개인정보와 관련된 비밀번호는 안전하지 않습니다.<br>
-			</div>
+			
 
 		</div>
 		

@@ -154,7 +154,15 @@ End Sub
 							<%=FI_ContName%> | 
 							<%=FI_Indate%> | 
 							Views <%=FI_Read_cnt%> | 
-							진행상황
+							<%
+							If FI_status = "0" Then
+								Response.Write("게시요청")								
+							elseif FI_status= "1" Then
+								Response.Write("검토중")								
+							elseif FI_status= "2" Then
+								Response.Write("완료")								
+							End if
+							%>
 						</td>
 						<td class="cell_cont">
 							<div style="vertical-align:top;margin:10px 0px 10px 0px;">

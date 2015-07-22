@@ -140,7 +140,7 @@ End If
 
 Dim result : result = sendSmsEmail( "join" , userId , userEmail1 & "@" & userEmail2 , now() , "" )
 response.redirect "result.asp"
-response.end "result.asp"
+response.end
 
 
 Sub insert()

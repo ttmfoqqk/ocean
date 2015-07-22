@@ -326,12 +326,21 @@ $(document).ready( function() {
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
 								<td class="line_box" style="word-break:break-all">
+									<%If BoardKey="1" Then%>
 									<select id="status" name="status">
 										<option value="">선택</option>
 										<option value="0" <%=IIF(FI_status="0","selected","")%>>게시요청</option>
 										<option value="1" <%=IIF(FI_status="1","selected","")%>>검토중</option>
 										<option value="2" <%=IIF(FI_status="2","selected","")%>>완료</option>
 									</select>
+									<%elseIf BoardKey="3" Then%>
+									<select id="status" name="status">
+										<option value="">선택</option>
+										<option value="0" <%=IIF(FI_status="0","selected","")%>>접수</option>
+										<option value="1" <%=IIF(FI_status="1","selected","")%>>처리중</option>
+										<option value="2" <%=IIF(FI_status="2","selected","")%>>완료</option>
+									</select>
+									<%End If%>
 								</td>
 							</tr>	
 							<%end if%>

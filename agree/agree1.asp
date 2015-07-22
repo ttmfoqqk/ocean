@@ -24,7 +24,7 @@ End Sub
 <div id="middle">
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
-		<h2 class="page_title">이용약관</h2>
+		<h2 class="page_title">Terms of use</h2>
 		<p class="page_contants"><%=FI_agree1%></p>
 	</div>
 </div>

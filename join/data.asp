@@ -55,11 +55,7 @@ End Sub
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
 		<div class="member_title_wrap" style="border-bottom:2px solid #999a9d;padding-bottom:40px;">
-			<h3 class="title"><span class="color_green">간단한 절차</span>로 가입하실 수 있습니다.</h3>
-			<p>
-				간단한 정보만 입력하시면<br>
-				OCEAN의 다양한 서비스를 바로 이용하실 수 있습니다.
-			</p>
+			<h3 class="title">Joining process and entry requirements</h3>
 		</div>
 		<STYLE type="text/css">
 			td.label{width:127px;height:60px;font-size:14px;}

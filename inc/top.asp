@@ -45,9 +45,9 @@
 			<a href="../contact/" class="menu <%=IIF(INSTR(LCase(g_url),"/contact/")>0,"color_green on","")%>">Contact</a>
 		</div>
 		<%If session("UserIdx") = "" Then %>
-		<div class="block3"><a href="../login/">로그인</a> ㅣ <a href="../join/">회원가입</a></div>
+		<div class="block3"><a href="../login/">LOGIN</a> ㅣ <a href="../join/">JOIN</a></div>
 		<%Else%>
-		<div class="block3"><a href="../login/logout.asp">로그아웃</a> ㅣ <a href="../mypage/">마이페이지</a></div>
+		<div class="block3"><a href="../login/logout.asp">LOGOUT</a> ㅣ <a href="../mypage/">MYPAGE</a></div>
 		<%End If%>
 	</div>
 </div>

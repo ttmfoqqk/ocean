@@ -82,7 +82,7 @@ function sendSmsEmail( actType , userId , userEmail , contants , attachPath )
 		strTitle = "[OCEAN 고객센터] 회원 탈퇴가 성공적으로 이루어졌습니다."
 	End If
 
-	Dim mfrom		: mfrom		= "박동하<araha@keti.re.kr>"
+	Dim mfrom		: mfrom		= "OCEAN<araha@keti.re.kr>"
 	Dim mto			: mto		= userEmail
 	Dim mtitle		: mtitle	= strTitle
 	Dim mcontents	: mcontents	= ReadFile(strFile)
@@ -107,7 +107,7 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 		strTitle = "[OCEAN 고객센터] 회원가입 신청자 승인요청안내"
 	End If
 
-	Dim mfrom		: mfrom		= "박동하<araha@keti.re.kr>"
+	Dim mfrom		: mfrom		= "OCEAN<araha@keti.re.kr>"
 	Dim mto			: mto		= userEmail
 	Dim mtitle		: mtitle	= strTitle
 	Dim mcontents	: mcontents	= ReadFile(strFile)
