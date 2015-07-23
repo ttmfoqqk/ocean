@@ -155,6 +155,7 @@ End Sub
 				</table>
 				<div class="btn_area" style="text-align:center;">
 					<input type="button" class="btn" value="Cancel" onclick="location.href='../download/?<%=PageParams%>'">
+					&nbsp;
 					<input type="submit" class="btn" value="Submit">
 				</div>
 				

@@ -43,7 +43,7 @@ button{font-family:ng,'NanumGothic';}
 .blind{position:absolute;width:0px;height:0px;text-indent:-99999px;overflow:hidden;}
 
 .input{border:1px solid #898f94;padding:3px;}
-.btn{font-weight:bold;background-color:#008882;border:0px;color:#ffffff;width:135px;height:40px;cursor:pointer;vertical-align:top;font-size:14px;}
+.btn{font-weight:bold;background-color:#008882;border:0px;color:#ffffff;width:135px;height:40px;cursor:pointer;vertical-align:top;font-size:14px;font-family:ng,'NanumGothic';}
 .textarea{border-top:1px solid #898f94;border-left:1px solid #898f94;border-bottom:1px solid #b3bbc1;border-right:1px solid #b3bbc1;padding:5px 9px;background-color:#eff3f6;margin-bottom:10px;}
 
 .color_green{color:#008882;}
@@ -99,6 +99,23 @@ button{font-family:ng,'NanumGothic';}
 	height:48px;
 	border:2px solid #2f3742;
 	background-color:#fdfcfb;
+}
+
+.board_search{
+	border:1px solid #bfbfbf;
+	background-color:#f7f7f7;
+	padding:10px;
+	margin-top:20px;
+	position:relative;left:0px;
+}
+.board_search input{width:72%;margin-left:5px;}
+.board_search .input{
+	padding:7px;
+}
+.board_search .btn{
+	width:100px;
+	height:31px;
+	float:right;
 }
 
 .checkbox_wrap{line-height:25px;display:inline-block;font-size:12px;}
@@ -211,7 +228,7 @@ table.table_wrap{border-top:1px solid #4f4f4f;border-bottom:1px solid #4f4f4f;fo
 
 #middle{width:100%;min-width:980px;position:relative;top:0px;left:0px;background:url(../../img/bg_middle.gif);padding-bottom:50px;float:left;}
 #middle .visual{width:100%;height:349px;position:relative;top:0px;left:0px;z-index:1;overflow:hidden;background-color:#ffffff;text-align:center;margin:0px 0px 20px 0px;}
-#middle .visual .visual_wrap{max-width:1329px;height:100%;margin:0px auto;position:relative;}
+#middle .visual .visual_wrap{max-width:1900px;height:100%;margin:0px auto;position:relative;}
 #middle .visual .mask{width:100%;height:100%;position:absolute;top:0px;left:0px;z-index:10;background:url(../../img/bg_dot.png);}
 #middle .visual .mask_left{width:300px;height:100%;position:absolute;top:0px;left:0px;z-index:11;background:url(../../img/bg_mask_l.png) repeat-y;}
 #middle .visual .mask_right{width:300px;height:100%;position:absolute;top:0px;right:0px;z-index:11;background:url(../../img/bg_mask_r.png) repeat-y;}
@@ -316,12 +333,30 @@ table.table_wrap{border-top:1px solid #4f4f4f;border-bottom:1px solid #4f4f4f;fo
 #middle .dowunload_tap2 .tap{display:inline-block;zoom:1;*display:inline;_display:inline;width:320px;height:60px;border:1px solid #cdcccc;background-color:#f7f7f7;vertical-align:top;overflow:hidden;margin-right:10px;font-size:16px;cursor:pointer;margin-bottom:10px;}
 #middle .dowunload_tap2 .on {border:2px solid #008882;text-decoration:underline;font-weight:bold;}
 
-#middle .dowunload_list{text-align:left;margin-bottom:17px;font-size:14px;}
-#middle .dowunload_list .block{min-height:38px;line-height:38px;border:1px solid #cdcccc;margin-bottom:5px;background-color:#f7f7f7;position:relative;top:0px;left:0px;}
-#middle .dowunload_list .block a.link{display:block;padding:0px 30px 0px 30px;}
+#middle .dowunload_list{text-align:left;margin-bottom:17px;margin-top:20px;font-size:14px;}
+#middle .dowunload_list .btn{
+	width:100%;
+	border:1px solid #cdcccc;
+	background-color:#e1e1e1;
+	color:#333333;
+	font-weight:normal;
+	
+}
+#middle .dowunload_list .block{
+	min-height:38px;
+	line-height:38px;
+	border:1px solid #cdcccc;
+	margin-bottom:5px;
+	background-color:#f7f7f7;
+	position:relative;top:0px;left:0px;
+}
+#middle .dowunload_list .block a.link{display:block;padding:0px 45px 0px 45px;background:url(../../img/icon_board_list.png) no-repeat 30px 15px;}
 #middle .dowunload_list .block .data{position:absolute;top:0px;right:30px;}
-#middle .dowunload_list .block .sub{background-color:#ffffff;border-top:1px solid #cdcccc;padding:20px 30px 20px 30px;display:none;line-height:160%;}
-#middle .dowunload_list .block .sub .file{text-align:left;}
+#middle .dowunload_list .block .sub{background-color:#ffffff;border-top:1px solid #cdcccc;display:none;line-height:160%;}
+#middle .dowunload_list .block .sub .contents{padding:20px}
+#middle .dowunload_list .block .sub .file{border-top:1px solid #cdcccc;padding:10px 20px 10px 20px;}
+#middle .dowunload_list .block .sub .file label{display:inline-block;width:6%;vertical-align:top;}
+#middle .dowunload_list .block .sub .file div{display:inline-block;width:93%;vertical-align:top;}
 
 #middle .showcase_list{margin-bottom:70px;text-align:left;}
 #middle .showcase_list .block{display:inline-block;zoom:1;*display:inline;_display:inline;width:20%;text-align:center;font-size:14px;vertical-align:top;}

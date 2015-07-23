@@ -106,7 +106,6 @@
 				end if
 				%>
 			</li>
-			<li><a href="../Community/files.asp" class="<%=IIF( INSTR(LCase(g_url),"files") > 0 ,"over" , "" )%>"><div>자료실</div></a></li>
 		</ul>
 	</div>
 	<% End If %>

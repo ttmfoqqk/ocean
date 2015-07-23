@@ -8,6 +8,8 @@ Dim cntListMenu : cntListMenu  = -1
 Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
 Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
+dim sType       : sType        = request("sType")
+dim word        : word         = request("word")
 Dim Idx         : Idx          = IIF( request("Idx")="" , 0 , request("Idx") )
 Dim pageNo      : pageNo       = CInt(IIF(request("pageNo")="","1",request("pageNo")))
 
@@ -15,7 +17,9 @@ Dim PageParams
 PageParams = "pageNo=" & pageNo &_
 		"&tab1=" & tab1 &_
 		"&tab2=" & tab2 &_
-		"&tab3=" & tab3
+		"&tab3=" & tab3 &_
+		"&sType" & sType &_
+		"&word=" & word
 
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response

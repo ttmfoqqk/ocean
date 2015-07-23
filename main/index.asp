@@ -61,7 +61,7 @@ End Sub
 <div id="middle">
 	<div class="visual" id="main_backgroundImages">
 		<div class="visual_wrap">
-			<div class="item" style="background:url(../img/visual/main/01.jpg) no-repeat center;background-size:auto 349px;">
+			<div class="item" style="background:url(../img/visual/main/01.jpg) no-repeat center;">
 				<div class="visual_text">
 					<h4>A global alliance based on open source and IoT standards</h4>
 					<p>
@@ -73,7 +73,7 @@ End Sub
 				<div class="mask_right"></div>
 				<div class="mask"></div>
 			</div>
-			<div class="item" style="background:url(../img/visual/main/02.jpg) no-repeat center;background-size:auto 349px;">
+			<div class="item" style="background:url(../img/visual/main/02.jpg) no-repeat center;">
 				<div class="visual_text">
 					<h4>openMobius® &CUBE® Release</h4>
 					<p>
@@ -88,7 +88,7 @@ End Sub
 				<div class="mask_right"></div>
 				<div class="mask"></div>
 			</div>
-			<div class="item" style="background:url(../img/visual/main/03.jpg) no-repeat center;background-size:auto 349px;">
+			<div class="item" style="background:url(../img/visual/main/03.jpg) no-repeat center;">
 				<div class="visual_text">
 					<h4>3-claus BSD-style license</h4>
 					<p>Free to use and modify the source code provided.<br>Read the license terms and conditions for more details.</p>

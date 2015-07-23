@@ -34,7 +34,6 @@ function submenu_open(obj){
 <%elseIf AdminTopmode = 5 Then%>
 <ul>
 	<li style="<%=IIF(BoardKey=0 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=0">공지사항</a></li>
-	<li style="<%=IIF(BoardKey=4 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=4">자료실</a></li>
 	<li style="<%=IIF(BoardKey=2 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=2">쇼케이스</a></li>
 	<li style="<%=IIF(BoardKey=1 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=1">다운로드</a></li>	
 	<li style="<%=IIF(BoardKey=3 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=3">커뮤니티</a></li>

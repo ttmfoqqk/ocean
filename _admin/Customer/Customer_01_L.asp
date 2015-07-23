@@ -259,7 +259,7 @@ End Sub
 								<td class="line_box" width="20%">분류</td>
 								<%End If%>
 								<td class="line_box" width="10%">작성자</td>
-								<td class="line_box" width="11%">등록일</td>
+								<td class="line_box" width="15%">등록일</td>
 								<%If BoardKey = "1" or BoardKey = "3" Then %>
 								<td class="line_box" width="8%">진행상황</td>
 								<%End If%>

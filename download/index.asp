@@ -53,42 +53,10 @@ End If
 Call Expires()
 Call dbopen()
 	Call GetListMenu()
-	
 	If cntListMenu >= 0 Then
 		tab2 = IIF( tab2=0,arrListMenu(MENU_idx,0),tab2 )
 	End If
-	
-	Call GetList1()
 Call dbclose()
-
-Sub GetList1()
-	SET objRs  = Server.CreateObject("ADODB.RecordSet")
-	SET objCmd = Server.CreateObject("adodb.command")
-	with objCmd
-		.ActiveConnection = objConn
-		.prepared         = true
-		.CommandType      = adCmdStoredProc
-		.CommandText      = "OCEAN_BOARD_CONT_L"
-		.Parameters("@rows").value   = rows 
-		.Parameters("@pageNo").value = pageNo
-		.Parameters("@Key").value    = 1
-		.Parameters("@tab").value    = tab1
-		.Parameters("@tab2").value   = tab2
-		If(tab3="my") Then
-		.Parameters("@UserIdx").value = IIF( session("UserIdx")="" ,0,session("UserIdx") )
-		End if
-		
-		Set objRs = .Execute
-	End with
-	set objCmd = nothing
-	CALL setFieldIndex(objRs, "FI1")
-	If NOT(objRs.BOF or objRs.EOF) Then
-		arrList = objRs.GetRows()
-		cntList = UBound(arrList, 2)
-		cntTotal = arrList(FI1_tcount, 0)
-	End If
-	objRs.close	: Set objRs = Nothing
-End Sub
 
 Sub GetListMenu()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")
@@ -128,47 +96,9 @@ End Sub
 			</div>
 			<%end if%>
 			
-			<div id="board_wrap">
-
-				<table cellpadding=0 cellspacing=0 width="100%" class="table_wrap">
-					<tr>
-						<td class="cell_title" width="60">번호</td>
-						<td class="cell_title">제목</td>
-						<td class="cell_title" width="75">등록자</td>
-						<td class="cell_title" width="100">등록일자</td>
-						<%If(tab1=3) Then%><td class="cell_title" width="85">진행상황</td><%end if%>
-					</tr>
-					<%for iLoop = 0 to cntList
-						onclick = "view.asp?" & PageParams & "&idx=" & arrList(FI1_Idx,iLoop)
-
-						statusTxt = ""
-
-						If arrList(FI1_status,iLoop) = "0" Then
-							statusTxt = "게시요청"
-						elseif arrList(FI1_status,iLoop) = "1" Then
-							statusTxt = "검토중"
-						elseif arrList(FI1_status,iLoop) = "2" Then
-							statusTxt = "완료"
-						End if
-					%>
-					<tr>
-						<td class="cell_cont"><%=arrList(FI1_rownum,iLoop)%></td>
-						<td class="cell_cont" style="text-align:left;"><a href="<%=onclick%>"><%=arrList(FI1_Title,iLoop)%></a></td>
-						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI1_ContName,iLoop)%></a></td>
-						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI1_Indate,iLoop)%></a></td>
-						<%If(tab1=3) Then%><td class="cell_cont"><a href="<%=onclick%>"><%=statusTxt%></a></td><%end if%>
-					</tr>
-					<%Next%>
-					<%If cntList < 0 Then %>
-					<tr>
-						<td class="cell_cont" colspan="5">등록된 내용이 없습니다.</td>
-					</tr>
-					<%End If%>
-				</table>
-				<div class="btn_area"></div>
-				<div class="page_list_area">
-					<div class="page_wrap"><%=printPageList(cntTotal, pageNo, rows, pageUrl)%></div>
-				</div>
+			<div class="dowunload_list">
+				<div id="board_list"></div>
+				<input type="button" class="btn" id="btn_board_more" value="+ MORE">
 			</div>
 
 		</div>
@@ -176,6 +106,7 @@ End Sub
 
 	</div>
 </div>
+<script src="../inc/js/board.js"></script>
 <SCRIPT type="text/javascript">
 $(function(){
 	$page_title = $('#page_title');
@@ -187,6 +118,8 @@ $(function(){
 		left_title = $left_menu.find('a.over').text();
 	}
 	$page_title.text(left_title);
+
+	ajax_board_list([1,'<%=tab1%>','<%=tab2%>','<%=tab3%>'],1,10,'board_list','btn_board_more');
 })
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" -->

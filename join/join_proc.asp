@@ -138,9 +138,9 @@ Else
 	email_result2 = sendSmsEmail_state( "join_state_ceo" , FI_EMAIL , companyName , "" , userPosition , FirstName &" "& LastName , userhPhone , now() , "" )
 End If
 
-Dim result : result = sendSmsEmail( "join" , userId , userEmail1 & "@" & userEmail2 , now() , "" )
+'Dim result : result = sendSmsEmail( "join" , userId , userEmail1 & "@" & userEmail2 , now() , "" )
 response.redirect "result.asp"
-response.end
+
 
 
 Sub insert()

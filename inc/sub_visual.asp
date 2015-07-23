@@ -46,7 +46,7 @@
 <%ElseIf INSTR(LCase(g_url),"/mypage/")>0 Then%>
 	<div class="sub_visual">
 		<div class="text">
-			<h4>마이페이지</h4>
+			<h4>Mypage</h4>
 			Open allianCE for iot stANDard
 		</div>
 		<div class="mask"></div>
@@ -55,7 +55,7 @@
 <%ElseIf INSTR(LCase(g_url),"/find/")>0 Then%>
 	<div class="sub_visual">
 		<div class="text">
-			<h4>회원정보</h4>
+			<h4>Members</h4>
 			Open allianCE for iot stANDard
 		</div>
 		<div class="mask"></div>
@@ -64,7 +64,11 @@
 <%ElseIf INSTR(LCase(g_url),"/agree/")>0 Then%>
 	<div class="sub_visual">
 		<div class="text">
-			<h4>약관 및 정책</h4>
+			<%if INSTR(LCase(g_url),"/agree1.asp")>0 then %>
+			<h4>Terms of use</h4>
+			<%else%>
+			<h4>Privacy policy</h4>
+			<%end if%>
 			Open allianCE for iot stANDard
 		</div>
 		<div class="mask"></div>

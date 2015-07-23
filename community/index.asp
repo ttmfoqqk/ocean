@@ -10,19 +10,25 @@ Dim idx      : idx       = request("idx")
 Dim tab1     : tab1      = IIF( request("tab1")="",1,request("tab1") )
 Dim tab2     : tab2      = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3     : tab3      = IIF( request("tab3")="","all",request("tab3") )
+dim sType    : sType     = request("sType")
+dim word     : word      = request("word")
 Dim pageNo   : pageNo    = CInt(IIF(request("pageNo")="","1",request("pageNo")))
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
 		"&tab1=" & tab1 &_
 		"&tab2=" & tab2 &_
-		"&tab3=" & tab3
+		"&tab3=" & tab3 &_
+		"&sType" & sType &_
+		"&word=" & word
 
 Dim pageUrl 
 pageUrl = g_url & "?" & "pageNo=__PAGE__" &_
 		"&tab1=" & tab1 &_
 		"&tab2=" & tab2 &_
-		"&tab3=" & tab3
+		"&tab3=" & tab3 &_
+		"&sType" & sType &_
+		"&word=" & word
 
 If(tab3="my") Then
 	checkLogin( g_host & g_url )
@@ -76,6 +82,13 @@ Sub GetList()
 		If(tab3="my") Then
 		.Parameters("@UserIdx").value = IIF( session("UserIdx")="" ,0,session("UserIdx") )
 		End if
+		If (sType="t") Then
+		.Parameters("@sTitle").value = 1
+		elseif (sType="c") then 
+		.Parameters("@sContant").value = 1
+		End if
+		.Parameters("@sWord").value = word
+		
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -123,6 +136,21 @@ End Sub
 				<div class="underline"><!-- underline --></div>
 			</div>
 
+			<div class="board_search">
+			<form method="get">
+				<input type="hidden" name="tab1" value="<%=tab1%>">
+				<input type="hidden" name="tab2" value="<%=tab2%>">
+				<input type="hidden" name="tab3" value="<%=tab3%>">
+				
+				<select name="sType" class="input" style="padding:6px;">
+					<option value="t" <%=IIF( sType="t","selected","" )%>>제목</option>
+					<option value="c" <%=IIF( sType="c","selected","" )%>>내용</option>
+				</select>
+				<input name="word" type="text" class="input" value="<%=word%>">
+				<button type="submit" class="btn">Search</button>
+			</form>
+			</div>
+
 			<div id="board_wrap">
 
 				<table cellpadding=0 cellspacing=0 width="100%" class="table_wrap">
@@ -154,6 +182,13 @@ End Sub
 						<td class="cell_cont"><a href="<%=onclick%>"><%=statusTxt%></a></td>
 					</tr>
 					<%Next%>
+					<tr>
+						<td class="cell_cont">1</td>
+						<td class="cell_cont" style="text-align:left;"><a href="<%=onclick%>"><b>└</b>> RE : 답글작업 요망</a></td>
+						<td class="cell_cont"><a href="<%=onclick%>">test</a></td>
+						<td class="cell_cont"><a href="<%=onclick%>">test</a></td>
+						<td class="cell_cont"><a href="<%=onclick%>">test</a></td>
+					</tr>
 					<%If cntList < 0 Then %>
 					<tr>
 						<td class="cell_cont" colspan="5">등록된 내용이 없습니다.</td>
