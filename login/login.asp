@@ -52,9 +52,17 @@ Call dbopen()
 		Session("UserCIdx")  = FI_companyIdx
 		Session("UserCeoFg") = FI_ceo
 
-		' id 이메일 정규 체크후 session 생성 -> redirect 수정 [ 전 페이지 session 체크 redirect function]
+		' id 이메일 형식 검사 
+		' ../inc/top.asp 상단에 redirect 제어
+		' ../mypage/info_proc.asp session 제어
 
-		response.redirect GoUrl
+		Session("change_id") = isValidEmail(FI_UserId)
+
+		if Session("change_id") then
+			response.redirect GoUrl
+		else
+			response.redirect "../mypage/info.asp"
+		end if
 	Else
 		With Response
 		 .Write "<script language='javascript' type='text/javascript'>"

@@ -1,33 +1,14 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
-Dim arrList , arrListMenu
-Dim cntList     : cntList     = -1
-dim cntTotal    : cntTotal     = 0
+Dim arrListMenu
 Dim cntListMenu : cntListMenu  = -1
-Dim rows        : rows         = 10
 Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
 Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
-Dim pageNo      : pageNo       = CInt(IIF(request("pageNo")="","1",request("pageNo")))
 
-Dim PageParams
-PageParams = "pageNo=" & pageNo &_
-		"&tab1=" & tab1 &_
-		"&tab2=" & tab2 &_
-		"&tab3=" & tab3
-
-Dim pageUrl 
-pageUrl = g_url & "?" & "pageNo=__PAGE__" &_
-		"&tab1=" & tab1 &_
-		"&tab2=" & tab2 &_
-		"&tab3=" & tab3
-
-
-
-If(tab3="write" or tab3="view" or tab3="my") Then
+If (tab3="my") Then
 	checkLogin( g_host & g_url )
 End if
-
 
 
 If tab1 <> "" And IsNumeric( tab1 ) = False Then

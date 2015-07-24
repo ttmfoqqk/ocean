@@ -25,7 +25,7 @@ alter table [OCEAN_BOARD] add [File_name11] varchar(200) null
 
 
 /*커뮤니티 키 생성*/
-INSERT INTO [keti].[dbo].[OCEAN_BOARD_CODE]([Type],[Name],[UseLv],[State],[Order],[Replylfg],[CommentFg])VALUES('NOTICE','커뮤니티',0,0,30,0,0)
+INSERT INTO [keti].[dbo].[OCEAN_BOARD_CODE]([Type],[Name],[UseLv],[State],[Order],[Replylfg],[CommentFg])VALUES('NOTICE','커뮤니티',0,0,30,1,0)
 
 
 /*기초코드 국가 키, 직원수 생성*/
@@ -54,6 +54,7 @@ INSERT INTO [keti].[dbo].[OCEAN_COMM_CODE2]([PIdx],[Name],[Order],[UsFg],[Bigo])
 	OCEAN_USER_MEMBER_LOGIN 수정
 	OCEAN_USER_MEMBER_CEO_STATE 수정
 	ocean_user_member_search 수정
+	ocean_user_member_check 수정
 	
 	OCEAN_MEMBERSHIP_V 수정
 	OCEAN_MEMBERSHIP_L 수정

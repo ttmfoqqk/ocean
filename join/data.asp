@@ -1,5 +1,9 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
+if Session("UserIdx") <> "" then 
+	Response.Redirect("../mypage/")
+end if
+
 Dim agree : agree = request("agree")
 Dim length : length = Split(agree,",")
 Dim agree1 : agree1 = 1
@@ -89,7 +93,7 @@ End Sub
 			<h3>Business account Information</h3>
 
 			<div class="row">
-				<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" maxlength="255" placeholder="Company Email ( User Account )">
+				<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" maxlength="320" placeholder="Company Email ( User Account )">
 			</div>
 			<div class="row">
 				<input type="password" id="userPwd" name="userPwd" class="input" style="width:95%;" maxlength="20" placeholder="Create your password">

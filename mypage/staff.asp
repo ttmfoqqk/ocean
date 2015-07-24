@@ -58,7 +58,7 @@ End Sub
 	<div class="wrap">
 		<!-- #include file = "../inc/left.asp" -->
 		<div id="contant">
-			<h3 class="title">승인요청</h3>
+			<h3 class="title">Membership Request</h3>
 
 			<STYLE type="text/css">
 			.table{width:100%;border-top:2px solid #333333;}
@@ -70,9 +70,9 @@ End Sub
 				<tr>
 					<td style="width:20px;"><input type="checkbox" name="check_all"></td>
 					<td><b>아이디</b></td>
-					<td style="width:150px;"><b>이름</b></td>
-					<td style="width:100px;"><b>부서/직위</b></td>
-					<td style="width:140px;"><b>가입일자</b></td>
+					<td style="width:150px;"><b>Name</b></td>
+					<td style="width:140px;"><b>Department/Position</b></td>
+					<td style="width:140px;"><b>Date</b></td>
 				</tr>
 				<%for iLoop = 0 to cntList%>
 				<tr>
@@ -85,7 +85,7 @@ End Sub
 				<%Next%>
 				<%if cntList < 0 then%>
 				<tr>
-					<td colspan="8" align="center">승인 요청 중인 회원이 없습니다.</td>
+					<td colspan="8" align="center">No Data</td>
 				</tr>
 				<%end if%>
 			</table>
@@ -96,7 +96,7 @@ End Sub
 			
 			<%if cntList > -1 then%>
 			<div style="text-align:center;">
-				<button type="submit" class="btn">승인</button>
+				<button type="submit" class="btn">Submit</button>
 			</div>
 			<%end if%>
 			</form>

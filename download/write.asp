@@ -8,13 +8,6 @@ Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
 Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
 Dim Idx         : Idx          = IIF( request("Idx")="" , 0 , request("Idx") )
-Dim pageNo      : pageNo       = CInt(IIF(request("pageNo")="","1",request("pageNo")))
-
-Dim PageParams
-PageParams = "pageNo=" & pageNo &_
-		"&tab1=" & tab1 &_
-		"&tab2=" & tab2 &_
-		"&tab3=" & tab3
 
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
@@ -45,10 +38,6 @@ Call dbopen()
 
 	Call View()
 Call dbclose()
-
-' 게시완료 -> 읽기 가능
-
-' 게시요청 -> 수정/삭제 가능
 
 Sub View()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")
@@ -100,9 +89,9 @@ End Sub
 			
 			<%If(tab1="3") Then%>
 			<div class="board_tap">
-				<a href="../download/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all">전체</a>
-				<a href="../download/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my">나의질문내역</a>
-				<a class="on">질문하기</a>
+				<a href="../download/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all">All</a>
+				<a href="../download/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my">My Contribution</a>
+				<a class="on">Contribution</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 			<%end if%>
@@ -148,7 +137,7 @@ End Sub
 							<input type="file" name="FileName" class="input" style="vertical-align:middle;">
 							<%If FI_File_name<>"" Then %>
 							<a href="download.asp?file=<%=escape(FI_File_name)%>&idx=<%=FI_idx%>" style="vertical-align:middle;"><%=FI_File_name%></a>
-							<input type="checkbox" value="1" name="DellFileFg" style="vertical-align:middle;"> 기존파일 삭제
+							<input type="checkbox" value="1" name="DellFileFg" style="vertical-align:middle;"> delete
 							<%End If%>
 						</td>
 					</tr>

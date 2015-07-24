@@ -49,7 +49,7 @@
 		
 	</div>
 </div>
-
+<script type="text/JavaScript" src="../inc/js/checked.js"></script>
 <SCRIPT type="text/javascript">
 function check(){
 	if( !$('#agree').attr('checked') ){

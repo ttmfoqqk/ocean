@@ -17,7 +17,7 @@ textarea{border:1px solid #9a9a9a;font-size:9pt;COLOR:#6b6b6b;line-height:140%;p
 .ZIP_POP{overflow-y:auto;width:400px;height:310px;position:absolute;background-color:#ffffff;border:1px solid #d9d9d9;padding:0px 0px 10px 0px;}
 
 .btn{font-size:9pt;border:0;padding:3px 3px 0px 3px;}
-.line_box{border:1px solid #d3d3d3;padding:3px;}
+.line_box{border:1px solid #d3d3d3;padding:3px;line-height:160%;}
 
 
 .admin_left{width:200px;}

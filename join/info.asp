@@ -1,5 +1,9 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
+if Session("UserIdx") <> "" then 
+	Response.Redirect("../mypage/")
+end if
+
 Dim agree : agree = request("agree")
 Dim length : length = Split(agree,",")
 Dim agree1 : agree1 = 1

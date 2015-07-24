@@ -156,7 +156,7 @@ $(document).ready( function() {
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box">
 									<select id="tab" name="tab">
-										<option value="">선택</option>
+										<option value="">대분류 선택</option>
 										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "1","selected","")%>>Mobius</option>
 										<option value="2" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "2","selected","")%>>&CUBE</option>
 										<option value="3" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "3","selected","")%>>Open Contribution</option>
@@ -172,7 +172,7 @@ $(document).ready( function() {
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box">
 									<select id="tab" name="tab">
-										<option value="">선택</option>
+										<option value="">대분류 선택</option>
 										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "1","selected","")%>>community 1</option>
 										<option value="2" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "2","selected","")%>>community 2</option>
 										<option value="3" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "3","selected","")%>>community 3</option>
@@ -322,7 +322,9 @@ $(document).ready( function() {
 
 								</td>
 							</tr>
-							<%If (BoardKey = "1" and FI_tab = "3") or BoardKey = "3" Then %>
+							<%If (BoardKey = "1" and FI_tab = "3") or BoardKey = "3" Then 
+								if FI_Depth_no <= "0" and actType<>"ANS" then 
+							%>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
 								<td class="line_box" style="word-break:break-all">
@@ -343,7 +345,10 @@ $(document).ready( function() {
 									<%End If%>
 								</td>
 							</tr>	
-							<%end if%>
+							<%
+								end if
+							end if
+							%>
 							<%If BoardKey = "0" Then %>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">공지</td>
@@ -388,6 +393,14 @@ nhn.husky.EZCreator.createInIFrame({
 
 function submitContents() {
 	var form=document.AdminForm;
+	
+	if( $('#tab').length>0 && !$('#tab').val() ){
+		alert("대분류를 선택하세요.");return false;
+	}
+	if( $('#tab2').length>0 && !$('#tab2').val() ){
+		alert("중분류를 선택하세요.");return false;
+	}
+
 	if( !trim( form.Title.value ) ){
 		alert("제목을 입력하세요.");return false;
 	}

@@ -31,6 +31,7 @@ Dim Notice        : Notice       = IIF( UPLOAD__FORM("Notice")="" , 0 , UPLOAD__
 Dim Secret        : Secret       = IIF( UPLOAD__FORM("Secret")="",0,UPLOAD__FORM("Secret") )
 Dim userEmail     : userEmail    = UPLOAD__FORM("userEmail")
 Dim AdminIdx      : AdminIdx     = Session("Admin_Idx")
+dim status        : status       = IIF( UPLOAD__FORM("Status")="",NULL,UPLOAD__FORM("Status") )
 
 Dim PageParams    : PageParams   = URLDecode(UPLOAD__FORM("PageParams"))
 
@@ -243,6 +244,7 @@ Sub insert()
 		.Parameters("@tag").value       = tag
 		.Parameters("@tab").value       = tab
 		.Parameters("@tab2").value      = tab2
+		.Parameters("@status").value    = status
 		.Execute
 	End with
 	set objCmd = nothing

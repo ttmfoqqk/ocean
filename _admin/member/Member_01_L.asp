@@ -175,7 +175,7 @@ function openPop(user_idx){
 						'<td class="line_box" align=right bgcolor="f0f0f0">승인여부</td>'+
 						'<td class="line_box">'+
 							'<input type="hidden" id="user_state_old" name="user_state_old">' +
-							'<select id="user_state" name="user_state"><option value="0">관리자승인완료</option><option value="2">대표자승인완료</option><option value="1">승인요청</option></select>' +
+							'<select id="user_state" name="user_state"><option value="0">관리자승인완료</option><option value="2">대표자승인완료</option><option value="1">승인요청</option><option value="3">대표자 인증전</option></select>' +
 						'</td>'+
 					'</tr>'+
 					'<tr>' +
@@ -353,6 +353,7 @@ function del_fm(){
 										<option value="0" <%=IIF(State="0","selected","")%>>관리자승인완료</option>
 										<option value="2" <%=IIF(State="2","selected","")%>>대표자승인완료</option>
 										<option value="1" <%=IIF(State="1","selected","")%>>승인요청</option>
+										<option value="3" <%=IIF(State="3","selected","")%>>대표자 인증전</option>
 									</select>
 								</td>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">탈퇴여부</td>
@@ -419,6 +420,8 @@ function del_fm(){
 									stateTxt = "<font color=red>승인요청</font>"
 								ElseIf arrList(FI_state,iLoop) = "2" Then
 									stateTxt = "<font color=blue>대표자승인완료</font>"
+								ElseIf arrList(FI_state,iLoop) = "3" Then
+									stateTxt = "<font color=green>대표자 인증전</font>"
 								Else
 									stateTxt = ""
 								End If

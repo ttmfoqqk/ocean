@@ -1,6 +1,10 @@
 <!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../inc/top.asp" -->
 <%
+	if Session("UserIdx") <> "" then 
+		Response.Redirect("../mypage/")
+	end if
+
 	Dim save_id    : save_id    = request.cookies("UserIdSave")("id")
 	Dim save_check : save_check = IIF( save_id <> "","checked","" )
 %>

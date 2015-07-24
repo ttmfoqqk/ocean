@@ -40,7 +40,7 @@ for iLoop = 0 to cntList
 	userPhone    = IIF( arrList(FI_UserHPhone,iLoop)="",arrList(FI_UserHPhone1,iLoop) &"-"& arrList(FI_UserHPhone2,iLoop) &"-"& arrList(FI_UserHPhone3,iLoop) ,arrList(FI_UserHPhone,iLoop) )
 	userName     = arrList(FI_UserName,iLoop) & " " & arrList(FI_UserNameLast,iLoop)
 	
-	email_result = sendSmsEmail_state( "join_state_admin" , admin_email_addr , userCname , "일반가입자" , userPosition , userName , userPhone , now() , "" )
+	email_result = sendSmsEmail_state( "join_state_admin" , admin_email_addr , userCname , "STAFF" , userPosition , userName , userPhone , arrList(FI_UserId,iLoop) , "" )
 Next 
 
 With Response

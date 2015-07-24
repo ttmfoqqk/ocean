@@ -1,12 +1,12 @@
 	<% If INSTR(LCase(g_url),"/mypage/")>0 Then %>
 	<div id="left_menu">
-		<h2>마이페이지</h2>
+		<h2>Mypage</h2>
 		<ul>
 			<li><a href="pwdChange.asp" class="<%=IIF( INSTR(LCase(g_url),"pwdchange") > 0 ,"over" , "" )%>"><div>Password Changes</div></a></li>
 			<li><a href="info.asp" class="<%=IIF( INSTR(LCase(g_url),"info") > 0 ,"over" , "" )%>"><div>Account Changes</div></a></li>
 			<li><a href="secede.asp" class="<%=IIF( INSTR(LCase(g_url),"secede") > 0 ,"over" , "" )%>"><div>Secession</div></a></li>
 			<%If Session("UserCeoFg") = "1" Then %>
-			<li><a href="staff.asp" class="<%=IIF( INSTR(LCase(g_url),"staff") > 0 ,"over" , "" )%>"><div>승인요청</div></a></li>
+			<li><a href="staff.asp" class="<%=IIF( INSTR(LCase(g_url),"staff") > 0 ,"over" , "" )%>"><div>Request</div></a></li>
 			<%End If%>
 		</ul>
 	</div>
@@ -67,7 +67,7 @@
 	<div id="left_menu">
 		<h2>Community</h2>
 		<ul>
-			<li><a href="../Community/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>게시판 1</div></a>
+			<li><a href="../Community/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>Community 1</div></a>
 				<%
 				If tab1=1 Then
 					response.Write("<ul class=""sub"">")
@@ -80,7 +80,7 @@
 				end if
 				%>
 			</li>
-			<li><a href="../Community/?tab1=2" class="<%=IIF( tab1 = 2 ,"over" , "" )%>"><div>게시판 2</div></a>
+			<li><a href="../Community/?tab1=2" class="<%=IIF( tab1 = 2 ,"over" , "" )%>"><div>Community 2</div></a>
 				<%
 				If tab1=2 Then
 					response.Write("<ul class=""sub"">")
@@ -93,7 +93,7 @@
 				end if
 				%>
 			</li>
-			<li><a href="../Community/?tab1=3" class="<%=IIF( tab1 = 3 ,"over" , "" )%>"><div>게시판 3</div></a>
+			<li><a href="../Community/?tab1=3" class="<%=IIF( tab1 = 3 ,"over" , "" )%>"><div>Community 3</div></a>
 				<%
 				If tab1=3 Then
 					response.Write("<ul class=""sub"">")

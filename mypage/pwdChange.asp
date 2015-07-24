@@ -22,7 +22,7 @@
 			</div>
 			
 			<div style="margin:30px;text-align:center;">
-				<button type="submit" class="btn">변경하기</button>
+				<button type="submit" class="btn">Submit</button>
 			</div>
 			</form>
 

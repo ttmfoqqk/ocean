@@ -142,11 +142,11 @@ End Sub
 				<input type="hidden" name="tab2" value="<%=tab2%>">
 				<input type="hidden" name="tab3" value="<%=tab3%>">
 				
-				<select name="sType" class="input" style="padding:6px;">
-					<option value="t" <%=IIF( sType="t","selected","" )%>>제목</option>
-					<option value="c" <%=IIF( sType="c","selected","" )%>>내용</option>
+				<select name="sType" class="input" style="padding:6px;width:100px;">
+					<option value="t" <%=IIF( sType="t","selected","" )%>>Title</option>
+					<option value="c" <%=IIF( sType="c","selected","" )%>>Contents</option>
 				</select>
-				<input name="word" type="text" class="input" value="<%=word%>">
+				<input name="word" type="text" class="input" value="<%=word%>" style="width:485px;padding:7px;margin-left:5px;">
 				<button type="submit" class="btn">Search</button>
 			</form>
 			</div>
@@ -155,11 +155,11 @@ End Sub
 
 				<table cellpadding=0 cellspacing=0 width="100%" class="table_wrap">
 					<tr>
-						<td class="cell_title" width="60">번호</td>
-						<td class="cell_title">제목</td>
-						<td class="cell_title" width="75">등록자</td>
-						<td class="cell_title" width="100">등록일자</td>
-						<td class="cell_title" width="85">진행상황</td>
+						<td class="cell_title" style="width:60px;">No</td>
+						<td class="cell_title">TItle</td>
+						<td class="cell_title" style="width:140px;">Name</td>
+						<td class="cell_title" style="width:140px;">Date</td>
+						<td class="cell_title" style="width:70px;">Status</td>
 					</tr>
 					<%for iLoop = 0 to cntList
 						onclick = "view.asp?" & PageParams & "&idx=" & arrList(FI_Idx,iLoop)
@@ -173,22 +173,23 @@ End Sub
 						elseif arrList(FI_status,iLoop) = "2" Then
 							statusTxt = "완료"
 						End if
+
+						nbsp = ""
+						If arrList(FI_Depth_no, iLoop) > 0 Then 
+							for Depth = 2 to arrList(FI_Depth_no, iLoop)
+								nbsp = nbsp & "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+							Next
+							nbsp = nbsp & "<b>└</b>> RE : "
+						End If
 					%>
 					<tr>
 						<td class="cell_cont"><%=arrList(FI_rownum,iLoop)%></td>
-						<td class="cell_cont" style="text-align:left;"><a href="<%=onclick%>"><%=arrList(FI_Title,iLoop)%></a></td>
+						<td class="cell_cont" style="text-align:left;"><a href="<%=onclick%>"><%= nbsp & arrList(FI_Title,iLoop)%></a></td>
 						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI_ContName,iLoop)%></a></td>
 						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI_Indate,iLoop)%></a></td>
 						<td class="cell_cont"><a href="<%=onclick%>"><%=statusTxt%></a></td>
 					</tr>
 					<%Next%>
-					<tr>
-						<td class="cell_cont">1</td>
-						<td class="cell_cont" style="text-align:left;"><a href="<%=onclick%>"><b>└</b>> RE : 답글작업 요망</a></td>
-						<td class="cell_cont"><a href="<%=onclick%>">test</a></td>
-						<td class="cell_cont"><a href="<%=onclick%>">test</a></td>
-						<td class="cell_cont"><a href="<%=onclick%>">test</a></td>
-					</tr>
 					<%If cntList < 0 Then %>
 					<tr>
 						<td class="cell_cont" colspan="5">등록된 내용이 없습니다.</td>

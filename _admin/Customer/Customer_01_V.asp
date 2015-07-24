@@ -209,20 +209,26 @@ function del_fm_checkbox(){
 								</td>
 							</tr>
 							<%If (BoardKey = "1" and FI_tab = "3") or BoardKey = "3" Then 
-							statusText = ""
-							if FI_status="0" then 
-								statusText = IIF(BoardKey="1","게시요청","접수")
-							elseif FI_status="1" then 
-								statusText = IIF(BoardKey="1","검토중","처리중")
-							elseif FI_status="2" then 
-								statusText = "완료"
-							end if
+								statusText = ""
+								if FI_status="0" then 
+									statusText = IIF(BoardKey="1","게시요청","접수")
+								elseif FI_status="1" then 
+									statusText = IIF(BoardKey="1","검토중","처리중")
+								elseif FI_status="2" then 
+									statusText = "완료"
+								end if
+							
+								if FI_Depth_no <= 0 then 
 							%>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">진행상황</td>
 								<td class="line_box" style="word-break:break-all"><%=statusText%></td>
-							</tr>	
-							<%end if%>
+							</tr>
+							<%
+								end if
+							
+							end if
+							%>
 							
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">등록일</td>

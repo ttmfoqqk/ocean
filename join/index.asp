@@ -1,5 +1,9 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
+if Session("UserIdx") <> "" then 
+	Response.Redirect("../mypage/")
+end if
+
 Call Expires()
 Call dbopen()
 	Call AgreeView()

@@ -103,9 +103,9 @@ End Sub
 			<h3 class="title" id="page_title"><!-- script 에서 작성 --></h3>
 			
 			<div class="board_tap">
-				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all">전체</a>
-				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my">나의질문내역</a>
-				<a class="on">질문하기</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all">All</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my">My Contribution</a>
+				<a class="on">Contribution</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 
@@ -150,7 +150,7 @@ End Sub
 							<input type="file" name="FileName" class="input" style="vertical-align:middle;">
 							<%If FI_File_name<>"" Then %>
 							<a href="/common/download.asp?pach=/ocean/upload/Board/&file=<%=FI_File_name%>" style="vertical-align:middle;"><%=FI_File_name%></a>
-							<input type="checkbox" value="1" name="DellFileFg" style="vertical-align:middle;"> 기존파일 삭제
+							<input type="checkbox" value="1" name="DellFileFg" style="vertical-align:middle;"> delete
 							<%End If%>
 						</td>
 					</tr>

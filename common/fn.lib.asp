@@ -58,28 +58,31 @@ function sendSmsEmail( actType , userId , userEmail , contants , attachPath )
 
 	If actType = "join" Then 
 		strFile = server.mapPath("/ocean/common/mailform/join.html")
-		strTitle = "[OCEAN 고객센터] 회원가입이 완료되었습니다."
+		strTitle = "[OCEAN Service center] Congratulations! You are now the OCEAN member!"
 	ElseIf actType = "join_ceo" Then 
 		strFile = server.mapPath("/ocean/common/mailform/join_ceo.html")
-		strTitle = "[OCEAN 고객센터] 회원가입이 신청되었습니다."
+		strTitle = "[OCEAN Service center] OCEAN Membership"
 	ElseIf actType = "join_staff" Then 
 		strFile = server.mapPath("/ocean/common/mailform/join_staff.html")
-		strTitle = "[OCEAN 고객센터] 회원가입이 신청되었습니다."
+		strTitle = "[OCEAN Service center] OCEAN Membership"
 	ElseIf actType = "id_search" Then 
 		strFile = server.mapPath("/ocean/common/mailform/id_search.html")
-		strTitle = "[OCEAN 고객센터] 요청하신 아이디를 알려드립니다."
+		strTitle = "[OCEAN Service center] 요청하신 아이디를 알려드립니다."
 	ElseIf actType = "pwd_search" Then 
 		strFile = server.mapPath("/ocean/common/mailform/pwd_search.html")
-		strTitle = "[OCEAN 고객센터] 요청하신 비밀번호를 알려드립니다."
+		strTitle = "[OCEAN Service center] We already sent you a temporary password to access the OCEAN portal site for the first time"
 	ElseIf actType = "pwd_change" Then 
 		strFile = server.mapPath("/ocean/common/mailform/pwd_change.html")
-		strTitle = "[OCEAN 고객센터] 고객님의 비밀번호가 변경되었습니다."
+		strTitle = "[OCEAN Service center] has successfully changed your password"
 	ElseIf actType = "email" Then 
 		strFile = server.mapPath("/ocean/common/mailform/mail_change.html")
-		strTitle = "[OCEAN 고객센터] 고객님의 이메일이 변경되었습니다."
+		strTitle = "[OCEAN Service center] 고객님의 이메일이 변경되었습니다."
 	ElseIf actType = "secede" Then 
 		strFile = server.mapPath("/ocean/common/mailform/secede.html")
-		strTitle = "[OCEAN 고객센터] 회원 탈퇴가 성공적으로 이루어졌습니다."
+		strTitle = "[OCEAN Service center] OCEAN membership withdrawal request has been successfully processed"
+	ElseIf actType = "join_complete" Then 
+		strFile = server.mapPath("/ocean/common/mailform/join_complete.html")
+		strTitle = "[OCEAN Service center] Verification email for the OCEAN membership application"
 	End If
 
 	Dim mfrom		: mfrom		= "OCEAN<araha@keti.re.kr>"
@@ -88,8 +91,8 @@ function sendSmsEmail( actType , userId , userEmail , contants , attachPath )
 	Dim mcontents	: mcontents	= ReadFile(strFile)
 		
 	mcontents = replace(mcontents, "#ID#"      , userId )
-	mcontents = replace(mcontents, "#EMAIL#"   , userEmail )
 	mcontents = replace(mcontents, "#CONTANTS#", contants )
+	mcontents = replace(mcontents, "#DATE#"    , formatdatetime(now(),2) &" "& formatdatetime(now(),4) )
 
 	Dim mailMessage : mailMessage = MailSend(mtitle, mcontents, mto, mfrom, attachPath)
 	sendSmsEmail = mailMessage
@@ -100,11 +103,11 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 
 	If actType = "join_state_admin" Then 
 		strFile = server.mapPath("/ocean/common/mailform/join_state_admin.html")
-		strTitle = "[OCEAN 고객센터] 회원가입 신청자 승인요청안내"
+		strTitle = "[OCEAN Service center] Information for Approval of OCEAN Membership Request"
 
 	ElseIf actType = "join_state_ceo" Then 
 		strFile = server.mapPath("/ocean/common/mailform/join_state_ceo.html")
-		strTitle = "[OCEAN 고객센터] 회원가입 신청자 승인요청안내"
+		strTitle = "[OCEAN Service center] Information for Approval of OCEAN Membership Request"
 	End If
 
 	Dim mfrom		: mfrom		= "OCEAN<araha@keti.re.kr>"
@@ -118,6 +121,7 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 	mcontents = replace(mcontents, "#NAME#"    , name )
 	mcontents = replace(mcontents, "#PHONE#"   , phone )
 	mcontents = replace(mcontents, "#CONTANTS#", contants )
+	mcontents = replace(mcontents, "#DATE#"    , formatdatetime(now(),2) &" "& formatdatetime(now(),4) )
 
 	Dim mailMessage : mailMessage = MailSend(mtitle, mcontents, mto, mfrom, attachPath)
 	sendSmsEmail_state = mailMessage
