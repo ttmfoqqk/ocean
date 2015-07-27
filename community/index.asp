@@ -5,6 +5,7 @@ Dim arrList , arrListMenu
 Dim cntList : cntList  = -1
 Dim cntListMenu : cntListMenu  = -1
 
+dim cntTotal : cntTotal = 0
 Dim rows     : rows      = 10
 Dim idx      : idx       = request("idx")
 Dim tab1     : tab1      = IIF( request("tab1")="",1,request("tab1") )
@@ -81,6 +82,7 @@ Sub GetList()
 		.Parameters("@tab2").value   = tab2
 		If(tab3="my") Then
 		.Parameters("@UserIdx").value = IIF( session("UserIdx")="" ,0,session("UserIdx") )
+		.Parameters("@adminIdx").value = "0"
 		End if
 		If (sType="t") Then
 		.Parameters("@sTitle").value = 1
@@ -94,8 +96,9 @@ Sub GetList()
 	set objCmd = nothing
 	CALL setFieldIndex(objRs, "FI")
 	If NOT(objRs.BOF or objRs.EOF) Then
-		arrList = objRs.GetRows()
-		cntList = UBound(arrList, 2)
+		arrList  = objRs.GetRows()
+		cntList  = UBound(arrList, 2)
+		cntTotal = arrList(FI_tcount, 0)
 	End If
 	objRs.close	: Set objRs = Nothing
 End Sub
@@ -162,7 +165,7 @@ End Sub
 						<td class="cell_title" style="width:70px;">Status</td>
 					</tr>
 					<%for iLoop = 0 to cntList
-						onclick = "view.asp?" & PageParams & "&idx=" & arrList(FI_Idx,iLoop)
+						
 
 						statusTxt = ""
 
@@ -174,17 +177,28 @@ End Sub
 							statusTxt = "완료"
 						End if
 
-						nbsp = ""
-						If arrList(FI_Depth_no, iLoop) > 0 Then 
+						nbsp   = ""
+						margin = 0
+						If arrList(FI_Depth_no, iLoop) > 0 and tab3="all" Then 
 							for Depth = 2 to arrList(FI_Depth_no, iLoop)
-								nbsp = nbsp & "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+								margin = arrList(FI_Depth_no, iLoop) * 10
 							Next
 							nbsp = nbsp & "<b>└</b>> RE : "
 						End If
+
+						if arrList(FI_Dellfg,iLoop) <> "0" then 
+							title = "삭제된 글 입니다."
+							onclick = "javascript:alert('삭제된 글 입니다.');"
+						else
+							title = arrList(FI_Title,iLoop)
+							onclick = "view.asp?" & PageParams & "&idx=" & arrList(FI_Idx,iLoop)
+						end if
 					%>
 					<tr>
 						<td class="cell_cont"><%=arrList(FI_rownum,iLoop)%></td>
-						<td class="cell_cont" style="text-align:left;"><a href="<%=onclick%>"><%= nbsp & arrList(FI_Title,iLoop)%></a></td>
+						<td class="cell_cont" style="text-align:left;">
+							<div style="margin-left:<%=margin%>px;"><a href="<%=onclick%>"><%= nbsp & title%></a></div>
+						</td>
 						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI_ContName,iLoop)%></a></td>
 						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI_Indate,iLoop)%></a></td>
 						<td class="cell_cont"><a href="<%=onclick%>"><%=statusTxt%></a></td>
@@ -192,7 +206,7 @@ End Sub
 					<%Next%>
 					<%If cntList < 0 Then %>
 					<tr>
-						<td class="cell_cont" colspan="5">등록된 내용이 없습니다.</td>
+						<td class="cell_cont" colspan="5">NO DATA</td>
 					</tr>
 					<%End If%>
 				</table>

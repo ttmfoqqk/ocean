@@ -9,6 +9,11 @@ Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
 Dim Idx         : Idx          = IIF( request("Idx")="" , 0 , request("Idx") )
 
+Dim PageParams
+PageParams = "tab1=" & tab1 &_
+		"&tab2=" & tab2 &_
+		"&tab3=" & tab3
+
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
@@ -133,19 +138,49 @@ End Sub
 					</tr>
 					<tr>
 						<td class="cell_cont">File</td>
-						<td class="cell_cont">
-							<input type="file" name="FileName" class="input" style="vertical-align:middle;">
-							<%If FI_File_name<>"" Then %>
-							<a href="download.asp?file=<%=escape(FI_File_name)%>&idx=<%=FI_idx%>" style="vertical-align:middle;"><%=FI_File_name%></a>
-							<input type="checkbox" value="1" name="DellFileFg" style="vertical-align:middle;"> delete
-							<%End If%>
+						<td class="cell_cont" style="padding-top:10px;padding-bottom:10px;">
+							<div>
+								<input type="file" name="FileName" class="input" style="vertical-align:middle;">
+								<%If FI_File_name<>"" Then %>
+								<a href="download.asp?file=<%=escape(FI_File_name)%>&idx=<%=FI_idx%>" style="vertical-align:middle;width:250px;"><%=FI_File_name%></a>
+								<input type="checkbox" value="1" name="DellFileFg" style="vertical-align:middle;"> Delete
+								<%End If%>
+							</div>
+							<div style="margin-top:10px;">
+								<input type="file" name="FileName2" class="input" style="vertical-align:middle;">
+								<%If FI_File_name2<>"" Then %>
+								<a href="download.asp?file=<%=escape(FI_File_name2)%>&idx=<%=FI_idx%>" style="vertical-align:middle;width:250px;"><%=FI_File_name2%></a>
+								<input type="checkbox" value="1" name="DellFileFg2" style="vertical-align:middle;"> Delete
+								<%End If%>
+							</div>
+							<div style="margin-top:10px;">
+								<input type="file" name="FileName3" class="input" style="vertical-align:middle;">
+								<%If FI_File_name3<>"" Then %>
+								<a href="download.asp?file=<%=escape(FI_File_name3)%>&idx=<%=FI_idx%>" style="vertical-align:middle;width:250px;"><%=FI_File_name3%></a>
+								<input type="checkbox" value="1" name="DellFileFg3" style="vertical-align:middle;"> Delete
+								<%End If%>
+							</div>
+							<div style="margin-top:10px;">
+								<input type="file" name="FileName4" class="input" style="vertical-align:middle;">
+								<%If FI_File_name4<>"" Then %>
+								<a href="download.asp?file=<%=escape(FI_File_name4)%>&idx=<%=FI_idx%>" style="vertical-align:middle;width:250px;"><%=FI_File_name4%></a>
+								<input type="checkbox" value="1" name="DellFileFg4" style="vertical-align:middle;"> Delete
+								<%End If%>
+							</div>
+							<div style="margin-top:10px;">
+								<input type="file" name="FileName5" class="input" style="vertical-align:middle;">
+								<%If FI_File_name5<>"" Then %>
+								<a href="download.asp?file=<%=escape(FI_File_name5)%>&idx=<%=FI_idx%>" style="vertical-align:middle;width:250px;"><%=FI_File_name5%></a>
+								<input type="checkbox" value="1" name="DellFileFg5" style="vertical-align:middle;"> Delete
+								<%End If%>
+							</div>
 						</td>
 					</tr>
 				</table>
 				<div class="btn_area" style="text-align:center;">
-					<input type="button" class="btn" value="Cancel" onclick="location.href='../download/?<%=PageParams%>'">
+					<input type="button" class="btn" value="Cancel" style="width:100px;height:35px;" onclick="history.go(-1);">
 					&nbsp;
-					<input type="submit" class="btn" value="Submit">
+					<input type="submit" class="btn" value="Submit" style="width:100px;height:35px;">
 				</div>
 				
 			</div>

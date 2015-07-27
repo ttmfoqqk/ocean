@@ -1,7 +1,7 @@
 <!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../common/uploadUtil2.asp" -->
 <%
-checkLogin( g_host & "/ocean/download/" )
+checkLogin( g_host & BASE_PATH & "download/" )
 
 Dim savePath : savePath = "\keti.ocean.download/" '첨부 저장경로.
 Set UPLOAD__FORM = Server.CreateObject("DEXT.FileUpload") 
@@ -592,6 +592,7 @@ Sub insert()
 		.Parameters("@tab").value         = tab1
 		.Parameters("@tab2").value        = tab2
 		.Parameters("@status").value      = 0
+		.Parameters("@user").value        = "user"
 		.Execute
 	End with
 	set objCmd = nothing
@@ -621,7 +622,7 @@ End Sub
 	<!--
 		if ("<%=alertMsg%>" != "") alert('<%=alertMsg%>');
 		if("<%=actType%>" == "UPDATE"){
-			top.location.href = "../download/view.asp?<%=pageParams%>&Idx=<%=Idx%>";
+			top.location.href = "../download/?<%=pageParams%>";
 		}else{
 			top.location.href = "../download/?<%=pageParams%>";
 		}

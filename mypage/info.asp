@@ -34,7 +34,7 @@ End Sub
 		<!-- #include file = "../inc/left.asp" -->
 		<div id="contant">
 			<h3 class="title">Account Changes</h3>
-			<%if Session("change_id") = false then %>
+			<%if Session("change_id") = "false" then %>
 				<div style="width:450px;margin:0px auto;">
 					<h3>아이디 변경 필수 안내문</h3>
 				</div>
@@ -50,7 +50,7 @@ End Sub
 				<div class="row">
 					<span style="font-size:20px;"><b><%=FI_cName%></b></span>
 				</div>
-				<%if Session("change_id") = false then %>
+				<%if Session("change_id") = "false" then %>
 				<div class="row">
 					<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" value="<%=FI_UserEmail%>" maxlength="320" placeholder="Company Email ( User Account )">
 					<span>아이디로 변경할 이메일</span>
@@ -89,7 +89,7 @@ End Sub
 </div>
 
 
-<%if Session("change_id") then %>
+<%if Session("change_id") = "true" then %>
 <SCRIPT type="text/javascript">
 function checkJoin(){
 	var data = [

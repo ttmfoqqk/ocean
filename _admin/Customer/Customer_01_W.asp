@@ -192,7 +192,7 @@ $(document).ready( function() {
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">내용</td>
 								<td class="line_box">
-									<textarea name="Contants" id="Contants" style="width:100%;height:300px;display:none;"><%=FI_Contants & IIF(actType="ANS","<br>---- 원본글 ----","")%></textarea>
+									<textarea name="Contants" id="Contants" style="width:100%;height:300px;display:none;"><%=FI_Contants%></textarea>
 								</td>
 							</tr>
 							
@@ -203,9 +203,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName" class="input">
 										<%If FI_File_name<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name%>"><%=FI_File_name%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name%>"><%=FI_File_name%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name%>"><%=FI_File_name%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name%>"><%=FI_File_name%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg"> 기존파일 삭제
 										<%End If%>
@@ -215,9 +215,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName2" class="input">
 										<%If FI_File_name2<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name2%>"><%=FI_File_name2%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name2%>"><%=FI_File_name2%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name2%>"><%=FI_File_name2%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name2%>"><%=FI_File_name2%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg2"> 기존파일 삭제
 										<%End If%>
@@ -227,9 +227,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName3" class="input">
 										<%If FI_File_name3<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name3%>"><%=FI_File_name3%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name3%>"><%=FI_File_name3%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name3%>"><%=FI_File_name3%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name3%>"><%=FI_File_name3%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg3"> 기존파일 삭제
 										<%End If%>
@@ -239,9 +239,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName4" class="input">
 										<%If FI_File_name4<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name4%>"><%=FI_File_name4%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name4%>"><%=FI_File_name4%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name4%>"><%=FI_File_name4%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name4%>"><%=FI_File_name4%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg4"> 기존파일 삭제
 										<%End If%>
@@ -251,9 +251,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName5" class="input">
 										<%If FI_File_name5<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name5%>"><%=FI_File_name5%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name5%>"><%=FI_File_name5%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name5%>"><%=FI_File_name5%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name5%>"><%=FI_File_name5%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg5"> 기존파일 삭제
 										<%End If%>
@@ -263,9 +263,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName6" class="input">
 										<%If FI_File_name6<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name6%>"><%=FI_File_name6%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name6%>"><%=FI_File_name6%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name6%>"><%=FI_File_name6%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name6%>"><%=FI_File_name6%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg6"> 기존파일 삭제
 										<%End If%>
@@ -275,9 +275,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName7" class="input">
 										<%If FI_File_name7<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name7%>"><%=FI_File_name7%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name7%>"><%=FI_File_name7%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name7%>"><%=FI_File_name7%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name7%>"><%=FI_File_name7%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg7"> 기존파일 삭제
 										<%End If%>
@@ -287,9 +287,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName8" class="input">
 										<%If FI_File_name8<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name8%>"><%=FI_File_name8%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name8%>"><%=FI_File_name8%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name8%>"><%=FI_File_name8%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name8%>"><%=FI_File_name8%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg8"> 기존파일 삭제
 										<%End If%>
@@ -299,9 +299,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName9" class="input">
 										<%If FI_File_name9<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name9%>"><%=FI_File_name9%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name9%>"><%=FI_File_name9%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name9%>"><%=FI_File_name9%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name9%>"><%=FI_File_name9%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg9"> 기존파일 삭제
 										<%End If%>
@@ -311,9 +311,9 @@ $(document).ready( function() {
 										<input type="file" name="FileName10" class="input">
 										<%If FI_File_name10<>"" And actType<>"ANS" Then %>
 											<%If BoardKey = "1" Then %>
-												<a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name10%>"><%=FI_File_name10%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name10%>"><%=FI_File_name10%></a>
 											<%Else%>											
-												<a href="../../common/download.asp?pach=/upload/Board/&file=<%=FI_File_name10%>"><%=FI_File_name10%></a>
+												<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name10%>"><%=FI_File_name10%></a>
 											<%End If%>
 										<input type="checkbox" value="1" name="DellFileFg10"> 기존파일 삭제
 										<%End If%>

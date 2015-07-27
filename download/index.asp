@@ -79,10 +79,16 @@ End Sub
 			
 			<div class="dowunload_list">
 				<div id="board_list"></div>
-				<input type="button" class="btn" id="btn_board_more" value="+ MORE">
+				<input type="button" class="btn more_button" id="btn_board_more" value="+ MORE">
 			</div>
 
 		</div>
+
+		<form name="mForm" id="mForm" method="POST" action="proc.asp" enctype="multipart/form-data">
+			<input type="hidden" id="Idx" name="Idx" value="">
+			<input type="hidden" id="actType" name="actType" value="DELETE">
+			<input type="hidden" id="PageParams" name="PageParams" value="">
+		</form>
 
 
 	</div>

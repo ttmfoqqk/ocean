@@ -25,7 +25,7 @@ Call dbopen()
 
 	' 난수발생 비밀번호변경 -> 이메일 발송.
 	Dim tpm_rand : tpm_rand = RandomNumber(10,"")
-	Dim result   : result   = sendSmsEmail( "pwd_search" , userId , userId , tpm_rand , "" )
+	Dim result   : result   = sendSmsEmail( "pwd_search" , userId , "" , userId , tpm_rand , "" )
 
 	Call update()
 

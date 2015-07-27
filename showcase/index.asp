@@ -11,7 +11,7 @@
 		
 		<div class="dowunload_list">
 			<div id="board_list"></div>
-			<input type="button" class="btn" id="btn_board_more" value="+ MORE">
+			<input type="button" class="btn more_button" id="btn_board_more" value="+ MORE">
 		</div>
 
 	</div>

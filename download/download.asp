@@ -2,7 +2,7 @@
 <%
 On Error Resume Next
 
-checkLogin( g_host & "/ocean/download/" )
+checkLogin( g_host & BASE_PATH & "download/" )
 Dim idx  : idx  = request("idx")
 Dim file : file = unescape(request("file"))
 
@@ -73,7 +73,7 @@ Sub downloadLog()
 End Sub
 
 '파일 이름
-pach = Server.MapPath("/ocean/upload/keti.ocean.download/")
+pach = Server.MapPath(BASE_PATH & "upload/keti.ocean.download/")
 'file = FI_File_name
 
 Response.ContentType = "application/unknown"

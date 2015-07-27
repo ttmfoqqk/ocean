@@ -71,7 +71,7 @@ Call dbopen()
 		
 		'가입완료
 		If user_state_old > 0 And user_state = 0 Then 
-			email_result = sendSmsEmail( "join" , user_id , user_id , "" , "" )
+			email_result = sendSmsEmail( "join" , user_id ,"", user_id , "" , "" )
 		End If
 
 		alertMsg = "수정되었습니다."

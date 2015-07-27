@@ -158,7 +158,7 @@ function del_fm_checkbox(){
 								<td class="line_box" style="word-break:break-all" colspan="3">
 									<input type="file" id="files2" name="files2">
 									<%If FI_files2<>"" Then %>
-									<a href="../../common/download.asp?pach=/ocean/upload/Board/&file=<%=FI_files2%>"><%=FI_files2%></a>
+									<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_files2%>"><%=FI_files2%></a>
 									<input type="checkbox" value="1" name="DellFileFg2"> 기존파일 삭제
 									<%End If%>
 									<input type="hidden" name="oldFileName2" value="<%=FI_files2%>">

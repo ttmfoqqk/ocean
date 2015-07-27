@@ -1,7 +1,7 @@
 <!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../common/uploadUtil2.asp" -->
 <%
-checkLogin( g_host & "/ocean/download/" )
+checkLogin( g_host & BASE_PATH & "download/" )
 
 Dim savePath : savePath = "\board/" '첨부 저장경로.
 Set UPLOAD__FORM = Server.CreateObject("DEXT.FileUpload") 
@@ -15,6 +15,7 @@ Dim alertMsg
 
 	
 Dim actType       : actType      = Trim( UPLOAD__FORM("actType") )
+Dim actType2      : actType2     = Trim( UPLOAD__FORM("actType2") )
 Dim Idx           : Idx          = IIF( UPLOAD__FORM("Idx")="" , "0" , UPLOAD__FORM("Idx") )
 Dim BoardKey      : BoardKey     = 3
 Dim UserIdx       : UserIdx      = session("UserIdx")
@@ -591,7 +592,10 @@ Sub insert()
 		.Parameters("@Ip").value          = g_uip
 		.Parameters("@tab").value         = tab1
 		.Parameters("@tab2").value        = tab2
+		if actType2 <> "ANS" THEN 
 		.Parameters("@status").value      = 0
+		END IF
+		.Parameters("@user").value        = "user"
 		.Execute
 	End with
 	set objCmd = nothing

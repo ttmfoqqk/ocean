@@ -193,18 +193,18 @@ function del_fm_checkbox(){
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">첨부파일</td>
 								<td class="line_box" style="word-break:break-all;line-height:200%;">
 								<%If BoardKey = "1" Then %>
-									<%If FI_File_name <>"" Then %><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name%>"><%=FI_File_name%></a><%End If%>
-									<%If FI_File_name2 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name2%>"><%=FI_File_name2%></a><%End If%>
-									<%If FI_File_name3 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name3%>"><%=FI_File_name3%></a><%End If%>
-									<%If FI_File_name4 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name4%>"><%=FI_File_name4%></a><%End If%>
-									<%If FI_File_name5 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name5%>"><%=FI_File_name5%></a><%End If%>
-									<%If FI_File_name6 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name6%>"><%=FI_File_name6%></a><%End If%>
-									<%If FI_File_name7 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name7%>"><%=FI_File_name7%></a><%End If%>
-									<%If FI_File_name8 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name8%>"><%=FI_File_name8%></a><%End If%>
-									<%If FI_File_name9 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name9%>"><%=FI_File_name9%></a><%End If%>
-									<%If FI_File_name10 <>"" Then %><br><a href="../../common/download.asp?pach=/ocean/upload/keti.ocean.download/&file=<%=FI_File_name10%>"><%=FI_File_name10%></a><%End If%>
+									<%If FI_File_name <>"" Then %><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name%>"><%=FI_File_name%></a><%End If%>
+									<%If FI_File_name2 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name2%>"><%=FI_File_name2%></a><%End If%>
+									<%If FI_File_name3 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name3%>"><%=FI_File_name3%></a><%End If%>
+									<%If FI_File_name4 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name4%>"><%=FI_File_name4%></a><%End If%>
+									<%If FI_File_name5 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name5%>"><%=FI_File_name5%></a><%End If%>
+									<%If FI_File_name6 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name6%>"><%=FI_File_name6%></a><%End If%>
+									<%If FI_File_name7 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name7%>"><%=FI_File_name7%></a><%End If%>
+									<%If FI_File_name8 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name8%>"><%=FI_File_name8%></a><%End If%>
+									<%If FI_File_name9 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name9%>"><%=FI_File_name9%></a><%End If%>
+									<%If FI_File_name10 <>"" Then %><br><a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/keti.ocean.download/&file=<%=FI_File_name10%>"><%=FI_File_name10%></a><%End If%>
 								<%else%>
-									<a href="../../common/download.asp?pach=/ocean/upload/Board/&file=<%=FI_File_name%>"><%=FI_File_name%></a>
+									<a href="../../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name%>"><%=FI_File_name%></a>
 								<%End If%>
 								</td>
 							</tr>

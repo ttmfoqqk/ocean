@@ -1,7 +1,7 @@
 <!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../../common/uploadUtil.asp" -->
 <%
-checkAdminLogin( g_host & "/ocean/_admin/member/member_02_L.asp" )
+checkAdminLogin( g_host & BASE_PATH & "_admin/member/member_02_L.asp" )
 
 Dim savePath : savePath = "\board/" '첨부 저장경로.
 Set UPLOAD__FORM = Server.CreateObject("DEXT.FileUpload") 

@@ -1,6 +1,6 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
-checkLogin( g_host & "/ocean/mypage/info.asp" )
+checkLogin( g_host & BASE_PATH & "mypage/info.asp" )
 
 Dim userId       : userId       = Trim( request.Form("userId") )
 Dim FirstName    : FirstName    = Trim( request.Form("FirstName") )
@@ -16,7 +16,7 @@ Call dbclose()
 
 
 
-if Session("change_id") = false then
+if Session("change_id") = "false" then
 	
 	If FI_IN_CNT > 0 Then 
 		With Response
@@ -51,7 +51,7 @@ Sub update()
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_USER_MEMBER_P"
-		.Parameters("@actType").value      = IIF(Session("change_id"),"INFO_UPDATE","ID_UPDATE")
+		.Parameters("@actType").value      = IIF(Session("change_id")= "true","INFO_UPDATE","ID_UPDATE")
 		.Parameters("@UserIdx").value      = session("userIdx")
 		.Parameters("@UserId").value       = userId
 		.Parameters("@FirstName").value    = FirstName

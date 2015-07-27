@@ -69,7 +69,7 @@ Dim xmlStart : xmlStart = "<?xml version=""1.0"" encoding=""utf-8""?><rss versio
 Dim xmlEnd   : xmlEnd   = "</channel></rss>"
 
 dim cnt      : cnt     = "<cnt>" & cntTotal & "</cnt>"
-
+dim btnFg
 For iLoop = 0 To cntList
 	temp_file = ""
 
@@ -86,7 +86,7 @@ For iLoop = 0 To cntList
 				
 				if session("UserIdx") = "" then
 					
-					temp_file = temp_file & " <link><![CDATA[javascript:if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){location.href='../login/?goUrl=" & server.urlencode( g_host & "/ocean/download/" ) & "';}]]></link>"
+					temp_file = temp_file & " <link><![CDATA[javascript:if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){location.href='../login/?goUrl=" & server.urlencode( g_host & BASE_PATH & "download/" ) & "';}]]></link>"
 				else
 					If CHECK_CNT = 0 Then
 						temp_file = temp_file & " <link><![CDATA[javascript:void(alert('관리자 승인 후 다운로드가 가능합니다.'));]]></link>"
@@ -96,12 +96,17 @@ For iLoop = 0 To cntList
 				end if
 				
 			else
-				temp_file = temp_file & " <link><![CDATA[../common/download.asp?pach=/ocean/upload/Board/&file=" & escape(fileName) & "]]></link>"
+				temp_file = temp_file & " <link><![CDATA[../common/download.asp?pach=" & BASE_PATH & "upload/Board/&file=" & escape(fileName) & "]]></link>"
 			End if
 			
 			temp_file = temp_file & "</file>"
 		end if
 	Next
+	
+	btnFg = "0"
+	if (session("UserIdx") = cstr(arrList(FI_UserIdx, iLoop))) and (arrList(FI_status, iLoop) = "0") then
+		btnFg = "1"
+	end if
 
 	temp = temp & "<item>"
 	temp = temp & "	<no><![CDATA["       & arrList(FI_idx, iLoop)      & "]]></no>"
@@ -115,6 +120,7 @@ For iLoop = 0 To cntList
 	temp = temp & "	<tab2><![CDATA["     & arrList(FI_tab2, iLoop)     & "]]></tab2>"
 	temp = temp & "	<wId><![CDATA["      & arrList(FI_ContId, iLoop)   & "]]></wId>"
 	temp = temp & "	<wName><![CDATA["    & arrList(FI_ContName, iLoop) & "]]></wName>"
+	temp = temp & "	<btnFg><![CDATA["    & btnFg                       & "]]></btnFg>"
 	temp = temp & temp_file
 	temp = temp & "</item>"
 Next

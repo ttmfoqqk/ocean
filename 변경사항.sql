@@ -20,6 +20,9 @@ alter table [OCEAN_MEMBERSHIP] add [addr] varchar(max) null
 /*OCEAN_BOARD 상태 칼럼 추가*/
 alter table [OCEAN_BOARD] add [status] INT null
 
+/*OCEAN_BOARD 답글 부모IDX 칼럼 추가*/
+alter table [OCEAN_BOARD] add [parent_idx] INT null
+
 /*OCEAN_BOARD file 칼럼 추가 - 미적용*/
 alter table [OCEAN_BOARD] add [File_name11] varchar(200) null
 

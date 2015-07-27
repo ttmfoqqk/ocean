@@ -23,7 +23,7 @@ $(function(){
 		var values = $(this).val();
 		if(values){
 			if( values == 'HOME' ){
-				values = 'http://' + document.domain + '/ocean';
+				values = '<%=g_host & BASE_PATH %>';
 			}
 			window.open(values,"","");
 		}

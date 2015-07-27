@@ -1,7 +1,7 @@
 <!-- #include file = "../inc/header.asp" -->
 
 <%
-checkLogin( g_host & "/ocean/mypage/staff.asp" )
+checkLogin( g_host & BASE_PATH & "mypage/staff.asp" )
 
 Dim arrList
 Dim cntList : cntList = -1

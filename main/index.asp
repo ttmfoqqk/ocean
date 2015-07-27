@@ -43,6 +43,7 @@ Sub GetFiles()
 		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
 		.Parameters("@Key").value = 1
 		.Parameters("@CNT").value = 5
+		.Parameters("@status").value = 2
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing

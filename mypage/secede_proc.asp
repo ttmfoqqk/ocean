@@ -1,6 +1,6 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
-checkLogin( g_host & "/ocean/mypage/secede.asp" )
+checkLogin( g_host & BASE_PATH & "mypage/secede.asp" )
 
 Dim agree : agree = request.Form("agree")
 
@@ -15,7 +15,7 @@ Call dbopen()
 Call dbclose()
 
 
-Dim result : result = sendSmsEmail( "secede" , session("userId") , FI_EMAIL , now() , "" )
+Dim result : result = sendSmsEmail( "secede" , session("userId") ,"", FI_EMAIL , "" , "" )
 
 Session("UserIdx")  = ""
 Session("UserId")   = ""

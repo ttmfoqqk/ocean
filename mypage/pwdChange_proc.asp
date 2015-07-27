@@ -1,6 +1,6 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
-checkLogin( g_host & "/ocean/mypage/pwdChange.asp" )
+checkLogin( g_host & BASE_PATH & "mypage/pwdChange.asp" )
 
 Dim oldUserPwd     : oldUserPwd     = request.Form("oldUserPwd")
 Dim userPwd        : userPwd        = request.Form("userPwd")
@@ -35,7 +35,7 @@ If FI_IN_CNT = 0 Then
 	End With
 End If
 
-Dim result   : result   = sendSmsEmail( "pwd_change" , session("userId") , FI_EMAIL , now() , "" )
+Dim result   : result   = sendSmsEmail( "pwd_change" , session("userId"), session("userName") , FI_EMAIL , "" , "" )
 
 With Response
  .Write "<script language='javascript' type='text/javascript'>"

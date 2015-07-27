@@ -1,5 +1,5 @@
 <%
-if ( Session("change_id") = false and INSTR(LCase(Request.ServerVariables("PATH_INFO")),"/mypage/info")<=0) then 
+if ( Session("change_id") = "false" and INSTR(LCase(Request.ServerVariables("PATH_INFO")),"/mypage/info")<=0) then 
 	response.redirect "../mypage/info.asp"
 end if
 %><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

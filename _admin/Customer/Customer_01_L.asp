@@ -313,12 +313,20 @@ End Sub
 							PageLink = "location.href='Customer_01_V.asp?" & PageParams & "&Idx=" & arrList(FI_Idx,iLoop) & "'"
 							
 							nbsp = ""
+							margin = 0
 							If arrList(FI_Depth_no, iLoop) > 0 Then 
 								for Depth = 2 to arrList(FI_Depth_no, iLoop)
-									nbsp = nbsp & "&nbsp;&nbsp;&nbsp;&nbsp;"
+									'nbsp = nbsp & "&nbsp;&nbsp;&nbsp;&nbsp;"
+									margin = arrList(FI_Depth_no, iLoop) * 20
 								Next
-								nbsp = nbsp & "<b>></b> [RE] "
+								nbsp = nbsp & "└> RE : "
 							End If
+
+							if arrList(FI_Dellfg,iLoop) <> "0" then 
+								title = "삭제된 글 입니다."
+							else
+								title = HtmlTagRemover( arrList(FI_Title,iLoop) , 60 )
+							end if
 
 
 							statusText = ""
@@ -331,11 +339,14 @@ End Sub
 									statusText = "완료"
 								end if
 							end if
+
 							%>
 							<tr height="30" align=center>
 								<td class="line_box" style="padding:0px;" ><input type="checkbox" name="Idx" value="<%=arrList(FI_Idx,iLoop)%>"></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_rownum,iLoop)%></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left><%=nbsp & HtmlTagRemover( arrList(FI_Title,iLoop) , 60 )%></td>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
+									<div style="margin-left:<%=margin%>px;"><%=nbsp & title %></div>
+								</td>
 								<%If BoardKey = "1" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
 									<%=IIF(arrList(FI_tab,iLoop)="1","Mobius","")%>

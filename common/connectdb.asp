@@ -9,8 +9,8 @@ Dim g_uip	: g_uip		= Request.ServerVariables("REMOTE_ADDR")
 Dim g_host	: g_host	= "http://" & Request.ServerVariables("SERVER_NAME") & ":" & Request.ServerVariables("SERVER_PORT")
 Dim g_url	: g_url		= Request.ServerVariables("PATH_INFO")
 Dim ref_url	: ref_url	= Request.ServerVariables("HTTP_REFERER")
-
-Dim UPLOAD_BASE_PATH : UPLOAD_BASE_PATH = server.mapPath( "/ocean/upload" )
+Dim BASE_PATH : BASE_PATH = "/ocean/"
+Dim UPLOAD_BASE_PATH : UPLOAD_BASE_PATH = server.mapPath( BASE_PATH & "upload" )
 
 '------------------------------------------------------------------------------------
 ' DB Open/Close

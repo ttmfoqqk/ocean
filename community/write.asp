@@ -11,6 +11,7 @@ Dim Idx         : Idx          = IIF( request("Idx")="" , 0 , request("Idx") )
 dim sType       : sType        = request("sType")
 dim word        : word         = request("word")
 Dim pageNo      : pageNo       = CInt(IIF(request("pageNo")="","1",request("pageNo")))
+Dim actType     : actType      = request("actType")
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
@@ -64,7 +65,6 @@ Sub View()
 		.CommandText      = "OCEAN_BOARD_CONT_V"
 		.Parameters("@Idx").value      = Idx
 		.Parameters("@BoardKey").value = BoardKey
-		.Parameters("@UserIdx").value  = IIF( session("UserIdx")="" ,0,session("UserIdx") )
 		
 		Set objRs = .Execute
 	End with
@@ -121,7 +121,8 @@ End Sub
 			<input type="hidden" name="oldFileName9" value="<%=FI_File_name9%>">
 			<input type="hidden" name="oldFileName10" value="<%=FI_File_name10%>">
 			<input type="hidden" name="Idx" value="<%=FI_Idx%>">
-			<input type="hidden" name="actType" value="<%=IIF( FI_Idx="" ,"INSERT" , "UPDATE" )%>">
+			<input type="hidden" name="actType" value="<%=IIF( FI_Idx="" ,"INSERT" , IIF(actType="ANS","INSERT","UPDATE") )%>">
+			<input type="hidden" name="actType2" value="<%=actType%>">
 			<input type="hidden" name="tab1" value="<%=tab1%>">
 			<input type="hidden" name="tab2" value="<%=tab2%>">
 
@@ -148,16 +149,17 @@ End Sub
 						<td class="cell_cont">File</td>
 						<td class="cell_cont">
 							<input type="file" name="FileName" class="input" style="vertical-align:middle;">
-							<%If FI_File_name<>"" Then %>
-							<a href="/common/download.asp?pach=/ocean/upload/Board/&file=<%=FI_File_name%>" style="vertical-align:middle;"><%=FI_File_name%></a>
+							<%If FI_File_name<>"" and actType <> "ANS" Then %>
+							<a href="../common/download.asp?pach=<%=BASE_PATH%>upload/Board/&file=<%=FI_File_name%>" style="vertical-align:middle;"><%=FI_File_name%></a>
 							<input type="checkbox" value="1" name="DellFileFg" style="vertical-align:middle;"> delete
 							<%End If%>
 						</td>
 					</tr>
 				</table>
 				<div class="btn_area" style="text-align:center;">
-					<input type="button" class="btn" value="Cancel" onclick="location.href='../Community/?<%=PageParams%>'">
-					<input type="submit" class="btn" value="Submit">
+					<input type="button" class="btn_m" value="Cancel" onclick="location.href='../Community/?<%=PageParams%>'">
+					&nbsp;
+					<input type="submit" class="btn_m" value="Submit">
 				</div>
 				
 			</div>

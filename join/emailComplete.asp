@@ -35,7 +35,7 @@ else
 		call admin_email()
 		call getView()
 
-		email_result1 = sendSmsEmail( "join_ceo" , user_email , user_email , "" , "" )
+		email_result1 = sendSmsEmail( "join_ceo" , user_email , "" , user_email , "" , "" )
 		email_result2 = sendSmsEmail_state( "join_state_admin" , admin_email_addr , FV_cName , "CEO" , FV_UserPOsition , FV_UserName &" "& FV_UserNameLast , FV_UserHPhone , user_email , "" )
 	end if
 

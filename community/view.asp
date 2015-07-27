@@ -3,6 +3,9 @@
 checkLogin( g_host & g_url )
 Dim BoardKey    : BoardKey     = 3
 
+Dim arrList
+Dim cntList     : cntList  = -1
+
 Dim arrListMenu
 Dim cntListMenu : cntListMenu  = -1
 Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
@@ -51,6 +54,16 @@ Call dbopen()
 	Call View()
 Call dbclose()
 
+if FI_Dellfg <> "0" then 
+	With Response
+		.Write "<script language='javascript' type='text/javascript'>"
+		.Write "alert('삭제된 글 입니다.');"
+		.Write "history.go(-1);"
+		.Write "</script>"
+		.End
+	End With
+end if
+
 
 Sub View()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")
@@ -68,6 +81,15 @@ Sub View()
 	End with
 	set objCmd = nothing
 	CALL setFieldValue(objRs, "FI")
+
+	'상위글
+	set objRs = objRs.NextRecordset
+	CALL setFieldIndex(objRs, "PARENT")
+	If Not(objRs.Eof or objRs.Bof) Then
+		arrList = objRs.GetRows()
+		cntList = UBound(arrList, 2)
+	End If
+
 	objRs.close	: Set objRs = Nothing
 End Sub
 
@@ -110,15 +132,33 @@ End Sub
 			<style type="text/css">
 				#board_wrap .cell_title{text-align:left;padding:0px 20px 0px 20px;}
 				#board_wrap .cell_cont{text-align:left;padding:0px 0px 0px 20px;}
-				#board_wrap a{display:inline-block;width:165px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;vertical-align:top;}
+				#board_wrap .cell_cont .text_wrap{padding:20px 0px 100px 0px;line-height:160%;}
+				#board_wrap .file{
+					border:1px solid #bfbfbf;
+					background-color:#ffffff;
+					padding:5px 25px 5px 25px;
+					line-height:130%;
+				}
+				.parent_contents_wrap{
+					border-left:1px solid #bfbfbf;
+					margin:10px 0px 10px 0px;
+					padding:0px 0px 5px 20px;
+				}
+				.under_line{border-bottom:0px solid #bfbfbf;height:1px;overflow:hidden;}
 			</style>
+			<form id="mForm" name="mForm" method="POST" action="proc.asp" enctype="multipart/form-data">
+				<input type="hidden" name="Idx" value="<%=FI_Idx%>">
+				<input type="hidden" name="actType" value="DELETE">
+				<input type="hidden" name="PageParams" value="<%=Server.urlencode(PageParams)%>">
+			</form>
+
 			<div id="board_wrap">
 				<table cellpadding=0 cellspacing=0 width="100%" class="table_wrap">
 					<tr>
-						<td class="cell_title" colspan="2"><%=FI_title%></td>
+						<td class="cell_title"><%=FI_title%></td>
 					</tr>
 					<tr>
-						<td class="cell_cont" style="width:490px;line-height:40px;vertical-align:top;">
+						<td class="cell_cont">
 							<%=FI_ContName%> | 
 							<%=FI_Indate%> | 
 							Views <%=FI_Read_cnt%> | 
@@ -132,31 +172,77 @@ End Sub
 							End if
 							%>
 						</td>
-						<td class="cell_cont">
-							<div style="vertical-align:top;margin:10px 0px 10px 0px;">
-							<%
-							For i=1 to 10
-								fileName = ""
-								execute("fileName =" & "FI_File_name" & IIF(i=1,"",i) )
-
-								if fileName <> "" then 
-									response.Write "File ㅣ <a href=""../common/download.asp?pach=/ocean/upload/Board/&file=" & fileName &""">"& fileName & "</a><br>"
-								end if
-							Next
-							%>
-							</div>
-						</td>
 					</tr>
 					<tr>
-						<td class="cell_cont" colspan="2">
-							<div style="padding:20px 0px 20px 0px;line-height:160%;"><%=FI_Contants%></div>
+						<td class="cell_cont" style="border:0px;">
+							<div class="text_wrap"><%=FI_Contants%></div>
+						</td>
+					</tr>
+					<%
+					file_html = ""
+					For i=1 to 10
+						fileName = ""
+						execute("fileName =" & "FI_File_name" & IIF(i=1,"",i) )
+						if fileName <> "" then 
+							file_html = file_html & IIF(file_html="","",", ") & "<a href=""../common/download.asp?pach="& BASE_PATH &"upload/Board/&file=" & fileName &""">"& fileName & "</a>"
+						end if
+					Next
+					if file_html <> "" then 
+					%>
+					<tr>
+						<td class="file">
+							File ㅣ <%=file_html%>
+						</td>
+					</tr>
+					<%else%>
+					<tr><td class="under_line"><!-- line --></td></tr>
+					<%end if%>
+					<tr>
+						<td>
+							 <%
+							 ' 상위 글 내용
+							for iLoop = 0 to cntList
+								temp_file = ""
+
+								For i=1 to 10
+									fileName = ""
+									execute("fileName =" & "arrList(PARENT_File_name" & IIF(i=1,"",i) &",iLoop)" )
+
+									if fileName <> "" then 
+										temp_file = temp_file & "<a href=""../common/download.asp?pach="& BASE_PATH &"upload/Board/&file=" & fileName &""">"& fileName & "</a>"
+									end if
+								Next
+							 
+							 %>
+							 <div class="parent_contents_wrap">
+								<table cellpadding=0 cellspacing=0 width="100%">
+									<td class="cell_cont" style="border:0px;">
+										<div class="text_wrap"><%=arrList(PARENT_Title,iLoop)%></div>
+									</td>
+									<%if temp_file <> "" then %>
+									<tr>
+										<td class="file">
+											File ㅣ <%=temp_file%>
+										</td>
+									</tr>
+									<%else%>
+									<tr><td class="under_line"><!-- line --></td></tr>
+									<%end if%>
+								</table>
+							<%next
+							for iLoop = 0 to cntList
+								Response.Write("</div>")
+							next 
+							%>							
 						</td>
 					</tr>
 				</table>
 				<div class="btn_area">
-					<input type="button" class="btn" value="List" onclick="location.href='../Community/?<%=PageParams%>'" style="float:left;">
-					<%if session("UserIdx") = FI_UserIdx then %>
-					<input type="button" class="btn" value="Edit" onclick="location.href='../Community/write.asp?<%=PageParams%>&Idx=<%=FI_Idx%>'">
+					<input type="button" class="btn_m" value="List" onclick="location.href='../Community/?<%=PageParams%>'" style="float:left;">
+					<input type="button" class="btn_m" value="Reply" onclick="location.href='../Community/write.asp?<%=PageParams%>&Idx=<%=FI_Idx%>&actType=ANS'">
+					<%if session("UserIdx") = FI_UserIdx and FI_AdminIdx = "0" then %>
+					<input type="button" class="btn_m" value="Edit" onclick="location.href='../Community/write.asp?<%=PageParams%>&Idx=<%=FI_Idx%>'">
+					<input type="button" class="btn_m" value="Delete" onclick="go_Delete($(this),<%=FI_Idx%>)">
 					<%end if%>
 				</div>
 				
@@ -179,5 +265,14 @@ $(function(){
 	}
 	$page_title.text(left_title);
 })
+
+function go_Delete(obj,idx){
+	obj.addClass('btn_visited');
+	if( confirm('Are you sure ?') ){
+		$('#mForm').submit();
+	}else{
+		obj.removeClass('btn_visited');
+	}
+}
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" -->

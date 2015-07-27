@@ -1,7 +1,7 @@
 <!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../common/uploadUtil.asp" -->
 <%
-checkLogin( g_host & "/ocean/join/form.asp" )
+checkLogin( g_host & BASE_PATH & "join/form.asp" )
 
 Dim savePath : savePath = "\board/" '첨부 저장경로.
 Set UPLOAD__FORM = Server.CreateObject("DEXT.FileUpload") 

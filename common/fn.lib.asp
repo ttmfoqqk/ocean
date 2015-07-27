@@ -53,35 +53,35 @@ End Function
 
 
 
-function sendSmsEmail( actType , userId , userEmail , contants , attachPath )
+function sendSmsEmail( actType , userId , userName , userEmail , contants , attachPath )
 	Dim strFile,strTitle
 
 	If actType = "join" Then 
-		strFile = server.mapPath("/ocean/common/mailform/join.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/join.html")
 		strTitle = "[OCEAN Service center] Congratulations! You are now the OCEAN member!"
 	ElseIf actType = "join_ceo" Then 
-		strFile = server.mapPath("/ocean/common/mailform/join_ceo.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/join_ceo.html")
 		strTitle = "[OCEAN Service center] OCEAN Membership"
 	ElseIf actType = "join_staff" Then 
-		strFile = server.mapPath("/ocean/common/mailform/join_staff.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/join_staff.html")
 		strTitle = "[OCEAN Service center] OCEAN Membership"
 	ElseIf actType = "id_search" Then 
-		strFile = server.mapPath("/ocean/common/mailform/id_search.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/id_search.html")
 		strTitle = "[OCEAN Service center] 요청하신 아이디를 알려드립니다."
 	ElseIf actType = "pwd_search" Then 
-		strFile = server.mapPath("/ocean/common/mailform/pwd_search.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/pwd_search.html")
 		strTitle = "[OCEAN Service center] We already sent you a temporary password to access the OCEAN portal site for the first time"
 	ElseIf actType = "pwd_change" Then 
-		strFile = server.mapPath("/ocean/common/mailform/pwd_change.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/pwd_change.html")
 		strTitle = "[OCEAN Service center] has successfully changed your password"
 	ElseIf actType = "email" Then 
-		strFile = server.mapPath("/ocean/common/mailform/mail_change.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/mail_change.html")
 		strTitle = "[OCEAN Service center] 고객님의 이메일이 변경되었습니다."
 	ElseIf actType = "secede" Then 
-		strFile = server.mapPath("/ocean/common/mailform/secede.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/secede.html")
 		strTitle = "[OCEAN Service center] OCEAN membership withdrawal request has been successfully processed"
 	ElseIf actType = "join_complete" Then 
-		strFile = server.mapPath("/ocean/common/mailform/join_complete.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/join_complete.html")
 		strTitle = "[OCEAN Service center] Verification email for the OCEAN membership application"
 	End If
 
@@ -91,6 +91,7 @@ function sendSmsEmail( actType , userId , userEmail , contants , attachPath )
 	Dim mcontents	: mcontents	= ReadFile(strFile)
 		
 	mcontents = replace(mcontents, "#ID#"      , userId )
+	mcontents = replace(mcontents, "#NAME#"    , userName )
 	mcontents = replace(mcontents, "#CONTANTS#", contants )
 	mcontents = replace(mcontents, "#DATE#"    , formatdatetime(now(),2) &" "& formatdatetime(now(),4) )
 
@@ -102,11 +103,11 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 	Dim strFile,strTitle
 
 	If actType = "join_state_admin" Then 
-		strFile = server.mapPath("/ocean/common/mailform/join_state_admin.html")
+		strFile = server.mapPath(BASE_PATH & "common/mailform/join_state_admin.html")
 		strTitle = "[OCEAN Service center] Information for Approval of OCEAN Membership Request"
 
 	ElseIf actType = "join_state_ceo" Then 
-		strFile = server.mapPath("/ocean/common/mailform/join_state_ceo.html")
+		strFile = server.mapPath(BASE_PATH &"common/mailform/join_state_ceo.html")
 		strTitle = "[OCEAN Service center] Information for Approval of OCEAN Membership Request"
 	End If
 
@@ -141,7 +142,7 @@ function MailSend(strSubject, strBody, strTo, strFrom, attachPath)
 	on error resume Next
 	
 	Const cdoSendUsingMethod		= "http://schemas.microsoft.com/cdo/configuration/sendusing" 
-	Const cdoSendUsingPort			= 1  ' 1:로컬, 1:외부
+	Const cdoSendUsingPort			= 2  ' 1:로컬, 1:외부
 	Const cdoSMTPServer				= "http://schemas.microsoft.com/cdo/configuration/smtpserver" 
 	Const cdoSMTPServerPort			= "http://schemas.microsoft.com/cdo/configuration/smtpserverport"
 	Const cdoSMTPConnectionTimeout	= "http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout" 
@@ -157,12 +158,12 @@ function MailSend(strSubject, strBody, strTo, strFrom, attachPath)
 	Set Flds = objConfig.Fields 
 	With Flds 
 		.Item(cdoSendUsingMethod) = cdoSendUsingPort 
-		.Item(cdoSMTPServer) = "127.0.0.1"  ' 로컬호스트 
+		.Item(cdoSMTPServer) = "mw-002.cafe24.com"  ' 로컬호스트 
 		.Item(cdoSMTPServerPort) = 25 
 		.Item(cdoSMTPAuthenticate) = cdoBasic 
-		.Item(cdoSMTPPickupDirectory) = "C:\Inetpub\mailroot\Pickup"  ' 픽업 디렉토리 경로 지정
-		'.Item(cdoSendUserName) = "계정 id"
-		'.Item(cdoSendPassword) = "계정 pwd"
+		'.Item(cdoSMTPPickupDirectory) = "C:\Inetpub\mailroot\Pickup"  ' 픽업 디렉토리 경로 지정
+		.Item(cdoSendUserName) = "hohotest@hohotest.cafe24.com"
+		.Item(cdoSendPassword) = "hoho5138"
 		.Update
 	End With 
 	
