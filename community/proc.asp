@@ -67,6 +67,8 @@ Dim tab2          : tab2         = IIF( UPLOAD__FORM("tab2")="" , 0 , UPLOAD__FO
 
 Dim PageParams    : PageParams   = URLDecode(UPLOAD__FORM("PageParams"))
 
+dim category      : category     = UPLOAD__FORM("category")
+
 
 Call Expires()
 Call dbopen()
@@ -288,8 +290,11 @@ Call dbopen()
 		FileName9 = DextFileUpload("FileName9",UPLOAD_BASE_PATH & savePath,0)
 		FileName10 = DextFileUpload("FileName10",UPLOAD_BASE_PATH & savePath,0)
 		
+		Dim admin_email_addr
+		call admin_email()
 		Call insert()
 		alertMsg = "입력 되었습니다."
+		email_result2 = sendSmsEmail_state( "alarm" , admin_email_addr , session("UserName") , "" , IIF(category="","Community",category) , Title, "" , replace(Contants,"<img","<img style=""max-width:100%;""") , "" )
 
 	ElseIf (actType = "UPDATE") Then	'글수정
 		
@@ -616,6 +621,28 @@ Sub BoardCodeView()
 	set objCmd = nothing
 	CALL setFieldValue(objRs, "BoardCodeView")
 	objRs.close	: Set objRs = Nothing
+End Sub
+
+
+Sub admin_email()
+	SET objRs	= Server.CreateObject("ADODB.RecordSet")
+	SET objCmd	= Server.CreateObject("ADODB.Command")
+
+	SQL = "SELECT top 1 [email]  "  &_
+	" FROM [OCEAN_ADMIN_MEMBER] WHERE [Id] = 'admin' "
+   
+	call cmdopen()
+	with objCmd
+		.CommandText = SQL
+		set objRs = .Execute
+	End with
+	call cmdclose()
+	
+	If NOT(objRs.BOF or objRs.EOF) Then
+		admin_email_addr  = objRs(0)
+	End If
+
+	Set objRs = Nothing
 End Sub
 %>
 <html>

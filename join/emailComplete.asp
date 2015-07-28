@@ -9,8 +9,8 @@ error_code    = 1
 If ( UBound(temp_array)<1 ) Then
 	'Response.Write("error")
 else
-	user_idx   = temp_array(0)
-	user_email = temp_array(1)
+	user_idx   = trim(temp_array(0))
+	user_email = trim(temp_array(1))
 
 	If ( IsNumeric( user_idx ) = false ) Then
 		'Response.Write("error")
@@ -110,7 +110,10 @@ End Sub
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	
 	<div class="wrap">
-		<h2 class="page_title">Verification email for the OCEAN membership application</h2>
+		<div class="member_title_wrap">
+			<h3 class="title">Verification email for the OCEAN membership application</h3>
+		</div>
+
 		<p class="page_contants" style="text-align:center;">
 			<%if error_code = 0 then %>
 			<b class="color_green">인증성공</b><br><br>

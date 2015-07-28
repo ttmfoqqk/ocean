@@ -5,10 +5,10 @@ Dim cntListMenu : cntListMenu  = -1
 Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
 Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
-
-If (tab3="my") Then
+Dim idx         : idx          = request("idx")
+'If (tab3="my") Then
 	checkLogin( g_host & g_url )
-End if
+'End if
 
 
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
@@ -61,6 +61,9 @@ Sub GetListMenu()
 End Sub
 %>
 <!-- #include file = "../inc/top.asp" -->
+<style type="text/css">
+	#middle .dowunload_list .block .sub{display:block;}
+</style>
 <div id="middle">
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
@@ -106,7 +109,7 @@ $(function(){
 	}
 	$page_title.text(left_title);
 
-	ajax_board_list([1,'<%=tab1%>','<%=tab2%>','<%=tab3%>'],1,10,'board_list','btn_board_more');
+	ajax_board_list([1,'<%=tab1%>','<%=tab2%>','<%=tab3%>'],1,5,'board_list','btn_board_more','<%=idx%>');
 })
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" -->

@@ -94,6 +94,7 @@ function sendSmsEmail( actType , userId , userName , userEmail , contants , atta
 	mcontents = replace(mcontents, "#NAME#"    , userName )
 	mcontents = replace(mcontents, "#CONTANTS#", contants )
 	mcontents = replace(mcontents, "#DATE#"    , formatdatetime(now(),2) &" "& formatdatetime(now(),4) )
+	mcontents = replace(mcontents, "#DOMAIN#"  , g_host & BASE_PATH )
 
 	Dim mailMessage : mailMessage = MailSend(mtitle, mcontents, mto, mfrom, attachPath)
 	sendSmsEmail = mailMessage
@@ -109,6 +110,9 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 	ElseIf actType = "join_state_ceo" Then 
 		strFile = server.mapPath(BASE_PATH &"common/mailform/join_state_ceo.html")
 		strTitle = "[OCEAN Service center] Information for Approval of OCEAN Membership Request"
+	ElseIf actType = "alarm" Then 
+		strFile = server.mapPath(BASE_PATH & "common/mailform/board_alarm.html")
+		strTitle = "[OCEAN Service center] 신규 글이 등록되었습니다."
 	End If
 
 	Dim mfrom		: mfrom		= "OCEAN<araha@keti.re.kr>"
@@ -123,6 +127,7 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 	mcontents = replace(mcontents, "#PHONE#"   , phone )
 	mcontents = replace(mcontents, "#CONTANTS#", contants )
 	mcontents = replace(mcontents, "#DATE#"    , formatdatetime(now(),2) &" "& formatdatetime(now(),4) )
+	mcontents = replace(mcontents, "#DOMAIN#"  , g_host & BASE_PATH )
 
 	Dim mailMessage : mailMessage = MailSend(mtitle, mcontents, mto, mfrom, attachPath)
 	sendSmsEmail_state = mailMessage

@@ -133,7 +133,7 @@ End Sub
 		</div>
 
 		<div class="main_notice">
-			<div class="title">DOWNLOAD <!--a href="../community/files.asp" class="more">+ 더보기</a--></div>
+			<div class="title">DOWNLOAD <a href="../download/" class="more">+ MORE</a></div>
 			<div class="contants">
 				<table cellpadding="0" cellspacing="0" class="table">
 					<%for iLoop = 0 to cntList2%>

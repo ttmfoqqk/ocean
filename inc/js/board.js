@@ -57,7 +57,7 @@ function ajax_board_list(params,pageNo,rows,obj,btn,selected){
 
 				html += '' +
 				'<div class="block">'+
-					'<a href="#" onclick="$(this).next().toggle();return false;" class="link" data-idx="' +no+ '">' +title+ ' <span class="data">' +created+ '</span></a>'+
+					'<a href="#" onclick="$(this).next().toggle();setLeftHeight();return false;" class="link" data-idx="' +no+ '">' +title+ ' <span class="data">' +created+ '</span></a>'+
 					'<div class="sub">'+
 						'<div class="contents">' +contents+ '</div>'+
 						tmp_html +
@@ -82,12 +82,15 @@ function ajax_board_list(params,pageNo,rows,obj,btn,selected){
 			setLeftHeight();
 			
 			if( selected ){
-				setTimeout(function(){
+				//setTimeout(function(){
 					var select_obj = $obj.find('a.link[data-idx="'+selected+'"]');
+					if( !select_obj.next().is(':visible') ){
+						select_obj.next().toggle();
+					}
 					var offset = select_obj.offset();
 					$( 'html, body' ).scrollTop(offset.top-50);
 					select_obj.focus();
-				},300);
+				//},300);
 			}
 
 		},error:function(err){

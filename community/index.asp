@@ -133,9 +133,9 @@ End Sub
 			<h3 class="title" id="page_title"><!-- script 에서 작성 --></h3>
 
 			<div class="board_tap">
-				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
-				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My Contribution</a>
-				<a href="../Community/write.asp?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=<%=tab3%>">Contribution</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My Contribution</a>
+				<a href="../Community/write.asp?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=<%=tab3%>">Contribution</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 

@@ -135,15 +135,23 @@ If FI_CEO_FG > 0 Then
 	'대표자 인증 메일 발송
 	complete_code = Base64encode( (FI_USER_IDENTITY * len(userId)) & "," & userId )
 	email_result1 = sendSmsEmail( "join_complete" , userId , "" , userId , complete_code , "" )
-	'email_result1 = sendSmsEmail( "join_ceo" , userId , userId , now() , "" )
-	'email_result2 = sendSmsEmail_state( "join_state_admin" , admin_email_addr , cName , "대표자" , userPosition , FirstName &" "& LastName , userhPhone , now() , "" )
+	
+	With Response
+	    .Write "<script language='javascript' type='text/javascript'>"
+	    .Write "alert('인증메일을 발송했습니다.메일을 확인해 주세요.');"
+	    .Write "location.href='result.asp';"
+	    .Write "</script>"
+	    .End
+	End With
+	
 Else
 	email_result1 = sendSmsEmail( "join_staff" , userId , "" , userId , "" , "" )
 	email_result2 = sendSmsEmail_state( "join_state_ceo" , FI_EMAIL , companyName , "" , userPosition , FirstName &" "& LastName , userhPhone , userId , "" )
+	response.redirect "result.asp"
 End If
 
 'Dim result : result = sendSmsEmail( "join" , userId , userEmail1 & "@" & userEmail2 , now() , "" )
-response.redirect "result.asp"
+
 
 
 

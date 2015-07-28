@@ -1,26 +1,26 @@
 @charset "utf-8";
 @font-face{
 	font-family:ng;
-	src:url('/ocean/inc/font/NanumGothic.eot');
-	src:url('/ocean/inc/font/NanumGothic.eot?#iefix') format('embedded-opentype'),
-	url('/ocean/inc/font/NanumGothic.woff') format('woff'),
-	url('/ocean/inc/font/NanumGothic.ttf') format('truetype');
+	src:url('/inc/font/NanumGothic.eot');
+	src:url('/inc/font/NanumGothic.eot?#iefix') format('embedded-opentype'),
+	url('/inc/font/NanumGothic.woff') format('woff'),
+	url('/inc/font/NanumGothic.ttf') format('truetype');
 }
 
 @font-face{
 	font-family:nbg;
-	src:url('/ocean/inc/font/NanumBarunGothic.eot');
-	src:url('/ocean/inc/font/NanumBarunGothic.eot?#iefix') format('embedded-opentype'),
-	url('/ocean/inc/font/NanumBarunGothic.woff') format('woff'),
-	url('/ocean/inc/font/NanumBarunGothic.ttf') format('truetype');
+	src:url('/inc/font/NanumBarunGothic.eot');
+	src:url('/inc/font/NanumBarunGothic.eot?#iefix') format('embedded-opentype'),
+	url('/inc/font/NanumBarunGothic.woff') format('woff'),
+	url('/inc/font/NanumBarunGothic.ttf') format('truetype');
 }
 
 @font-face{
 	font-family:nm;
-	src:url('/ocean/inc/font/NanumMyeongjo.eot');
-	src:url('/ocean/inc/font/NanumMyeongjo.eot?#iefix') format('embedded-opentype'),
-	url('/ocean/inc/font/NanumMyeongjo.woff') format('woff'),
-	url('/ocean/inc/font/NanumMyeongjo.ttf') format('truetype');
+	src:url('/inc/font/NanumMyeongjo.eot');
+	src:url('/inc/font/NanumMyeongjo.eot?#iefix') format('embedded-opentype'),
+	url('/inc/font/NanumMyeongjo.woff') format('woff'),
+	url('/inc/font/NanumMyeongjo.ttf') format('truetype');
 }
 
 
@@ -349,8 +349,9 @@ table.table_wrap{border-top:1px solid #4f4f4f;border-bottom:1px solid #4f4f4f;fo
 }
 #middle .dowunload_list .block a.link{display:block;padding:0px 45px 0px 45px;background:url(../../img/icon_board_list.png) no-repeat 30px 15px;}
 #middle .dowunload_list .block .data{position:absolute;top:0px;right:30px;}
-#middle .dowunload_list .block .sub{background-color:#ffffff;border-top:1px solid #cdcccc;display:block;line-height:160%;}
-#middle .dowunload_list .block .sub .contents{padding:20px}
+#middle .dowunload_list .block .sub{background-color:#ffffff;border-top:1px solid #cdcccc;display:none;line-height:160%;}
+#middle .dowunload_list .block .sub .contents{padding:20px;}
+#middle .dowunload_list .block .sub .contents img{max-width:100%;_width:100%;*width:100%;}
 #middle .dowunload_list .block .sub .file{border-top:1px solid #cdcccc;padding:10px 20px 10px 20px;}
 #middle .dowunload_list .block .sub .file label{display:inline-block;width:6%;vertical-align:top;}
 #middle .dowunload_list .block .sub .file div{display:inline-block;width:93%;vertical-align:top;}

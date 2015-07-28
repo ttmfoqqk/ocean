@@ -12,12 +12,12 @@ var device = (function(){
 	}
 	return deviceName;    
 })();
-var snsShare = function(sns) {
+var snsShare = function(sns,url) {
     var snsUrl = "";
     var popupWidth = 0;
     var popupHeight = 0;
 
-	var url = 'http://keti.ithelp.gethompy.com/ocean/';
+	var url = url;
 	var msg = '[OCEAN]';
     
 	switch (sns) {

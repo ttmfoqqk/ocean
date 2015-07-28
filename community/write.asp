@@ -103,8 +103,8 @@ End Sub
 			<h3 class="title" id="page_title"><!-- script 에서 작성 --></h3>
 			
 			<div class="board_tap">
-				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all">All</a>
-				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my">My Contribution</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=all">All</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my">My Contribution</a>
 				<a class="on">Contribution</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
@@ -125,6 +125,8 @@ End Sub
 			<input type="hidden" name="actType2" value="<%=actType%>">
 			<input type="hidden" name="tab1" value="<%=tab1%>">
 			<input type="hidden" name="tab2" value="<%=tab2%>">
+			<input type="hidden" name="category" id="category" value="">
+
 
 			<input type="hidden" name="PageParams" value="<%=Server.urlencode(PageParams)%>">
 			
@@ -141,8 +143,8 @@ End Sub
 					</tr>
 					<tr>
 						<td class="cell_cont">Contents</td>
-						<td class="cell_cont">
-							<textarea name="contants" id="contants" class="input" style="width:100%;height:300px;margin:10px 0px 10px 0px;"><%=FI_Contants%></textarea>
+						<td class="cell_cont" style="padding:10px 10px 10px 20px;">
+							<textarea name="contants" id="contants" style="width:100%;height:300px;display:none;"><%=FI_Contants%></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -182,17 +184,37 @@ $(function(){
 		left_title = $left_menu.find('a.over').text();
 	}
 	$page_title.text(left_title);
-})
+
+	var category = '';
+	$left_menu.find('a.over').each(function(n){
+		category += $(this).text()+ (n < $left_menu.find('a.over').length-1 ? ' > ':'') ;
+	});
+	$('#category').val( category );
+});
+
+
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors,
+	elPlaceHolder: "contants",
+	sSkinURI: "../common/smarteditor/SmartEditor2Skin.html",	
+	htParams : {bUseToolbar : true,
+		fOnBeforeUnload : function(){
+			//
+		}
+	}, //boolean
+	fOnAppLoad : function(){
+		//oEditors.getById["Agree1"].exec("PASTE_HTML", [""]);
+	},
+	fCreator: "createSEditor"
+});
 
 function check(){
 	if( !$.trim( $('#title').val() ) ){
 		alert('제목을 입력해 주세요.');
 		return false;
 	}
-	if( !$.trim( $('#contants').val() ) ){
-		alert('내용을 입력해 주세요.');
-		return false;
-	}
+	oEditors.getById["contants"].exec("UPDATE_CONTENTS_FIELD", []);
 }
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" --> 

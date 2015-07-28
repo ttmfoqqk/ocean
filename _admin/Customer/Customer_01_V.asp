@@ -118,6 +118,9 @@ function del_fm_checkbox(){
 }
 
 </script>
+<style type="text/css">
+	.line_box img{max-width:100%;}
+</style>
 <table cellpadding=0 cellspacing=0 width="990" align=center border=0>
 	<tr>
 		<td class=center_left_area valign=top><!-- #include file = "../inc/left.asp" --></td>

@@ -15,7 +15,7 @@ If upload_file <> "" Then
 	upload_file = DextFileUpload("uploadInputBox",UPLOAD_BASE_PATH & savePath,0)
 End If
 
-Dim url : url = g_host & "/ocean/upload/SmtEdit/" & upload_file
+Dim url : url = g_host & BASE_PATH & "upload/SmtEdit/" & upload_file
 
 Response.redirect "callback.html?callback_func=" & callback_func & "&bNewLine=true&sFileName=" & upload_file & "&sFileURL=" & url
 %>

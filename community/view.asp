@@ -1,6 +1,6 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
-checkLogin( g_host & g_url )
+'checkLogin( g_host & g_url )
 Dim BoardKey    : BoardKey     = 3
 
 Dim arrList
@@ -46,6 +46,7 @@ End If
 
 Call Expires()
 Call dbopen()
+	call Check()
 	Call GetListMenu()
 	If cntListMenu >= 0 Then
 		tab2 = IIF( tab2=0,arrListMenu(MENU_idx,0),tab2 )
@@ -113,6 +114,22 @@ Sub GetListMenu()
 	End If
 	objRs.close	: Set objRs = Nothing
 End Sub
+
+Sub Check()
+	Set objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
+	with objCmd
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_MEMBERSHIP_CHECK"
+		.Parameters("@idx").value = IIF( session("UserIdx")="" ,0,session("UserIdx") )
+		Set objRs = .Execute
+	End with
+	set objCmd = Nothing
+	CALL setFieldValue(objRs, "CHECK")
+	objRs.close	: Set objRs = Nothing
+End Sub
 %>
 <!-- #include file = "../inc/top.asp" -->
 <div id="middle">
@@ -123,16 +140,18 @@ End Sub
 			<h3 class="title" id="page_title"><!-- script 에서 작성 --></h3>
 			
 			<div class="board_tap">
-				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
-				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My Contribution</a>
-				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tap2%>&tab3=<%=tab3%>">Contribution</a>
+				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
+				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My Contribution</a>
+				<a href="../community/write.asp?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=<%=tab3%>">Contribution</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 			
 			<style type="text/css">
+				#board_wrap{width:100%;overflow:hidden;}
 				#board_wrap .cell_title{text-align:left;padding:0px 20px 0px 20px;}
-				#board_wrap .cell_cont{text-align:left;padding:0px 0px 0px 20px;}
+				#board_wrap .cell_cont{text-align:left;padding:0px 20px 0px 20px;}
 				#board_wrap .cell_cont .text_wrap{padding:20px 0px 100px 0px;line-height:160%;}
+				#board_wrap .cell_cont .text_wrap img{max-width:100%;}
 				#board_wrap .file{
 					border:1px solid #bfbfbf;
 					background-color:#ffffff;
@@ -179,12 +198,24 @@ End Sub
 						</td>
 					</tr>
 					<%
+					login_url = g_host & g_url &  "?" & Request.ServerVariables("QUERY_STRING")
+
 					file_html = ""
 					For i=1 to 10
 						fileName = ""
 						execute("fileName =" & "FI_File_name" & IIF(i=1,"",i) )
 						if fileName <> "" then 
-							file_html = file_html & IIF(file_html="","",", ") & "<a href=""../common/download.asp?pach="& BASE_PATH &"upload/Board/&file=" & fileName &""">"& fileName & "</a>"
+							if session("UserIdx") = "" then
+								file_html = file_html & IIF(file_html="","",", ") & "<a href=""javascript:if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){go_Login('" & login_url & "');}"">"& fileName & "</a>"
+							else
+								
+								If CHECK_CNT = 0 Then
+									file_html = file_html & IIF(file_html="","",", ") & "<a href=""javascript:void(alert('관리자 승인 후 다운로드가 가능합니다.'));"">"& fileName & "</a>"
+								else
+									file_html = file_html & IIF(file_html="","",", ") & "<a href=""../Community/download.asp?file="& escape(fileName) &"&idx=" & FI_Idx &""">"& fileName & "</a>"
+								end if
+
+							end if
 						end if
 					Next
 					if file_html <> "" then 
@@ -209,7 +240,18 @@ End Sub
 									execute("fileName =" & "arrList(PARENT_File_name" & IIF(i=1,"",i) &",iLoop)" )
 
 									if fileName <> "" then 
-										temp_file = temp_file & "<a href=""../common/download.asp?pach="& BASE_PATH &"upload/Board/&file=" & fileName &""">"& fileName & "</a>"
+										if session("UserIdx") = "" then
+											temp_file = temp_file & IIF(temp_file="","",", ") & "<a href=""javascript:if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){go_Login('" & login_url & "');}"">"& fileName & "</a>"
+										else
+											
+											If CHECK_CNT = 0 Then
+												temp_file = temp_file & IIF(temp_file="","",", ") & "<a href=""javascript:void(alert('관리자 승인 후 다운로드가 가능합니다.'));"">"& fileName & "</a>"
+											else
+												temp_file = temp_file & IIF(temp_file="","",", ") & "<a href=""../Community/download.asp?file="& escape(fileName) &"&idx=" & arrList(PARENT_Idx,iLoop) &""">"& fileName & "</a>"
+											end if
+
+										end if
+
 									end if
 								Next
 							 
@@ -273,6 +315,10 @@ function go_Delete(obj,idx){
 	}else{
 		obj.removeClass('btn_visited');
 	}
+}
+
+function go_Login(url){
+	location.href='../login/?goUrl='+encodeURIComponent(url);
 }
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" -->

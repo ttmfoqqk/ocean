@@ -75,16 +75,16 @@ End Sub
 									<%if BoardKey = "1" then %>
 									<select id="tab" name="tab">
 										<option value="">선택</option>
-										<option value="1" <%=IIF(FI_tap = "1","selected","")%>>Mobius</option>
-										<option value="2" <%=IIF(FI_tap = "2","selected","")%>>&CUBE</option>
-										<option value="3" <%=IIF(FI_tap = "3","selected","")%>>Open Contribution</option>
+										<option value="1" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "1","selected","")%>>Mobius</option>
+										<option value="2" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "2","selected","")%>>&CUBE</option>
+										<option value="3" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "3","selected","")%>>Open Contribution</option>
 									</select>
 									<%elseif BoardKey = "3" then %>
 									<select id="tab" name="tab">
 										<option value="">선택</option>
-										<option value="1" <%=IIF(FI_tap = "1","selected","")%>>community 1</option>
-										<option value="2" <%=IIF(FI_tap = "2","selected","")%>>community 2</option>
-										<option value="3" <%=IIF(FI_tap = "3","selected","")%>>community 3</option>
+										<option value="1" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "1","selected","")%>>community 1</option>
+										<option value="2" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "2","selected","")%>>community 2</option>
+										<option value="3" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "3","selected","")%>>community 3</option>
 									</select>
 									<%end if%>
 								</td>
