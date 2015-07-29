@@ -21,6 +21,7 @@ end if
 
 <script type="text/javascript" src="../common/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/JavaScript" src="../inc/js/default.js"></script>
+<script type="text/JavaScript" src="../inc/js/jquery-slider-rolling.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../inc/css/default.css?<%=Timestamp()%>">
 <script src="http://dmaps.daum.net/map_js_init/postcode.js"></script>

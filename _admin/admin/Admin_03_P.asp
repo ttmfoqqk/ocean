@@ -1,4 +1,4 @@
-<!-- #include file = "../inc/header_utf8.asp" -->
+<!-- #include file = "../inc/header.asp" -->
 <%
 Dim DataMsg : DataMsg = "login"
 Dim actType : actType = Trim( Request.Form("actType") )

@@ -108,6 +108,17 @@ For iLoop = 0 To cntList
 		btnFg = "1"
 	end if
 
+	statusText = ""
+	if tab3 = "my" then 
+		If arrList(FI_status,iLoop) = "0" Then
+			statusTxt = "Post"
+		elseif arrList(FI_status,iLoop) = "1" Then
+			statusTxt = "Review"
+		elseif arrList(FI_status,iLoop) = "2" Then
+			statusTxt = "Posted"
+		End if
+	end if
+
 	temp = temp & "<item>"
 	temp = temp & "	<no><![CDATA["       & arrList(FI_idx, iLoop)      & "]]></no>"
 	temp = temp & "	<rownum><![CDATA["   & arrList(FI_rownum, iLoop)   & "]]></rownum>"
@@ -121,6 +132,7 @@ For iLoop = 0 To cntList
 	temp = temp & "	<wId><![CDATA["      & arrList(FI_ContId, iLoop)   & "]]></wId>"
 	temp = temp & "	<wName><![CDATA["    & arrList(FI_ContName, iLoop) & "]]></wName>"
 	temp = temp & "	<btnFg><![CDATA["    & btnFg                       & "]]></btnFg>"
+	temp = temp & "	<status><![CDATA["   & statusTxt                   & "]]></status>"
 	temp = temp & temp_file
 	temp = temp & "</item>"
 Next

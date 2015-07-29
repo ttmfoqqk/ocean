@@ -196,7 +196,14 @@ End Sub
 
 		<div class="main_banner">
 			<h4 class="color_green">MEMBERS</h4>
-			<div style="margin:20px 0px 0px 0px;"><img src="../img/main_icon_4.gif"></div>
+			<div style="margin:auto 0px;margin:20px 0px 0px 0px;">
+				<ul class="movie">
+					<li id='p_click3'><span class="blind">이전</span></li>
+					<!-- width 를 늘일 경우 노출되는 아이템이 늘어납니다. 다음 이전 버튼은 필수는 아닙니다. -->
+					<li><div id="srolling3" style="position: relative;overflow:hidden;width:900px;height:565px;margin-left:40px;"></div></li>
+					<li id='n_click3'><span class="blind">다음</span></li>
+				</ul>
+			</div>
 		</div>
 
 	</div>
@@ -255,6 +262,33 @@ $(function(){
 			});
 		});
 	}
+
+
+	var data = [
+		"<img src=\"../img/MEMBERS/01.jpg\">",
+		"<img src=\"../img/MEMBERS/02.jpg\">",
+		"<img src=\"../img/MEMBERS/03.jpg\">",
+		"<img src=\"../img/MEMBERS/04.jpg\">",
+		"<img src=\"../img/MEMBERS/05.jpg\">",
+		"<img src=\"../img/MEMBERS/06.jpg\">"
+	];
+
+	jQuery("#srolling3").srolling({
+		 data        : data
+		,auto        : true
+		,item_count  : 1
+		,cache_count : 6
+		,width       : 900
+		,height      : 565
+		,delay       : 4000
+		,delay_frame : 1000
+		,move        : 'left'
+		,prev        : '#p_click3'
+		,next        : '#n_click3'
+		,is_bullet   : false
+	});
+
+
 });
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" -->

@@ -4,7 +4,7 @@ checkAdminLogin(g_host & g_url)
 Dim alertMsg        : alertMsg        = ""
 Dim actType         : actType         = Trim( Request.Form("actType") )
 Dim user_idx        : user_idx        = IIF( Request.Form("user_idx")="",0,Request.Form("user_idx") )
-Dim user_id         : user_id         = Request.Form("user_id_hidden")
+Dim user_id         : user_id         = Request.Form("user_id")
 Dim user_hphone     : user_hphone     = Trim( Request.Form("user_hphone") )
 Dim user_phone      : user_phone      = Trim( Request.Form("user_phone") )
 Dim user_bigo       : user_bigo       = TagEncode( Trim( Request.Form("user_bigo")) )
@@ -59,10 +59,20 @@ Call dbopen()
 
 		Call Insert()
 
-		If FI_IN_CNT > 0 Then 
+		If FI_CEO_FG > 0 Then 
 			With Response
 			 .Write "<script language='javascript' type='text/javascript'>"
 			 .Write "alert('이미 설정된 대표자가 있습니다.');"
+			 .Write "history.go(-1);"
+			 .Write "</script>"
+			 .End
+			End With
+		End If
+
+		If FI_IN_CNT > 0 Then 
+			With Response
+			 .Write "<script language='javascript' type='text/javascript'>"
+			 .Write "alert('현재 사용중인 아이디입니다.');"
 			 .Write "history.go(-1);"
 			 .Write "</script>"
 			 .End
@@ -93,6 +103,7 @@ Sub Insert()
 		.CommandText      = "OCEAN_USER_MEMBER_P"
 		.Parameters("@actType").value          = actType
 		.Parameters("@UserIdx").value          = user_idx
+		.Parameters("@UserId").value           = user_id
 		.Parameters("@NewUserPass").value      = user_pass
 		.Parameters("@UserHPhone").value       = user_hphone
 		.Parameters("@UserPhone").value        = user_phone

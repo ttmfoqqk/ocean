@@ -69,7 +69,7 @@ End Sub
 			<table cellpadding="0" cellspacing="0" class="table">
 				<tr>
 					<td style="width:20px;"><input type="checkbox" name="check_all"></td>
-					<td><b>아이디</b></td>
+					<td><b>Id</b></td>
 					<td style="width:150px;"><b>Name</b></td>
 					<td style="width:140px;"><b>Department/Position</b></td>
 					<td style="width:140px;"><b>Date</b></td>

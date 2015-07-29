@@ -1,5 +1,8 @@
 <!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../inc/top.asp" -->
+<style type="text/css">
+	#middle .dowunload_list .block .sub{display:block;}
+</style>
 <div id="middle">
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">

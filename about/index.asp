@@ -28,7 +28,7 @@
 			</p>
 			<p class="page_contants">
 				<b class="color_green">Joining process and entry requirements</b><br><br>
-				<div><img src="../img/joinInfo.gif" style="width:100%;"></div>
+				<div><img src="../img/joinInfo.gif" style="width:130%;margin-left:-120px;"></div>
 			</p>
 		</div>
 		

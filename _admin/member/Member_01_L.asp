@@ -132,7 +132,7 @@ function openPop(user_idx){
 					'</tr>'+
 					'<tr height=28>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0" width="115">아이디</td>'+
-						'<td class="line_box" id="user_id" name="user_id"></td>'+
+						'<td class="line_box"><input type="text" id="user_id" name="user_id" class="input"> <span id="user_id_ref"></span></td>'+
 					'</tr>'+
 					'<tr height=28>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0" width="115">새 비밀번호</td>'+
@@ -244,7 +244,10 @@ function openPop(user_idx){
 
 					$('#user_date').text( UserIndate_full );
 					$('#user_name').text( UserName + ' ' + UserNameLast );
-					$('#user_id').text( UserId +' '+ ( UserEmail==''?'':' [ '+UserEmail+' ] ' ) );
+					//$('#user_id').text( UserId +' '+ ( UserEmail==''?'':' [ '+UserEmail+' ] ' ) );
+					
+					$('#user_id').val(UserId);
+					//$('#user_id_ref').text( ( UserEmail==''?'':'[ '+UserEmail+' ]' ) );
 					$('#user_id_hidden').val(UserId);
 					$('#user_hphone').val( UserHPhone );
 					$('#user_phone').val( UserPhone );

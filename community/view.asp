@@ -177,17 +177,17 @@ End Sub
 						<td class="cell_title"><%=FI_title%></td>
 					</tr>
 					<tr>
-						<td class="cell_cont">
+						<td class="cell_cont" style="text-align:right;">
 							<%=FI_ContName%> | 
 							<%=FI_Indate%> | 
-							Views <%=FI_Read_cnt%> | 
+							Views <%=FI_Read_cnt%>
 							<%
 							If FI_status = "0" Then
-								Response.Write("New")
+								Response.Write(" | New")
 							elseif FI_status= "1" Then
-								Response.Write("Inprogress")
+								Response.Write(" | Inprogress")
 							elseif FI_status= "2" Then
-								Response.Write("Closed")
+								Response.Write(" | Closed")
 							End if
 							%>
 						</td>
@@ -259,7 +259,7 @@ End Sub
 							 <div class="parent_contents_wrap">
 								<table cellpadding=0 cellspacing=0 width="100%">
 									<td class="cell_cont" style="border:0px;">
-										<div class="text_wrap"><%=arrList(PARENT_Title,iLoop)%></div>
+										<div class="text_wrap"><%=arrList(PARENT_Contants,iLoop)%></div>
 									</td>
 									<%if temp_file <> "" then %>
 									<tr>

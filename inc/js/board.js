@@ -34,7 +34,10 @@ function ajax_board_list(params,pageNo,rows,obj,btn,selected){
 				var tab1     = $(this).find('tab1').text();
 				var tab2     = $(this).find('tab2').text();
 				var btnFg    = $(this).find('btnFg').text();
+				var status   = $(this).find('status').text();
 				var file     = $(this).find('file');
+				
+				var tag_html = '<span class="tag">By ' + wName + (status ? (' ,<b>'+status+'</b>') :'') + '</span>';
 
 				file.each(function( f_index ){
 					var link = $(this).find('link').text();
@@ -59,7 +62,7 @@ function ajax_board_list(params,pageNo,rows,obj,btn,selected){
 				'<div class="block">'+
 					'<a href="#" onclick="$(this).next().toggle();setLeftHeight();return false;" class="link" data-idx="' +no+ '">' +title+ ' <span class="data">' +created+ '</span></a>'+
 					'<div class="sub">'+
-						'<div class="contents">' +contents+ '</div>'+
+						'<div class="contents">' + tag_html +contents+ '</div>'+
 						tmp_html +
 						btn_html +
 					'</div>'+
@@ -82,15 +85,16 @@ function ajax_board_list(params,pageNo,rows,obj,btn,selected){
 			setLeftHeight();
 			
 			if( selected ){
-				//setTimeout(function(){
-					var select_obj = $obj.find('a.link[data-idx="'+selected+'"]');
-					if( !select_obj.next().is(':visible') ){
-						select_obj.next().toggle();
-					}
+				var select_obj = $obj.find('a.link[data-idx="'+selected+'"]');
+				if( !select_obj.next().is(':visible') ){
+					select_obj.next().toggle();
+				}
+				
+				setTimeout(function(){
 					var offset = select_obj.offset();
 					$( 'html, body' ).scrollTop(offset.top-50);
 					select_obj.focus();
-				//},300);
+				},300);
 			}
 
 		},error:function(err){

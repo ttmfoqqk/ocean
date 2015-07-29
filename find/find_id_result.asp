@@ -49,13 +49,13 @@ End Sub
 		<h2 class="page_title">Find ID</h2>
 		
 		<div style="font-size:14px;line-height:180%;">
-			<h3>입력하신 회원정보로 가입된 <span class="color_blue">아이디</span>를 알려드립니다.</h3>
+			<h3>The requested ID</h3>
 		</div>
 		
 		<center>
 		<div style="display:inline-block;margin-top:30px;">
 			<div style="line-height:200%;display:inline-block;text-align:left;">
-			<label><h2 class="color_blue" style="display:inline-block;"><%=FI_userId%></h4> (<%=FI_UserIndate%> 가입) </label><br>
+			<label><h2 class="color_blue" style="display:inline-block;"><%=FI_userId%></h4> (<%=FI_UserIndate%> Application complete) </label><br>
 			</div>
 		</div>
 		</center>

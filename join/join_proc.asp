@@ -79,7 +79,7 @@ End If
 
 
 If files2 <>"" Then 
-	If FILE_CHECK_EXT(files2) = True Then
+	If FILE_CHECK_TEMP(files2) = True Then
 		If UPLOAD__FORM.MaxFileLen >= UPLOAD__FORM("files2").FileLen Then 
 			files2 = DextFileUpload("files2",UPLOAD_BASE_PATH & savePath,0)
 		Else
@@ -94,7 +94,7 @@ If files2 <>"" Then
 	Else
 		With Response
 		 .Write "<script language='javascript' type='text/javascript'>"
-		 .Write "alert('Invalid file [asp,php,jsp,html,js] files can not be uploaded');"
+		 .Write "alert('you can register [jpg, bmp, gif, png]');"
 		 .Write "history.go(-1);"
 		 .Write "</script>"
 		 .End
@@ -135,20 +135,14 @@ If FI_CEO_FG > 0 Then
 	'대표자 인증 메일 발송
 	complete_code = Base64encode( (FI_USER_IDENTITY * len(userId)) & "," & userId )
 	email_result1 = sendSmsEmail( "join_complete" , userId , "" , userId , complete_code , "" )
-	
-	With Response
-	    .Write "<script language='javascript' type='text/javascript'>"
-	    .Write "alert('sent a confirmation mail. Please check your e-mail.');"
-	    .Write "location.href='result.asp';"
-	    .Write "</script>"
-	    .End
-	End With
-	
+	Session("temp_join_result") = "CEO"
 Else
 	email_result1 = sendSmsEmail( "join_staff" , userId , "" , userId , "" , "" )
 	email_result2 = sendSmsEmail_state( "join_state_ceo" , FI_EMAIL , companyName , "" , userPosition , FirstName &" "& LastName , userhPhone , userId , "" )
-	response.redirect "result.asp"
+	Session("temp_join_result") = "STAFF"
 End If
+
+response.redirect "result.asp"
 
 'Dim result : result = sendSmsEmail( "join" , userId , userEmail1 & "@" & userEmail2 , now() , "" )
 
@@ -224,4 +218,19 @@ Sub admin_email()
 
 	Set objRs = Nothing
 End Sub
+
+
+'----------------------------------------------------------------------------------------------
+' 파일확장자 체크
+'----------------------------------------------------------------------------------------------
+Function FILE_CHECK_TEMP(ByVal filePath)
+	Dim fileExt,temp
+	fileExt = LCase(Mid(filePath, InStrRev(filePath, ".") + 1))
+	If fileExt = "jpg" Or fileExt = "gif" Or fileExt = "jpeg" Or fileExt = "png" Or fileExt = "bmp" Then 
+		temp = true
+	Else
+		temp = false
+	End If
+	FILE_CHECK_TEMP = temp
+End Function 
 %>

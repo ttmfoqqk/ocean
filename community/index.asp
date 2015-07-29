@@ -156,13 +156,13 @@ End Sub
 
 			<div id="board_wrap">
 
-				<table cellpadding=0 cellspacing=0 width="100%" class="table_wrap">
+				<table cellpadding=0 cellspacing=0 width="100%" class="table_wrap" style="table-layout:fixed;">
 					<tr>
 						<td class="cell_title" style="width:60px;">No</td>
 						<td class="cell_title">TItle</td>
-						<td class="cell_title" style="width:140px;">Name</td>
-						<td class="cell_title" style="width:140px;">Date</td>
-						<td class="cell_title" style="width:70px;">Status</td>
+						<td class="cell_title" style="width:120px;">Name</td>
+						<td class="cell_title" style="width:120px;">Date</td>
+						<td class="cell_title" style="width:60px;">Status</td>
 					</tr>
 					<%for iLoop = 0 to cntList
 						
@@ -197,7 +197,7 @@ End Sub
 					<tr>
 						<td class="cell_cont"><%=arrList(FI_rownum,iLoop)%></td>
 						<td class="cell_cont" style="text-align:left;">
-							<div style="margin-left:<%=margin%>px;"><a href="<%=onclick%>"><%= nbsp & title%></a></div>
+							<div style="margin-left:<%=margin%>px;" class="ellipsis"><a href="<%=onclick%>"><%= nbsp & title%></a></div>
 						</td>
 						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI_ContName,iLoop)%></a></td>
 						<td class="cell_cont"><a href="<%=onclick%>"><%=arrList(FI_Indate,iLoop)%></a></td>

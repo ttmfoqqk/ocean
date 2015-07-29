@@ -35,27 +35,99 @@ End Sub
 		<div id="contant">
 			<h3 class="title">Account Changes</h3>
 			
-			<%if Session("change_id") = "false" then %>
-				<div style="width:450px;margin:0px auto;">
-					<h1>리뉴얼전 사용자는 회원정보를 변경해주시기 바랍니다.</h1>
-				</div>
-			<%end if%>
-
 			<form name="mForm" id="mForm" method="post" action="info_proc.asp" onsubmit="return checkJoin()">
+			
+			<%if Session("change_id") = "false" then %>
+			<p class="page_contants" >
+				<b class="color_red" style="font-size:17px;">
+					The users who have already signed up will not be allowed to log in with the ID. <br>
+					Please, create a new email-based account and update your information in the following form:
+				</b><br>
+			</p>
+			
+			<style type="text/css">
+				.label{font-weight:bold;font-size:14px;width:220px;}
+				.form_wrap .row{margin:10px 0px 10px 0px;}
+			</style>
+			<div class="form_wrap">
+				<table cellpadding="0" cellspacing="0" width="100%">
+					<tr>
+						<td class="label">OLD ID</td>
+						<td>
+							<div class="row">
+								<span style="font-size:20px;"><b><%=FI_UserId%></b></span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Company</td>
+						<td>
+							<div class="row">
+								<span style="font-size:20px;"><b><%=FI_cName%></b></span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Company Email ( User Account )</td>
+						<td>
+							<div class="row">
+								<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" value="<%=FI_UserEmail%>" maxlength="320" placeholder="Company Email ( User Account )">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">First Name/Last Name</td>
+						<td>
+							<div class="row">
+								<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;vertical-align:middle;">
+									<input type="text" class="input" id="FirstName" name="FirstName" maxlength="30" style="width:88%;" placeholder="First Name" value="<%=FI_UserName%>">
+								</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;vertical-align:middle;text-align:right;">
+									<input type="text" class="input" id="LastName" name="LastName" maxlength="30" style="width:88%;" placeholder="Last Name" value="<%=FI_UserNameLast%>">
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Department/Position</td>
+						<td>
+							<div class="row">
+								<input type="text" id="userPosition" name="userPosition" class="input" style="width:95%;" maxlength="100" value="<%=FI_UserPosition%>" placeholder="Department/Position">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Mobile. No</td>
+						<td>
+							<div class="row">
+								<input type="text" id="userhPhone" name="userhPhone" class="input" style="width:95%;" maxlength="30" value="<%=UserHPhone%>" placeholder="Mobile. No">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Tel. No</td>
+						<td>
+							<div class="row">
+								<input type="text" id="userPhone" name="userPhone" class="input" style="width:95%;" maxlength="30" value="<%=UserPhone%>" placeholder="Tel. No">
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+
+			<%else%>
+
+		
+
+			
 			<div class="form_wrap" style="width:450px;">
 				<div class="row">
 					<span style="font-size:20px;"><b><%=FI_UserId%></b></span>
 				</div>
+
 				<div class="row">
 					<span style="font-size:20px;"><b><%=FI_cName%></b></span>
 				</div>
-				
-				<%if Session("change_id") = "false" then %>
-				<div class="row">
-					<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" value="<%=FI_UserEmail%>" maxlength="320" placeholder="Company Email ( User Account )">
-					<span>아이디로 변경할 이메일 안내</span>
-				</div>
-				<%end if%>
 
 				<div class="row">
 					<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;vertical-align:middle;">
@@ -74,15 +146,16 @@ End Sub
 				<div class="row">
 					<input type="text" id="userPhone" name="userPhone" class="input" style="width:95%;" maxlength="30" value="<%=UserPhone%>" placeholder="Tel. No">
 				</div>
-
-				<div style="margin:30px;text-align:center;" class="btn_area">
-					<button type="submit" class="btn">Submit</button>
-				</div>
-
-				</div>
 			</div>
-			</form>
+			
+		
+			<%end if%>
 
+			<div style="margin:30px;text-align:center;" class="btn_area">
+				<button type="submit" class="btn">Submit</button>
+			</div>
+
+			</form>
 
 		</div>
 		

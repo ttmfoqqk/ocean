@@ -25,7 +25,7 @@ End If
 '------------------------------------------------------------------------------------
 Function checkAdminLogin(url)
 	If session("Admin_Id")="" or IsNull(session("Admin_Id"))=True Then 
-		response.redirect "../index.asp?GoUrl=" & server.urlencode(url)
+		response.redirect "../index.asp?GoUrl=" & server.urlencode(url &  "?" & Request.ServerVariables("QUERY_STRING"))
 	End If
 End Function
 

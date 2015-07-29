@@ -116,17 +116,16 @@ End Sub
 
 		<p class="page_contants" style="text-align:center;">
 			<%if error_code = 0 then %>
-			<b class="color_green">인증성공</b><br><br>
-			관리자 승인 후 멤버 가입이 이루어집니다.
+			<b class="color_green">Application Complete</b><br><br>
+			The joining process will be completed after getting the approval from OCEAN administrator.
 			<%else%>
-			<b class="color_green">인증실패</b><br><br>
-			관리자에게 문의하세요. <br>
-			araha@keti.re.kr
+			<b class="color_green">Application fail</b><br><br>
+			Please contact administrator
 			<%end if%>
 		</p>
 
 		<div style="margin:30px;">
-			<button type="button" class="btn" onclick="location.href='../login/';">Login</button>
+			<img src="../img/logo_footer.png">
 		</div>
 
 		

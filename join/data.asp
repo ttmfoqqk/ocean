@@ -303,7 +303,7 @@ $(function(){
 
 });
 
-var $ajaxIdCheck = false;
+$ajaxIdCheck = false;
 var ajaxIdCheck = function( value ){
 	$.ajax({
 		type    : 'GET',
@@ -325,6 +325,8 @@ var ajaxIdCheck = function( value ){
 }
 
 $userId = $('#userId');
+
+ajaxIdCheck($userId.val());
 $userId.blur(function(){
 	ajaxIdCheck($(this).val());
 }).keyup(function(){
@@ -358,12 +360,17 @@ function checkJoin(){
 
 	var checkform = checkInputValue(data);
 	if(!checkform){return false;}
-	if(!$ajaxIdCheck){alert('The ID is currently in use');return false;}
 
 	if( $('#companySelect').val() == 'NEW' ){
 		
 		var checkformCo = checkInputValue(dataCo);
 		if(!checkformCo){return false;}
+
+		var check_file = checkTitleFileType( $('#files2').val() );
+		if( !check_file ){
+			alert("you can register [jpg, bmp, gif, png]" ); 
+			return false;
+		}
 
 		if( $('.business_check:checked').length <= 0 ){
 			alert('Please select one or more businesses');
@@ -375,8 +382,21 @@ function checkJoin(){
 			return false;
 		}
 	}
+
+	if(!$ajaxIdCheck){alert('The ID is currently in use');return false;}
+
 	$('.btn_area').html('Loading.');
 }
 
+function checkTitleFileType(obj){ 
+	pathpoint = obj.lastIndexOf('.'); 
+	filepoint = obj.substring(pathpoint+1,obj.length); 
+	filetype = filepoint.toLowerCase(); 
+	if (filetype == 'gif'|| filetype == 'jpg' || filetype == 'jpeg' || filetype == 'bmp' || filetype == 'png'){
+		return true;
+	}else{
+		return false;
+	}
+}
 </SCRIPT>
 <!-- #include file = "../inc/footer.asp" -->
