@@ -1,6 +1,7 @@
 /* 
 /*userId 칼럼 길이 변경*/
 alter table [OCEAN_USER_MEMBER] alter column [UserId] varchar(320) null
+
 /*userName(first name) 칼럼 길이 변경*/
 alter table [OCEAN_USER_MEMBER] alter column [UserName] varchar(100) null
 
@@ -9,10 +10,13 @@ alter table [OCEAN_USER_MEMBER] add [UserNameLast] varchar(100) null
 alter table [OCEAN_USER_MEMBER] add [UserHPhone] varchar(200) null
 alter table [OCEAN_USER_MEMBER] add [UserPhone] varchar(200) null
 
+
+
 /*기업맴버 Country,bigo 칼럼 추가*/
 alter table [OCEAN_MEMBERSHIP] add [Country] varchar(100) null
 alter table [OCEAN_MEMBERSHIP] add [bigo] TEXT null
 alter table [OCEAN_MEMBERSHIP] add [addr] varchar(max) null
+
 
 
 
@@ -23,15 +27,14 @@ alter table [OCEAN_BOARD] add [status] INT null
 /*OCEAN_BOARD 답글 부모IDX 칼럼 추가*/
 alter table [OCEAN_BOARD] add [parent_idx] INT null
 
-/*OCEAN_BOARD file 칼럼 추가 - 미적용*/
-alter table [OCEAN_BOARD] add [File_name11] varchar(200) null
+
 
 
 /*커뮤니티 키 생성*/
 INSERT INTO [keti].[dbo].[OCEAN_BOARD_CODE]([Type],[Name],[UseLv],[State],[Order],[Replylfg],[CommentFg])VALUES('NOTICE','커뮤니티',0,0,30,1,0)
 
 
-/*기초코드 국가 키, 직원수 생성*/
+/*기초코드 국가 키, 직원수 생성  -- IDENTITY 주의 */
 INSERT INTO [keti].[dbo].[OCEAN_COMM_CODE1]([Name],[Order],[Bigo],[UsFg])VALUES('국가',40,'',0)
 DECLARE @IDENTITY INT 
 SET @IDENTITY = SCOPE_IDENTITY()
@@ -44,7 +47,8 @@ INSERT INTO [keti].[dbo].[OCEAN_COMM_CODE2]([PIdx],[Name],[Order],[UsFg],[Bigo])
 
 
 
-/* 
+/* 참고
+
 	OCEAN_MEMBERSHIP_V 체크
 	
 	OCEAN_BOARD_CONT_L 수정
@@ -61,6 +65,8 @@ INSERT INTO [keti].[dbo].[OCEAN_COMM_CODE2]([PIdx],[Name],[Order],[UsFg],[Bigo])
 	
 	OCEAN_MEMBERSHIP_V 수정
 	OCEAN_MEMBERSHIP_L 수정
+	
+	OCEAN_DOWNLOAD_LOG_L 수정
 */
 
 */

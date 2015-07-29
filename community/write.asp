@@ -24,7 +24,7 @@ PageParams = "pageNo=" & pageNo &_
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -34,7 +34,7 @@ End If
 If tab2 <> "" And IsNumeric( tab2 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -104,8 +104,8 @@ End Sub
 			
 			<div class="board_tap">
 				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=all">All</a>
-				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my">My Contribution</a>
-				<a class="on">Contribution</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my">My question</a>
+				<a class="on">Ask a Question</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 
@@ -144,7 +144,7 @@ End Sub
 					<tr>
 						<td class="cell_cont">Contents</td>
 						<td class="cell_cont" style="padding:10px 10px 10px 20px;">
-							<textarea name="contants" id="contants" style="width:100%;height:300px;display:none;"><%=FI_Contants%></textarea>
+							<textarea name="contants" id="contants" style="width:100%;height:300px;display:none;"><%=IIF(actType="ANS","",FI_Contants)%></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -211,7 +211,7 @@ nhn.husky.EZCreator.createInIFrame({
 
 function check(){
 	if( !$.trim( $('#title').val() ) ){
-		alert('제목을 입력해 주세요.');
+		alert('Please enter title.');
 		return false;
 	}
 	oEditors.getById["contants"].exec("UPDATE_CONTENTS_FIELD", []);

@@ -1,5 +1,5 @@
 <%
-if ( Session("change_id") = false and INSTR(LCase(Request.ServerVariables("PATH_INFO")),"/mypage/info")<=0) then 
+if ( Session("change_id") = "false" and INSTR(LCase(Request.ServerVariables("PATH_INFO")),"/mypage/info")<=0) then 
 	response.redirect "../mypage/info.asp"
 end if
 %><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,7 +21,7 @@ end if
 
 <script type="text/javascript" src="../common/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/JavaScript" src="../inc/js/default.js"></script>
-<script type="text/JavaScript" src="../inc/js/placeholders.js"></script>
+
 <link rel="stylesheet" type="text/css" href="../inc/css/default.css?<%=Timestamp()%>">
 <script src="http://dmaps.daum.net/map_js_init/postcode.js"></script>
 

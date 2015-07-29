@@ -38,7 +38,7 @@ End if
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -48,7 +48,7 @@ End If
 If tab2 <> "" And IsNumeric( tab2 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -134,8 +134,8 @@ End Sub
 
 			<div class="board_tap">
 				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
-				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My Contribution</a>
-				<a href="../Community/write.asp?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=<%=tab3%>">Contribution</a>
+				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My question</a>
+				<a href="../Community/write.asp?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=<%=tab3%>">Ask a Question</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 
@@ -170,11 +170,11 @@ End Sub
 						statusTxt = ""
 
 						If arrList(FI_status,iLoop) = "0" Then
-							statusTxt = "접수"
+							statusTxt = "New"
 						elseif arrList(FI_status,iLoop) = "1" Then
-							statusTxt = "처리중"
+							statusTxt = "Inprogress"
 						elseif arrList(FI_status,iLoop) = "2" Then
-							statusTxt = "완료"
+							statusTxt = "Closed"
 						End if
 
 						nbsp   = ""
@@ -187,8 +187,8 @@ End Sub
 						End If
 
 						if arrList(FI_Dellfg,iLoop) <> "0" then 
-							title = "삭제된 글 입니다."
-							onclick = "javascript:alert('삭제된 글 입니다.');"
+							title = "The deleted article"
+							onclick = "javascript:alert('The deleted article');"
 						else
 							title = arrList(FI_Title,iLoop)
 							onclick = "view.asp?" & PageParams & "&idx=" & arrList(FI_Idx,iLoop)

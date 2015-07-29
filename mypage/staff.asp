@@ -5,7 +5,7 @@ checkLogin( g_host & g_url )
 If Session("UserCeoFg") <> "1" Or Session("UserCIdx") = "" Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -115,7 +115,7 @@ $(document).ready( function() {
 
 function check(){
 	if( $('input[name=Idx]:checked').length <= 0 ){
-		alert('승인할 회원을 선택해주세요.');
+		alert('Please select the members to be approved');
 		return false;
 	}
 }

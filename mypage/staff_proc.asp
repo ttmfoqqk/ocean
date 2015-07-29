@@ -10,7 +10,7 @@ Dim Idx     : Idx     = Trim( request.Form("Idx") )
 If Session("UserCeoFg") <> "1" Or Session("UserCIdx") = "" Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -20,7 +20,7 @@ End If
 If Len(Idx) <= 0 Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -45,7 +45,7 @@ Next
 
 With Response
  .Write "<script language='javascript' type='text/javascript'>"
- .Write "alert('승인 되었습니다.');"
+ .Write "alert('approved completed');"
  .Write "location.href='staff.asp';"
  .Write "</script>"
  .End

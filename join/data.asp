@@ -102,9 +102,9 @@ End Sub
 				<input type="password" id="userPwdConfirm" name="userPwdConfirm" class="input" style="width:95%;" maxlength="20" placeholder="Confirm password">
 			</div>
 			<div class="row">
-				<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+				<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;position:relative">
 					<input type="text" class="input" id="FirstName" name="FirstName" maxlength="30" style="width:90%;" placeholder="First Name">
-				</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+				</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;position:relative">
 					<input type="text" class="input" id="LastName" name="LastName" maxlength="30" style="width:90%;" placeholder="Last Name">
 				</div>
 			</div>
@@ -149,9 +149,9 @@ End Sub
 				</div>
 
 				<div class="row">
-					<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+					<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;position:relative">
 						<input type="text" class="input" id="cPhone" name="cPhone" maxlength="30" style="width:90%;" placeholder="Tel. No">
-					</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+					</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;position:relative;">
 						<input type="text" class="input" id="homepage" name="homepage" maxlength="200" style="width:90%;" placeholder="WebSite ( http:// )">
 					</div>
 				</div>
@@ -170,7 +170,7 @@ End Sub
 				<div class="row round" style="width:645px;">
 					<div class="row" style="text-align:left;width:100%;">
 						
-						<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+						<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;position:relative">
 							<div style="margin:10px;">
 								<div>
 									<input type="checkbox" id="business1" name="business1" class="business_check" value="1" >
@@ -240,7 +240,7 @@ End Sub
 				<!-- 파일 스크립트 추가 -->
 				<div class="row">
 					<input type="file" id="files2" name="files2" style="width:1px;height:1px;overflow:hidden;">
-					<input type="text" id="files2_input" class="input" style="width:77%;" placeholder="Company Logo Image File ( jpg, bmp, gif, png )" readonly>
+					<input type="text" id="files2_input" class="input" style="width:78%;" placeholder="Company Logo Image File ( jpg, bmp, gif, png )" readonly>
 					<input type="button" id="files2_btn" class="btn" style="width:15%;height:32px;margin-left:15px;" value="SEARCH">
 				</div>
 
@@ -333,32 +333,32 @@ $userId.blur(function(){
 
 function checkJoin(){
 	var data = [
-		 ['userId','length','아이디를 입력해 주시기 바랍니다.']
-		,['userId','mail','이메일 형식이 틀렸습니다.']
-		,['userPwd','length','비밀번호를 입력해 주시기 바랍니다.']
-		,['userPwd','pwd','비밀번호는 6~20자까지 가능합니다.']
-		,['userPwdConfirm','length','비밀번호 확인을 입력해 주시기 바랍니다.']
-		,['userPwdConfirm','confirm','비밀번호와 동일하게 입력해 주시기 바랍니다.','userPwd']
-		,['FirstName','length','First Name 을 입력해 주시기 바랍니다.']
-		,['LastName','length','Last Name 을 입력해 주시기 바랍니다.']
-		,['userPosition','length','부서/직위를 입력해 주시기 바랍니다.']
-		,['userhPhone','length','휴대전화 번호를 입력해 주시기 바랍니다.']
-		,['userPhone','length','전화 번호를 입력해 주시기 바랍니다.']
-		,['companySelect','length','회사명을 선택해주세요.']
+		 ['userId','length','Please enter id']
+		,['userId','mail','E-mail format is incorrect']
+		,['userPwd','length','Please enter password']
+		,['userPwd','pwd','The password can be up to 6-20 characters']
+		,['userPwdConfirm','length','Please enter confirm password']
+		,['userPwdConfirm','confirm','Please enter the same password','userPwd']
+		,['FirstName','length','Please enter First Name']
+		,['LastName','length','Please enter Last Name']
+		,['userPosition','length','Please enter Department/Position']
+		,['userhPhone','length','Please enter Mobile. No']
+		,['userPhone','length','Please enter Tel. No']
+		,['companySelect','length','Please choose company name']
 	];
 	var dataCo = [
-		 ['cName','length','업체명을 입력해 주시기 바랍니다.']
-		,['Country','length','Country를 선택해주세요.']
-		,['addr','length','Office Address를 입력해 주시기 바랍니다.']
-		,['cPhone','length','Tel. No를 입력해 주시기 바랍니다.']
-		,['homepage','length','homepage를 입력해 주시기 바랍니다.']
-		,['cStaff','length','상시종업원수를 입력하세요.']
-		,['files2','length','회사로고를 등록해주세요.']
+		 ['cName','length','Please enter company name']
+		,['Country','length','Please choose Country']
+		,['addr','length','Please enter Office Address']
+		,['cPhone','length','Please enter Tel. No']
+		,['homepage','length','Please enter homepage']
+		,['cStaff','length','Please choose Number of Company Employees']
+		,['files2','length','Please enter company Logo image file']
 	];
 
 	var checkform = checkInputValue(data);
 	if(!checkform){return false;}
-	if(!$ajaxIdCheck){alert('현재 사용중인 아이디입니다.');return false;}
+	if(!$ajaxIdCheck){alert('The ID is currently in use');return false;}
 
 	if( $('#companySelect').val() == 'NEW' ){
 		
@@ -366,16 +366,16 @@ function checkJoin(){
 		if(!checkformCo){return false;}
 
 		if( $('.business_check:checked').length <= 0 ){
-			alert('사업분야를 1개이상 선택해주세요.');
+			alert('Please select one or more businesses');
 			return false;
 		}
 		if( $('input[name="business12"]:checked').length > 0 && !$.trim( $('#business').val() ) ){
-			alert('사업분야 기타 내용을 입력해주세요.');
+			alert('Please enter etc');
 			$('#business').focus();
 			return false;
 		}
 	}
-	$('.btn_area').html('처리 중입니다.');
+	$('.btn_area').html('Loading.');
 }
 
 </SCRIPT>

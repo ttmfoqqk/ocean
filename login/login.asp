@@ -12,7 +12,7 @@ Dim SaveLog : SaveLog = Request("SaveLog")
 if UserId="" Or  UserPwd = "" Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('입력하신 아이디 혹은 비밀번호가 일치하지 않습니다.\n\n대소문자 확인 후 입력해주세요!');"
+	 .Write "alert('There is no information to match the information you entered');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -28,7 +28,7 @@ Call dbopen()
 		If FI_state > 0 Then 
 			With Response
 			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('승인 대기 중입니다.\n\n관리자 승인 후 멤버 가입이 이루어집니다.');"
+			 .Write "alert('It is awaiting approval.\n\nMembers Join this is done after administrator approval');"
 			 .Write "history.go(-1);"
 			 .Write "</script>"
 			 .End
@@ -55,10 +55,13 @@ Call dbopen()
 		' id 이메일 형식 검사 
 		' ../inc/top.asp 상단에 redirect 제어
 		' ../mypage/info_proc.asp session 제어
+		if isValidEmail(FI_UserId) then
+			Session("change_id") = "true"
+		else
+			Session("change_id") = "false"
+		end if		
 
-		Session("change_id") = isValidEmail(FI_UserId)
-
-		if Session("change_id") then
+		if Session("change_id") = "true" then
 			response.redirect GoUrl
 		else
 			response.redirect "../mypage/info.asp"
@@ -66,7 +69,7 @@ Call dbopen()
 	Else
 		With Response
 		 .Write "<script language='javascript' type='text/javascript'>"
-		 .Write "alert('입력하신 아이디 혹은 비밀번호가 일치하지 않습니다.\n\n대소문자 확인 후 입력해주세요!');"
+		 .Write "alert('There is no information to match the information you entered');"
 		 .Write "history.go(-1);"
 		 .Write "</script>"
 		 .End

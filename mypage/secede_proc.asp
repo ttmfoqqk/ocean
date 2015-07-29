@@ -26,7 +26,7 @@ Session("UserSano") = ""
 
 With Response
  .Write "<script language='javascript' type='text/javascript'>"
- .Write "alert('탈퇴 되었습니다.');"
+ .Write "alert('Withdrawal completed');"
  .Write "location.href='../';"
  .Write "</script>"
  .End

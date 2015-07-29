@@ -24,31 +24,4 @@
 </div>
 
 </body>
-
-<SCRIPT type="text/javascript">
-function setLeftHeight(){
-	$('#middle').css({'height' : 'auto'});
-
-	var windowH = $(window).height();
-	var topH    = $('#header').height();
-	var footerH = $('#footer').height();
-	var middleH = $('#middle').height();
-	var height  = windowH - topH - footerH - 51;
-
-	if(height > middleH){
-		$('#middle').height(height);
-	}
-}
-$(function(){
-	setLeftHeight();
-});
-$(window).load(function(){
-	setLeftHeight();
-});
-$( window ).resize(function() {
-	setLeftHeight();
-});
-
-
-</SCRIPT>
 </html>

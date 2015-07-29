@@ -25,7 +25,7 @@ End Sub
 	<!-- #include file = "../inc/sub_visual.asp" -->
 	<div class="wrap">
 		<h2 class="page_title">Privacy policy</h2>
-		<p class="page_contants"><%=FI_agree2%></p>
+		<div style="line-height:180%;margin-bottom:30px;text-align:left;"><%=FI_agree2%></div>
 	</div>
 </div>
 <!-- #include file = "../inc/footer.asp" -->

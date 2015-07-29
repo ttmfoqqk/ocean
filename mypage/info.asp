@@ -34,35 +34,36 @@ End Sub
 		<!-- #include file = "../inc/left.asp" -->
 		<div id="contant">
 			<h3 class="title">Account Changes</h3>
-			<%if Session("change_id") = false then %>
+			
+			<%if Session("change_id") = "false" then %>
 				<div style="width:450px;margin:0px auto;">
 					<h1>리뉴얼전 사용자는 회원정보를 변경해주시기 바랍니다.</h1>
 				</div>
 			<%end if%>
+
 			<form name="mForm" id="mForm" method="post" action="info_proc.asp" onsubmit="return checkJoin()">
 			<div class="form_wrap" style="width:450px;">
 				<div class="row">
 					<span style="font-size:20px;"><b><%=FI_UserId%></b></span>
 				</div>
 				<div class="row">
-					<span style="font-size:20px;"><b><%=FI_UserName &"  "& FI_UserNameLast %></b></span>
-				</div>
-				<div class="row">
 					<span style="font-size:20px;"><b><%=FI_cName%></b></span>
 				</div>
-				<%if Session("change_id") = false then %>
+				
+				<%if Session("change_id") = "false" then %>
 				<div class="row">
 					<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" value="<%=FI_UserEmail%>" maxlength="320" placeholder="Company Email ( User Account )">
 					<span>아이디로 변경할 이메일 안내</span>
 				</div>
+				<%end if%>
+
 				<div class="row">
-					<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+					<div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;vertical-align:middle;">
 						<input type="text" class="input" id="FirstName" name="FirstName" maxlength="30" style="width:90%;" placeholder="First Name" value="<%=FI_UserName%>">
-					</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;">
+					</div><div style="display:inline-block;zoom:1;*display:inline;_display:inline;width:50%;vertical-align:middle;">
 						<input type="text" class="input" id="LastName" name="LastName" maxlength="30" style="width:90%;" placeholder="Last Name" value="<%=FI_UserNameLast%>">
 					</div>
 				</div>
-				<%end if%>
 
 				<div class="row">
 					<input type="text" id="userPosition" name="userPosition" class="input" style="width:95%;" maxlength="100" value="<%=FI_UserPosition%>" placeholder="Department/Position">
@@ -89,13 +90,15 @@ End Sub
 </div>
 
 
-<%if Session("change_id") = true then %>
+<%if Session("change_id") = "true" then %>
 <SCRIPT type="text/javascript">
 function checkJoin(){
 	var data = [
-		 ['userPosition','length','부서/직위를 입력해 주시기 바랍니다.']
-		,['userhPhone','length','휴대전화 번호를 입력해 주시기 바랍니다.']
-		,['userPhone','length','전화 번호를 입력해 주시기 바랍니다.']
+		 ['FirstName','length','Please enter First Name']
+		,['LastName','length','Please enter Last Name']
+		,['userPosition','length','Please enter Department/Position']
+		,['userhPhone','length','Please enter Mobile. No']
+		,['userPhone','length','Please enter Tel. No']
 	];
 
 	var checkform = checkInputValue(data);
@@ -106,13 +109,13 @@ function checkJoin(){
 <SCRIPT type="text/javascript">
 function checkJoin(){
 	var data = [
-		 ['userId','length','아이디를 입력해 주시기 바랍니다.']
-		,['userId','mail','이메일 형식이 틀렸습니다.']
-		,['FirstName','length','First Name 을 입력해 주시기 바랍니다.']
-		,['LastName','length','Last Name 을 입력해 주시기 바랍니다.']
-		,['userPosition','length','부서/직위를 입력해 주시기 바랍니다.']
-		,['userhPhone','length','휴대전화 번호를 입력해 주시기 바랍니다.']
-		,['userPhone','length','전화 번호를 입력해 주시기 바랍니다.']
+		 ['userId','length','Please enter id.']
+		,['userId','mail','E-mail format is incorrect.']
+		,['FirstName','length','Please enter First Name']
+		,['LastName','length','Please enter Last Name']
+		,['userPosition','length','Please enter Department/Position']
+		,['userhPhone','length','Please enter Mobile. No']
+		,['userPhone','length','Please enter Tel. No']
 	];
 
 	var checkform = checkInputValue(data);

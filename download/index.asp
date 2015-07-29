@@ -1,20 +1,19 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
+checkLogin( g_host & g_url )
+
 Dim arrListMenu
 Dim cntListMenu : cntListMenu  = -1
 Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
 Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
 Dim idx         : idx          = request("idx")
-'If (tab3="my") Then
-	checkLogin( g_host & g_url )
-'End if
 
 
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -24,7 +23,7 @@ End If
 If tab2 <> "" And IsNumeric( tab2 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End

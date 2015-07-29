@@ -53,7 +53,7 @@
 <SCRIPT type="text/javascript">
 function check(){
 	if( !$('#agree').attr('checked') ){
-		alert('탈퇴 확인 내용에 동의해 주세요.');
+		alert('Please make sure you read and understand all items stated above before move to next step.');
 		return false;
 	};	
 }

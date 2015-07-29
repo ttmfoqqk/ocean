@@ -17,7 +17,7 @@ PageParams = "tab1=" & tab1 &_
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -27,7 +27,7 @@ End If
 If tab2 <> "" And IsNumeric( tab2 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -223,7 +223,7 @@ nhn.husky.EZCreator.createInIFrame({
 
 function check(){
 	if( !$.trim( $('#title').val() ) ){
-		alert('제목을 입력해 주세요.');
+		alert('Please enter title.');
 		return false;
 	}
 	oEditors.getById["contants"].exec("UPDATE_CONTENTS_FIELD", []);

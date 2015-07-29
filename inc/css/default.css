@@ -40,6 +40,17 @@ a{text-decoration:none;color:#333333;}
 img{border:0px;}
 button{font-family:ng,'NanumGothic';}
 
+label.absolute { 
+    position: absolute; 
+    color:#999; 
+    display: none; 
+    cursor: text;
+	padding:0px;
+	font-size:14px;
+	line-height:28px;
+	text-align:left;
+}
+
 .blind{position:absolute;width:0px;height:0px;text-indent:-99999px;overflow:hidden;}
 
 .input{border:1px solid #898f94;padding:3px;}

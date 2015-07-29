@@ -35,10 +35,10 @@
 <SCRIPT type="text/javascript">
 function check(){
 	var data = [
-		 ['oldUserPwd','length','현재 비밀번호를 입력해주세요.']
-		,['userPwd','length','비밀번호를 입력해 주시기 바랍니다.']
-		,['userPwd','pwd','비밀번호는 6~20자까지 가능합니다.']
-		,['userPwdConfirm','length','비밀번호 확인을 입력해 주시기 바랍니다.']
+		 ['oldUserPwd','length','Please enter your current password']
+		,['userPwd','length','Please enter new password']
+		,['userPwd','pwd','The password can be up to 6-20 characters']
+		,['userPwdConfirm','length','Please enter confirm password']
 	];
 	var checkform = checkInputValue(data);
 	if(!checkform){return false;}

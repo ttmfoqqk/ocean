@@ -86,10 +86,10 @@ For iLoop = 0 To cntList
 				
 				if session("UserIdx") = "" then
 					
-					temp_file = temp_file & " <link><![CDATA[javascript:if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){location.href='../login/?goUrl=" & server.urlencode( g_host & BASE_PATH & "download/" ) & "';}]]></link>"
+					temp_file = temp_file & " <link><![CDATA[javascript:if(confirm('The login is needed services. \nWould you like to login?')){location.href='../login/?goUrl=" & server.urlencode( g_host & BASE_PATH & "download/" ) & "';}]]></link>"
 				else
 					If CHECK_CNT = 0 Then
-						temp_file = temp_file & " <link><![CDATA[javascript:void(alert('관리자 승인 후 다운로드가 가능합니다.'));]]></link>"
+						temp_file = temp_file & " <link><![CDATA[javascript:void(alert('You can then download manager approval'));]]></link>"
 					Else
 						temp_file = temp_file & " <link><![CDATA[../download/download.asp?file=" & escape(fileName) & "&idx=" & arrList(FI_idx, iLoop) & "]]></link>"
 					End If

@@ -8,7 +8,7 @@ Set UPLOAD__FORM = Server.CreateObject("DEXT.FileUpload")
 UPLOAD__FORM.CodePage       = 65001
 UPLOAD__FORM.AutoMakeFolder = True 
 UPLOAD__FORM.DefaultPath    = UPLOAD_BASE_PATH & savePath
-UPLOAD__FORM.MaxFileLen		= 600 * 1024 * 1024 '5메가
+UPLOAD__FORM.MaxFileLen		= 600 * 1024 * 1024 '60메가
 
 
 Dim alertMsg
@@ -78,480 +78,51 @@ Call dbopen()
 		Call dbclose()
 		With Response
 		 .Write "<script language='javascript' type='text/javascript'>"
-		 .Write "alert('잘못된 게시판 코드 입니다.');"
+		 .Write "alert('The wrong path.');"
 		 .Write "history.back(-1);"
 		 .Write "</script>"
 		 .End
 		End With
 	End If
 
-	If FileName <>"" Then 
-		If FILE_CHECK_EXT(FileName) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName2 <>"" Then 
-		If FILE_CHECK_EXT(FileName2) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName2").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName3 <>"" Then 
-		If FILE_CHECK_EXT(FileName3) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName3").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName4 <>"" Then 
-		If FILE_CHECK_EXT(FileName4) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName4").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName5 <>"" Then 
-		If FILE_CHECK_EXT(FileName5) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName5").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName6 <>"" Then 
-		If FILE_CHECK_EXT(FileName6) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName6").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName7 <>"" Then 
-		If FILE_CHECK_EXT(FileName7) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName7").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName8 <>"" Then 
-		If FILE_CHECK_EXT(FileName8) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName8").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName9 <>"" Then 
-		If FILE_CHECK_EXT(FileName9) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName9").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
-
-	If FileName10 <>"" Then 
-		If FILE_CHECK_EXT(FileName10) = False Then
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('잘못된 파일입니다. [asp,php,jsp,html,js] 파일은 업로드 할수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-		If UPLOAD__FORM.MaxFileLen < UPLOAD__FORM("FileName10").FileLen Then 
-			With Response
-			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 60MB 를 넘길수 없습니다.');history.go(-1);"
-			 .Write "</script>"
-			 .End
-			End With
-		End If
-	End If
 
 	if (alertMsg <> "")	then
 		actType	= ""
 	Elseif (actType = "INSERT") Then	'글작성
-
-		FileName = DextFileUpload("FileName",UPLOAD_BASE_PATH & savePath,0)
-		FileName2 = DextFileUpload("FileName2",UPLOAD_BASE_PATH & savePath,0)
-		FileName3 = DextFileUpload("FileName3",UPLOAD_BASE_PATH & savePath,0)
-		FileName4 = DextFileUpload("FileName4",UPLOAD_BASE_PATH & savePath,0)
-		FileName5 = DextFileUpload("FileName5",UPLOAD_BASE_PATH & savePath,0)
-		FileName6 = DextFileUpload("FileName6",UPLOAD_BASE_PATH & savePath,0)
-		FileName7 = DextFileUpload("FileName7",UPLOAD_BASE_PATH & savePath,0)
-		FileName8 = DextFileUpload("FileName8",UPLOAD_BASE_PATH & savePath,0)
-		FileName9 = DextFileUpload("FileName9",UPLOAD_BASE_PATH & savePath,0)
-		FileName10 = DextFileUpload("FileName10",UPLOAD_BASE_PATH & savePath,0)
+		FileName   = fileUpload_proc( FileName  , "FileName"   , oldFileName   , DellFileFg )
+		FileName2  = fileUpload_proc( FileName2 , "FileName2"  , oldFileName2  , DellFileFg2 )
+		FileName3  = fileUpload_proc( FileName3 , "FileName3"  , oldFileName3  , DellFileFg3 )
+		FileName4  = fileUpload_proc( FileName4 , "FileName4"  , oldFileName4  , DellFileFg4 )
+		FileName5  = fileUpload_proc( FileName5 , "FileName5"  , oldFileName5  , DellFileFg5 )
+		FileName6  = fileUpload_proc( FileName5 , "FileName6"  , oldFileName6  , DellFileFg6 )
+		FileName7  = fileUpload_proc( FileName5 , "FileName7"  , oldFileName7  , DellFileFg7 )
+		FileName8  = fileUpload_proc( FileName5 , "FileName8"  , oldFileName8  , DellFileFg8 )
+		FileName9  = fileUpload_proc( FileName5 , "FileName9"  , oldFileName9  , DellFileFg9 )
+		FileName10 = fileUpload_proc( FileName5 , "FileName10" , oldFileName10 , DellFileFg10 )
 		
 		Dim admin_email_addr
 		call admin_email()
 		Call insert()
-		alertMsg = "입력 되었습니다."
+		alertMsg = "Enter complete"
+		
 		email_result2 = sendSmsEmail_state( "alarm" , admin_email_addr , session("UserName") , "" , IIF(category="","Community",category) , Title, "" , replace(Contants,"<img","<img style=""max-width:100%;""") , "" )
 
 	ElseIf (actType = "UPDATE") Then	'글수정
 		
-		If FileName <>"" Then 
-			FileName = DextFileUpload("FileName",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName = oldFileName
-		End If
-
-		If FileName2 <>"" Then 
-			FileName2 = DextFileUpload("FileName2",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName2 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName2)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName2)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName2 = oldFileName2
-		End If
-
-		If FileName3 <>"" Then 
-			FileName3 = DextFileUpload("FileName3",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName3 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName3)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName3)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName3 = oldFileName3
-		End If
-
-		If FileName4 <>"" Then 
-			FileName4 = DextFileUpload("FileName4",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName4 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName4)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName4)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName4 = oldFileName4
-		End If
-
-		If FileName5 <>"" Then 
-			FileName5 = DextFileUpload("FileName5",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName5 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName5)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName5)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName5 = oldFileName5
-		End If
-
-		If FileName6 <>"" Then 
-			FileName6 = DextFileUpload("FileName6",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName6 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName6)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName6)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName6 = oldFileName6
-		End If
-
-		If FileName7 <>"" Then 
-			FileName7 = DextFileUpload("FileName7",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName7 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName7)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName7)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName7 = oldFileName7
-		End If
-
-		If FileName8 <>"" Then 
-			FileName8 = DextFileUpload("FileName8",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName8 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName8)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName8)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName8 = oldFileName8
-		End If
-
-		If FileName9 <>"" Then 
-			FileName9 = DextFileUpload("FileName9",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName9 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName9)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName9)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName9 = oldFileName9
-		End If
-
-		If FileName10 <>"" Then 
-			FileName10 = DextFileUpload("FileName10",UPLOAD_BASE_PATH & savePath,0)
-			If oldFileName10 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName10)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName10)
-					End If
-				set FSO = Nothing
-			End If
-		Else
-			FileName10 = oldFileName10
-		End If
-
-
-		If DellFileFg = "1" Then 
-			If oldFileName <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName = ""
-		End If
-
-		If DellFileFg2 = "1" Then 
-			If oldFileName2 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName2)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName2)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName2 = ""
-		End If
-
-		If DellFileFg3 = "1" Then 
-			If oldFileName3 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName3)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName3)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName3 = ""
-		End If
-
-		If DellFileFg4 = "1" Then 
-			If oldFileName4 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName4)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName4)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName4 = ""
-		End If
-
-		If DellFileFg5 = "1" Then 
-			If oldFileName5 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName5)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName5)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName5 = ""
-		End If
-
-		If DellFileFg6 = "1" Then 
-			If oldFileName6 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName6)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName6)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName6 = ""
-		End If
-
-		If DellFileFg7 = "1" Then 
-			If oldFileName7 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName7)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName7)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName7 = ""
-		End If
-
-		If DellFileFg8 = "1" Then 
-			If oldFileName8 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName8)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName8)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName8 = ""
-		End If
-
-		If DellFileFg9 = "1" Then 
-			If oldFileName9 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName9)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName9)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName9 = ""
-		End If
-
-		If DellFileFg10 = "1" Then 
-			If oldFileName10 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
-					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName10)) Then
-						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName10)
-					End If
-				set FSO = Nothing
-			End If
-
-			FileName10 = ""
-		End If
+		FileName   = fileUpload_proc( FileName  , "FileName"   , oldFileName   , DellFileFg )
+		FileName2  = fileUpload_proc( FileName2 , "FileName2"  , oldFileName2  , DellFileFg2 )
+		FileName3  = fileUpload_proc( FileName3 , "FileName3"  , oldFileName3  , DellFileFg3 )
+		FileName4  = fileUpload_proc( FileName4 , "FileName4"  , oldFileName4  , DellFileFg4 )
+		FileName5  = fileUpload_proc( FileName5 , "FileName5"  , oldFileName5  , DellFileFg5 )
+		FileName6  = fileUpload_proc( FileName5 , "FileName6"  , oldFileName6  , DellFileFg6 )
+		FileName7  = fileUpload_proc( FileName5 , "FileName7"  , oldFileName7  , DellFileFg7 )
+		FileName8  = fileUpload_proc( FileName5 , "FileName8"  , oldFileName8  , DellFileFg8 )
+		FileName9  = fileUpload_proc( FileName5 , "FileName9"  , oldFileName9  , DellFileFg9 )
+		FileName10 = fileUpload_proc( FileName5 , "FileName10" , oldFileName10 , DellFileFg10 )
 
 
 		Call insert()
-		alertMsg = "수정 되었습니다."
+		alertMsg = "edited completed"
 	ElseIf (actType = "DELETE") Then	'글삭제
 		
 		'글 삭제시 파일 삭제
@@ -564,9 +135,9 @@ Call dbopen()
 		'End If
 
 		Call insert()
-		alertMsg = "삭제 되었습니다."
+		alertMsg = "deleted Complete"
 	else
-		alertMsg = "actType[" & actType & "]이 정의되지 않았습니다."
+		alertMsg = "The wrong path."
 	end If
 
 Call dbclose()
@@ -644,6 +215,59 @@ Sub admin_email()
 
 	Set objRs = Nothing
 End Sub
+
+
+function fileUpload_proc( file , input , oldFile , delfg )
+	dim return_fileName
+
+	If file <>"" Then 
+		If FILE_CHECK_EXT(file) = True Then
+			If UPLOAD__FORM.MaxFileLen >= UPLOAD__FORM(input).FileLen Then 
+				return_fileName = DextFileUpload(input,UPLOAD_BASE_PATH & savePath , 0)
+			Else
+				With Response
+				 .Write "<script language='javascript' type='text/javascript'>"
+				 .Write "alert('The size of the file can not be passed to 60MB');"
+				 .Write "history.go(-1);"
+				 .Write "</script>"
+				 .End
+				End With
+			End If
+		Else
+			With Response
+			 .Write "<script language='javascript' type='text/javascript'>"
+			 .Write "alert('Invalid file [asp,php,jsp,html,js] files can not be uploaded');"
+			 .Write "history.go(-1);"
+			 .Write "</script>"
+			 .End
+			End With
+		End If
+
+		If oldFile <> "" Then
+			Set FSO = CreateObject("Scripting.FileSystemObject")
+				If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFile)) Then	' 같은 이름의 파일이 있을 때 삭제
+					fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFile)
+				End If
+			set FSO = Nothing
+		End If
+	Else
+		If delfg = "1" Then 
+			If oldFile <> "" Then
+				Set FSO = CreateObject("Scripting.FileSystemObject")
+					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFile)) Then	' 같은 이름의 파일이 있을 때 삭제
+						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFile)
+					End If
+				set FSO = Nothing
+			End If
+
+			return_fileName = ""
+		else
+			return_fileName = oldFile
+		End If		
+	End If
+
+	fileUpload_proc = return_fileName
+end function
 %>
 <html>
 <head>

@@ -61,12 +61,12 @@ $userPwd = $('#userPwd');
 
 function check(){
 	if( !$.trim($userId.val()) ){
-		alert('아이디를 입력하세요');
+		alert('Please enter id');
 		$userId.focus();
 		return false;
 	}
 	if( !$.trim($userPwd.val()) ){
-		alert('비밀번호를 입력하세요');
+		alert('Please enter password');
 		$userPwd.focus();
 		return false;
 	}

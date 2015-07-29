@@ -27,7 +27,7 @@ PageParams = "pageNo=" & pageNo &_
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -37,7 +37,7 @@ End If
 If tab2 <> "" And IsNumeric( tab2 ) = False Then
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('잘못된 경로 입니다.');"
+	 .Write "alert('The wrong path.');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -58,7 +58,7 @@ Call dbclose()
 if FI_Dellfg <> "0" then 
 	With Response
 		.Write "<script language='javascript' type='text/javascript'>"
-		.Write "alert('삭제된 글 입니다.');"
+		.Write "alert('The deleted article.');"
 		.Write "history.go(-1);"
 		.Write "</script>"
 		.End
@@ -141,8 +141,8 @@ End Sub
 			
 			<div class="board_tap">
 				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
-				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My Contribution</a>
-				<a href="../community/write.asp?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=<%=tab3%>">Contribution</a>
+				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My question</a>
+				<a href="../community/write.asp?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=<%=tab3%>">Ask a Question</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 			
@@ -183,11 +183,11 @@ End Sub
 							Views <%=FI_Read_cnt%> | 
 							<%
 							If FI_status = "0" Then
-								Response.Write("접수")
+								Response.Write("New")
 							elseif FI_status= "1" Then
-								Response.Write("처리중")
+								Response.Write("Inprogress")
 							elseif FI_status= "2" Then
-								Response.Write("완료")
+								Response.Write("Closed")
 							End if
 							%>
 						</td>
@@ -206,11 +206,11 @@ End Sub
 						execute("fileName =" & "FI_File_name" & IIF(i=1,"",i) )
 						if fileName <> "" then 
 							if session("UserIdx") = "" then
-								file_html = file_html & IIF(file_html="","",", ") & "<a href=""javascript:if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){go_Login('" & login_url & "');}"">"& fileName & "</a>"
+								file_html = file_html & IIF(file_html="","",", ") & "<a href=""javascript:if(confirm('The login is needed services. \nWould you like to login?')){go_Login('" & login_url & "');}"">"& fileName & "</a>"
 							else
 								
 								If CHECK_CNT = 0 Then
-									file_html = file_html & IIF(file_html="","",", ") & "<a href=""javascript:void(alert('관리자 승인 후 다운로드가 가능합니다.'));"">"& fileName & "</a>"
+									file_html = file_html & IIF(file_html="","",", ") & "<a href=""javascript:void(alert('You can then download manager approval.'));"">"& fileName & "</a>"
 								else
 									file_html = file_html & IIF(file_html="","",", ") & "<a href=""../Community/download.asp?file="& escape(fileName) &"&idx=" & FI_Idx &""">"& fileName & "</a>"
 								end if
@@ -241,11 +241,11 @@ End Sub
 
 									if fileName <> "" then 
 										if session("UserIdx") = "" then
-											temp_file = temp_file & IIF(temp_file="","",", ") & "<a href=""javascript:if(confirm('로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?')){go_Login('" & login_url & "');}"">"& fileName & "</a>"
+											temp_file = temp_file & IIF(temp_file="","",", ") & "<a href=""javascript:if(confirm('The login is needed services. \nWould you like to login?')){go_Login('" & login_url & "');}"">"& fileName & "</a>"
 										else
 											
 											If CHECK_CNT = 0 Then
-												temp_file = temp_file & IIF(temp_file="","",", ") & "<a href=""javascript:void(alert('관리자 승인 후 다운로드가 가능합니다.'));"">"& fileName & "</a>"
+												temp_file = temp_file & IIF(temp_file="","",", ") & "<a href=""javascript:void(alert('You can then download manager approval'));"">"& fileName & "</a>"
 											else
 												temp_file = temp_file & IIF(temp_file="","",", ") & "<a href=""../Community/download.asp?file="& escape(fileName) &"&idx=" & arrList(PARENT_Idx,iLoop) &""">"& fileName & "</a>"
 											end if

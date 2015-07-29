@@ -68,11 +68,11 @@ End Sub
 <SCRIPT type="text/javascript">
 function check(){
 	var data = [
-		 ['userId','length','아이디를 입력해 주시기 바랍니다.']
-		,['userId','mail','이메일 형식이 틀렸습니다.']
-		,['FirstName','length','First Name 을 입력해 주시기 바랍니다.']
-		,['LastName','length','Last Name 을 입력해 주시기 바랍니다.']
-		,['companySelect','length','회사명을 선택해주세요.']
+		 ['userId','length','Please enter id.']
+		,['userId','mail','E-mail format is incorrect']
+		,['FirstName','length','Please enter First Name']
+		,['LastName','length','Please enter Last Name']
+		,['companySelect','length','Please choose company name']
 	];
 
 	var checkform = checkInputValue(data);

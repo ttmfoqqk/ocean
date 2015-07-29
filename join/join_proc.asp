@@ -48,7 +48,7 @@ dim other_infor    : other_infor    = TagEncode( Trim( UPLOAD__FORM("other_infor
 If userId = "" Or userPwd = "" Or userPwdConfirm = "" Or FirstName = "" Or LastName = "" Or userhPhone = "" Or userPhone = "" Or userPosition = "" Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('누락된 목록이 있습니다.');"
+	 .Write "alert('You are missing list');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -58,7 +58,7 @@ End If
 If userPwd <> userPwdConfirm Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('비밀번호를 확인해주세요.');"
+	 .Write "alert('Please check your password');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -69,7 +69,7 @@ If companySelect = "NEW" Then
 		If cName="" Or addr="" Or cPhone="" Or homepage="" or cStaff="" Or files2="" Or (business="" And business1="" And business2="" And business3="" And business4="" And business5="" And business6="" And business7="" And business8="" And business9="" And business10="" And business11="" And business12="") Then 
 		With Response
 		 .Write "<script language='javascript' type='text/javascript'>"
-		 .Write "alert('누락된 목록이 있습니다.');"
+		 .Write "alert('You are missing list');"
 		 .Write "history.go(-1);"
 		 .Write "</script>"
 		 .End
@@ -85,7 +85,7 @@ If files2 <>"" Then
 		Else
 			With Response
 			 .Write "<script language='javascript' type='text/javascript'>"
-			 .Write "alert('파일의 크기는 3MB 를 넘길수 없습니다.');"
+			 .Write "alert('The size of the file can not be passed to 3MB');"
 			 .Write "history.go(-1);"
 			 .Write "</script>"
 			 .End
@@ -94,7 +94,7 @@ If files2 <>"" Then
 	Else
 		With Response
 		 .Write "<script language='javascript' type='text/javascript'>"
-		 .Write "alert('사용 가능한 첨부파일 확장자는 gif, jpg, jpeg, zip, egg, doc, docx, txt, alz, rar, png, bmp 입니다.');"
+		 .Write "alert('Invalid file [asp,php,jsp,html,js] files can not be uploaded');"
 		 .Write "history.go(-1);"
 		 .Write "</script>"
 		 .End
@@ -112,7 +112,7 @@ Call dbclose()
 If FI_IN_CNT > 0 Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('현재 사용중인 아이디입니다.');"
+	 .Write "alert('The ID is currently in use');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -122,7 +122,7 @@ End If
 If FI_CO_CNT > 0 Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('현재 등록된 회사명 입니다.');"
+	 .Write "alert('The company name is currently in use');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -138,7 +138,7 @@ If FI_CEO_FG > 0 Then
 	
 	With Response
 	    .Write "<script language='javascript' type='text/javascript'>"
-	    .Write "alert('인증메일을 발송했습니다.메일을 확인해 주세요.');"
+	    .Write "alert('sent a confirmation mail. Please check your e-mail.');"
 	    .Write "location.href='result.asp';"
 	    .Write "</script>"
 	    .End

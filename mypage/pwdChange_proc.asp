@@ -13,7 +13,7 @@ End If
 If userPwd <> userPwdConfirm Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('정보가 일치하지 않습니다. 새로운 비밀번호를 다시 입력 해주세요.');"
+	 .Write "alert('Please check your password');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -28,7 +28,7 @@ Call dbclose()
 If FI_IN_CNT = 0 Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
-	 .Write "alert('정보가 일치하지 않습니다. 비밀번호를 다시 입력 해주세요.');"
+	 .Write "alert('Please check your password');"
 	 .Write "history.go(-1);"
 	 .Write "</script>"
 	 .End
@@ -39,7 +39,7 @@ Dim result   : result   = sendSmsEmail( "pwd_change" , session("userId"), sessio
 
 With Response
  .Write "<script language='javascript' type='text/javascript'>"
- .Write "alert('변경 되었습니다.');"
+ .Write "alert('edited completed');"
  .Write "location.href='pwdChange.asp';"
  .Write "</script>"
  .End

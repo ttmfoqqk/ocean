@@ -65,9 +65,9 @@ End Sub
 <SCRIPT type="text/javascript">
 function check(){
 	var data = [
-		 ['FirstName','length','First Name 을 입력해 주시기 바랍니다.']
-		,['LastName','length','Last Name 을 입력해 주시기 바랍니다.']
-		,['companySelect','length','회사명을 선택해주세요.']
+		 ['FirstName','length','Please enter First Name']
+		,['LastName','length','Please enter Last Name']
+		,['companySelect','length','Please choose company name']
 	];
 
 	var checkform = checkInputValue(data);

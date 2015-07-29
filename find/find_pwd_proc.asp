@@ -16,7 +16,7 @@ Call dbopen()
 	If FI_UserId = "" Then 
 		With Response
 		 .Write "<script language='javascript' type='text/javascript'>"
-		 .Write "alert('입력하신 정보와 일치하는 정보가 없습니다.');"
+		 .Write "alert('There is no information to match the information you entered');"
 		 .Write "history.go(-1);"
 		 .Write "</script>"
 		 .End
