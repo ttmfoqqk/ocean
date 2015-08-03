@@ -26,6 +26,9 @@ Dim admin_idx     : admin_idx     = Request.Form("admin_idx")
 Dim check_idx     : check_idx     = Request.Form("check_idx")
 Dim Idx           : Idx           = IIF( admin_idx = "" , check_idx , admin_idx  )
 
+dim cumunity_key  : cumunity_key  = 3
+dim cumunity_tab  : cumunity_tab  = Request.Form("cumunity_tab")
+
 If admin_pass <> admin_pass_ch Then 
 	With Response
 	 .Write "<script language='javascript' type='text/javascript'>"
@@ -81,6 +84,8 @@ Sub Insert()
 		.Parameters("@email").value   = admin_mail1 & "@" & admin_mail3
 		.Parameters("@MsgAddr").value = admin_msg1  & "@" & admin_msg3
 		.Parameters("@Bigo").value    = admin_bigo
+		.Parameters("@cumunity_key").value = cumunity_key
+		.Parameters("@cumunity_tab").value = cumunity_tab
 		Set objRs = .Execute
 	End with
 	set objCmd = Nothing

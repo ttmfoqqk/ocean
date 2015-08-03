@@ -22,7 +22,6 @@ Sub GetNotice()
 		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
 		.Parameters("@Key").value = 0
 		.Parameters("@CNT").value = 5
-		.Parameters("@not_tab").value = 3
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -44,7 +43,7 @@ Sub GetFiles()
 		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
 		.Parameters("@Key").value = 1
 		.Parameters("@CNT").value = 5
-		.Parameters("@not_tab").value = 3
+		.Parameters("@notice").value = 1
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -200,8 +199,7 @@ End Sub
 			<div style="margin:auto 0px;margin:20px 0px 0px 0px;">
 				<ul class="movie">
 					<li id='p_click3'><span class="blind">이전</span></li>
-					<!-- width 를 늘일 경우 노출되는 아이템이 늘어납니다. 다음 이전 버튼은 필수는 아닙니다. -->
-					<li><div id="srolling3" style="position: relative;overflow:hidden;width:900px;height:565px;margin-left:40px;"></div></li>
+					<li><div id="srolling_members" style="position: relative;overflow:hidden;width:900px;height:565px;margin-left:40px;"></div></li>
 					<li id='n_click3'><span class="blind">다음</span></li>
 				</ul>
 			</div>
@@ -211,6 +209,24 @@ End Sub
 
 
 </div>
+
+
+<style type="text/css">
+#srolling_members{
+	position:relative;
+	overflow:hidden;
+	width:900px;
+	height:565px;
+	margin-left:40px;
+}
+#srolling_members .item_wrap{
+	width:900px;height:565px;overflow:hidden;
+}
+#srolling_members .item_wrap .item{
+	width:135px;height:113px;float:left;margin-left:18px;overflow:hidden;
+}
+</style>
+
 
 <SCRIPT type="text/javascript">
 $(function(){
@@ -264,17 +280,47 @@ $(function(){
 		});
 	}
 
+	
+	/*
+		w = item.width()
+		h = item.height()
 
-	var data = [
-		"<img src=\"../img/MEMBERS/01.jpg\">",
-		"<img src=\"../img/MEMBERS/02.jpg\">",
-		"<img src=\"../img/MEMBERS/03.jpg\">",
-		"<img src=\"../img/MEMBERS/04.jpg\">",
-		"<img src=\"../img/MEMBERS/05.jpg\">",
-		"<img src=\"../img/MEMBERS/06.jpg\">"
-	];
+		X = 6
+		Y = 5
 
-	jQuery("#srolling3").srolling({
+		width,height 변환
+
+		paging = X x Y
+		total = ?
+
+		회원사 리스트 -> total/paging 
+
+		wrap   : 900 X 565
+		item   : 135 X 113
+		margin : 18
+
+		비동기  : [ext , image , del_fg , order]
+	*/
+	var data = [];
+	var total = 182;
+	var items = '';
+	
+	// ajax each
+	for(i=0;i<total;i++){
+		margin = (i%6) == 0? 'margin-left:0px;':'';
+		items += '<div class="item" style="' + margin + '"><div>-['+(i+1)+'\' members]-</div></div>';
+
+		if( ( (i+1)%30 )==0 ){
+			data.push('<div class="item_wrap">'+items+'</div>');
+			items = '';
+		}else if( (i+1) == total ){
+			data.push('<div class="item_wrap">'+items+'</div>');
+			items = '';
+		}
+	}
+
+
+	jQuery("#srolling_members").srolling({
 		 data        : data
 		,auto        : true
 		,item_count  : 1

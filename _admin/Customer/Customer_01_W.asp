@@ -349,7 +349,7 @@ $(document).ready( function() {
 								end if
 							end if
 							%>
-							<%If BoardKey = "0" Then %>
+							<%If BoardKey = "0" or BoardKey = "1" Then %>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">공지</td>
 								<td class="line_box"><input type="checkbox" value="1" name="Notice" <%=IIF( FI_Notice="1","checked","" )%>></td>

@@ -12,10 +12,6 @@ Dim ref_url	: ref_url	= Request.ServerVariables("HTTP_REFERER")
 Dim BASE_PATH : BASE_PATH = "/"
 Dim UPLOAD_BASE_PATH : UPLOAD_BASE_PATH = server.mapPath( BASE_PATH & "upload" )
 
-if Request.ServerVariables("SERVER_PORT") <> "80" then
-	g_host	= g_host & ":" & Request.ServerVariables("SERVER_PORT")
-end if
-
 '------------------------------------------------------------------------------------
 ' DB Open/Close
 '------------------------------------------------------------------------------------

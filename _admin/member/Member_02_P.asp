@@ -97,7 +97,7 @@ End If
 If files1 <>"" Then 
 	If FILE_CHECK_EXT(files1) = True Then
 		If UPLOAD__FORM.MaxFileLen >= UPLOAD__FORM("files1").FileLen Then 
-			files1 = DextFileUpload("files1",UPLOAD_BASE_PATH & savePath,0)
+			files1 = DextFileUpload("files1",UPLOAD_BASE_PATH & savePath,300)
 		Else
 			With Response
 			 .Write "<script language='javascript' type='text/javascript'>"
@@ -131,7 +131,7 @@ End If
 If files2 <>"" Then 
 	If FILE_CHECK_EXT(files2) = True Then
 		If UPLOAD__FORM.MaxFileLen >= UPLOAD__FORM("files2").FileLen Then 
-			files2 = DextFileUpload("files2",UPLOAD_BASE_PATH & savePath,0)
+			files2 = DextFileUpload("files2",UPLOAD_BASE_PATH & savePath,300)
 		Else
 			With Response
 			 .Write "<script language='javascript' type='text/javascript'>"

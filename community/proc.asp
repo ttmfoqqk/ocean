@@ -3,6 +3,9 @@
 <%
 checkLogin( g_host & BASE_PATH & "download/" )
 
+Dim arrList
+Dim cntList   : cntList   = -1
+
 Dim savePath : savePath = "\board/" '첨부 저장경로.
 Set UPLOAD__FORM = Server.CreateObject("DEXT.FileUpload") 
 UPLOAD__FORM.CodePage       = 65001
@@ -100,12 +103,14 @@ Call dbopen()
 		FileName9  = fileUpload_proc( FileName5 , "FileName9"  , oldFileName9  , DellFileFg9 )
 		FileName10 = fileUpload_proc( FileName5 , "FileName10" , oldFileName10 , DellFileFg10 )
 		
-		Dim admin_email_addr
 		call admin_email()
 		Call insert()
 		alertMsg = "Enter complete"
 		
-		email_result2 = sendSmsEmail_state( "alarm" , admin_email_addr , session("UserName") , "" , IIF(category="","Community",category) , Title, "" , replace(Contants,"<img","<img style=""max-width:100%;""") , "" )
+		for iLoop = 0 to cntList
+			email_result2 = sendSmsEmail_state( "alarm" , arrList(FI_email,iLoop) , session("UserName") , "" , IIF(category="","Community",category) , Title, "" , replace(Contants,"<img","<img style=""max-width:100%;""") , "" )
+		next
+
 
 	ElseIf (actType = "UPDATE") Then	'글수정
 		
@@ -196,24 +201,24 @@ End Sub
 
 
 Sub admin_email()
-	SET objRs	= Server.CreateObject("ADODB.RecordSet")
-	SET objCmd	= Server.CreateObject("ADODB.Command")
-
-	SQL = "SELECT top 1 [email]  "  &_
-	" FROM [OCEAN_ADMIN_MEMBER] WHERE [Id] = 'admin' "
-   
-	call cmdopen()
+	SET objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
 	with objCmd
-		.CommandText = SQL
-		set objRs = .Execute
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_ADMIN_MEMBER_EMAIL_L"
+		.Parameters("@key").value = BoardKey
+		.Parameters("@tab").value = tab1
+		Set objRs = .Execute
 	End with
-	call cmdclose()
-	
+	set objCmd = nothing
+	CALL setFieldIndex(objRs, "FI")
 	If NOT(objRs.BOF or objRs.EOF) Then
-		admin_email_addr  = objRs(0)
+		arrList		= objRs.GetRows()
+		cntList		= UBound(arrList, 2)
 	End If
-
-	Set objRs = Nothing
+	objRs.close	: Set objRs = Nothing
 End Sub
 
 

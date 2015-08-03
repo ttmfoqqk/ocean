@@ -5,6 +5,9 @@
 Dim DataMsg : DataMsg = "<data><admin_login>login</admin_login></data>"
 Dim Idx : Idx = Trim( Request("Idx") )
 
+Dim arrList
+Dim cntList  : cntList  = -1
+
 If Session("Admin_Idx") <> "" Then
 	Call Expires()
 	Call dbopen()
@@ -14,8 +17,8 @@ If Session("Admin_Idx") <> "" Then
 		DataMsg = DataMsg &  "<item>"		
 		DataMsg = DataMsg &  "<admin_idx><![CDATA["     & Trim( FI_Idx )                   & "]]></admin_idx>"
 		DataMsg = DataMsg &  "<admin_id><![CDATA["      & Trim( FI_Id )                    & "]]></admin_id>"
-		DataMsg = DataMsg &  "<admin_pwd><![CDATA["     & Trim( FI_Pwd )                    & "]]></admin_pwd>"
-		DataMsg = DataMsg &  "<admin_name><![CDATA["    & Trim( FI_Name )                   & "]]></admin_name>"
+		DataMsg = DataMsg &  "<admin_pwd><![CDATA["     & Trim( FI_Pwd )                   & "]]></admin_pwd>"
+		DataMsg = DataMsg &  "<admin_name><![CDATA["    & Trim( FI_Name )                  & "]]></admin_name>"
 		DataMsg = DataMsg &  "<admin_phone1><![CDATA["  & Trim( FI_pHone1 )                & "]]></admin_phone1>"
 		DataMsg = DataMsg &  "<admin_phone2><![CDATA["  & Trim( FI_pHone2 )                & "]]></admin_phone2>"
 		DataMsg = DataMsg &  "<admin_phone3><![CDATA["  & Trim( FI_pHone3 )                & "]]></admin_phone3>"
@@ -30,6 +33,12 @@ If Session("Admin_Idx") <> "" Then
 		DataMsg = DataMsg &  "<admin_msg2><![CDATA["    & Trim( Split(FI_MsgAddr,"@")(1) ) & "]]></admin_msg2>"
 		DataMsg = DataMsg &  "<admin_bigo><![CDATA["    & TagDecode(Trim( FI_Bigo ))       & "]]></admin_bigo>"
 		DataMsg = DataMsg &  "<admin_indata><![CDATA["  & Trim( FI_Indata )                & "]]></admin_indata>"
+		
+
+		for iLoop = 0 to cntList
+		DataMsg = DataMsg &  "<permission><![CDATA["    & arrList(PE_tab,iLoop)            & "]]></permission>"
+		next 
+		
 		DataMsg = DataMsg &  "</item>"
 		DataMsg = DataMsg &  "</data>"
 	Call dbclose()
@@ -50,6 +59,14 @@ Sub getView()
 	End with
 	set objCmd = nothing
 	CALL setFieldValue(objRs, "FI")
+
+	set objRs = objRs.NextRecordset
+	CALL setFieldIndex(objRs, "PE")
+	If Not(objRs.Eof or objRs.Bof) Then
+		arrList = objRs.GetRows()
+		cntList = UBound(arrList, 2)
+	End If
+
 	objRs.close	: Set objRs = Nothing
 End Sub
 %>

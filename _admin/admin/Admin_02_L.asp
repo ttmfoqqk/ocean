@@ -116,7 +116,7 @@ function openPop(mode,admin_Idx){
 					'<tr>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0">E-Mail</td>'+
 						'<td class="line_box">'+
-							'<input type="text" id="admin_mail1" name="admin_mail1" class="input" size=12> @ '+
+							'<input type="text" id="admin_mail1" name="admin_mail1" class="input" size=10>@'+
 							'<input type="text" id="admin_mail3" name="admin_mail3" class="input" size=12 style="display:none"> '+
 							'<select id="admin_mail2" name="admin_mail2" style="width:150px;"></select>' +
 							'<input type="checkbox" name="email_write"> 직접입력' +
@@ -125,10 +125,24 @@ function openPop(mode,admin_Idx){
 					'<tr>' +
 						'<td class="line_box" align=right bgcolor="f0f0f0">메신저</td>'+
 						'<td class="line_box">'+
-							'<input type="text" id="admin_msg1" name="admin_msg1" class="input" size=12> @ '+
+							'<input type="text" id="admin_msg1" name="admin_msg1" class="input" size=10>@'+
 							'<input type="text" id="admin_msg3" name="admin_msg3" class="input" size=12 style="display:none"> '+
 							'<select id="admin_msg2" name="admin_msg2" style="width:150px;"></select>' +
 							'<input type="checkbox" name="msg_write"> 직접입력' +
+						'</td>'+
+					'</tr>'+
+					'<tr>' +
+						'<td class="line_box" align=right bgcolor="f0f0f0">커뮤니티</td>'+
+						'<td class="line_box" style="line-height:180%;">'+
+							'<span style="display:inline-block;width:50%;">'+
+								'<input type="checkbox" name="cumunity_tab" id="cumunity_tab1" value="1" style="vertical-align:middle;"> <label for="cumunity_tab1">Device Dev</label>'+
+							'</span>'+
+							'<span style="display:inline-block;width:50%;">'+
+								'<input type="checkbox" name="cumunity_tab" id="cumunity_tab2" value="2" style="vertical-align:middle;"> <label for="cumunity_tab2">Server Dev</label>'+
+							'</span>'+
+							'<span style="display:inline-block;width:50%;">'+
+								'<input type="checkbox" name="cumunity_tab" id="cumunity_tab3" value="3" style="vertical-align:middle;"> <label for="cumunity_tab3">Application Dev</label>'+
+							'</span>'+
 						'</td>'+
 					'</tr>'+
 					'<tr>' +
@@ -204,6 +218,11 @@ function openPop(mode,admin_Idx){
 						$("#admin_msg2 > option[value = " + $(this).find("admin_msg2").text() + "]").attr("selected", "ture");
 						$('#admin_msg3').val( $(this).find("admin_msg2").text() );
 						$('#admin_bigo').val( $(this).find("admin_bigo").text() );
+
+						var permission = $(this).find("permission");
+						permission.each(function(){
+							$('input[name="cumunity_tab"][value="' + $(this).text() + '"]').attr({"checked":"checked"});
+						});
 						
 						if( !$('#admin_mail2').val() ){
 							$('input[name=email_write]').attr({"checked":"checked"});
