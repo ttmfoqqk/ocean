@@ -1,4 +1,4 @@
-<!-- #include file = "../inc/header.asp" -->
+﻿<!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../inc/top.asp" -->
 <%
 checkAdminLogin(g_host & g_url)
@@ -112,9 +112,9 @@ function del_fm_checkbox(){
 									<%elseif BoardKey = "3" then %>
 									<select name="tab">
 										<option value="">선택</option>
-										<option value="1" <%=IIF(tab = "1","selected","")%>>community 1</option>
-										<option value="2" <%=IIF(tab = "2","selected","")%>>community 2</option>
-										<option value="3" <%=IIF(tab = "3","selected","")%>>community 3</option>
+										<option value="1" <%=IIF(tab = "1","selected","")%>>Device Dev</option>
+										<option value="2" <%=IIF(tab = "2","selected","")%>>Server Dev</option>
+										<option value="3" <%=IIF(tab = "3","selected","")%>>Application Dev</option>
 									</select>
 									<%end if%>
 								</td>
@@ -164,9 +164,9 @@ function del_fm_checkbox(){
 										End Select
 									elseif (BoardKey="3") then 
 										Select Case ( arrList(FI_tap,iLoop) ) 
-											Case "1" Response.Write("community 1")
-											Case "2" Response.Write("community 2")
-											Case "3" Response.Write("community 3")
+											Case "1" Response.Write("Device Dev")
+											Case "2" Response.Write("Server Dev")
+											Case "3" Response.Write("Application Dev")
 										End Select
 									End if
 									%>

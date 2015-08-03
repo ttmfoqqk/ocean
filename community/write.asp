@@ -1,4 +1,4 @@
-<!-- #include file = "../inc/header.asp" -->
+﻿<!-- #include file = "../inc/header.asp" -->
 <%
 checkLogin( g_host & g_url )
 dim BoardKey    : BoardKey  = 3
@@ -105,7 +105,7 @@ End Sub
 			<div class="board_tap">
 				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=all">All</a>
 				<a href="../Community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my">My question</a>
-				<a class="on">Ask a Question</a>
+				<a class="on">New question</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 

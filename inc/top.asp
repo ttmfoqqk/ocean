@@ -1,4 +1,4 @@
-<%
+﻿<%
 if ( Session("change_id") = "false" and INSTR(LCase(Request.ServerVariables("PATH_INFO")),"/mypage/info")<=0) then 
 	response.redirect "../mypage/info.asp"
 end if

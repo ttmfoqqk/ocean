@@ -71,7 +71,7 @@ End Sub
 						<td class="label">Company Email ( User Account )</td>
 						<td>
 							<div class="row">
-								<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" value="<%=FI_UserEmail%>" maxlength="320" placeholder="Company Email ( User Account )">
+								<input type="text" id="userId" name="userId" class="input" style="width:95%;ime-mode:disabled;" value="" maxlength="320" placeholder="Company Email ( User Account )">
 							</div>
 						</td>
 					</tr>

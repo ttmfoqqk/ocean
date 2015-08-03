@@ -1,4 +1,4 @@
-<!-- #include file = "../inc/header.asp" -->
+﻿<!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../inc/top.asp" -->
 <%
 checkAdminLogin(g_host & g_url)
@@ -217,9 +217,9 @@ End Sub
 									<%elseIf BoardKey="3" Then%>
 									<select id="tab" name="tab">
 										<option value="">선택</option>
-										<option value="1" <%=IIF(tab = "1","selected","")%>>community 1</option>
-										<option value="2" <%=IIF(tab = "2","selected","")%>>community 2</option>
-										<option value="3" <%=IIF(tab = "3","selected","")%>>community 3</option>
+										<option value="1" <%=IIF(tab = "1","selected","")%>>Device Dev</option>
+										<option value="2" <%=IIF(tab = "2","selected","")%>>Server Dev</option>
+										<option value="3" <%=IIF(tab = "3","selected","")%>>Application Dev</option>
 									</select>
 									<%End If%>
 
@@ -293,9 +293,9 @@ End Sub
 								</td>
 								<%elseIf BoardKey = "3" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","community 1","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","community 2","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","community 3","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","Device Dev","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","Server Dev","")%>
+									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","Application Dev","")%>
 
 									<%=IIF(arrNoti(NOTICE_tab2,iLoop)<>""," > " & arrNoti(NOTICE_tab2,iLoop),"")%>
 								</td>
@@ -357,9 +357,9 @@ End Sub
 								</td>
 								<%elseIf BoardKey = "3" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<%=IIF(arrList(FI_tab,iLoop)="1","community 1","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="2","community 2","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="3","community 3","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="1","Device Dev","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="2","Server Dev","")%>
+									<%=IIF(arrList(FI_tab,iLoop)="3","Application Dev","")%>
 
 									<%=IIF(arrList(FI_tab2Name,iLoop)<>""," > " & arrList(FI_tab2Name,iLoop),"")%>
 								</td>

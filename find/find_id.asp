@@ -66,7 +66,6 @@ End Sub
 function check(){
 	var data = [
 		 ['FirstName','length','Please enter First Name']
-		,['LastName','length','Please enter Last Name']
 		,['companySelect','length','Please choose company name']
 	];
 

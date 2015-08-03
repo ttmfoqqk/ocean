@@ -9,7 +9,7 @@
 		<h2 class="page_title">Showcase OCEAN</h2>
 
 		<p class="page_contants">
-			<b class="color_green">Internet of Things Related Videos</b><br>
+			<b class="color_green">Your demo video is always wekowe Contact us! (araha@keti.re.kr)</b><br>
 		</p>
 		
 		<div class="dowunload_list">

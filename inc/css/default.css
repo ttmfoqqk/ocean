@@ -414,6 +414,7 @@ table.table_wrap{border-top:1px solid #4f4f4f;border-bottom:1px solid #4f4f4f;fo
 	height:100%;
 	width:100%;
 	color:#85868a;
+	background-color:#e1e1e1;
 }
 #left_menu ul li a:hover{
 	color:#ffffff;
@@ -432,11 +433,11 @@ table.table_wrap{border-top:1px solid #4f4f4f;border-bottom:1px solid #4f4f4f;fo
 	list-style:none;
 	border-top:1px solid #d7d7d7;
 	border:0px;
-	
+	background-color:#ffffff;
 }
 #left_menu ul.sub li{
 	line-height:180%;
-	margin:5px 0px 5px 0px;
+	padding:5px 0px 5px 0px;
 	font-size:12px;
 	background-color:#ffffff;
 	border-bottom:0px;

@@ -1,4 +1,4 @@
-<!-- #include file = "../inc/header.asp" -->
+﻿<!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../inc/top.asp" -->
 <%
 checkAdminLogin(g_host & g_url)
@@ -82,9 +82,9 @@ End Sub
 									<%elseif BoardKey = "3" then %>
 									<select id="tab" name="tab">
 										<option value="">선택</option>
-										<option value="1" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "1","selected","")%>>community 1</option>
-										<option value="2" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "2","selected","")%>>community 2</option>
-										<option value="3" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "3","selected","")%>>community 3</option>
+										<option value="1" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "1","selected","")%>>Device Dev</option>
+										<option value="2" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "2","selected","")%>>Server Dev</option>
+										<option value="3" <%=IIF(IIF(FI_tap="",tab,FI_tap) = "3","selected","")%>>Application Dev</option>
 									</select>
 									<%end if%>
 								</td>

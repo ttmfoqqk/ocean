@@ -1,4 +1,4 @@
-function ajax_board_list(params,pageNo,rows,obj,btn,selected){
+﻿function ajax_board_list(params,pageNo,rows,obj,btn,selected){
 	$obj  = $('#'+obj);
 	$btn  = $('#'+btn);
 	$btn.unbind().val('LOADING');
@@ -37,7 +37,12 @@ function ajax_board_list(params,pageNo,rows,obj,btn,selected){
 				var status   = $(this).find('status').text();
 				var file     = $(this).find('file');
 				
-				var tag_html = '<span class="tag">By ' + wName + (status ? (' ,<b>'+status+'</b>') :'') + '</span>';
+				var tag_html = '';
+				
+				if(params[0]=='1' && params[1] == '3'){
+					tag_html = '<span class="tag">By ' + wName + (status ? (' ,<b>'+status+'</b>') :'') + '</span>';
+				}
+				
 
 				file.each(function( f_index ){
 					var link = $(this).find('link').text();

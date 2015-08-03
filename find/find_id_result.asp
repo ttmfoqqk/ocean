@@ -4,7 +4,7 @@ Dim FirstName     : FirstName     = request.Form("FirstName")
 Dim LastName      : LastName      = request.Form("LastName")
 Dim companySelect : companySelect = request.Form("companySelect")
 
-If FirstName = "" Or FirstName = "" Or companySelect = "" Then 
+If FirstName = "" Or companySelect = "" Then 
 	Response.redirect "find_id.asp"
 End If
 

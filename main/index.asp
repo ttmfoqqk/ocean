@@ -1,4 +1,4 @@
-<!-- #include file = "../inc/header.asp" -->
+﻿<!-- #include file = "../inc/header.asp" -->
 <%
 Dim arrList
 Dim cntList : cntList = -1
@@ -22,6 +22,7 @@ Sub GetNotice()
 		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
 		.Parameters("@Key").value = 0
 		.Parameters("@CNT").value = 5
+		.Parameters("@not_tab").value = 3
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -43,7 +44,7 @@ Sub GetFiles()
 		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
 		.Parameters("@Key").value = 1
 		.Parameters("@CNT").value = 5
-		.Parameters("@status").value = 2
+		.Parameters("@not_tab").value = 3
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -66,7 +67,7 @@ End Sub
 				<div class="visual_text">
 					<h4>A global alliance based on open source and IoT standards</h4>
 					<p>
-						ts aim is to share the open source developed based on IoT standards  and to promote the development and <br>
+						OCEAN's aim is to share the open source developed based on IoT standards  and to promote the development and <br>
 						commercialization of diverse IoT services.
 					</p>
 				</div>

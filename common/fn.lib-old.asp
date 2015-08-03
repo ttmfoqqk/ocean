@@ -15,7 +15,7 @@ function setCodeOption(optionKey , htmlType , value , selecter )
 		Set objRs = .Execute
 	End with
 	set objCmd = Nothing
-	CALL setFieldIndex(objRs, "OPTION")
+	CALL setFieldIndex(objRs, "FI")
 	If NOT(objRs.BOF or objRs.EOF) Then
 		arrList		= objRs.GetRows()
 		cntList		= UBound(arrList, 2)
@@ -25,26 +25,26 @@ function setCodeOption(optionKey , htmlType , value , selecter )
 	for iLoop = 0 to cntList
 		checked = ""
 		If value = 0 Then 
-			setValue = cstr(arrList(OPTION_idx, iLoop))
+			setValue = arrList(FI_idx, iLoop)
 		Else
-			setValue = arrList(OPTION_name, iLoop)
+			setValue = arrList(FI_name, iLoop)
 		End If
 		
 		If htmlType = "select" Then 
 			If setValue = selecter Then
 				checked = "selected"
 			End If
-			html = html & "<option value=""" & setValue & """ "&checked&">" & arrList(OPTION_name, iLoop) & "</option>"
+			html = html & "<option value=""" & setValue & """ "&checked&">" & arrList(FI_name, iLoop) & "</option>"
 		ElseIf htmlType = "checkbox" Then 
 			If setValue = selecter Then
 				checked = "checked"
 			End If
-			html = html & "<input type=""checkbox"" name=""" & optionKey & """ value=""" & setValue & """ "&checked&"> " & arrList(OPTION_name, iLoop)
+			html = html & "<input type=""checkbox"" name=""" & optionKey & """ value=""" & setValue & """ "&checked&"> " & arrList(FI_name, iLoop)
 		ElseIf htmlType = "radio" Then 
 			If setValue = selecter Then
 				checked = "selected"
 			End If
-			html = html & "<input type=""radio"" name=""" & optionKey & """ value=""" & setValue & """ "&checked&"> " & arrList(OPTION_name, iLoop)
+			html = html & "<input type=""radio"" name=""" & optionKey & """ value=""" & setValue & """ "&checked&"> " & arrList(FI_name, iLoop)
 		End If
 	Next
 
@@ -53,48 +53,43 @@ End Function
 
 
 
-function sendSmsEmail( actType , userId , userName , userEmail , contants , attachPath )
+function sendSmsEmail( actType , userId , userEmail , contants , attachPath )
 	Dim strFile,strTitle
 
 	If actType = "join" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/join.html")
-		strTitle = "[OCEAN Service center] Congratulations! You are now the OCEAN member!"
+		strFile = server.mapPath("/ocean/common/mailform/join.html")
+		strTitle = "[OCEAN 고객센터] 회원가입이 완료되었습니다."
 	ElseIf actType = "join_ceo" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/join_ceo.html")
-		strTitle = "[OCEAN Service center] OCEAN Membership"
+		strFile = server.mapPath("/ocean/common/mailform/join_ceo.html")
+		strTitle = "[OCEAN 고객센터] 회원가입이 신청되었습니다."
 	ElseIf actType = "join_staff" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/join_staff.html")
-		strTitle = "[OCEAN Service center] OCEAN Membership"
+		strFile = server.mapPath("/ocean/common/mailform/join_staff.html")
+		strTitle = "[OCEAN 고객센터] 회원가입이 신청되었습니다."
 	ElseIf actType = "id_search" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/id_search.html")
-		strTitle = "[OCEAN Service center] 요청하신 아이디를 알려드립니다."
+		strFile = server.mapPath("/ocean/common/mailform/id_search.html")
+		strTitle = "[OCEAN 고객센터] 요청하신 아이디를 알려드립니다."
 	ElseIf actType = "pwd_search" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/pwd_search.html")
-		strTitle = "[OCEAN Service center] We already sent you a temporary password to access the OCEAN portal site for the first time"
+		strFile = server.mapPath("/ocean/common/mailform/pwd_search.html")
+		strTitle = "[OCEAN 고객센터] 요청하신 비밀번호를 알려드립니다."
 	ElseIf actType = "pwd_change" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/pwd_change.html")
-		strTitle = "[OCEAN Service center] has successfully changed your password"
+		strFile = server.mapPath("/ocean/common/mailform/pwd_change.html")
+		strTitle = "[OCEAN 고객센터] 고객님의 비밀번호가 변경되었습니다."
 	ElseIf actType = "email" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/mail_change.html")
-		strTitle = "[OCEAN Service center] 고객님의 이메일이 변경되었습니다."
+		strFile = server.mapPath("/ocean/common/mailform/mail_change.html")
+		strTitle = "[OCEAN 고객센터] 고객님의 이메일이 변경되었습니다."
 	ElseIf actType = "secede" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/secede.html")
-		strTitle = "[OCEAN Service center] OCEAN membership withdrawal request has been successfully processed"
-	ElseIf actType = "join_complete" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/join_complete.html")
-		strTitle = "[OCEAN Service center] Verification email for the OCEAN membership application"
+		strFile = server.mapPath("/ocean/common/mailform/secede.html")
+		strTitle = "[OCEAN 고객센터] 회원 탈퇴가 성공적으로 이루어졌습니다."
 	End If
 
-	Dim mfrom		: mfrom		= "OCEAN<no-reply@iotocean.org>"
+	Dim mfrom		: mfrom		= "OCEAN<no-reply@gilsan.co.kr>"
 	Dim mto			: mto		= userEmail
 	Dim mtitle		: mtitle	= strTitle
 	Dim mcontents	: mcontents	= ReadFile(strFile)
 		
 	mcontents = replace(mcontents, "#ID#"      , userId )
-	mcontents = replace(mcontents, "#NAME#"    , userName )
+	mcontents = replace(mcontents, "#EMAIL#"   , userEmail )
 	mcontents = replace(mcontents, "#CONTANTS#", contants )
-	mcontents = replace(mcontents, "#DATE#"    , formatdatetime(now(),2) &" "& formatdatetime(now(),4) )
-	mcontents = replace(mcontents, "#DOMAIN#"  , g_host & BASE_PATH )
 
 	Dim mailMessage : mailMessage = MailSend(mtitle, mcontents, mto, mfrom, attachPath)
 	sendSmsEmail = mailMessage
@@ -104,18 +99,15 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 	Dim strFile,strTitle
 
 	If actType = "join_state_admin" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/join_state_admin.html")
-		strTitle = "[OCEAN Service center] Information for Approval of OCEAN Membership Request"
+		strFile = server.mapPath("/ocean/common/mailform/join_state_admin.html")
+		strTitle = "[OCEAN 고객센터] 회원가입 신청자 승인요청안내"
 
 	ElseIf actType = "join_state_ceo" Then 
-		strFile = server.mapPath(BASE_PATH &"common/mailform/join_state_ceo.html")
-		strTitle = "[OCEAN Service center] Information for Approval of OCEAN Membership Request"
-	ElseIf actType = "alarm" Then 
-		strFile = server.mapPath(BASE_PATH & "common/mailform/board_alarm.html")
-		strTitle = "[OCEAN Service center] 신규 글이 등록되었습니다."
+		strFile = server.mapPath("/ocean/common/mailform/join_state_ceo.html")
+		strTitle = "[OCEAN 고객센터] 회원가입 신청자 승인요청안내"
 	End If
 
-	Dim mfrom		: mfrom		= "OCEAN<no-reply@iotocean.org>"
+	Dim mfrom		: mfrom		= "OCEAN<no-reply@gilsan.co.kr>"
 	Dim mto			: mto		= userEmail
 	Dim mtitle		: mtitle	= strTitle
 	Dim mcontents	: mcontents	= ReadFile(strFile)
@@ -126,8 +118,6 @@ function sendSmsEmail_state( actType , userEmail , company , kind , position , n
 	mcontents = replace(mcontents, "#NAME#"    , name )
 	mcontents = replace(mcontents, "#PHONE#"   , phone )
 	mcontents = replace(mcontents, "#CONTANTS#", contants )
-	mcontents = replace(mcontents, "#DATE#"    , formatdatetime(now(),2) &" "& formatdatetime(now(),4) )
-	mcontents = replace(mcontents, "#DOMAIN#"  , g_host & BASE_PATH )
 
 	Dim mailMessage : mailMessage = MailSend(mtitle, mcontents, mto, mfrom, attachPath)
 	sendSmsEmail_state = mailMessage
@@ -147,13 +137,12 @@ function MailSend(strSubject, strBody, strTo, strFrom, attachPath)
 	on error resume Next
 	
 	Const cdoSendUsingMethod		= "http://schemas.microsoft.com/cdo/configuration/sendusing" 
-	Const cdoSendUsingPort			= 1  ' 1:로컬, 1:외부
+	Const cdoSendUsingPort			= 1 
 	Const cdoSMTPServer				= "http://schemas.microsoft.com/cdo/configuration/smtpserver" 
 	Const cdoSMTPServerPort			= "http://schemas.microsoft.com/cdo/configuration/smtpserverport"
 	Const cdoSMTPConnectionTimeout	= "http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout" 
 	Const cdoSMTPAccountName		= "http://schemas.microsoft.com/cdo/configuration/smtpaccountname" 
 	Const cdoSMTPAuthenticate		= "http://schemas.microsoft.com/cdo/configuration/smtpauthenticate" 
-	Const cdoSMTPPickupDirectory	= "http://schemas.microsoft.com/cdo/configuration/smtpserverpickupdirectory" 
 	Const cdoBasic					= 1 
 	Const cdoSendUserName			= "http://schemas.microsoft.com/cdo/configuration/sendusername" 
 	Const cdoSendPassword			= "http://schemas.microsoft.com/cdo/configuration/sendpassword" 
@@ -163,12 +152,11 @@ function MailSend(strSubject, strBody, strTo, strFrom, attachPath)
 	Set Flds = objConfig.Fields 
 	With Flds 
 		.Item(cdoSendUsingMethod) = cdoSendUsingPort 
-		.Item(cdoSMTPServer) = "127.0.0.1"  ' 로컬호스트 
+		.Item(cdoSMTPServer) = "programmable-thing.net" 
 		.Item(cdoSMTPServerPort) = 25 
 		.Item(cdoSMTPAuthenticate) = cdoBasic 
-		.Item(cdoSMTPPickupDirectory) = "C:\Inetpub\mailroot\Pickup"  ' 픽업 디렉토리 경로 지정
-		'.Item(cdoSendUserName) = "계정 id"
-		'.Item(cdoSendPassword) = "계정 pwd"
+		.Item(cdoSendUserName) = "araha@keti.re.kr"
+		'.Item(cdoSendPassword) = "smile5138"
 		.Update
 	End With 
 	
@@ -505,20 +493,4 @@ Function RandomNumber(NumberLength,NumberString)
 
 	RandomNumber = RanNum
 End Function
-
-Function isValidEmail(myEmail)
-	dim isValidE
-	dim regEx
-
-	isValidE = True
-	set regEx = New RegExp
-
-	regEx.IgnoreCase = False
-
-	regEx.Pattern = "^[a-zA-Z\-\_][\w\.-]*[a-zA-Z0-9\-\_]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"
-	isValidE = regEx.Test(myEmail)
-
-	isValidEmail = isValidE
-End Function
-
 %>

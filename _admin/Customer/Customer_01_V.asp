@@ -1,4 +1,4 @@
-<!-- #include file = "../inc/header.asp" -->
+﻿<!-- #include file = "../inc/header.asp" -->
 <!-- #include file = "../inc/top.asp" -->
 <%
 checkAdminLogin(g_host & g_url)
@@ -172,9 +172,9 @@ function del_fm_checkbox(){
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box">
-									<%=IIF(FI_tab="1","community 1","")%>
-									<%=IIF(FI_tab="2","community 2","")%>
-									<%=IIF(FI_tab="3","community 3","")%>
+									<%=IIF(FI_tab="1","Device Dev","")%>
+									<%=IIF(FI_tab="2","Server Dev","")%>
+									<%=IIF(FI_tab="3","Application Dev","")%>
 
 									<%=IIF(FI_tab2Name<>""," > " & FI_tab2Name,"")%>
 								</td>

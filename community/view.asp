@@ -1,4 +1,4 @@
-<!-- #include file = "../inc/header.asp" -->
+﻿<!-- #include file = "../inc/header.asp" -->
 <%
 'checkLogin( g_host & g_url )
 Dim BoardKey    : BoardKey     = 3
@@ -142,7 +142,7 @@ End Sub
 			<div class="board_tap">
 				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=all" class="<%=IIF(tab3="all","on","")%>">All</a>
 				<a href="../community/?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=my" class="<%=IIF(tab3="my","on","")%>">My question</a>
-				<a href="../community/write.asp?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=<%=tab3%>">Ask a Question</a>
+				<a href="../community/write.asp?tab1=<%=tab1%>&tab2=<%=tab2%>&tab3=<%=tab3%>">New question</a>
 				<div class="underline"><!-- underline --></div>
 			</div>
 			

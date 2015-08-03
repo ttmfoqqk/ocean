@@ -6,7 +6,7 @@
 		<h2 class="page_title">Contact OCEAN</h2>
 		<p class="page_contants" style="text-align:center;">
 			<b class="color_green">Website contact</b><br>
-			For questions or comments on the website, send an email to araha@keti.re.kr: <br><br>
+			For questions or comments on the website, send an email to : <br><br>
 			araha@keti.re.kr
 		</p>
 

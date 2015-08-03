@@ -22,7 +22,7 @@
 	<div id="left_menu">
 		<h2>Download</h2>
 		<ul>
-			<li><a href="../download/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>OpenMobius</div></a>
+			<li><a href="../download/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>openMobius</div></a>
 				<%
 				If tab1=1 Then
 					response.Write("<ul class=""sub"">")
@@ -67,7 +67,7 @@
 	<div id="left_menu">
 		<h2>Community</h2>
 		<ul>
-			<li><a href="../Community/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>Community 1</div></a>
+			<li><a href="../Community/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>Device Dev</div></a>
 				<%
 				If tab1=1 Then
 					response.Write("<ul class=""sub"">")
@@ -80,7 +80,7 @@
 				end if
 				%>
 			</li>
-			<li><a href="../Community/?tab1=2" class="<%=IIF( tab1 = 2 ,"over" , "" )%>"><div>Community 2</div></a>
+			<li><a href="../Community/?tab1=2" class="<%=IIF( tab1 = 2 ,"over" , "" )%>"><div>Server Dev</div></a>
 				<%
 				If tab1=2 Then
 					response.Write("<ul class=""sub"">")
@@ -93,7 +93,7 @@
 				end if
 				%>
 			</li>
-			<li><a href="../Community/?tab1=3" class="<%=IIF( tab1 = 3 ,"over" , "" )%>"><div>Community 3</div></a>
+			<li><a href="../Community/?tab1=3" class="<%=IIF( tab1 = 3 ,"over" , "" )%>"><div>Application Dev</div></a>
 				<%
 				If tab1=3 Then
 					response.Write("<ul class=""sub"">")
