@@ -43,23 +43,36 @@ Function FILE_CHECK_TEMP(ByVal filePath)
 End Function 
 
 
-Dim xmlStart : xmlStart = "<?xml version=""1.0"" encoding=""utf-8""?><rss version=""2.0""><channel>"  & vbcrlf
+Dim xmlStart : xmlStart = "<?xml version=""1.0"" encoding=""utf-8""?><rss version=""2.0""><channel>"
 Dim xmlEnd   : xmlEnd   = "</channel></rss>"
 
 For iLoop = 0 To cntList
-	
+
 	If FILE_CHECK_TEMP( arrList(FI_files2, iLoop) ) = True Then
 		
+		' test code
+		temp = temp & "<item>"
+		temp = temp & "<name><![CDATA["   & arrList(FI_cName, iLoop)   & "]]></name>"
+		temp = temp & "<image><![CDATA[ http://iotocean.org/upload/board/" & arrList(FI_files2, iLoop) & "]]></image>"
+		temp = temp & "</item>"
+		' test code
+
 		Set FSO = CreateObject("Scripting.FileSystemObject")
 		If FSO.FileExists(UPLOAD_BASE_PATH & "/board/s_" & arrList(FI_files2, iLoop) ) Then
-			temp = temp & "<item><![CDATA["   & "s_" & arrList(FI_files2, iLoop)   & "]]></item>" & vbcrlf
+			temp = temp & "<item>"
+			temp = temp & "<name><![CDATA["   & arrList(FI_cName, iLoop)   & "]]></name>"
+			temp = temp & "<image><![CDATA["  & BASE_PATH & "upload/board/" & "s_" & arrList(FI_files2, iLoop)   & "]]></image>"
+			temp = temp & "</item>"
 		else
 			If FSO.FileExists(UPLOAD_BASE_PATH & "/board/" & arrList(FI_files2, iLoop) ) Then
-				temp = temp & "<item><![CDATA["   & "s_" & arrList(FI_files2, iLoop)   & "]]></item>" & vbcrlf
+				temp = temp & "<item>"
+				temp = temp & "<name><![CDATA["   & arrList(FI_cName, iLoop)   & "]]></name>"
+				temp = temp & "<image><![CDATA["  & BASE_PATH & "upload/board/" & arrList(FI_files2, iLoop)   & "]]></image>"
+				temp = temp & "</item>"
 			end if
 		End If
 		set FSO = Nothing
-		
+	
 	end if
 
 Next

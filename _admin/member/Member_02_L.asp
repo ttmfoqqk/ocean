@@ -174,7 +174,8 @@ function del_fm_checkbox(){
 								<td class="line_box" width="22%">상호</td>
 								<td class="line_box">주소</td>
 								<td class="line_box" width="10%">국가</td>
-								<td class="line_box" width="8%">탈퇴여부</td>
+								<td class="line_box" width="5%">탈퇴</td>
+								<td class="line_box" width="5%">순서</td>
 							
 							</tr>
 							<%
@@ -190,7 +191,8 @@ function del_fm_checkbox(){
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand;text-align:left;padding-left:10px;"><%=arrList(FI_cName,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand;text-align:left;padding-left:10px;"><%=addr%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_CountryName,iLoop)%></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=IIF( arrList(FI_state,iLoop)="0","사용중","<font color=red>탈퇴</font>" )%></td>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=IIF( arrList(FI_state,iLoop)="0","사용","<font color=red>탈퇴</font>" )%></td>
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_order,iLoop)%></td>
 							</tr>
 							<%next%>
 							<%if cntList < 0 then%>

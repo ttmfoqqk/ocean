@@ -3,7 +3,7 @@
 'On Error Resume Next
 Dim objConn,objRs,objCmd,SQL,iLoop
 
-Const C_CONN_STRING = "provider=sqloledb;database=keti;server=localhost\SQLEXPRESS;uid=sa;pwd=keti,123;"
+Const C_CONN_STRING = "provider=sqloledb;database=ocean;server=localhost\SQLEXPRESS;uid=sa;pwd=keti,123;"
 
 Dim g_uip	: g_uip		= Request.ServerVariables("REMOTE_ADDR")
 Dim g_host	: g_host	= "http://" & Request.ServerVariables("SERVER_NAME")

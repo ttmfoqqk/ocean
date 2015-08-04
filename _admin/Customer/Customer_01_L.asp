@@ -250,7 +250,7 @@ End Sub
 						<input type="hidden" name="BoardKey" value="<%=BoardKey%>">
 						<input type="hidden" name="PageParams" value="<%=Server.urlencode(PageParams)%>">
 					
-						<table cellpadding=0 cellspacing=0 width="100%" >
+						<table cellpadding=0 cellspacing=0 width="100%" style="table-layout:fixed;">
 							<tr height="30" align=center bgcolor="f0f0f0">
 								<td class="line_box" style="padding:0px;" width="30"><input type="checkbox" name="check_all"></td>
 								<td class="line_box" width="40">번호</td>
@@ -282,14 +282,14 @@ End Sub
 							<tr height="30" align=center>
 								<td class="line_box" style="padding:0px;" ><input type="checkbox" name="Idx" value="<%=arrNoti(NOTICE_Idx,iLoop)%>"></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand;color:red"><b>[공지]</b></td>
-								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left><%=HtmlTagRemover( arrNoti(NOTICE_Title,iLoop) , 60 )%></td>
+								<td class="line_box ellipsis" onclick="<%=PageLink%>" style="cursor:hand" align=left><%=HtmlTagRemover( arrNoti(NOTICE_Title,iLoop) , 60 )%></td>
 								<%If BoardKey = "1" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
 									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","Mobius","")%>
 									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","&CUBE","")%>
 									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","Open Contribution","")%>
 
-									<%=IIF(arrNoti(NOTICE_tab2,iLoop)<>""," > " & arrNoti(NOTICE_tab2,iLoop),"")%>
+									<%=IIF(arrNoti(NOTICE_tab2Name,iLoop)<>""," > " & arrNoti(NOTICE_tab2Name,iLoop),"")%>
 								</td>
 								<%elseIf BoardKey = "3" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
@@ -297,7 +297,7 @@ End Sub
 									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","Server Dev","")%>
 									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","Application Dev","")%>
 
-									<%=IIF(arrNoti(NOTICE_tab2,iLoop)<>""," > " & arrNoti(NOTICE_tab2,iLoop),"")%>
+									<%=IIF(arrNoti(NOTICE_tab2Name,iLoop)<>""," > " & arrNoti(NOTICE_tab2Name,iLoop),"")%>
 								</td>
 								<%End If%>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrNoti(NOTICE_ContName,iLoop)%></td>
@@ -317,7 +317,7 @@ End Sub
 							If arrList(FI_Depth_no, iLoop) > 0 Then 
 								for Depth = 2 to arrList(FI_Depth_no, iLoop)
 									'nbsp = nbsp & "&nbsp;&nbsp;&nbsp;&nbsp;"
-									margin = arrList(FI_Depth_no, iLoop) * 20
+									margin = arrList(FI_Depth_no, iLoop) * 10
 								Next
 								nbsp = nbsp & "└> RE : "
 							End If
@@ -345,7 +345,7 @@ End Sub
 								<td class="line_box" style="padding:0px;" ><input type="checkbox" name="Idx" value="<%=arrList(FI_Idx,iLoop)%>"></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_rownum,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<div style="margin-left:<%=margin%>px;"><%=nbsp & title %></div>
+									<div class="ellipsis" style="margin-left:<%=margin%>px;"><%=nbsp & title %></div>
 								</td>
 								<%If BoardKey = "1" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>

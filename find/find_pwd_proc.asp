@@ -5,7 +5,7 @@ Dim FirstName     : FirstName     = request.Form("FirstName")
 Dim LastName      : LastName      = request.Form("LastName")
 Dim companySelect : companySelect = request.Form("companySelect")
 
-If userId = "" Or FirstName = "" Or LastName = "" Or companySelect = "" Then 
+If userId = "" Or FirstName = "" Or companySelect = "" Then 
 	Response.redirect "find_pwd.asp"
 End If
 

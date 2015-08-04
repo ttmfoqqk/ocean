@@ -71,7 +71,6 @@ function check(){
 		 ['userId','length','Please enter id.']
 		,['userId','mail','E-mail format is incorrect']
 		,['FirstName','length','Please enter First Name']
-		,['LastName','length','Please enter Last Name']
 		,['companySelect','length','Please choose company name']
 	];
 

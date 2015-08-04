@@ -31,7 +31,8 @@ Dim business10    : business10    = UPLOAD__FORM("business10")
 Dim business11    : business11    = UPLOAD__FORM("business11")
 Dim business12    : business12    = UPLOAD__FORM("business12")
 Dim bigo          : bigo          = TagEncode(UPLOAD__FORM("bigo"))
-Dim State         : State         = UPLOAD__FORM("State")
+Dim State         : State         = IIF( UPLOAD__FORM("State") = "" , 0 , UPLOAD__FORM("State") )
+dim order         : order         = IIF( UPLOAD__FORM("order") = "" , 0 , UPLOAD__FORM("order") )
 
 
 Dim files2        : files2        = Trim( UPLOAD__FORM("files2") )
@@ -252,7 +253,8 @@ Sub insert()
 		.Parameters("@business12").value    = IIF(business12="",0,business12)
 		.Parameters("@files2").value        = files2
 		.Parameters("@bigo").value          = bigo
-		.Parameters("@State").value         = IIF(State="",0,State)
+		.Parameters("@State").value         = State
+		.Parameters("@order").value         = order
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing

@@ -196,7 +196,7 @@ End Sub
 
 		<div class="main_banner">
 			<h4 class="color_green">MEMBERS</h4>
-			<div style="margin:auto 0px;margin:20px 0px 0px 0px;">
+			<div style="margin:auto 0px;margin:20px 0px 0px 0px;position:relative;float:left;width:100%;">
 				<ul class="movie">
 					<li id='p_click3'><span class="blind">이전</span></li>
 					<li><div id="srolling_members" style="position: relative;overflow:hidden;width:900px;height:565px;margin-left:40px;"></div></li>
@@ -223,7 +223,11 @@ End Sub
 	width:900px;height:565px;overflow:hidden;
 }
 #srolling_members .item_wrap .item{
-	width:135px;height:113px;float:left;margin-left:18px;overflow:hidden;
+	width:135px;height:83px;float:left;margin:15px 0px 15px 18px;overflow:hidden;text-align:center;
+}
+#srolling_members .item_wrap .item img{
+	max-width:100%;max-height:100%;vertical-align:middle;
+	_width:100%;_height:100%;
 }
 </style>
 
@@ -280,61 +284,63 @@ $(function(){
 		});
 	}
 
-	
-	/*
-		w = item.width()
-		h = item.height()
 
-		X = 6
-		Y = 5
 
-		width,height 변환
 
-		paging = X x Y
-		total = ?
+	$.ajax({
+		type    : 'GET',
+		url     : '../inc/ajax.members.logo.asp',
+		dataType: 'xml',
+		cache   : false,
+		scriptCharset:'utf-8',
+		success: function(xml){
+			$xml  = $(xml);
+			$item = $xml.find('item');
+			
+			var X = 6;
+			var Y = 5;
+			var data = [];
+			var total = $item.length;
+			var items = '';
+			
+			if(total>0){
+				$item.each(function(i){
+					var name = $(this).find('name').text();
+					var image = $(this).find('image').text();
 
-		회원사 리스트 -> total/paging 
+					margin = (i % X) == 0? 'margin-left:0px;':'';
+					clear  = (i % X) == 0? 'clear:both;':'';
+					items += '<div class="item" style="'+margin+clear+'" title="'+name+'"><img style="width:0px;height:100%;overflow:hidden;"><img src="'+image+'"></div>';
 
-		wrap   : 900 X 565
-		item   : 135 X 113
-		margin : 18
+					if( ( (i + 1) % (X * Y) ) == 0 ){
+						data.push('<div class="item_wrap">'+items+'</div>');
+						items = '';
+					}else if( (i + 1) == total ){
+						data.push('<div class="item_wrap">'+items+'</div>');
+						items = '';
+					}
+				});
 
-		비동기  : [ext , image , del_fg , order]
-	*/
-	var data = [];
-	var total = 182;
-	var items = '';
-	
-	// ajax each
-	for(i=0;i<total;i++){
-		margin = (i%6) == 0? 'margin-left:0px;':'';
-		items += '<div class="item" style="' + margin + '"><div>-['+(i+1)+'\' members]-</div></div>';
+				$("#srolling_members").srolling({
+					 data        : data
+					,auto        : true
+					,item_count  : 1
+					,cache_count : Math.ceil( total / (X*Y) ) * 2
+					,width       : 900
+					,height      : 565
+					,delay       : 4000
+					,delay_frame : 1000
+					,move        : 'left'
+					,prev        : '#p_click3'
+					,next        : '#n_click3'
+					,is_bullet   : false
+				});
+			}
 
-		if( ( (i+1)%30 )==0 ){
-			data.push('<div class="item_wrap">'+items+'</div>');
-			items = '';
-		}else if( (i+1) == total ){
-			data.push('<div class="item_wrap">'+items+'</div>');
-			items = '';
+		},error:function(err){
+			//alert(err.responseText) 
 		}
-	}
-
-
-	jQuery("#srolling_members").srolling({
-		 data        : data
-		,auto        : true
-		,item_count  : 1
-		,cache_count : 6
-		,width       : 900
-		,height      : 565
-		,delay       : 4000
-		,delay_frame : 1000
-		,move        : 'left'
-		,prev        : '#p_click3'
-		,next        : '#n_click3'
-		,is_bullet   : false
 	});
-
 
 });
 </SCRIPT>

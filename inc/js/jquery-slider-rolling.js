@@ -71,7 +71,7 @@
     var box = this;
     name = name + '_' + box.attr('id');
     var str_name = name.replace('#','');
-    var box_area = box.append("<div id='" + str_name + "' style='width:" + w_full_size + "px;position: absolute;white-space:nowrap;'></div><!-- Copyright (c) Seok Kyun. Choi. ÃÖ¼®±Õ http://syaku.tistory.com -->");
+    var box_area = box.append("<div id='" + str_name + "' style='width:" + w_full_size + "px;position: absolute;white-space:nowrap;'></div>");
     box_area = jQuery(name,box);
     var item_area = jQuery("<div></div>").css("width",item_width).css("height",item_height).css("float","left").css("overflow","hidden");
 

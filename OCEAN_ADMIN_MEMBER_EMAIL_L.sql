@@ -1,4 +1,4 @@
-USE [keti]
+USE [ocean]
 GO
 
 /****** Object:  StoredProcedure [dbo].[OCEAN_ADMIN_MEMBER_L]    Script Date: 08/03/2015 17:18:35 ******/

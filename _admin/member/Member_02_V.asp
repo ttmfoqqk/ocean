@@ -43,7 +43,7 @@ Sub GetList()
 		.prepared         = true
 		.CommandType      = adCmdStoredProc
 		.CommandText      = "OCEAN_MEMBERSHIP_V"
-		.Parameters("@idx").value      = idx
+		.Parameters("@idx").value = idx
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -173,6 +173,13 @@ function del_fm_checkbox(){
 										<option value="0" <%=IIF(FI_State="0","selected","")%>>사용중</option>
 										<option value="1" <%=IIF(FI_State="1","selected","")%>>탈퇴</option>
 									</select>
+								</td>
+							</tr>
+
+							<tr>
+								<td class="line_box" align="left" bgcolor="f0f0f0" width="140">순서</td>
+								<td class="line_box" style="word-break:break-all" colspan="3">
+									<input type="text" id="order" name="order" class="input" maxlength="10" size="5" value="<%=IIF(FI_order="",0,FI_order)%>" >
 								</td>
 							</tr>
 

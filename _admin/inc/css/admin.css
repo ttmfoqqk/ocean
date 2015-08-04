@@ -86,3 +86,12 @@ textarea{border:1px solid #9a9a9a;font-size:9pt;COLOR:#6b6b6b;line-height:140%;p
 .board_comment_area .board_comment_item .btn_area{clear:both;width:100%;text-align:right;}
 
 .board_comment_area .board_comment_item .btn_reply_area{width:100%;padding:10px;}
+
+.ellipsis{
+	text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal !important;
+    display: block;
+}
