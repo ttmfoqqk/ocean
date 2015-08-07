@@ -276,6 +276,10 @@ End Sub
 
 <SCRIPT type="text/javascript">
 $(function(){
+	if( $('#companySelect').val()=='NEW' ){
+		$('#company_input').show();
+	}
+
 	$('#companyCreate').click(function(){
 		$('#companySelect').val('NEW').change();
 	});

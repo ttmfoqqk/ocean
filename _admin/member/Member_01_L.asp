@@ -299,8 +299,8 @@ function chec_fm(){
 }
 function del_fm(){
 	var fm = document.fm;
-	if(confirm("탈퇴 처리 하시겠습니까?")){
-		fm.actType.value = "DELETE";
+	if(confirm("경고!!\n\n삭제 하시겠습니까?\n데이터 복구가 불가능 합니다.")){
+		fm.actType.value = "DELETE_DATA";
 		fm.submit();
 		$('.btn_area').html("처리중입니다.");
 	}

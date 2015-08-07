@@ -88,6 +88,9 @@ Call dbopen()
 	ElseIf actType = "DELETE" Then 
 		Call Insert()
 		alertMsg = "탈퇴되었습니다."
+	ElseIf actType = "DELETE_DATA" Then 
+		Call Insert()
+		alertMsg = "삭제되었습니다."
 	Else
 		alertMsg = "[actType] 이 없습니다."
 	End If	

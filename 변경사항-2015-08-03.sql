@@ -15,6 +15,9 @@ CREATE TABLE [dbo].[OCEAN_ADMIN_MEMBER_BOARD_permission](
 회원사 오더 칼럼 생성
 alter table [dbo].[OCEAN_MEMBERSHIP] add [order] int null
 
+회원 삭제여부 칼럼 생성 - 사용 안할듯
+alter table [dbo].[OCEAN_USER_MEMBER] add [DataDelFg] int null
+
 
 
 
