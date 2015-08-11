@@ -22,7 +22,7 @@
 	<div id="left_menu">
 		<h2>Download</h2>
 		<ul>
-			<li><a href="../download/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>openMobius</div></a>
+			<li><a href="../download/?tab1=1" class="<%=IIF( tab1 = 1 ,"over" , "" )%>"><div>Mobius</div></a>
 				<%
 				If tab1=1 Then
 					response.Write("<ul class=""sub"">")

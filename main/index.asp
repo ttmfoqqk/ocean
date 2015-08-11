@@ -279,7 +279,7 @@ $(function(){
 					rolling_img( parseInt(rolling_cnt)+1 );
 				});
 
-				rolling_setTime = setTimeout(function(){rolling_img( parseInt(rolling_cnt)+1 )},3000);
+				rolling_setTime = setTimeout(function(){rolling_img( parseInt(rolling_cnt)+1 )},10000);
 			});
 		});
 	}
@@ -328,7 +328,7 @@ $(function(){
 					,cache_count : Math.ceil( total / (X*Y) ) * 2
 					,width       : 900
 					,height      : 565
-					,delay       : 4000
+					,delay       : 11000
 					,delay_frame : 1000
 					,move        : 'left'
 					,prev        : '#p_click3'
