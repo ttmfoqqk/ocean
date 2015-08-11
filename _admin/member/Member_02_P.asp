@@ -119,11 +119,12 @@ If files1 <>"" Then
 	End If
 
 	If oldFileName1 <> "" Then
-		Set FSO = CreateObject("Scripting.FileSystemObject")
+		Set FSO = Server.CreateObject("DEXT.FileUpload")
 			If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName1)) Then	' 같은 이름의 파일이 있을 때 삭제
 				fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName1)
 			End If
 		set FSO = Nothing
+		oldFileName1 = ""
 	End If
 Else
 	files1 = oldFileName1
@@ -153,11 +154,12 @@ If files2 <>"" Then
 	End If
 
 	If oldFileName2 <> "" Then
-		Set FSO = CreateObject("Scripting.FileSystemObject")
+		Set FSO = Server.CreateObject("DEXT.FileUpload")
 			If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName2)) Then	' 같은 이름의 파일이 있을 때 삭제
 				fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName2)
 			End If
 		set FSO = Nothing
+		oldFileName2 = ""
 	End If
 Else
 	files2 = oldFileName2
@@ -165,26 +167,24 @@ End If
 
 If DellFileFg1 = "1" Then 
 	If oldFileName1 <> "" Then
-		Set FSO = CreateObject("Scripting.FileSystemObject")
+		Set FSO = Server.CreateObject("DEXT.FileUpload")
 			If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName1)) Then	' 같은 이름의 파일이 있을 때 삭제
 				fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName1)
 			End If
 		set FSO = Nothing
+		files1 = ""
 	End If
-
-	files1 = ""
 End If
 
 If DellFileFg2 = "1" Then 
 	If oldFileName2 <> "" Then
-		Set FSO = CreateObject("Scripting.FileSystemObject")
+		Set FSO = Server.CreateObject("DEXT.FileUpload")
 			If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName2)) Then	' 같은 이름의 파일이 있을 때 삭제
 				fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName2)
 			End If
 		set FSO = Nothing
+		files2 = ""
 	End If
-
-	files2 = ""
 End If
 
 

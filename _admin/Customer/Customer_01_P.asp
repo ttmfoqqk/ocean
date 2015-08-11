@@ -132,11 +132,13 @@ Call dbopen()
 			End If
 
 			If oldFileName <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName)) Then	' 같은 이름의 파일이 있을 때 삭제
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName)
 					End If
 				set FSO = Nothing
+
+				oldFileName = ""
 			End If
 		Else
 			FileName = oldFileName
@@ -166,11 +168,13 @@ Call dbopen()
 			End If
 
 			If oldFileName2 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName2)) Then	' 같은 이름의 파일이 있을 때 삭제
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName2)
 					End If
 				set FSO = Nothing
+
+				oldFileName2 = ""
 			End If
 		Else
 			FileName2 = oldFileName2
@@ -178,26 +182,24 @@ Call dbopen()
 
 		If DellFileFg = "1" Then 
 			If oldFileName <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName)) Then	' 같은 이름의 파일이 있을 때 삭제
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName)
 					End If
 				set FSO = Nothing
+				FileName = ""
 			End If
-
-			FileName = ""
 		End If
 
 		If DellFileFg2 = "1" Then 
 			If oldFileName2 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName2)) Then	' 같은 이름의 파일이 있을 때 삭제
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName2)
 					End If
 				set FSO = Nothing
+				FileName2 = ""
 			End If
-
-			FileName2 = ""
 		End If
 
 		Call insert()
@@ -206,7 +208,7 @@ Call dbopen()
 		
 		'글 삭제시 파일 삭제
 		'If FI_FileName <> "" Then
-		'	Set FSO = CreateObject("Scripting.FileSystemObject")
+		'	Set FSO = Server.CreateObject("DEXT.FileUpload")
 		'		If (FSO.FileExists(ETING_UPLOAD_BASE_PATH & savePath & FI_File_name)) Then	' 파일삭제
 		'			fso.deletefile(ETING_UPLOAD_BASE_PATH & savePath & FI_File_name)
 		'		End If

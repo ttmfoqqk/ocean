@@ -302,11 +302,12 @@ Call dbopen()
 		If FileName <>"" Then 
 			FileName = DextFileUpload("FileName",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName)
 					End If
 				set FSO = Nothing
+				oldFileName = ""
 			End If
 		Else
 			FileName = oldFileName
@@ -315,11 +316,12 @@ Call dbopen()
 		If FileName2 <>"" Then 
 			FileName2 = DextFileUpload("FileName2",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName2 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName2)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName2)
 					End If
 				set FSO = Nothing
+				oldFileName2 = ""
 			End If
 		Else
 			FileName2 = oldFileName2
@@ -328,11 +330,12 @@ Call dbopen()
 		If FileName3 <>"" Then 
 			FileName3 = DextFileUpload("FileName3",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName3 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName3)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName3)
 					End If
 				set FSO = Nothing
+				oldFileName3 = ""
 			End If
 		Else
 			FileName3 = oldFileName3
@@ -341,11 +344,12 @@ Call dbopen()
 		If FileName4 <>"" Then 
 			FileName4 = DextFileUpload("FileName4",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName4 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName4)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName4)
 					End If
 				set FSO = Nothing
+				oldFileName4 = ""
 			End If
 		Else
 			FileName4 = oldFileName4
@@ -354,11 +358,12 @@ Call dbopen()
 		If FileName5 <>"" Then 
 			FileName5 = DextFileUpload("FileName5",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName5 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName5)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName5)
 					End If
 				set FSO = Nothing
+				oldFileName5 = ""
 			End If
 		Else
 			FileName5 = oldFileName5
@@ -367,11 +372,12 @@ Call dbopen()
 		If FileName6 <>"" Then 
 			FileName6 = DextFileUpload("FileName6",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName6 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName6)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName6)
 					End If
 				set FSO = Nothing
+				oldFileName6 = ""
 			End If
 		Else
 			FileName6 = oldFileName6
@@ -380,11 +386,12 @@ Call dbopen()
 		If FileName7 <>"" Then 
 			FileName7 = DextFileUpload("FileName7",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName7 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName7)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName7)
 					End If
 				set FSO = Nothing
+				oldFileName7 = ""
 			End If
 		Else
 			FileName7 = oldFileName7
@@ -393,11 +400,12 @@ Call dbopen()
 		If FileName8 <>"" Then 
 			FileName8 = DextFileUpload("FileName8",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName8 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName8)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName8)
 					End If
 				set FSO = Nothing
+				oldFileName8 = ""
 			End If
 		Else
 			FileName8 = oldFileName8
@@ -406,11 +414,12 @@ Call dbopen()
 		If FileName9 <>"" Then 
 			FileName9 = DextFileUpload("FileName9",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName9 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName9)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName9)
 					End If
 				set FSO = Nothing
+				oldFileName9 = ""
 			End If
 		Else
 			FileName9 = oldFileName9
@@ -419,11 +428,12 @@ Call dbopen()
 		If FileName10 <>"" Then 
 			FileName10 = DextFileUpload("FileName10",UPLOAD_BASE_PATH & savePath,0)
 			If oldFileName10 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName10)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName10)
 					End If
 				set FSO = Nothing
+				oldFileName10 = ""
 			End If
 		Else
 			FileName10 = oldFileName10
@@ -432,122 +442,112 @@ Call dbopen()
 
 		If DellFileFg = "1" Then 
 			If oldFileName <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName)
 					End If
 				set FSO = Nothing
+				FileName = ""
 			End If
-
-			FileName = ""
 		End If
 
 		If DellFileFg2 = "1" Then 
 			If oldFileName2 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName2)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName2)
 					End If
 				set FSO = Nothing
+				FileName2 = ""
 			End If
-
-			FileName2 = ""
 		End If
 
 		If DellFileFg3 = "1" Then 
 			If oldFileName3 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName3)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName3)
 					End If
 				set FSO = Nothing
+				FileName3 = ""
 			End If
-
-			FileName3 = ""
 		End If
 
 		If DellFileFg4 = "1" Then 
 			If oldFileName4 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName4)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName4)
 					End If
 				set FSO = Nothing
+				FileName4 = ""
 			End If
-
-			FileName4 = ""
 		End If
 
 		If DellFileFg5 = "1" Then 
 			If oldFileName5 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName5)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName5)
 					End If
 				set FSO = Nothing
+				FileName5 = ""
 			End If
-
-			FileName5 = ""
 		End If
 
 		If DellFileFg6 = "1" Then 
 			If oldFileName6 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName6)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName6)
 					End If
 				set FSO = Nothing
+				FileName6 = ""
 			End If
-
-			FileName6 = ""
 		End If
 
 		If DellFileFg7 = "1" Then 
 			If oldFileName7 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName7)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName7)
 					End If
 				set FSO = Nothing
+				FileName7 = ""
 			End If
-
-			FileName7 = ""
 		End If
 
 		If DellFileFg8 = "1" Then 
 			If oldFileName8 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName8)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName8)
 					End If
 				set FSO = Nothing
+				FileName8 = ""
 			End If
-
-			FileName8 = ""
 		End If
 
 		If DellFileFg9 = "1" Then 
 			If oldFileName9 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName9)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName9)
 					End If
 				set FSO = Nothing
+				FileName9 = ""
 			End If
-
-			FileName9 = ""
 		End If
 
 		If DellFileFg10 = "1" Then 
 			If oldFileName10 <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFileName10)) Then
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFileName10)
 					End If
 				set FSO = Nothing
+				FileName10 = ""
 			End If
-
-			FileName10 = ""
 		End If
 
 
@@ -557,7 +557,7 @@ Call dbopen()
 		
 		'글 삭제시 파일 삭제
 		'If FI_FileName <> "" Then
-		'	Set FSO = CreateObject("Scripting.FileSystemObject")
+		'	Set FSO = Server.CreateObject("DEXT.FileUpload")
 		'		If (FSO.FileExists(ETING_UPLOAD_BASE_PATH & savePath & FI_File_name)) Then	' 파일삭제
 		'			fso.deletefile(ETING_UPLOAD_BASE_PATH & savePath & FI_File_name)
 		'		End If

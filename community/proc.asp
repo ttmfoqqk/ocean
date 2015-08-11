@@ -132,7 +132,7 @@ Call dbopen()
 		
 		'글 삭제시 파일 삭제
 		'If FI_FileName <> "" Then
-		'	Set FSO = CreateObject("Scripting.FileSystemObject")
+		'	Set FSO = Server.CreateObject("DEXT.FileUpload")
 		'		If (FSO.FileExists(ETING_UPLOAD_BASE_PATH & savePath & FI_File_name)) Then	' 파일삭제
 		'			fso.deletefile(ETING_UPLOAD_BASE_PATH & savePath & FI_File_name)
 		'		End If
@@ -249,7 +249,7 @@ function fileUpload_proc( file , input , oldFile , delfg )
 		End If
 
 		If oldFile <> "" Then
-			Set FSO = CreateObject("Scripting.FileSystemObject")
+			Set FSO = Server.CreateObject("DEXT.FileUpload")
 				If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFile)) Then	' 같은 이름의 파일이 있을 때 삭제
 					fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFile)
 				End If
@@ -258,7 +258,7 @@ function fileUpload_proc( file , input , oldFile , delfg )
 	Else
 		If delfg = "1" Then 
 			If oldFile <> "" Then
-				Set FSO = CreateObject("Scripting.FileSystemObject")
+				Set FSO = Server.CreateObject("DEXT.FileUpload")
 					If (FSO.FileExists(UPLOAD_BASE_PATH & savePath & oldFile)) Then	' 같은 이름의 파일이 있을 때 삭제
 						fso.deletefile(UPLOAD_BASE_PATH & savePath & oldFile)
 					End If
