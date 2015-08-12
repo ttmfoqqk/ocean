@@ -179,7 +179,7 @@ function del_fm_checkbox(){
 							<tr>
 								<td class="line_box" align="left" bgcolor="f0f0f0" width="140">순서</td>
 								<td class="line_box" style="word-break:break-all" colspan="3">
-									<input type="text" id="order" name="order" class="input" maxlength="10" size="5" value="<%=IIF(FI_order="",0,FI_order)%>" >
+									<input type="text" id="order" name="order" class="input" maxlength="10" size="5" value="<%=IIF(FI_order="",100,FI_order)%>" >
 								</td>
 							</tr>
 

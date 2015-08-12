@@ -32,7 +32,7 @@ Dim business11    : business11    = UPLOAD__FORM("business11")
 Dim business12    : business12    = UPLOAD__FORM("business12")
 Dim bigo          : bigo          = TagEncode(UPLOAD__FORM("bigo"))
 Dim State         : State         = IIF( UPLOAD__FORM("State") = "" , 0 , UPLOAD__FORM("State") )
-dim order         : order         = IIF( UPLOAD__FORM("order") = "" , 0 , UPLOAD__FORM("order") )
+dim order         : order         = IIF( UPLOAD__FORM("order") = "" , 100 , UPLOAD__FORM("order") )
 
 
 Dim files2        : files2        = Trim( UPLOAD__FORM("files2") )

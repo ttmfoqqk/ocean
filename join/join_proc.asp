@@ -189,6 +189,7 @@ Sub insert()
 		.Parameters("@business12").value    = IIF(business12="",0,business12)
 		.Parameters("@files2").value        = files2
 		.Parameters("@bigo").value          = other_infor
+		.Parameters("@order").value         = 100
 		End If
 		Set objRs = .Execute
 	End with
