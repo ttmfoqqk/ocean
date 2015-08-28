@@ -15,6 +15,7 @@ function submenu_open(obj){
 	<li style="<%=IIF(INSTR(LCase(g_url),"admin_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Admin/Admin_01_L.asp">약관관리</a></li>
 	<li style="<%=IIF(INSTR(LCase(g_url),"admin_02")>0,"background-color:#f4f4f4;","")%>"><a href="../Admin/Admin_02_L.asp">사원관리</a></li>
 	<li style="<%=IIF(INSTR(LCase(g_url),"admin_03")>0,"background-color:#f4f4f4;","")%>"><a href="../Admin/Admin_03_L.asp">기초코드</a></li>
+	<li style="<%=IIF(INSTR(LCase(g_url),"admin_04")>0,"background-color:#f4f4f4;","")%>"><a href="../Admin/Admin_04_L.asp">팝업관리</a></li>
 </ul>
 <%elseIf AdminTopmode = 2 Then%>
 <ul>
