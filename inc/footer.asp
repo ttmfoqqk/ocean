@@ -26,7 +26,7 @@
 
 <%
 '노출 메뉴 설정
-menu_filter = "/main/,/about/,/license/,/download/,/community/,/showcase/,/contact/,/join/,/login/,/mypage/"
+menu_filter = "/main/,/about/,/license/,/download/,/community/,/showcase/,/contact/,/join/,/mypage/"
 quic_fg = false
 f_menu_filter()
 
