@@ -35,6 +35,7 @@ body{
 	font-family:ng,'NanumGothic';
 	font-size:12px;
 	background-color:#ffffff;
+	min-width:1400px;
 }
 a{text-decoration:none;color:#333333;}
 img{border:0px;}

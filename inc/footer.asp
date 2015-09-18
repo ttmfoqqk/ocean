@@ -192,7 +192,7 @@ if quic_fg = true then
 				return false;
 			}
 			var quick_top  = tops;
-			var left       = ( ($(window).width() - quick_menu.width()) / 2 ) + lefts;
+			var left       = ( ($(document).width() - quick_menu.width()) / 2 ) + lefts;
 			var topH       = quick_top - 20;
 
 			quick_menu.css( {'top': quick_top ,'left': left + 'px' } );
@@ -211,7 +211,7 @@ if quic_fg = true then
 				}
 			});
 			$( window ).resize(function() {
-				var left = ( ($(window).width() - quick_menu.width()) / 2 ) + lefts;
+				var left = ( ($(document).width() - quick_menu.width()) / 2 ) + lefts;
 				quick_menu.css( { 'left': left + 'px' } );
 			});
 		});
