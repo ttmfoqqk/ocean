@@ -138,9 +138,17 @@ End Sub
 
 				</form>
 				<tr>
-					<td colspan=2><img src="../img/center_sub_search_data.gif"></td>
+					<td><img src="../img/center_sub_search_data.gif"></td>
+					<!--td align=right><a href="excel.Customer_02.asp?<%=PageParams%>">[엑셀 다운로드]</a></td-->
 				</tr>
 				<tr><td height="10"></td></tr>
+				<tr>
+					<td colspan=2>
+						<input type="button" class="btn" value=" 엑셀 다운로드 " onclick="location.href='excel.Customer_02.asp?<%=PageParams%>';" style="width:100px;height:30px;padding:0px;">
+					</td>
+				</tr>
+				<tr><td height="10"></td></tr>
+				
 				<tr>
 					<td colspan=2>
 						<form name="AdminForm" method="post" action="Customer_01_P.asp" enctype="multipart/form-data">

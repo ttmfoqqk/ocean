@@ -147,7 +147,7 @@ function MailSend(strSubject, strBody, strTo, strFrom, attachPath)
 	on error resume Next
 	
 	Const cdoSendUsingMethod		= "http://schemas.microsoft.com/cdo/configuration/sendusing" 
-	Const cdoSendUsingPort			= 1  ' 1:로컬, 1:외부
+	Const cdoSendUsingPort			= 2  ' 1:로컬, 1:외부
 	Const cdoSMTPServer				= "http://schemas.microsoft.com/cdo/configuration/smtpserver" 
 	Const cdoSMTPServerPort			= "http://schemas.microsoft.com/cdo/configuration/smtpserverport"
 	Const cdoSMTPConnectionTimeout	= "http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout" 
@@ -163,12 +163,13 @@ function MailSend(strSubject, strBody, strTo, strFrom, attachPath)
 	Set Flds = objConfig.Fields 
 	With Flds 
 		.Item(cdoSendUsingMethod) = cdoSendUsingPort 
-		.Item(cdoSMTPServer) = "127.0.0.1"  ' 로컬호스트 
+		'.Item(cdoSMTPServer) = "127.0.0.1"  ' 로컬호스트 
+		.Item(cdoSMTPServer) = "mw-002.cafe24.com"  
 		.Item(cdoSMTPServerPort) = 25 
 		.Item(cdoSMTPAuthenticate) = cdoBasic 
 		.Item(cdoSMTPPickupDirectory) = "C:\Inetpub\mailroot\Pickup"  ' 픽업 디렉토리 경로 지정
-		'.Item(cdoSendUserName) = "계정 id"
-		'.Item(cdoSendPassword) = "계정 pwd"
+		.Item(cdoSendUserName) = "SPADMIN@spweb.cafe24.com"
+		.Item(cdoSendPassword) = "smile5138"
 		.Update
 	End With 
 	

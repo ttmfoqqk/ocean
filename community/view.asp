@@ -8,13 +8,17 @@ Dim cntList     : cntList  = -1
 
 Dim arrListMenu
 Dim cntListMenu : cntListMenu  = -1
-Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
+Dim tab1        : tab1         = IIF( request("tab1")="",0,request("tab1") )
 Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
 dim sType       : sType        = request("sType")
 dim word        : word         = request("word")
 Dim Idx         : Idx          = IIF( request("Idx")="" , 0 , request("Idx") )
 Dim pageNo      : pageNo       = CInt(IIF(request("pageNo")="","1",request("pageNo")))
+
+Dim arrTab1List
+Dim cntTab1List : cntTab1List = -1
+
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
@@ -47,6 +51,12 @@ End If
 Call Expires()
 Call dbopen()
 	call Check()
+
+	call GetMenuCommunityList()
+	If cntTab1List >= 0 Then
+		tab1 = IIF( tab1=0,arrTab1List(FI2_idx,0),tab1 )
+	End If
+
 	Call GetListMenu()
 	If cntListMenu >= 0 Then
 		tab2 = IIF( tab2=0,arrListMenu(MENU_idx,0),tab2 )
@@ -91,6 +101,29 @@ Sub View()
 		cntList = UBound(arrList, 2)
 	End If
 
+	objRs.close	: Set objRs = Nothing
+End Sub
+
+
+
+
+Sub GetMenuCommunityList()
+	SET objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
+	with objCmd
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_BOARD_TAP_COMMUNITY_S"
+		.Parameters("@Key").value = 3
+		Set objRs = .Execute
+	End with
+	set objCmd = nothing
+	CALL setFieldIndex(objRs, "FI2")
+	If NOT(objRs.BOF or objRs.EOF) Then
+		arrTab1List = objRs.GetRows()
+		cntTab1List = UBound(arrTab1List, 2)
+	End If
 	objRs.close	: Set objRs = Nothing
 End Sub
 

@@ -31,6 +31,7 @@ function submenu_open(obj){
 <ul>
 	<li style="<%=IIF(INSTR(LCase(g_url),"member_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Member/Member_01_L.asp">회원관리</a></li>
 	<li style="<%=IIF(INSTR(LCase(g_url),"member_02")>0,"background-color:#f4f4f4;","")%>"><a href="../Member/Member_02_L.asp">멤버사관리</a></li>
+	<li style="<%=IIF(INSTR(LCase(g_url),"member_03")>0,"background-color:#f4f4f4;","")%>"><a href="../Member/Member_03_L.asp">이메일 보내기</a></li>
 </ul>
 <%elseIf AdminTopmode = 5 Then%>
 <ul>
@@ -39,9 +40,11 @@ function submenu_open(obj){
 	<li style="<%=IIF(BoardKey=1 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=1">다운로드</a></li>	
 	<li style="<%=IIF(BoardKey=3 And INSTR(LCase(g_url),"customer_01")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_01_L.asp?BoardKey=3">커뮤니티</a></li>
 	<li ><a href="#" class="toggle">분류관리</a>
-		<ul class="submenu" style="<%=IIF(INSTR(LCase(g_url),"customer_03")>0,"display:block;","")%>">
-			<li style="<%=IIF(BoardKey=1 And INSTR(LCase(g_url),"customer_03")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_03_L.asp?BoardKey=1">다운로드 분류관리</a></li>
-			<li style="<%=IIF(BoardKey=3 And INSTR(LCase(g_url),"customer_03")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_03_L.asp?BoardKey=3">커뮤니티 분류관리</a></li>
+		<ul class="submenu" style="<%=IIF(INSTR(LCase(g_url),"customer_03")>0 or INSTR(LCase(g_url),"customer_04")>0 or INSTR(LCase(g_url),"customer_05")>0,"display:block;","")%>">
+			<li style="<%=IIF(BoardKey=1 And INSTR(LCase(g_url),"customer_04")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_04_L.asp?BoardKey=1">다운로드 대분류관리</a></li>
+			<li style="<%=IIF(BoardKey=1 And INSTR(LCase(g_url),"customer_03")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_03_L.asp?BoardKey=1">다운로드 중분류관리</a></li>
+			<li style="<%=IIF(BoardKey=3 And INSTR(LCase(g_url),"customer_05")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_05_L.asp?BoardKey=3">커뮤니티 대분류관리</a></li>
+			<!--li style="<%=IIF(BoardKey=3 And INSTR(LCase(g_url),"customer_03")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_03_L.asp?BoardKey=3">커뮤니티 분류관리</a></li-->
 		</ul>
 	</li>
 	<li style="<%=IIF(INSTR(LCase(g_url),"customer_02")>0,"background-color:#f4f4f4;","")%>"><a href="../Customer/Customer_02_L.asp">다운로드 로그</a></li>

@@ -161,10 +161,7 @@ function del_fm_checkbox(){
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box">
-									<%=IIF(FI_tab="1","Mobius","")%>
-									<%=IIF(FI_tab="2","&CUBE","")%>
-									<%=IIF(FI_tab="3","Open Contribution","")%>
-
+									<%=FI_DownloadName%>
 									<%=IIF(FI_tab2Name<>""," > " & FI_tab2Name,"")%>
 								</td>
 							</tr>
@@ -172,11 +169,7 @@ function del_fm_checkbox(){
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box">
-									<%=IIF(FI_tab="1","Device Dev","")%>
-									<%=IIF(FI_tab="2","Server Dev","")%>
-									<%=IIF(FI_tab="3","Application Dev","")%>
-
-									<%=IIF(FI_tab2Name<>""," > " & FI_tab2Name,"")%>
+									<%=FI_CommunityName%>
 								</td>
 							</tr>
 							<%End If%>

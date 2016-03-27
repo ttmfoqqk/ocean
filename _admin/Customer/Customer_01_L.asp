@@ -23,12 +23,22 @@ Dim tab2     : tab2     = IIF( request("tab2")="",0,request("tab2") )
 dim sstatus  : sstatus  = request("status")
 
 
+Dim arrMenuList
+Dim cntMenuList : cntMenuList = -1
+
+
 Call Expires()
 Call dbopen()
 	Call BoardCodeList()
 	BoardKey = IIF( BoardKey="" , BC_FIRST_KEY , BoardKey )
 	Call BoardCodeView()
 	Call GetList()
+
+	if BoardKey = "1" then
+		Call GetMenuDownloadList()
+	elseif BoardKey = "3" then
+		Call GetMenuCommunityList()
+	end if
 Call dbclose()
 
 Dim pageURL
@@ -131,6 +141,48 @@ Sub GetList()
 	End If
 	objRs.close	: Set objRs = Nothing
 End Sub
+
+
+
+Sub GetMenuDownloadList()
+	SET objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
+	with objCmd
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_BOARD_TAP_DOWNLOAD_S"
+		.Parameters("@Key").value = BoardKey
+		Set objRs = .Execute
+	End with
+	set objCmd = nothing
+	CALL setFieldIndex(objRs, "FI2")
+	If NOT(objRs.BOF or objRs.EOF) Then
+		arrMenuList = objRs.GetRows()
+		cntMenuList = UBound(arrMenuList, 2)
+	End If
+	objRs.close	: Set objRs = Nothing
+End Sub
+
+Sub GetMenuCommunityList()
+	SET objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
+	with objCmd
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_BOARD_TAP_COMMUNITY_S"
+		.Parameters("@Key").value = BoardKey
+		Set objRs = .Execute
+	End with
+	set objCmd = nothing
+	CALL setFieldIndex(objRs, "FI2")
+	If NOT(objRs.BOF or objRs.EOF) Then
+		arrMenuList = objRs.GetRows()
+		cntMenuList = UBound(arrMenuList, 2)
+	End If
+	objRs.close	: Set objRs = Nothing
+End Sub
 %>
 
 <table cellpadding=0 cellspacing=0 width="990" align=center border=0>
@@ -207,25 +259,18 @@ End Sub
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box" colspan="3">
-									<%If BoardKey="1" Then%>
 									<select id="tab" name="tab">
 										<option value="">선택</option>
-										<option value="1" <%=IIF(tab = "1","selected","")%>>Mobius</option>
-										<option value="2" <%=IIF(tab = "2","selected","")%>>&CUBE</option>
-										<option value="3" <%=IIF(tab = "3","selected","")%>>Open Contribution</option>
+										<%For iLoop = 0 To cntMenuList%>
+										<option value="<%=arrMenuList(FI2_idx, iLoop)%>" <%=IIF(tab = cstr(arrMenuList(FI2_idx, iLoop)),"selected","")%>><%=arrMenuList(FI2_name, iLoop)%></option>
+										<%next%>
 									</select>
-									<%elseIf BoardKey="3" Then%>
-									<select id="tab" name="tab">
-										<option value="">선택</option>
-										<option value="1" <%=IIF(tab = "1","selected","")%>>Device Dev</option>
-										<option value="2" <%=IIF(tab = "2","selected","")%>>Server Dev</option>
-										<option value="3" <%=IIF(tab = "3","selected","")%>>Application Dev</option>
-									</select>
-									<%End If%>
 
+									<%if BoardKey="1" then %>
 									<select id="tab2" name="tab2">
 										<option value="">중분류 선택</option>
 									</select>
+									<%end if%>
 								</td>
 							</tr>
 							<%end if%>
@@ -285,19 +330,12 @@ End Sub
 								<td class="line_box ellipsis" onclick="<%=PageLink%>" style="cursor:hand" align=left><%=HtmlTagRemover( arrNoti(NOTICE_Title,iLoop) , 60 )%></td>
 								<%If BoardKey = "1" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","Mobius","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","&CUBE","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","Open Contribution","")%>
-
+									<%=arrNoti(NOTICE_DownloadName,iLoop)%>
 									<%=IIF(arrNoti(NOTICE_tab2Name,iLoop)<>""," > " & arrNoti(NOTICE_tab2Name,iLoop),"")%>
 								</td>
 								<%elseIf BoardKey = "3" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="1","Device Dev","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="2","Server Dev","")%>
-									<%=IIF(arrNoti(NOTICE_tab,iLoop)="3","Application Dev","")%>
-
-									<%=IIF(arrNoti(NOTICE_tab2Name,iLoop)<>""," > " & arrNoti(NOTICE_tab2Name,iLoop),"")%>
+									<%=arrNoti(NOTICE_CommunityName,iLoop)%>
 								</td>
 								<%End If%>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrNoti(NOTICE_ContName,iLoop)%></td>
@@ -349,19 +387,12 @@ End Sub
 								</td>
 								<%If BoardKey = "1" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<%=IIF(arrList(FI_tab,iLoop)="1","Mobius","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="2","&CUBE","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="3","Open Contribution","")%>
-
+									<%=arrList(FI_DownloadName,iLoop)%>
 									<%=IIF(arrList(FI_tab2Name,iLoop)<>""," > " & arrList(FI_tab2Name,iLoop),"")%>
 								</td>
 								<%elseIf BoardKey = "3" Then %>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left>
-									<%=IIF(arrList(FI_tab,iLoop)="1","Device Dev","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="2","Server Dev","")%>
-									<%=IIF(arrList(FI_tab,iLoop)="3","Application Dev","")%>
-
-									<%=IIF(arrList(FI_tab2Name,iLoop)<>""," > " & arrList(FI_tab2Name,iLoop),"")%>
+									<%=arrList(FI_CommunityName,iLoop)%>
 								</td>
 								<%End If%>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_ContName,iLoop)%></td>

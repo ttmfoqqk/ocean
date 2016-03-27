@@ -4,11 +4,13 @@ checkLogin( g_host & g_url )
 
 Dim arrListMenu
 Dim cntListMenu : cntListMenu  = -1
-Dim tab1        : tab1         = IIF( request("tab1")="",1,request("tab1") )
+Dim tab1        : tab1         = IIF( request("tab1")="",0,request("tab1") )
 Dim tab2        : tab2         = IIF( request("tab2")="",0,request("tab2") )
 Dim tab3        : tab3         = IIF( request("tab3")="","all",request("tab3") )
 Dim idx         : idx          = request("idx")
 
+Dim arrTab1List
+Dim cntTab1List : cntTab1List = -1
 
 If tab1 <> "" And IsNumeric( tab1 ) = False Then
 	With Response
@@ -32,11 +34,37 @@ End If
 
 Call Expires()
 Call dbopen()
+	call GetMenuDownloadList()
+	If cntTab1List >= 0 Then
+		tab1 = IIF( tab1=0,arrTab1List(FI2_idx,0),tab1 )
+	End If
 	Call GetListMenu()
 	If cntListMenu >= 0 Then
 		tab2 = IIF( tab2=0,arrListMenu(MENU_idx,0),tab2 )
 	End If
 Call dbclose()
+
+Sub GetMenuDownloadList()
+	SET objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
+	with objCmd
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_BOARD_TAP_DOWNLOAD_S"
+		.Parameters("@Key").value = 1
+		Set objRs = .Execute
+	End with
+	set objCmd = nothing
+	CALL setFieldIndex(objRs, "FI2")
+	If NOT(objRs.BOF or objRs.EOF) Then
+		arrTab1List = objRs.GetRows()
+		cntTab1List = UBound(arrTab1List, 2)
+	End If
+	objRs.close	: Set objRs = Nothing
+End Sub
+
+
 
 Sub GetListMenu()
 	SET objRs  = Server.CreateObject("ADODB.RecordSet")

@@ -21,8 +21,11 @@ Dim tab      : tab      = IIF( request("tab")="",0,request("tab") )
 Dim tab2     : tab2     = IIF( request("tab2")="",0,request("tab2") )
 dim sstatus  : sstatus  = request("status")
 Dim Idx      : Idx      = IIF( request("Idx")="" , 0 , request("Idx") )
-
 Dim actType  : actType  = request("actType")
+
+
+Dim arrMenuList
+Dim cntMenuList : cntMenuList = -1
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
@@ -42,6 +45,13 @@ Call dbopen()
 	Call BoardCodeList()
 	Call BoardCodeView()
 	Call GetList()
+
+	if BoardKey = "1" then
+		Call GetMenuDownloadList()
+	elseif BoardKey = "3" then
+		Call GetMenuCommunityList()
+	end if
+
 Call dbclose()
 
 Sub BoardCodeList()
@@ -100,6 +110,47 @@ Sub GetList()
 	CALL setFieldValue(objRs, "FI")
 	objRs.close	: Set objRs = Nothing
 End Sub
+
+
+Sub GetMenuDownloadList()
+	SET objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
+	with objCmd
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_BOARD_TAP_DOWNLOAD_S"
+		.Parameters("@Key").value = BoardKey
+		Set objRs = .Execute
+	End with
+	set objCmd = nothing
+	CALL setFieldIndex(objRs, "FI2")
+	If NOT(objRs.BOF or objRs.EOF) Then
+		arrMenuList = objRs.GetRows()
+		cntMenuList = UBound(arrMenuList, 2)
+	End If
+	objRs.close	: Set objRs = Nothing
+End Sub
+
+Sub GetMenuCommunityList()
+	SET objRs  = Server.CreateObject("ADODB.RecordSet")
+	SET objCmd = Server.CreateObject("adodb.command")
+	with objCmd
+		.ActiveConnection = objConn
+		.prepared         = true
+		.CommandType      = adCmdStoredProc
+		.CommandText      = "OCEAN_BOARD_TAP_COMMUNITY_S"
+		.Parameters("@Key").value = BoardKey
+		Set objRs = .Execute
+	End with
+	set objCmd = nothing
+	CALL setFieldIndex(objRs, "FI2")
+	If NOT(objRs.BOF or objRs.EOF) Then
+		arrMenuList = objRs.GetRows()
+		cntMenuList = UBound(arrMenuList, 2)
+	End If
+	objRs.close	: Set objRs = Nothing
+End Sub
 %>
 <script type="text/javascript">
 $(document).ready( function() {
@@ -151,36 +202,22 @@ $(document).ready( function() {
 					<td colspan=2 >
 
 						<table cellpadding=0 cellspacing=0 width="100%">
-							<%If BoardKey = "1" Then %>
+							<%If BoardKey = "1" or BoardKey = "3" Then %>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
 								<td class="line_box">
 									<select id="tab" name="tab">
-										<option value="">대분류 선택</option>
-										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "1","selected","")%>>Mobius</option>
-										<option value="2" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "2","selected","")%>>&CUBE</option>
-										<option value="3" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "3","selected","")%>>Open Contribution</option>
+										<option value="">선택</option>
+										<%For iLoop = 0 To cntMenuList%>
+										<option value="<%=arrMenuList(FI2_idx, iLoop)%>" <%=IIF(IIF(FI_tab="",tab,FI_tab) = cstr(arrMenuList(FI2_idx, iLoop)),"selected","")%>><%=arrMenuList(FI2_name, iLoop)%></option>
+										<%next%>
 									</select>
 
+									<% if BoardKey = "1" then  %>
 									<select id="tab2" name="tab2">
 										<option value="">중분류 선택</option>
 									</select>
-								</td>
-							</tr>
-							<%elseIf BoardKey = "3" Then %>
-							<tr>
-								<td class="line_box" align=center bgcolor="f0f0f0" width="140">분류</td>
-								<td class="line_box">
-									<select id="tab" name="tab">
-										<option value="">대분류 선택</option>
-										<option value="1" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "1","selected","")%>>Device Dev</option>
-										<option value="2" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "2","selected","")%>>Server Dev</option>
-										<option value="3" <%=IIF(IIF(FI_tab="" ,tab ,FI_tab) = "3","selected","")%>>Application Dev</option>
-									</select>
-
-									<select id="tab2" name="tab2">
-										<option value="">중분류 선택</option>
-									</select>
+									<%end if%>
 								</td>
 							</tr>
 							<%End If%>
