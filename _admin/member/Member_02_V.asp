@@ -12,6 +12,7 @@ Dim State    : State    = request("State")
 Dim Indate   : Indate   = request("Indate")
 Dim Outdate  : Outdate  = request("Outdate")
 Dim country  : country  = request("country")
+Dim noCountry : noCountry = request("noCountry")
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
@@ -21,7 +22,8 @@ PageParams = "pageNo=" & pageNo &_
 		"&State="   & State &_
 		"&Indate="  & Indate &_
 		"&Outdate=" & Outdate &_
-		"&country=" & country
+		"&country=" & country &_
+		"&noCountry=" & noCountry
 
 
 Call Expires()

@@ -14,6 +14,8 @@ Dim State    : State    = request("State")
 Dim Indate   : Indate   = request("Indate")
 Dim Outdate  : Outdate  = request("Outdate")
 Dim country  : country  = request("Country")
+Dim noCountry : noCountry = request("noCountry")
+
 Dim pageURL
 pageURL	= g_url & "?pageNo=__PAGE__" &_
 		"&cName="   & cName &_
@@ -22,7 +24,8 @@ pageURL	= g_url & "?pageNo=__PAGE__" &_
 		"&State="   & State &_
 		"&Indate="  & Indate &_
 		"&Outdate=" & Outdate &_
-		"&country=" & country
+		"&country=" & country &_
+		"&noCountry=" & noCountry
 
 Dim PageParams
 PageParams = "pageNo=" & pageNo &_
@@ -32,7 +35,8 @@ PageParams = "pageNo=" & pageNo &_
 		"&State="   & State &_
 		"&Indate="  & Indate &_
 		"&Outdate=" & Outdate &_
-		"&country=" & country
+		"&country=" & country &_
+		"&noCountry=" & noCountry
 
 Call Expires()
 Call dbopen()
@@ -57,6 +61,7 @@ Sub GetList()
 		.Parameters("@Indate").value  = Indate
 		.Parameters("@Outdate").value = Outdate
 		.Parameters("@Country").value = country
+		.Parameters("@noCountry").value = noCountry
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
@@ -143,8 +148,8 @@ function del_fm_checkbox(){
 										<option value="1" <%=IIF(State="1","selected","")%>>탈퇴</option>
 									</select>
 								</td>
-								<td class="line_box" align=center bgcolor="f0f0f0" width="140"> </td>
-								<td class="line_box"> </td>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">South Korea 제외</td>
+								<td class="line_box"><input type="checkbox" id="noCountry" name="noCountry" value="254" <%=IIF(noCountry="254","checked","")%>></td>
 							</tr>
 						</table>
 

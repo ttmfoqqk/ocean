@@ -22,6 +22,7 @@ Sub GetNotice()
 		.CommandText      = "OCEAN_BOARD_CONT_MINI_L"
 		.Parameters("@Key").value = 0
 		.Parameters("@CNT").value = 5
+		.Parameters("@notice").value = 1
 		Set objRs = .Execute
 	End with
 	set objCmd = nothing
