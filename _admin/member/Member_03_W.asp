@@ -14,20 +14,9 @@ Dim ceoFg      : ceoFg    = request("ceoFg")
 Dim companyIdx : companyIdx = request("companyIdx")
 Dim Indate     : Indate   = request("Indate")
 Dim Outdate    : Outdate  = request("Outdate")
+Dim PageParams : PageParams = URLDecode(request("PageParams"))
 
-
-
-Dim PageParams
-PageParams = "UserName="  & UserName &_
-		"&UserId="    & UserId &_
-		"&Hphone3="   & Hphone3 &_
-		"&delFg="     & delFg &_
-		"&State="     & State &_
-		"&ceoFg="     & ceoFg &_
-		"&companyIdx="& companyIdx &_
-		"&Indate="    & Indate &_
-		"&Outdate="   & Outdate
-
+dim cntIdx : cntIdx = split(Idx,",")
 
 %>
 
@@ -66,6 +55,10 @@ PageParams = "UserName="  & UserName &_
 					<td colspan=2 >
 
 						<table cellpadding=0 cellspacing=0 width="100%">
+							<tr>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">선택 수신자</td>
+								<td class="line_box"><%=ubound(cntIdx)+1%>명</td>
+							</tr>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">발송자</td>
 								<td class="line_box"><input type="text" style="width:100%" id="mailFrom" name="mailFrom" class="input" value="OCEAN<no-reply@iotocean.org>" maxlength="200"></td>

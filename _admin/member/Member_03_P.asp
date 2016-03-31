@@ -20,22 +20,12 @@ Dim companyIdx : companyIdx = request("companyIdx")
 Dim Indate     : Indate     = request("Indate")
 Dim Outdate    : Outdate    = request("Outdate")
 
-Dim mailFrom      : mailFrom      = Trim( request("mailFrom") )
+Dim mailFrom   : mailFrom   = Trim( request("mailFrom") )
 Dim Title      : Title      = Trim( request("Title") )
 Dim Contants   : Contants   = Trim( request("Contants") )
+Dim PageParams : PageParams = URLDecode(request("PageParams"))
 
 
-
-Dim PageParams
-PageParams = "UserName="  & UserName &_
-		"&UserId="    & UserId &_
-		"&Hphone3="   & Hphone3 &_
-		"&delFg="     & delFg &_
-		"&State="     & State &_
-		"&ceoFg="     & ceoFg &_
-		"&companyIdx="& companyIdx &_
-		"&Indate="    & Indate &_
-		"&Outdate="   & Outdate
 
 Call Expires()
 Call dbopen()
