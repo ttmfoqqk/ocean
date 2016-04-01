@@ -1,5 +1,8 @@
 <!-- #include file = "../inc/header.asp" -->
 <%
+Session.Timeout = 600
+Server.ScriptTimeOut = 60*60*60 '초
+
 Dim arrList
 Dim cntList  : cntList  = -1
 

@@ -30,6 +30,20 @@ pageURL	= g_url & "?pageNo=__PAGE__" &_
 		"&Indate="    & Indate &_
 		"&Outdate="   & Outdate
 
+Dim PageParams
+PageParams = "pageNo=" & pageNo &_
+		"&UserName="  & UserName &_
+		"&UserId="    & UserId &_
+		"&Hphone3="   & Hphone3 &_
+		"&delFg="     & delFg &_
+		"&State="     & State &_
+		"&ceoFg="     & ceoFg &_
+		"&companyIdx="& companyIdx &_
+		"&Indate="    & Indate &_
+		"&Outdate="   & Outdate
+
+
+
 Call Expires()
 Call dbopen()
 	Call GetList()
@@ -395,6 +409,12 @@ function del_fm(){
 				</form>
 				<tr>
 					<td colspan=2><img src="../img/center_sub_search_data.gif"></td>
+				</tr>
+				<tr><td height="10"></td></tr>
+				<tr>
+					<td colspan=2>
+						<input type="button" class="btn" value=" 엑셀 다운로드 " onclick="location.href='excel.Member_01.asp?<%=PageParams%>';" style="width:100px;height:30px;padding:0px;">
+					</td>
 				</tr>
 				<tr><td height="10"></td></tr>
 				<tr>

@@ -167,6 +167,12 @@ function del_fm_checkbox(){
 				<tr><td height="10"></td></tr>
 				<tr>
 					<td colspan=2>
+						<input type="button" class="btn" value=" 엑셀 다운로드 " onclick="location.href='excel.Member_02.asp?<%=PageParams%>';" style="width:100px;height:30px;padding:0px;">
+					</td>
+				</tr>
+				<tr><td height="10"></td></tr>
+				<tr>
+					<td colspan=2>
 						
 						<form name="AdminForm" method="post" action="Customer_01_P.asp" enctype="multipart/form-data">
 						<input type="hidden" name="actType" value="">
