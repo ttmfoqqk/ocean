@@ -28,9 +28,17 @@
 				If CStr(tab1) = CStr(arrTab1List(FI2_idx,kLoop)) Then
 					response.Write("<ul class=""sub"">")
 					for iLoop = 0 to cntListMenu
-				%>
-					<li><a href="../download/?tab1=<%=arrTab1List(FI2_idx,kLoop)%>&tab2=<%=arrListMenu(MENU_idx,iLoop)%>" class="<%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"over","")%>"><div><%=arrListMenu(MENU_name,iLoop)%></div></a></li>
-				<%
+
+						if trim(arrListMenu(MENU_link,iLoop))="" or isnull(arrListMenu(MENU_link,iLoop)) then 
+							%>
+							<li><a href="../download/?tab1=<%=arrTab1List(FI2_idx,kLoop)%>&tab2=<%=arrListMenu(MENU_idx,iLoop)%>" class="<%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"over","")%>"><div><%=arrListMenu(MENU_name,iLoop)%></div></a></li>
+							<%
+						else
+							%>
+							<li><a href="<%=arrListMenu(MENU_link,iLoop)%>" class="<%=IIF(CStr(tab2)=CStr(arrListMenu(MENU_idx,iLoop)),"over","")%>" target="_blank"><div><%=arrListMenu(MENU_name,iLoop)%></div></a></li>
+							<%
+						end if
+
 					next
 					response.Write("</ul>")
 				end if

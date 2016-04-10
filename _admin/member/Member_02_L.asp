@@ -149,7 +149,7 @@ function del_fm_checkbox(){
 									</select>
 								</td>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">South Korea 제외</td>
-								<td class="line_box"><input type="checkbox" id="noCountry" name="noCountry" value="254" <%=IIF(noCountry="254","checked","")%>></td>
+								<td class="line_box"><input type="checkbox" id="noCountry" name="noCountry" value="249" <%=IIF(noCountry="249","checked","")%>></td>
 							</tr>
 						</table>
 

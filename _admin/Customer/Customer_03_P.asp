@@ -5,6 +5,7 @@ Dim actType    : actType    = request("actType")
 Dim Idx        : Idx        = IIF( request("Idx")="" , "0" , request("Idx") )
 Dim Title      : Title      = TagEncode( Trim( request("Title") ) )
 Dim BoardKey   : BoardKey   = request("BoardKey")
+Dim Link       : Link       = request("Link")
 Dim tab        : tab        = IIF( request("tab")="" , 0 , request("tab") )
 Dim Order      : Order      = IIF( request("order")="" , 0 , request("order") )
 Dim PageParams : PageParams = URLDecode(request("PageParams"))
@@ -42,6 +43,7 @@ Sub insert()
 		.Parameters("@Title").value   = Title
 		.Parameters("@tab").value     = tab
 		.Parameters("@order").value   = order
+		.Parameters("@link").value    = Link
 		.Execute
 	End with
 	set objCmd = nothing

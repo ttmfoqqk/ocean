@@ -40,7 +40,21 @@ Call dbopen()
 	End If
 	Call GetListMenu()
 	If cntListMenu >= 0 Then
-		tab2 = IIF( tab2=0,arrListMenu(MENU_idx,0),tab2 )
+		'tab2 = IIF( tab2=0,arrListMenu(MENU_idx,0),tab2 )
+	
+		if tab2 = 0 then 
+			
+			for iLoop = 0 to cntListMenu
+				if trim(arrListMenu(MENU_link,iLoop))="" or isnull(arrListMenu(MENU_link,iLoop)) then
+					tab2 = arrListMenu(MENU_idx,iLoop)
+					exit for
+				end if
+			next
+
+		else
+			tab2 = tab2
+		end if
+
 	End If
 Call dbclose()
 

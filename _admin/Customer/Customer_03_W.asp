@@ -133,6 +133,13 @@ End Sub
 								<td class="line_box"><input type="text" style="width:100%" id="Title" name="Title" class="input" value="<%=TagDecode( FI_name )%>" maxlength="200"></td>
 							</tr>
 							<tr>
+								<td class="line_box" align=center bgcolor="f0f0f0" width="140">링크</td>
+								<td class="line_box">
+									<input type="text" style="width:100%" id="Link" name="Link" class="input" value="<%=FI_Link%>" maxlength="200">
+									<div style="line-height:180%;">전체주소 ex : https://www.google.co.kr</div>
+								</td>
+							</tr>
+							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">순서</td>
 								<td class="line_box"><input type="text" id="order" name="order" class="input" value="<%=IIF(FI_order="",0,FI_order)%>" size="4" maxlength="4"></td>
 							</tr>

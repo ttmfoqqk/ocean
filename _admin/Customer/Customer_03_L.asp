@@ -184,8 +184,9 @@ function del_fm_checkbox(){
 								<td class="line_box" style="padding:0px;" width="30"><input type="checkbox" name="check_all"></td>
 								<td class="line_box" width="50">번호</td>
 								<td class="line_box" width="20%">분류</td>
-								<td class="line_box">제목</td>								
-								<td class="line_box" width="10%">순서</td>
+								<td class="line_box">제목</td>
+								<td class="line_box" width="25%">링크</td>
+								<td class="line_box" width="7%">순서</td>
 							</tr>
 							<%
 							for iLoop = 0 to cntList
@@ -197,21 +198,14 @@ function del_fm_checkbox(){
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand">
 									<%
 									If (BoardKey="1") Then
-										Select Case ( arrList(FI_tap,iLoop) ) 
-											Case "1" Response.Write("Mobius")
-											Case "2" Response.Write("&CUBE")
-											Case "3" Response.Write("Open Contribution")
-										End Select
+										Response.Write(arrList(FI_tapNameD,iLoop))
 									elseif (BoardKey="3") then 
-										Select Case ( arrList(FI_tap,iLoop) ) 
-											Case "1" Response.Write("Device Dev")
-											Case "2" Response.Write("Server Dev")
-											Case "3" Response.Write("Application Dev")
-										End Select
+										Response.Write(arrList(FI_tapNameC,iLoop))
 									End if
 									%>
 								</td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand" align=left><%=arrList(FI_name,iLoop)%></td>								
+								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_link,iLoop)%></td>
 								<td class="line_box" onclick="<%=PageLink%>" style="cursor:hand"><%=arrList(FI_order,iLoop)%></td>
 							</tr>
 							<%next%>
