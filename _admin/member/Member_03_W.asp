@@ -15,8 +15,15 @@ Dim companyIdx : companyIdx = request("companyIdx")
 Dim Indate     : Indate   = request("Indate")
 Dim Outdate    : Outdate  = request("Outdate")
 Dim PageParams : PageParams = URLDecode(request("PageParams"))
+Dim cntTotal   : cntTotal   = request("cntTotal")
 
 dim cntIdx : cntIdx = split(Idx,",")
+
+if SelectType = "all" then 
+	cntIdx = cntTotal
+elseif SelectType = "sell" then
+	cntIdx = ubound(cntIdx)+1
+end if
 
 %>
 
@@ -57,7 +64,7 @@ dim cntIdx : cntIdx = split(Idx,",")
 						<table cellpadding=0 cellspacing=0 width="100%">
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">선택 수신자</td>
-								<td class="line_box"><%=ubound(cntIdx)+1%>명</td>
+								<td class="line_box"><%=cntIdx%>명</td>
 							</tr>
 							<tr>
 								<td class="line_box" align=center bgcolor="f0f0f0" width="140">발송자</td>

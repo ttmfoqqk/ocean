@@ -41,8 +41,9 @@ for iLoop = 0 to cntList
 	tmp_UserName = arrList(FI_UserName,iLoop) & IIF( arrList(FI_UserNameLast,iLoop)="",""," " & arrList(FI_UserNameLast,iLoop) )
 
 	result = sendSmsEmails(mailFrom , tmp_UserEmail , tmp_UserName , Title , Contants , "" )
-	'response.write result &"<br>"
+	'response.write tmp_UserEmail &"<br>"
 Next
+'response.end
 
 
 '-----------------------------------------------

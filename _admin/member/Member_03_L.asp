@@ -218,7 +218,7 @@ function MaileSend(mode){
 				<tr>
 					<td colspan=2>
 						<input type="button" class="btn" value=" 선택발송 " onclick="MaileSend(0)" style="width:100px;height:30px;padding:0px;">
-						<!--input type="button" class="btn" value=" 전체발송 " onclick="MaileSend(1)" style="width:100px;height:30px;padding:0px;"-->
+						<input type="button" class="btn" value=" 전체발송 " onclick="MaileSend(1)" style="width:100px;height:30px;padding:0px;">
 					</td>
 				</tr>
 				<tr><td height="10"></td></tr>
@@ -240,6 +240,7 @@ function MaileSend(mode){
 					<input type="hidden" name="Hphone3" value="<%=delFg%>">
 
 					<input type="hidden" name="PageParams" value="<%=Server.urlencode(PageParams)%>">
+					<input type="hidden" name="cntTotal" value="<%=cntTotal%>">
 
 						<table cellpadding=0 cellspacing=0 width="100%" id="memberList">
 							<tr height="30" align=center bgcolor="f0f0f0">
